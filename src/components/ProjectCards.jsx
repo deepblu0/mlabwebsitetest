@@ -3,19 +3,19 @@ import { ArrowUpRight, Clock, CheckCircle, Users, Tag, ArrowRight, ArrowLeft } f
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 
+const filters = [
+    { id: 'ALL', label: 'TÜM PROJELER', color: 'bg-mlab-navy', hover: 'hover:bg-mlab-navy/90' },
+    { id: 'ENERGY', label: 'ENERJİ', color: 'bg-mlab-energy', hover: 'hover:bg-mlab-energy/90', categories: ['ENERGY'] },
+    { id: 'INFRASTRUCTURE', label: 'KENTSEL ALTYAPI', color: 'bg-mlab-infrastructure', hover: 'hover:bg-mlab-infrastructure/90', categories: ['BUILDINGS', 'INFRASTRUCTURE', 'FINANCING'] },
+    { id: 'WASTE', label: 'ATIK', color: 'bg-mlab-waste', hover: 'hover:bg-mlab-waste/90', categories: ['WASTE', 'CONSUMPTION', 'CIRCULAR'] },
+    { id: 'TRANSPORT', label: 'ULAŞIM', color: 'bg-mlab-transport', hover: 'hover:bg-mlab-transport/90', categories: ['MOBILITY', 'TRANSPORT'] },
+    { id: 'NATURE', label: 'DOĞA', color: 'bg-mlab-nature', hover: 'hover:bg-mlab-nature/90', categories: ['NATURE', 'ADAPTATION'] }
+];
+
 const ProjectCards = () => {
     const [activeFilter, setActiveFilter] = useState(filters[0]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
-
-    const filters = [
-        { id: 'ALL', label: 'TÜM PROJELER', color: 'bg-mlab-navy', hover: 'hover:bg-mlab-navy/90' },
-        { id: 'ENERGY', label: 'ENERJİ', color: 'bg-mlab-energy', hover: 'hover:bg-mlab-energy/90', categories: ['ENERGY'] },
-        { id: 'INFRASTRUCTURE', label: 'KENTSEL ALTYAPI', color: 'bg-mlab-infrastructure', hover: 'hover:bg-mlab-infrastructure/90', categories: ['BUILDINGS', 'INFRASTRUCTURE', 'FINANCING'] },
-        { id: 'WASTE', label: 'ATIK', color: 'bg-mlab-waste', hover: 'hover:bg-mlab-waste/90', categories: ['WASTE', 'CONSUMPTION', 'CIRCULAR'] },
-        { id: 'TRANSPORT', label: 'ULAŞIM', color: 'bg-mlab-transport', hover: 'hover:bg-mlab-transport/90', categories: ['MOBILITY', 'TRANSPORT'] },
-        { id: 'NATURE', label: 'DOĞA', color: 'bg-mlab-nature', hover: 'hover:bg-mlab-nature/90', categories: ['NATURE', 'ADAPTATION'] }
-    ];
 
     const getProjectColor = (category) => {
         const filter = filters.find(f => f.categories && f.categories.includes(category));
