@@ -69,7 +69,7 @@ const ProjectCards = () => {
                                 onClick={() => setActiveFilter(filter)}
                                 className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-md transition-all duration-300 ${activeFilter.id === filter.id
                                     ? `${filter.color} text-white shadow-md transform -translate-y-0.5`
-                                    : 'bg-slate-200 text-slate-600 hover:bg-slate-300'
+                                    : `bg-slate-200 text-slate-600 ${filter.hover} hover:text-white`
                                     }`}
                             >
                                 {filter.label}

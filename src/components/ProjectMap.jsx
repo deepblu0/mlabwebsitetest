@@ -47,7 +47,6 @@ const ProjectMap = () => {
                                 className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group/pin map-pin"
                                 style={{ left: pin.x, top: pin.y }}
                                 onMouseEnter={() => setActivePinId(pin.id)}
-                                onMouseLeave={() => setActivePinId(null)}
                             >
                                 <div className="relative flex items-center justify-center">
                                     <div className={`w-4 h-4 ${categoryColors[pin.category].dot} rounded-full border-2 border-white shadow-md z-10 group-hover/pin:scale-125 transition-transform duration-200`}>
