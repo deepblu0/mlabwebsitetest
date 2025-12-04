@@ -4,11 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yasal Bilgilendirme | M-LAB İzmir</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <title>Yasal Bilgilendirme - M-LAB</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -18,244 +23,161 @@
                     },
                     colors: {
                         mlab: {
-                            navy: '#0A192F',
-                            cyan: '#00D4FF',
-                            purple: '#7B2CBF',
-                            dark: '#020c1b'
+                            navy: '#0a192f',
+                            cyan: '#00d4ff',
+                            purple: '#7c3aed',
                         }
                     }
                 }
             }
         }
     </script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: #1e293b;
-        }
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<!DOCTYPE html>
+<html lang="tr">
 
-        .gradient-text {
-            background: linear-gradient(to right, #00D4FF, #7B2CBF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yasal Bilgilendirme - M-LAB</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        mlab: {
+                            navy: '#0a192f',
+                            cyan: '#00d4ff',
+                            purple: '#7c3aed',
+                        }
+                    }
+                }
+            }
         }
-    </style>
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="min-h-screen flex flex-col bg-slate-50">
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
 
-    <!-- Header -->
-    <header
-        class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm"
-        id="header">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-center h-20">
-                <!-- Logo -->
-                <a href="preview.html" class="flex-shrink-0 group relative">
-                    <div class="p-2 rounded-lg relative">
-                        <img src="public/mlab-logo.png" alt="M-LAB" class="h-8 w-auto">
-                    </div>
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Back Button -->
+            <a href="index.html"
+                class="flex items-center gap-2 text-slate-500 hover:text-mlab-navy transition-colors font-medium">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span class="hidden sm:inline">Ana Sayfaya Dön</span>
+            </a>
+
+            <!-- Centered Logo -->
+            <div class="absolute left-1/2 transform -translate-x-1/2">
+                <a href="index.html">
+                    <img src="public/mlab-logo.png" alt="M-LAB" class="h-10 w-auto"
+                        onerror="this.src='https://placehold.co/150x50?text=M-LAB'">
                 </a>
             </div>
+
+            <!-- Empty Right for Balance -->
+            <div class="w-24"></div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="flex-grow pt-32 pb-20 relative overflow-hidden">
-        <!-- Background Glows -->
-        <div
-            class="absolute top-20 left-0 w-96 h-96 bg-mlab-cyan/10 rounded-full blur-3xl pointer-events-none mix-blend-multiply">
-        </div>
-        <div
-            class="absolute bottom-20 right-0 w-96 h-96 bg-mlab-purple/10 rounded-full blur-3xl pointer-events-none mix-blend-multiply">
-        </div>
-
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-4xl mx-auto">
-                <!-- Back to Home -->
-                <div class="mb-8">
-                    <a href="preview.html"
-                        class="inline-flex items-center text-slate-500 hover:text-mlab-navy transition-colors font-medium">
-                        <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
-                        Anasayfaya Dön
-                    </a>
-                </div>
-
-                <!-- Title Section -->
-                <div class="mb-12 text-center">
-                    <h1 id="page-title" class="text-3xl md:text-4xl font-bold text-mlab-navy mb-4">
-                        <!-- Title will be injected here -->
-                    </h1>
-                </div>
-
-                <!-- Content Section -->
-                <div class="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-xl">
-                    <div id="page-content" class="prose prose-slate prose-lg max-w-none text-slate-600">
-                        <!-- Content will be injected here -->
-                    </div>
-                </div>
+    <!-- Content -->
+    <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 p-8 md:p-12"
+            id="legal-content">
+            <!-- Content injected by JS -->
+            <div class="flex justify-center items-center h-64">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-mlab-navy"></div>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-mlab-navy text-white py-10 relative overflow-hidden border-t border-slate-800">
-        <!-- Ambient Glows -->
-        <div
-            class="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-mlab-cyan/10 rounded-full blur-3xl pointer-events-none">
-        </div>
-        <div
-            class="absolute bottom-0 left-0 -mb-20 -ml-20 w-56 h-56 bg-mlab-purple/10 rounded-full blur-3xl pointer-events-none">
-        </div>
-
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col lg:flex-row justify-between gap-8">
-                <!-- Left Column: Identity -->
-                <div class="flex flex-col items-start space-y-6 lg:w-5/12">
-                    <div class="bg-white/5 backdrop-blur-sm p-3 rounded-2xl border border-white/10 inline-block">
-                        <img src="public/mlab-logo.png" alt="M-LAB" class="h-10 w-auto brightness-0 invert">
-                    </div>
-                    <p class="text-slate-300 text-base leading-relaxed font-light max-w-md">
-                        İzmir'in sürdürülebilir geleceğini birlikte tasarlıyoruz. İklim nötr bir
-                        şehir için inovasyon,
-                        teknoloji ve toplumsal katılımı buluşturuyoruz.
-                    </p>
-
-                    <div class="space-y-3 w-full">
-                        <div class="flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-400">
-                            <a href="legal.html?page=privacy"
-                                class="hover:text-white transition-colors duration-300 flex items-center gap-2 group">
-                                <span
-                                    class="w-1.5 h-1.5 rounded-full bg-mlab-cyan opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                                Gizlilik Politikası
-                            </a>
-                            <a href="legal.html?page=cookie"
-                                class="hover:text-white transition-colors duration-300 flex items-center gap-2 group">
-                                <span
-                                    class="w-1.5 h-1.5 rounded-full bg-mlab-cyan opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                                Çerez Politikası
-                            </a>
-                            <a href="legal.html?page=kvkk"
-                                class="hover:text-white transition-colors duration-300 flex items-center gap-2 group">
-                                <span
-                                    class="w-1.5 h-1.5 rounded-full bg-mlab-cyan opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                                KVKK Aydınlatma
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="pt-6 border-t border-white/10 w-full">
-                        <p class="text-slate-500 text-xs">
-                            &copy; 2025 M-LAB İzmir. Tüm hakları saklıdır.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Right Column: Contact Form -->
-                <div class="lg:w-6/12">
-                    <div
-                        class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 shadow-2xl relative group">
-                        <!-- Form Glow -->
-                        <div
-                            class="absolute -inset-1 bg-gradient-to-r from-mlab-cyan to-mlab-purple rounded-3xl opacity-20 blur group-hover:opacity-30 transition duration-1000">
-                        </div>
-
-                        <div class="relative">
-                            <h3 class="text-xl font-bold text-white mb-4">Bizimle İletişime Geçin</h3>
-
-                            <form class="space-y-4" onsubmit="event.preventDefault();">
-                                <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
-                                    <div class="sm:col-span-5">
-                                        <input type="text" id="name" placeholder="Adınız Soyadınız"
-                                            class="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-mlab-cyan focus:ring-1 focus:ring-mlab-cyan transition-all hover:bg-black/30">
-                                    </div>
-                                    <div class="sm:col-span-7">
-                                        <input type="email" id="email" placeholder="ornek@email.com"
-                                            class="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-mlab-cyan focus:ring-1 focus:ring-mlab-cyan transition-all hover:bg-black/30">
-                                    </div>
-                                </div>
-                                <div>
-                                    <textarea id="message" rows="3" placeholder="Mesajınızı buraya yazın..."
-                                        class="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-mlab-cyan focus:ring-1 focus:ring-mlab-cyan transition-all resize-none hover:bg-black/30"></textarea>
-                                </div>
-                                <button type="submit"
-                                    class="w-full py-3 text-sm font-bold text-white transition-all duration-300 gradient-bg rounded-xl shadow-lg hover:shadow-[0_0_30px_rgba(0,212,255,0.4)] hover:-translate-y-1 active:scale-[0.98] flex items-center justify-center gap-2 group/btn">
-                                    Mesajı Gönder
-                                    <i data-lucide="send"
-                                        class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <footer class="bg-mlab-navy text-white py-8 border-t border-slate-800 mt-auto">
+        <div class="container mx-auto px-4 text-center text-sm text-slate-500">
+            &copy; 2025 M-LAB İzmir. Tüm hakları saklıdır.
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
 
-        // Content Data
-        const legalContent = {
+        const pages = {
             privacy: {
                 title: "Gizlilik Politikası",
                 content: `
-                    <p>M-LAB İzmir olarak gizliliğinize önem veriyoruz. Bu Gizlilik Politikası, web sitemizi kullandığınızda kişisel verilerinizin nasıl toplandığını, kullanıldığını ve korunduğunu açıklamaktadır.</p>
-                    <h3>1. Toplanan Veriler</h3>
-                    <p>Sitemizi ziyaret ettiğinizde, IP adresiniz, tarayıcı türünüz ve ziyaret süreleriniz gibi teknik veriler otomatik olarak toplanabilir. İletişim formunu doldurduğunuzda ise adınız, e-posta adresiniz ve mesajınız gibi gönüllü olarak sağladığınız bilgiler toplanır.</p>
-                    <h3>2. Verilerin Kullanımı</h3>
-                    <p>Toplanan veriler, size daha iyi hizmet sunmak, taleplerinizi yanıtlamak ve web sitemizin performansını analiz etmek amacıyla kullanılır.</p>
-                    <h3>3. Veri Güvenliği</h3>
-                    <p>Kişisel verilerinizin güvenliğini sağlamak için uygun teknik ve idari tedbirleri almaktayız.</p>
+                    <p class="mb-4">M-LAB İzmir olarak kişisel verilerinizin güvenliği hususuna azami hassasiyet göstermekteyiz. Bu bilinçle, platformumuz ile ilişkili tüm şahıslara ait her türlü kişisel verilerin 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVK Kanunu")'na uygun olarak işlenerek, muhafaza edilmesine büyük önem atfetmekteyiz.</p>
+                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">1. Kişisel Verilerin Toplanması</h3>
+                    <p class="mb-4">Kişisel verileriniz, platformumuz tarafından sağlanan hizmetlere bağlı olarak değişkenlik gösterebilmekle birlikte; otomatik ya da otomatik olmayan yöntemlerle, ofisler, internet sitesi, sosyal medya mecraları, mobil uygulamalar ve benzeri vasıtalarla sözlü, yazılı ya da elektronik olarak toplanabilecektir.</p>
+                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">2. Kişisel Verilerin İşlenmesi</h3>
+                    <p class="mb-4">Toplanan kişisel verileriniz, platformumuzun sunduğu ürün ve hizmetlerden sizleri faydalandırmak için gerekli çalışmaların iş birimlerimiz tarafından yapılması, platformumuzun ve platformumuzla iş ilişkisi içerisinde olan kişilerin hukuki ve ticari güvenliğinin temini amaçlarıyla işlenecektir.</p>
                 `
             },
             cookie: {
                 title: "Çerez Politikası",
                 content: `
-                    <p>Web sitemizde kullanıcı deneyimini geliştirmek için çerezler (cookies) kullanılmaktadır.</p>
-                    <h3>1. Çerez Nedir?</h3>
-                    <p>Çerezler, web sitesini ziyaret ettiğinizde cihazınıza kaydedilen küçük metin dosyalarıdır.</p>
-                    <h3>2. Kullanılan Çerez Türleri</h3>
-                    <p>Sitemizde zorunlu çerezler ve performans çerezleri kullanılmaktadır. Zorunlu çerezler sitenin çalışması için gereklidir.</p>
-                    <h3>3. Çerezleri Yönetme</h3>
-                    <p>Tarayıcı ayarlarınızdan çerez tercihlerinizi değiştirebilir veya çerezleri silebilirsiniz.</p>
+                    <p class="mb-4">M-LAB İzmir web sitesi ("Site") olarak, kullanıcı deneyimini geliştirmek, sitenin verimli çalışmasını sağlamak ve hizmetlerimizi optimize etmek amacıyla çerezler (cookies) kullanmaktayız.</p>
+                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">1. Çerez Nedir?</h3>
+                    <p class="mb-4">Çerezler, ziyaret ettiğiniz web siteleri tarafından tarayıcınız aracılığıyla cihazınıza veya ağ sunucusuna depolanan küçük metin dosyalarıdır.</p>
+                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">2. Kullanılan Çerez Türleri</h3>
+                    <ul class="list-disc pl-5 space-y-2 mb-4">
+                        <li><strong>Zorunlu Çerezler:</strong> Sitenin düzgün çalışması için gereklidir.</li>
+                        <li><strong>Performans Çerezleri:</strong> Ziyaretçilerin siteyi nasıl kullandığını analiz ederek performansı artırır.</li>
+                        <li><strong>İşlevsellik Çerezleri:</strong> Dil tercihleri gibi seçimlerinizi hatırlar.</li>
+                    </ul>
                 `
             },
             kvkk: {
                 title: "KVKK Aydınlatma Metni",
                 content: `
-                    <p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, M-LAB İzmir olarak veri sorumlusu sıfatıyla kişisel verilerinizi işlemekteyiz.</p>
-                    <h3>1. Kişisel Verilerin İşlenme Amacı</h3>
-                    <p>Kişisel verileriniz, proje başvurularının değerlendirilmesi, iletişim faaliyetlerinin yürütülmesi ve yasal yükümlülüklerin yerine getirilmesi amacıyla işlenmektedir.</p>
-                    <h3>2. Kişisel Verilerin Aktarılması</h3>
-                    <p>Verileriniz, yasal zorunluluklar dışında üçüncü kişilerle paylaşılmamaktadır.</p>
-                    <h3>3. Haklarınız</h3>
-                    <p>KVKK'nın 11. maddesi uyarınca, verilerinizin işlenip işlenmediğini öğrenme, düzeltme talep etme ve silinmesini isteme haklarına sahipsiniz.</p>
+                    <p class="mb-4">6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, M-LAB İzmir olarak, Veri Sorumlusu sıfatıyla, kişisel verilerinizi aşağıda açıklanan amaçlar kapsamında; hukuka ve dürüstlük kurallarına uygun bir şekilde işleyebilecek, kaydedebilecek, saklayabilecek, sınıflandırabilecek, güncelleyebilecek ve mevzuatın izin verdiği hallerde üçüncü kişilere açıklayabilecek/devredebileceğiz.</p>
+                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">1. Veri Sorumlusu</h3>
+                    <p class="mb-4">KVKK uyarınca muhatap, veri sorumlusu sıfatıyla M-LAB İzmir'dir.</p>
+                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">2. Haklarınız</h3>
+                    <p class="mb-4">KVKK'nın 11. maddesi gereği, kişisel veri sahipleri; kişisel veri işlenip işlenmediğini öğrenme, kişisel verileri işlenmişse buna ilişkin bilgi talep etme, kişisel verilerin işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme haklarına sahiptir.</p>
                 `
             }
         };
 
-        // URL Parameter Handling
-        function loadContent() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const page = urlParams.get('page');
+        // Parse URL Params
+        const urlParams = new URLSearchParams(window.location.search);
+        const pageId = urlParams.get('page') || 'privacy';
 
-            const titleEl = document.getElementById('page-title');
-            const contentEl = document.getElementById('page-content');
+        const page = pages[pageId];
+        const container = document.getElementById('legal-content');
 
-            if (page && legalContent[page]) {
-                titleEl.textContent = legalContent[page].title;
-                contentEl.innerHTML = legalContent[page].content;
-                document.title = `${legalContent[page].title} | M-LAB İzmir`;
-            } else {
-                // Default or 404 state
-                titleEl.textContent = "Sayfa Bulunamadı";
-                contentEl.innerHTML = "<p>Aradığınız sayfa mevcut değil veya taşınmış olabilir.</p>";
-            }
+        if (page) {
+            container.innerHTML = `
+                <h1 class="text-3xl md:text-4xl font-black text-mlab-navy mb-8 border-b border-slate-100 pb-6">${page.title}</h1>
+                <div class="prose prose-slate max-w-none text-slate-600 leading-relaxed">
+                    ${page.content}
+                </div>
+            `;
+        } else {
+            container.innerHTML = `
+                <div class="text-center py-20">
+                    <h2 class="text-2xl font-bold text-slate-400">Sayfa bulunamadı.</h2>
+                    <a href="index.html" class="text-mlab-cyan hover:underline mt-4 inline-block">Ana Sayfaya Dön</a>
+                </div>
+            `;
         }
-
-        window.addEventListener('DOMContentLoaded', loadContent);
     </script>
 </body>
 
