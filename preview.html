@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M-LAB Landing Page Preview</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        mlab: {
+                            navy: '#0a192f',
+                            cyan: '#00d4ff',
+                            purple: '#7c3aed',
+                            dark: '#0f172a',
+                            orange: '#ff7e67',
+                            energy: '#FFC107',
+                            infrastructure: '#616161',
+                            waste: '#795548',
+                            transport: '#2196F3',
+                            nature: '#4CAF50',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scroll': 'scroll 40s linear infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .map-pin:hover {
+            z-index: 50;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Coin flip animation for badge */
+        .coin-flip-container {
+            perspective: 1000px;
+        }
+
+        .coin-flip {
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .coin-flip:hover {
+            transform: rotateY(360deg);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-slate-800 antialiased">
+
+    <!-- HERO SECTION (No Navbar) -->
+    <section class="relative h-screen min-h-[600px] flex flex-col items-center justify-center overflow-hidden">
+
+        <!-- Background Video -->
+        <div class="absolute inset-0 z-0">
+            <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                <source src="public/Aerial%204k%20Drone%20Footage%20of%20Izmir%20City%20Turkey%20-%20Travel%20Video.mp4"
+                    type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <!-- Dark Overlay -->
+            <div class="absolute inset-0 bg-mlab-navy/60 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-mlab-navy via-transparent to-mlab-navy/30"></div>
+        </div>
+
+        <!-- Top Bar: Logo & Language Switcher -->
+        <div class="absolute top-0 left-0 right-0 z-50 flex justify-between items-start px-6 pt-0 pointer-events-none">
+            <!-- Empty Left for Balance -->
+            <div class="w-24 hidden md:block pointer-events-auto"></div>
+
+            <!-- Centered Logo (Hanging from top) -->
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 pointer-events-auto">
+                <div
+                    class="bg-white/70 backdrop-blur-xl px-10 pb-6 pt-8 rounded-b-[2.5rem] shadow-2xl border-b border-x border-white/40 hover:bg-white/90 transition-colors duration-300 group">
+                    <img src="public/mlab-logo.png" alt="M-LAB Logo"
+                        class="h-16 w-auto drop-shadow-sm group-hover:scale-105 transition-transform duration-300"
+                        onerror="this.src='https://placehold.co/200x80?text=M-LAB+Logo'">
+                </div>
+            </div>
+
+            <!-- Language Switcher -->
+            <div
+                class="flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full p-1 border border-white/20 pointer-events-auto shadow-lg mt-6">
+                <button class="px-3 py-1 rounded-full bg-white text-mlab-navy text-xs font-bold shadow-sm">TR</button>
+                <button
+                    class="px-3 py-1 rounded-full text-white hover:bg-white/10 text-xs font-medium transition-colors">EN</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center mt-32">
+            <div class="max-w-5xl mx-auto">
+                <h1
+                    class="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter mb-6 leading-tight drop-shadow-2xl animate-fade-in-up">
+                    İKLİM NÖTR BİR İZMİR İÇİN <br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-mlab-cyan to-mlab-purple">HAREKETE
+                        GEÇ</span>
+                </h1>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <a href="#mission"
+            class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70 hover:text-white transition-colors cursor-pointer z-20">
+            <i data-lucide="chevron-down" class="w-10 h-10"></i>
+        </a>
+    </section>
+
+    <!-- MISSION -->
+    <section id="mission" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-mlab-cyan/10 text-mlab-cyan text-xs font-bold tracking-wider uppercase mb-4">
+                İKLİM NÖTR VE AKILLI ŞEHİRLER MİSYONU
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold text-mlab-navy mb-6">
+                Sürdürülebilir Dönüşüm İçin <br />
+                <span class="text-mlab-cyan">Bütünleşik Yönetişim Platformu</span>
+            </h2>
+            <p class="text-slate-600 max-w-4xl mx-auto leading-relaxed mb-12">
+                M-LAB; İzmir'in iklim nötr olma hedefine yönelik çalışmaları ortak bir strateji etrafında birleştiren
+                merkezi bir yönetişim yapısıdır. İzmir Planlama Ajansı bünyesinde faaliyet gösteren bu yapı, kentin tüm
+                dinamiklerini harekete geçiren ağ tabanlı bir iş birliği modelini esas alır.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="p-8 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-600">
+                        <i data-lucide="target" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-mlab-navy mb-3">Paylaşımlı Liderlik</h3>
+                    <p class="text-slate-500 text-sm">Tek merkezden yönetim yerine, sorumluluğun yetkinliklere göre
+                        paylaşıldığı katılımcı bir çalışma düzeni.</p>
+                </div>
+                <div
+                    class="p-8 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-mlab-navy mb-3">Bütüncül Planlama</h3>
+                    <p class="text-slate-500 text-sm">Kentsel sorunları birbirinden bağımsız projelerle değil, birbirini
+                        destekleyen eylemler bütünüyle ele alıyoruz.</p>
+                </div>
+                <div
+                    class="p-8 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-6 text-purple-600">
+                        <i data-lucide="lightbulb" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-mlab-navy mb-3">Yenilikçi Çözümler</h3>
+                    <p class="text-slate-500 text-sm">Akıllı şehir teknolojilerini ve dijital araçları kullanarak
+                        kentsel hizmetleri optimize ediyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECT CARDS -->
+    <section id="projects" class="py-20 bg-slate-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-mlab-navy mb-6">Projeler & Çözümler</h2>
+
+                <!-- Filter Bar -->
+                <div class="flex flex-wrap gap-2 mb-8" id="filter-container">
+                    <!-- Filters will be injected here by JS -->
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="projects-grid">
+                <!-- Projects will be injected here by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECT MAP -->
+    <section id="map" class="py-20 bg-white border-t border-slate-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span
+                    class="inline-block py-1 px-3 rounded-full bg-mlab-orange/10 text-mlab-orange text-xs font-bold tracking-wider uppercase mb-4">
+                    ETKİLEŞİM HARİTASI
+                </span>
+                <h2 class="text-3xl font-bold text-mlab-navy">Projelerin Coğrafi Dağılımı</h2>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 items-stretch h-[600px]">
+                <!-- Left Column: Map -->
+                <div
+                    class="lg:w-[70%] relative bg-slate-50 rounded-3xl border border-slate-200 shadow-lg overflow-hidden group h-full">
+                    <div class="absolute inset-0 flex items-center justify-center p-8">
+                        <img src="public/mapofizmir.png" alt="Izmir Map"
+                            class="w-full h-full object-contain opacity-90 transition-opacity duration-500 group-hover:opacity-100"
+                            onerror="this.src='https://placehold.co/800x600?text=Izmir+Map'">
+                    </div>
+                    <div id="map-pins-container">
+                        <!-- Pins injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Right Column: Details -->
+                <div
+                    class="lg:w-[30%] bg-white rounded-3xl border border-slate-100 shadow-lg p-8 flex flex-col justify-center relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-full -mr-16 -mt-16 z-0"></div>
+                    <div class="relative z-10 transition-all duration-300 h-full flex flex-col justify-center"
+                        id="map-details-content">
+                        <!-- Details injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section class="bg-white py-20 relative group">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
+            <h2 class="text-3xl font-bold text-mlab-navy">Paydaşlarımız</h2>
+        </div>
+
+        <div class="relative container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Left Button -->
+            <button id="slider-prev"
+                class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg border border-slate-100 rounded-full p-3 text-mlab-navy transition-all -ml-4 md:-ml-8 opacity-0 group-hover:opacity-100 focus:opacity-100">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Slider Track -->
+            <div id="partners-slider"
+                class="flex items-center gap-16 overflow-x-auto scrollbar-hide scroll-smooth py-4 px-4">
+                <!-- Logos injected here by JS -->
+            </div>
+
+            <!-- Right Button -->
+            <button id="slider-next"
+                class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg border border-slate-100 rounded-full p-3 text-mlab-navy transition-all -mr-4 md:-mr-8 opacity-0 group-hover:opacity-100 focus:opacity-100">
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-mlab-navy text-white">
+        <div class="h-1 w-full bg-gradient-to-r from-mlab-cyan via-mlab-purple to-mlab-cyan"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+                <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
+                    <a href="legal.html?page=privacy" class="hover:text-slate-300 transition-colors">Gizlilik
+                        Politikası</a>
+                    <span class="text-slate-700">•</span>
+                    <a href="legal.html?page=cookie" class="hover:text-slate-300 transition-colors">Çerez Politikası</a>
+                    <span class="text-slate-700">•</span>
+                    <a href="legal.html?page=kvkk" class="hover:text-slate-300 transition-colors">KVKK Aydınlatma
+                        Metni</a>
+                </div>
+                <div class="coin-flip-container">
+                    <img src="public/label-circle.png" alt="EU Mission Label"
+                        class="h-20 w-auto drop-shadow-lg coin-flip cursor-pointer">
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-3 text-sm text-slate-400">
+                    <a href="mailto:info@m-lab.izmir.bel.tr"
+                        class="hover:text-mlab-cyan transition-colors flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        info@m-lab.izmir.bel.tr
+                    </a>
+                    <span class="hidden sm:inline text-slate-700">|</span>
+                    <span class="text-xs text-slate-500">&copy; 2025 M-LAB İzmir</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // DATA
+        const projects = [
+            { id: 1, title: "Garden District Ter Elst Becomes A Climate Community", category: "ENERGY", startDate: "March 2024", status: "In Progress", progress: 65, partners: "Ter Elst residents", themes: "Collective renovation", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" },
+            { id: 2, title: "FEAST: Healthy and Sustainable Food", category: "CONSUMPTION", startDate: "October 2022", status: "In Progress", progress: 40, partners: "Leuven 2030, KU Leuven", themes: "Healthy food", image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&q=80&w=1200" },
+            { id: 3, title: "Wijgmaal Seen From A Spatial Perspective", category: "ADAPTATION", startDate: "January 2020", status: "Completed", progress: 100, partners: "City of Leuven", themes: "Energy, Mobility", image: "https://images.unsplash.com/photo-1449824913929-4bdd42b98d0d?auto=format&fit=crop&q=80&w=1200" },
+            { id: 4, title: "Liman Bölgesi Elektrifikasyonu", category: "ENERGY", startDate: "June 2023", status: "Planning", progress: 15, partners: "Port Authority", themes: "Electrification", image: "https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=1200" },
+            { id: 5, title: "Alsancak Akıllı Ulaşım", category: "MOBILITY", startDate: "August 2023", status: "In Progress", progress: 30, partners: "Izmir Metro", themes: "AI, Traffic", image: "https://images.unsplash.com/photo-1494522358652-f30e61a60313?auto=format&fit=crop&q=80&w=1200" },
+            { id: 6, title: "Yeşil Bina Sertifikasyon", category: "BUILDINGS", startDate: "Jan 2024", status: "Planning", progress: 10, partners: "Chamber of Architects", themes: "Retrofitting", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200" }
+        ];
+
+        const filters = [
+            { id: 'ALL', label: 'TÜM PROJELER', color: 'bg-mlab-navy', hover: 'hover:bg-mlab-navy/90' },
+            { id: 'ENERGY', label: 'ENERJİ', color: 'bg-mlab-energy', hover: 'hover:bg-mlab-energy/90', categories: ['ENERGY'] },
+            { id: 'INFRASTRUCTURE', label: 'KENTSEL ALTYAPI', color: 'bg-mlab-infrastructure', hover: 'hover:bg-mlab-infrastructure/90', categories: ['BUILDINGS', 'INFRASTRUCTURE', 'FINANCING'] },
+            { id: 'WASTE', label: 'ATIK', color: 'bg-mlab-waste', hover: 'hover:bg-mlab-waste/90', categories: ['WASTE', 'CONSUMPTION', 'CIRCULAR'] },
+            { id: 'TRANSPORT', label: 'ULAŞIM', color: 'bg-mlab-transport', hover: 'hover:bg-mlab-transport/90', categories: ['MOBILITY', 'TRANSPORT'] },
+            { id: 'NATURE', label: 'DOĞA', color: 'bg-mlab-nature', hover: 'hover:bg-mlab-nature/90', categories: ['NATURE', 'ADAPTATION'] }
+        ];
+
+        const mapPins = [
+            { id: 1, x: '45%', y: '40%', title: 'Liman Bölgesi Elektrifikasyonu', desc: 'Liman operasyonlarından kaynaklanan emisyonları azaltmak için gemi-kıyı elektrik bağlantısı.', category: 'ENERGY' },
+            { id: 2, x: '60%', y: '55%', title: 'Alsancak Akıllı Ulaşım', desc: 'Yapay zeka destekli trafik yönetim sistemi ile yoğunluğu azaltma.', category: 'TRANSPORT' },
+            { id: 3, x: '30%', y: '65%', title: 'Karşıyaka Enerji Kooperatifi', desc: 'Vatandaş odaklı yenilenebilir enerji üretimi ve paylaşım platformu.', category: 'ENERGY' },
+            { id: 4, x: '75%', y: '30%', title: 'Bornova İnovasyon Kampüsü', desc: 'Sıfır karbon operasyonları için yenilenen üniversite binaları.', category: 'INFRASTRUCTURE' },
+        ];
+
+        const categoryColors = {
+            ENERGY: { dot: 'bg-mlab-energy', pulse: 'bg-mlab-energy/30', label: 'Enerji', text: 'text-mlab-energy', bg: 'bg-mlab-energy/10' },
+            TRANSPORT: { dot: 'bg-mlab-transport', pulse: 'bg-mlab-transport/30', label: 'Ulaşım', text: 'text-mlab-transport', bg: 'bg-mlab-transport/10' },
+            INFRASTRUCTURE: { dot: 'bg-mlab-infrastructure', pulse: 'bg-mlab-infrastructure/30', label: 'Kentsel Altyapı', text: 'text-mlab-infrastructure', bg: 'bg-mlab-infrastructure/10' },
+            WASTE: { dot: 'bg-mlab-waste', pulse: 'bg-mlab-waste/30', label: 'Atık', text: 'text-mlab-waste', bg: 'bg-mlab-waste/10' },
+            NATURE: { dot: 'bg-mlab-nature', pulse: 'bg-mlab-nature/30', label: 'Doğa', text: 'text-mlab-nature', bg: 'bg-mlab-nature/10' }
+        };
+
+        // --- FILTER & PROJECTS LOGIC ---
+        let activeFilterId = 'ALL';
+
+        function renderFilters() {
+            const container = document.getElementById('filter-container');
+            container.innerHTML = filters.map(f => `
+                <button onclick="setFilter('${f.id}')" 
+                    class="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-md transition-all duration-300 ${activeFilterId === f.id ? `${f.color} text-white shadow-md transform -translate-y-0.5` : `bg-slate-200 text-slate-600 ${f.hover} hover:text-white`}">
+                    ${f.label}
+                </button>
+            `).join('');
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projects-grid');
+            const activeFilter = filters.find(f => f.id === activeFilterId);
+            const filtered = activeFilterId === 'ALL' ? projects : projects.filter(p => activeFilter.categories.includes(p.category));
+
+            container.innerHTML = filtered.slice(0, 3).map(p => `
+                <a href="project-detail.html?id=${p.id}" class="block h-full">
+                    <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full group cursor-pointer border border-slate-100 hover:border-mlab-cyan/30">
+                        <div class="h-48 w-full relative overflow-hidden bg-slate-200 rounded-t-2xl">
+                            <img src="${p.image}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-black/5"></div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-extrabold text-mlab-navy mb-6 uppercase leading-tight group-hover:text-mlab-purple transition-colors">${p.title}</h3>
+                            <div class="space-y-4 mt-auto">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <div class="flex items-center text-mlab-navy font-bold text-xs mb-1"><i data-lucide="clock" class="w-3 h-3 mr-1"></i> START DATE</div>
+                                        <div class="text-slate-500 text-sm">${p.startDate}</div>
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center text-mlab-navy font-bold text-xs mb-1"><i data-lucide="check-circle" class="w-3 h-3 mr-1"></i> STATUS</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="flex-grow bg-slate-200 rounded-full h-1.5 w-16">
+                                                <div class="bg-mlab-cyan h-1.5 rounded-full" style="width: ${p.progress}%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="border-slate-100" />
+                                <div>
+                                    <div class="flex items-center text-mlab-navy font-bold text-xs mb-1"><i data-lucide="users" class="w-3 h-3 mr-1"></i> PARTNERS</div>
+                                    <div class="text-slate-500 text-sm truncate">${p.partners}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        window.setFilter = (id) => {
+            activeFilterId = id;
+            renderFilters();
+            renderProjects();
+        };
+
+        // --- MAP LOGIC ---
+        let activePinId = null;
+
+        function renderMapPins() {
+            const container = document.getElementById('map-pins-container');
+            container.innerHTML = mapPins.map(pin => {
+                const colors = categoryColors[pin.category];
+                return `
+                <div class="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group/pin map-pin"
+                     style="left: ${pin.x}; top: ${pin.y}"
+                     onmouseenter="setMapPin(${pin.id})">
+                    <div class="relative flex items-center justify-center">
+                        <div class="w-4 h-4 ${colors.dot} rounded-full border-2 border-white shadow-md z-10 group-hover/pin:scale-125 transition-transform duration-200"></div>
+                        <div class="absolute w-8 h-8 ${colors.pulse} rounded-full animate-ping"></div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderMapDetails() {
+            const container = document.getElementById('map-details-content');
+            if (!activePinId) {
+                container.innerHTML = `
+                    <div class="flex flex-col items-center text-center h-full justify-center space-y-4">
+                        <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-2">
+                            <i data-lucide="map-pin" class="w-8 h-8 text-slate-300"></i>
+                        </div>
+                        <p class="text-slate-400 text-sm font-medium">Harita üzerindeki noktalara gelerek<br />proje detaylarını görüntüleyebilirsiniz.</p>
+                    </div>`;
+            } else {
+                const pin = mapPins.find(p => p.id === activePinId);
+                const colors = categoryColors[pin.category];
+                container.innerHTML = `
+                    <div class="flex flex-col items-start text-left space-y-3 animate-fade-in-up" style="animation-duration: 0.3s">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold ${colors.bg} ${colors.text} mb-2">${colors.label}</span>
+                        <h3 class="text-xl font-bold text-mlab-navy leading-tight">${pin.title}</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">${pin.desc}</p>
+                        <a href="project-detail.html?id=${pin.id}" class="text-mlab-cyan text-sm font-bold hover:underline mt-2 flex items-center gap-1">
+                            Detayları İncele <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>`;
+            }
+            lucide.createIcons();
+        }
+
+        window.setMapPin = (id) => {
+            activePinId = id;
+            renderMapDetails();
+        };
+
+        // --- PARTNERS SLIDER LOGIC ---
+        const partners = [
+            'basifed.png', 'ebso.png', 'egiad.png', 'eib.png', 'ensia.png',
+            'esiad.png', 'itb.png', 'izbb.png', 'izikad.png', 'izka.png',
+            'izpa.png', 'izq.png', 'izto.png', 'tmmob.png', 'valilik.png'
+        ];
+
+        function renderPartners() {
+            const container = document.getElementById('partners-slider');
+            // Duplicate the array 3 times to ensure smooth infinite scrolling
+            const displayPartners = [...partners, ...partners, ...partners];
+
+            container.innerHTML = displayPartners.map(logo => `
+                <div class="flex-shrink-0 flex items-center justify-center">
+                    <img src="public/stakeholdericons/${logo}" 
+                         alt="${logo.split('.')[0]}" 
+                         class="max-h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                         onerror="this.style.display='none'">
+                </div>
+            `).join('');
+        }
+
+        // Slider Navigation
+        const slider = document.getElementById('partners-slider');
+        const prevBtn = document.getElementById('slider-prev');
+        const nextBtn = document.getElementById('slider-next');
+
+        if (slider && prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+
+            nextBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+
+            // Auto Scroll
+            let autoScroll = setInterval(() => {
+                if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+                    // Reset to beginning (or 1/3 point) instantly to create infinite loop effect
+                    // Since we tripled the content, we can jump back to the first set when we reach the end
+                    slider.scrollTo({ left: 0, behavior: 'auto' });
+                } else {
+                    slider.scrollBy({ left: 1, behavior: 'auto' });
+                }
+            }, 40);
+
+            // Pause on hover
+            slider.parentElement.addEventListener('mouseenter', () => clearInterval(autoScroll));
+            slider.parentElement.addEventListener('mouseleave', () => {
+                autoScroll = setInterval(() => {
+                    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+                        slider.scrollTo({ left: 0, behavior: 'auto' });
+                    } else {
+                        slider.scrollBy({ left: 1, behavior: 'auto' });
+                    }
+                }, 40);
+            });
+        }
+
+        // INITIALIZATION
+        renderPartners();
+        renderFilters();
+        renderProjects();
+        renderMapPins();
+        renderMapDetails();
+
+    </script>
+</body>
+
+</html>

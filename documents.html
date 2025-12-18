@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokümanlar | M-LAB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { mlab: { navy: '#0a192f', cyan: '#00d4ff', purple: '#7c3aed', dark: '#0f172a' } }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .coin-flip-container {
+            perspective: 1000px;
+        }
+
+        .coin-flip {
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .coin-flip:hover {
+            transform: rotateY(360deg);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- NAVBAR -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="public/mlab-logo.png" alt="M-LAB"
+                        class="h-12 w-auto transition-transform duration-300 group-hover:scale-105">
+                </a>
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="mission.html"
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">
+                        Şehirler Misyonu
+                        <span
+                            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                    <a href="ufuk.html"
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">
+                        Ufuk Hibeleri
+                        <span
+                            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                    <a href="projects.html"
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">
+                        Projeler
+                        <span
+                            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                    <a href="sandbox.html"
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">
+                        Sandbox
+                        <span
+                            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                    <a href="documents.html"
+                        class="nav-link relative px-4 py-2 text-mlab-navy font-semibold text-sm group">
+                        Dokümanlar
+                        <span
+                            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple"></span>
+                    </a>
+                    <a href="contact.html"
+                        class="ml-2 px-5 py-2.5 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-mlab-purple/25 transition-all duration-300 hover:-translate-y-0.5">
+                        İletişim
+                    </a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-1 bg-slate-100 rounded-full p-1">
+                        <button
+                            class="px-3 py-1.5 rounded-full bg-mlab-navy text-white text-xs font-bold shadow-sm">TR</button>
+                        <button
+                            class="px-3 py-1.5 rounded-full text-slate-500 hover:text-mlab-navy text-xs font-medium transition-colors">EN</button>
+                    </div>
+                    <button id="mobile-menu-btn"
+                        class="lg:hidden p-2.5 text-slate-600 hover:text-mlab-navy hover:bg-slate-100 rounded-xl transition-all">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden lg:hidden pb-6 pt-2">
+                <div class="flex flex-col gap-1 bg-slate-50 rounded-2xl p-3">
+                    <a href="mission.html"
+                        class="px-4 py-3 rounded-xl text-slate-600 hover:text-mlab-navy hover:bg-white transition-all text-sm font-medium">Şehirler
+                        Misyonu</a>
+                    <a href="ufuk.html"
+                        class="px-4 py-3 rounded-xl text-slate-600 hover:text-mlab-navy hover:bg-white transition-all text-sm font-medium">Ufuk
+                        Hibeleri</a>
+                    <a href="projects.html"
+                        class="px-4 py-3 rounded-xl text-slate-600 hover:text-mlab-navy hover:bg-white transition-all text-sm font-medium">Projeler</a>
+                    <a href="sandbox.html"
+                        class="px-4 py-3 rounded-xl text-slate-600 hover:text-mlab-navy hover:bg-white transition-all text-sm font-medium">Sandbox</a>
+                    <a href="documents.html"
+                        class="px-4 py-3 rounded-xl bg-white text-mlab-navy font-semibold text-sm">Dokümanlar</a>
+                    <a href="contact.html"
+                        class="mt-2 px-4 py-3 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white text-sm font-semibold rounded-xl text-center">İletişim</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="h-20"></div>
+
+    <!-- HERO -->
+    <section class="bg-gradient-to-br from-mlab-navy via-mlab-dark to-mlab-purple py-16 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-72 h-72 bg-mlab-cyan rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 bg-mlab-purple rounded-full blur-3xl"></div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-4xl md:text-5xl font-black text-white mb-4">Doküman Arşivi</h1>
+            <p class="text-slate-300 text-lg max-w-2xl mx-auto">
+                İzmir Büyükşehir Belediyesi ve Avrupa Komisyonu'na ait resmi dokümanlar, raporlar ve sunumlar.
+            </p>
+        </div>
+    </section>
+
+    <!-- DOCUMENTS SECTION -->
+    <section class="py-16 lg:py-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Documents Grid -->
+            <div id="documents-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Documents will be rendered here by JS -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden text-center py-16">
+                <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="file-x" class="w-10 h-10 text-slate-400"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-700 mb-2">Doküman Bulunamadı</h3>
+                <p class="text-slate-500">Henüz doküman eklenmemiştir.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-mlab-navy text-white">
+        <div class="h-1 w-full bg-gradient-to-r from-mlab-cyan via-mlab-purple to-mlab-cyan"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+                <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
+                    <a href="legal.html?page=privacy" class="hover:text-slate-300 transition-colors">Gizlilik
+                        Politikası</a>
+                    <span class="text-slate-700">•</span>
+                    <a href="legal.html?page=cookie" class="hover:text-slate-300 transition-colors">Çerez Politikası</a>
+                    <span class="text-slate-700">•</span>
+                    <a href="legal.html?page=kvkk" class="hover:text-slate-300 transition-colors">KVKK Aydınlatma
+                        Metni</a>
+                </div>
+                <div class="coin-flip-container">
+                    <img src="public/label-circle.png" alt="EU Mission Label"
+                        class="h-20 w-auto drop-shadow-lg coin-flip cursor-pointer">
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-3 text-sm text-slate-400">
+                    <a href="mailto:info@m-lab.izmir.bel.tr"
+                        class="hover:text-mlab-cyan transition-colors flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        info@m-lab.izmir.bel.tr
+                    </a>
+                    <span class="hidden sm:inline text-slate-700">|</span>
+                    <span class="text-xs text-slate-500">&copy; 2025 M-LAB İzmir</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Documents data
+        // thumbnail: PDF adı + "-cover.png" olarak Docs-Cover klasöründe
+        const documents = [
+            {
+                id: 1,
+                title: "İklim Şehir Sözleşmesi",
+                description: "İzmir'in iklim nötr şehirler misyonuna katılım sözleşmesi ve taahhütleri.",
+                pages: 113,
+                size: "2.6 MB",
+                thumbnail: "public/Docs-Cover/IKLIM-SEHIR-SOZLESMESI-cover.png",
+                url: "public/Docs/IKLIM-SEHIR-SOZLESMESI.pdf"
+            },
+            {
+                id: 2,
+                title: "SECAP - Sürdürülebilir Enerji ve İklim Eylem Planı",
+                description: "İzmir Büyükşehir Belediyesi Sürdürülebilir Enerji ve İklim Eylem Planı dokümanı.",
+                pages: 200,
+                size: "20.2 MB",
+                thumbnail: "public/Docs-Cover/SECAP-cover.png",
+                url: "public/Docs/SECAP.pdf"
+            },
+            {
+                id: 3,
+                title: "3+30+300 İklim Hedefleri",
+                description: "İzmir'in kısa, orta ve uzun vadeli iklim hedeflerini içeren strateji dokümanı.",
+                pages: 20,
+                size: "16.5 MB",
+                thumbnail: "public/Docs-Cover/3+30+300-cover.png",
+                url: "public/Docs/3+30+300.pdf"
+            },
+            {
+                id: 4,
+                title: "Enerji Verimliliği Çalıştayı",
+                description: "İzmir enerji verimliliği çalıştayı sonuç raporu ve öneriler.",
+                pages: 93,
+                size: "12.2 MB",
+                thumbnail: "public/Docs-Cover/ENERJI-VERIMLILIGI-CALISTAYI-cover.png",
+                url: "public/Docs/ENERJI-VERIMLILIGI-CALISTAYI.pdf"
+            },
+            {
+                id: 5,
+                title: "Kentsel İklim Analizi Raporu",
+                description: "İzmir kentsel ısı adası ve iklim analizi araştırma raporu.",
+                pages: 30,
+                size: "4.7 MB",
+                thumbnail: "public/Docs-Cover/KENTSEL-IKLIMI-ANALIZI-RAPORU-cover.png",
+                url: "public/Docs/KENTSEL-IKLIMI-ANALIZI-RAPORU.pdf"
+            }
+        ];
+
+        function renderDocuments() {
+            const grid = document.getElementById('documents-grid');
+            const emptyState = document.getElementById('empty-state');
+
+            if (documents.length === 0) {
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+
+            grid.innerHTML = documents.map(doc => `
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
+                    <!-- PDF Thumbnail -->
+                    <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
+                        <img src="${doc.thumbnail}" alt="${doc.title}" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                             onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
+                            PDF
+                        </div>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="flex-1 p-5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-bold text-mlab-navy mb-2 group-hover:text-mlab-purple transition-colors line-clamp-2">
+                                ${doc.title}
+                            </h3>
+                            <p class="text-slate-500 text-sm mb-3 line-clamp-2">
+                                ${doc.description}
+                            </p>
+                            <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400">
+                                <span class="flex items-center gap-1">
+                                    <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                                    ${doc.pages} sayfa
+                                </span>
+                                <span class="flex items-center gap-1">
+                                    <i data-lucide="hard-drive" class="w-3.5 h-3.5"></i>
+                                    ${doc.size}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <!-- Actions -->
+                        <div class="flex gap-2 mt-4">
+                            <a href="${doc.url}" target="_blank" 
+                               class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700 transition-all text-xs sm:text-sm font-medium">
+                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                Aç
+                            </a>
+                            <a href="${doc.url}" download 
+                               class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white rounded-lg hover:shadow-lg transition-all text-xs sm:text-sm font-medium">
+                                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                                İndir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // Mobile menu
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+            document.getElementById('mobile-menu')?.classList.toggle('hidden');
+        });
+
+        // Initial render
+        renderDocuments();
+    </script>
+</body>
+
+</html>
