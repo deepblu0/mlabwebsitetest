@@ -236,7 +236,7 @@
           <span>Kapanış</span>
           <i data-lucide="arrow-up-down" class="w-3 h-3 sort-icon"></i>
         </div>
-        <div class="col-span-2 table-header flex items-center gap-2" onclick="sortTable('budget')">
+        <div class="col-span-2 table-header flex items-center gap-2 pl-4" onclick="sortTable('budget')">
           <span>Bütçe</span>
           <i data-lucide="arrow-up-down" class="w-3 h-3 sort-icon"></i>
         </div>
@@ -416,7 +416,7 @@
           <div class="col-span-3 text-slate-500 text-sm font-mono">${call.code}</div>
           <div class="col-span-2 text-slate-600 text-sm">${formatDate(call.openDate)}</div>
           <div class="col-span-1 text-slate-600 text-sm font-medium">${formatDate(call.closeDate)}</div>
-          <div class="col-span-2 text-slate-600 text-sm font-semibold">${call.budget || '-'}</div>
+          <div class="col-span-2 text-slate-600 text-sm font-semibold pl-4">${call.budget || '-'}</div>
         </div>
       `).join('');
 
