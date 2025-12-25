@@ -514,16 +514,26 @@
     };
 
     // --- PARTNERS SLIDER LOGIC ---
+    // Custom sizes for specific logos (base is max-h-16 = 64px)
+    const logoSizes = {
+      'eib.png': 'max-h-24',      // +50% (96px)
+      'izka.png': 'max-h-24',     // +50% (96px)
+      'tmmob.png': 'max-h-20',    // +30% (~83px)
+      'izpa.png': 'max-h-20'      // +30% (~83px)
+    };
+
     function renderPartners() {
       const container = document.getElementById('partners-slider');
       const displayPartners = [...partners, ...partners, ...partners];
-      container.innerHTML = displayPartners.map(logo => `
+      container.innerHTML = displayPartners.map(logo => {
+        const sizeClass = logoSizes[logo] || 'max-h-16';
+        return `
         <div class="flex-shrink-0 flex items-center justify-center">
           <img src="stakeholdericons/${logo}" 
                alt="${logo.split('.')[0]}" 
-               class="max-h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
+               class="${sizeClass} w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
         </div>
-      `).join('');
+      `}).join('');
     }
 
     // Slider Navigation
