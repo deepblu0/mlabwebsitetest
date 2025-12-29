@@ -522,16 +522,38 @@
       'izpa.png': 'max-h-20'      // +30% (~83px)
     };
 
+    // Partner website links
+    const logoLinks = {
+      'basifed.png': 'https://basifed.org',
+      'ebso.png': 'https://ebso.org.tr',
+      'egiad.png': 'https://egiad.org.tr',
+      'eib.png': 'https://eib.org.tr',
+      'ensia.png': 'https://ensia.org.tr',
+      'esiad.png': 'https://esiad.org.tr',
+      'itb.png': 'https://itb.org.tr',
+      'izbb.png': 'https://www.izmir.bel.tr/',
+      'izikad.png': 'https://izikad.org',
+      'izka.png': 'https://izka.org.tr',
+      'izpa.png': 'https://planizm.com/tr',
+      'izq.png': 'https://izq.com.tr/',
+      'izto.png': 'https://izto.org.tr/tr',
+      'tmmob.png': 'http://www.tmmobizmir.org/',
+      'valilik.png': 'https://izmir.gov.tr'
+    };
+
     function renderPartners() {
       const container = document.getElementById('partners-slider');
       const displayPartners = [...partners, ...partners, ...partners];
       container.innerHTML = displayPartners.map(logo => {
         const sizeClass = logoSizes[logo] || 'max-h-16';
+        const link = logoLinks[logo] || '#';
         return `
         <div class="flex-shrink-0 flex items-center justify-center">
-          <img src="stakeholdericons/${logo}" 
-               alt="${logo.split('.')[0]}" 
-               class="${sizeClass} w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
+          <a href="${link}" target="_blank" rel="noopener noreferrer" class="block">
+            <img src="stakeholdericons/${logo}" 
+                 alt="${logo.split('.')[0]}" 
+                 class="${sizeClass} w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100 cursor-pointer">
+          </a>
         </div>
       `}).join('');
     }
