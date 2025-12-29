@@ -191,6 +191,19 @@
                                     class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none"></textarea>
                             </div>
 
+                            <!-- KVKK Consent Checkbox -->
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="kvkk-consent" required
+                                    class="w-5 h-5 mt-0.5 rounded border-slate-300 text-mlab-purple focus:ring-mlab-purple/50 cursor-pointer">
+                                <label for="kvkk-consent" class="text-sm text-slate-600 leading-relaxed">
+                                    Kişisel verilerimin
+                                    <button type="button" onclick="openKvkkModal()"
+                                        class="text-mlab-purple font-semibold hover:underline">
+                                        KVKK Aydınlatma Metni
+                                    </button>'nde belirtilen amaçlarla işlenmesini kabul ediyorum.
+                                </label>
+                            </div>
+
                             <button type="submit"
                                 class="w-full bg-gradient-to-r from-mlab-navy to-mlab-purple text-white font-bold py-4 rounded-xl hover:shadow-xl hover:shadow-mlab-purple/20 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2">
                                 <i data-lucide="send" class="w-5 h-5"></i>
@@ -235,10 +248,84 @@
         </div>
     </footer>
 
+    <!-- KVKK Modal -->
+    <div id="kvkk-modal" class="fixed inset-0 z-50 hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeKvkkModal()"></div>
+        <!-- Modal Content -->
+        <div
+            class="absolute inset-4 md:inset-10 lg:inset-20 bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
+            <!-- Header -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
+                <h2 class="text-xl font-bold text-mlab-navy">KVKK Aydınlatma Metni</h2>
+                <button onclick="closeKvkkModal()" class="p-2 hover:bg-slate-200 rounded-full transition-colors">
+                    <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
+                </button>
+            </div>
+            <!-- Body -->
+            <div class="flex-grow overflow-y-auto p-6 md:p-8 prose prose-slate max-w-none">
+                <p class="mb-4">M-LAB İzmir ve koordinatör kuruluş İzmir Planlama Ajansı olarak veri sorumlusu sıfatıyla
+                    kişisel verilerinizi 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında aşağıda belirtilen
+                    usul ve esaslara uygun olarak işlemekteyiz.</p>
+
+                <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">1. İşlenen Kişisel Verileriniz</h3>
+                <p class="mb-4">Web sitemizde yer alan iletişim formu aracılığıyla tarafımıza ilettiğiniz adınız ve
+                    soyadınız ile e-posta adresiniz ve mesaj içeriğinde belirttiğiniz diğer bilgileriniz işlenmektedir.
+                </p>
+
+                <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">2. Verilerin İşlenme Amacı</h3>
+                <p class="mb-4">Toplanan kişisel verileriniz tarafımıza ilettiğiniz talep veya önerilerin
+                    değerlendirilmesi ve konuyla ilgili size geri dönüş sağlanması ile iletişim süreçlerinin yönetilmesi
+                    amacıyla işlenmektedir. Bu veriler ayrıca yetkili kişi veya kurumlarla olan yasal yükümlülüklerin
+                    yerine getirilmesi amacıyla da kullanılabilir.</p>
+
+                <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">3. Veri Toplamanın Yöntemi ve Hukuki Sebebi</h3>
+                <p class="mb-4">Kişisel verileriniz web sitemizdeki iletişim formunun tarafınızca doldurulması suretiyle
+                    elektronik ortamda otomatik yollarla elde edilmektedir. Bu işlem Kanunun 5. maddesinde belirtilen
+                    ilgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla veri sorumlusunun meşru
+                    menfaatleri için veri işlenmesinin zorunlu olması hukuki sebebine dayanmaktadır.</p>
+
+                <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">4. Verilerin Aktarılması</h3>
+                <p class="mb-4">İletişim formu aracılığıyla toplanan verileriniz üçüncü kişilerle paylaşılmamaktadır.
+                    Ancak yasal bir zorunluluk doğması halinde yetkili kamu kurum ve kuruluşları ile paylaşılabilir.</p>
+
+                <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">5. İlgili Kişinin Hakları</h3>
+                <p class="mb-4">Veri sahibi olarak Kanunun 11. maddesi uyarınca verilerinizin işlenip işlenmediğini
+                    öğrenme ve yanlış işlenmişse düzeltilmesini talep etme ile verilerinizin silinmesini isteme
+                    haklarına sahipsiniz. Bu haklarınızı kullanmak için iletişim kanallarımız üzerinden tarafımıza
+                    başvurabilirsiniz.</p>
+            </div>
+            <!-- Footer -->
+            <div class="px-6 py-4 border-t border-slate-100 bg-slate-50">
+                <button onclick="closeKvkkModal()"
+                    class="w-full sm:w-auto px-6 py-3 bg-mlab-navy text-white font-semibold rounded-xl hover:bg-mlab-purple transition-colors">
+                    Anladım, Kapat
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         lucide.createIcons();
         document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
             document.getElementById('mobile-menu')?.classList.toggle('hidden');
+        });
+
+        // KVKK Modal Functions
+        function openKvkkModal() {
+            document.getElementById('kvkk-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeKvkkModal() {
+            document.getElementById('kvkk-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeKvkkModal();
         });
     </script>
 </body>
