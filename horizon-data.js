@@ -1,164 +1,20 @@
 const horizonData = {
   "newCalls": [
     {
-      "name": "Technical innovation to protect ecosystems and to scale up their restoration",
-      "code": "HORIZON-CL6-2027-01-BIODIV-03",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-22 00:00:00",
-      "budget": "7000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-biodiv-03"
+      "name": "Researching the technical, social & economic factors impacting the energy performance of Smart Buildings (Built4People Partnership)",
+      "code": "HORIZON-CL5-2026-09-D4-01",
+      "openDate": "2026-05-05",
+      "closeDate": "2026-09-15 00:00:00",
+      "budget": "5250000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-09-d4-01"
     },
     {
-      "name": "Technical innovation to protect ecosystems and to scale up their restoration",
-      "code": "HORIZON-CL6-2027-01-BIODIV-03",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-22 00:00:00",
-      "budget": "7000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-biodiv-03"
-    },
-    {
-      "name": "Government in transition – how governments change the way they work and prepare the civil service for the future",
-      "code": "HORIZON-CL2-2026-01-DEMOCRACY-03",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "3500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-democracy-03"
-    },
-    {
-      "name": "Fostering cooperation and integration between SSH and STEM research and innovation in the EU",
-      "code": "HORIZON-CL2-2026-01-TRANSFO-10",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "3500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-transfo-10"
-    },
-    {
-      "name": "Creative alliances: Fostering global partnerships in cultural policies and CCI innovation",
-      "code": "HORIZON-CL2-2026-01-HERITAGE-05",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "3000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-heritage-05"
-    },
-    {
-      "name": "“Artistic intelligence” : harnessing the power of the arts to address complex challenges, enhance soft skills and boost innovation and competitiveness",
-      "code": "HORIZON-CL2-2026-01-HERITAGE-01",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "4500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-heritage-01"
-    },
-    {
-      "name": "Contribution of basic skills to productivity, innovation, competitiveness and economic growth",
-      "code": "HORIZON-CL2-2026-01-TRANSFO-05",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "3000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-transfo-05"
-    },
-    {
-      "name": "Towards a fair and transparent market for cultural and creative content in the era of generative AI",
-      "code": "HORIZON-CL2-2026-01-HERITAGE-04",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "3000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-heritage-04"
-    },
-    {
-      "name": "Open topic: Strengthen Europe's social model and sustainable competitiveness through productivity",
-      "code": "HORIZON-CL2-2026-01-TRANSFO-02",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "3000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-transfo-02"
-    },
-    {
-      "name": "Electoral integrity in the digital context",
-      "code": "HORIZON-CL2-2026-01-DEMOCRACY-08",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "3500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-democracy-08"
-    },
-    {
-      "name": "Collection, Generation and Validation of Datasets  suitable for training AI Models for 6G Networks and for AIaaS",
-      "code": "HORIZON-JU-SNS-2026-STREAM-B-01",
-      "openDate": "2026-01-29",
-      "closeDate": "2026-04-29 00:00:00",
-      "budget": "8000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-sns-2026-stream-b-01"
-    },
-    {
-      "name": "SNS Operations and Output optimisation",
-      "code": "HORIZON-JU-SNS-2026-STREAM-CSA-01",
-      "openDate": "2026-01-29",
-      "closeDate": "2026-04-29 00:00:00",
-      "budget": "3000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-sns-2026-stream-csa-01"
-    },
-    {
-      "name": "EU-India International Collaboration",
-      "code": "HORIZON-JU-SNS-2026-STREAM-CSA-03",
-      "openDate": "2026-01-29",
-      "closeDate": "2026-04-29 00:00:00",
-      "budget": "1000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-sns-2026-stream-csa-03"
-    },
-    {
-      "name": "6G Devices",
-      "code": "HORIZON-JU-SNS-2026-STREAM-CSA-02",
-      "openDate": "2026-01-29",
-      "closeDate": "2026-04-29 00:00:00",
-      "budget": "2000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-sns-2026-stream-csa-02"
-    },
-    {
-      "name": "SNS experimental infrastructure",
-      "code": "HORIZON-JU-SNS-2026-STREAM-C-01",
-      "openDate": "2026-01-29",
-      "closeDate": "2026-04-29 00:00:00",
-      "budget": "8000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-sns-2026-stream-c-01"
-    },
-    {
-      "name": "Advanced Local Digital Twins using AI for Early Warning and Preparedness (IA)",
-      "code": "HORIZON-CL4-2026-04-DIGITAL-EMERGING-09",
-      "openDate": "2026-01-15",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "6000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-04-digital-emerging-09"
-    },
-    {
-      "name": "Developing and demonstrating core technologies for Virtual Worlds and Web 4.0 (IA) (Virtual worlds Partnership)",
-      "code": "HORIZON-CL4-2026-04-HUMAN-01",
-      "openDate": "2026-01-15",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "4000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-04-human-01"
-    },
-    {
-      "name": "Apply AI: Robotics for Manufacturing: Advancing Core Skills through Technical Challenges (RIA) (Partnership in AI, Data and Robotics)",
-      "code": "HORIZON-CL4-2026-04-DIGITAL-EMERGING-08",
-      "openDate": "2026-01-15",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "18000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-04-digital-emerging-08"
-    },
-    {
-      "name": "Challenge-Driven GenAI4EU Booster in Apply AI prioritised sectors (RIA) (AI/Data/Robotics Partnership)",
-      "code": "HORIZON-CL4-2026-04-DIGITAL-EMERGING-19",
-      "openDate": "2026-01-15",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "15000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-04-digital-emerging-19"
-    },
-    {
-      "name": "Monitoring of secondary raw materials (CSA)",
-      "code": "HORIZON-CL4-2026-01-MAT-PROD-13",
-      "openDate": "2026-01-06",
-      "closeDate": "2026-04-21 00:00:00",
-      "budget": "4000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-01-mat-prod-13"
+      "name": "Advanced data platforms to integrate whole life carbon in building information tools, assessments, and certification (Built4People Partnership)",
+      "code": "HORIZON-CL5-2026-09-D4-03",
+      "openDate": "2026-05-05",
+      "closeDate": "2026-09-15 00:00:00",
+      "budget": "5250000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-09-d4-03"
     }
   ],
   "missionCalls": [
@@ -275,30 +131,6 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-05-soil-01-two-stage"
     },
     {
-      "name": "Living labs to enhance soil health in managed forests and in natural/semi-natural lands",
-      "code": "HORIZON-MISS-2026-05-SOIL-02-two-stage",
-      "openDate": "2026-02-12",
-      "closeDate": "2026-09-15 00:00:00",
-      "budget": "12000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-05-soil-02-two-stage"
-    },
-    {
-      "name": "Boosting mental health of young cancer survivors through the European Cancer Patient Digital Centre (ECPDC)",
-      "code": "HORIZON-MISS-2026-02-CANCER-05",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-09-15 00:00:00",
-      "budget": "7000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-05"
-    },
-    {
-      "name": "Earlier and more precise palliative care",
-      "code": "HORIZON-MISS-2026-02-CANCER-04",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-09-15 00:00:00",
-      "budget": "5000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-04"
-    },
-    {
       "name": "Pragmatic clinical trials to optimise immunotherapeutic interventions for patients with refractory cancers",
       "code": "HORIZON-MISS-2026-02-CANCER-03",
       "openDate": "2026-02-10",
@@ -315,12 +147,28 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-01"
     },
     {
+      "name": "Earlier and more precise palliative care",
+      "code": "HORIZON-MISS-2026-02-CANCER-04",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-09-15 00:00:00",
+      "budget": "5000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-04"
+    },
+    {
       "name": "Improve the Quality of Life of older cancer patients",
       "code": "HORIZON-MISS-2026-02-CANCER-07",
       "openDate": "2026-02-10",
       "closeDate": "2026-09-15 00:00:00",
       "budget": "5000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-07"
+    },
+    {
+      "name": "Boosting mental health of young cancer survivors through the European Cancer Patient Digital Centre (ECPDC)",
+      "code": "HORIZON-MISS-2026-02-CANCER-05",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-09-15 00:00:00",
+      "budget": "7000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-05"
     },
     {
       "name": "Development of a research capacity building programme on cancer with and for Ukraine",
@@ -337,6 +185,14 @@ const horizonData = {
       "closeDate": "2026-09-15 00:00:00",
       "budget": "15000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-02"
+    },
+    {
+      "name": "Energy efficient urban and sub-urban public transport, complemented by shared mobility",
+      "code": "HORIZON-MISS-2026-04-CIT-01",
+      "openDate": "2026-02-04",
+      "closeDate": "2026-10-08 00:00:00",
+      "budget": "10000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-04-cit-01"
     },
     {
       "name": "Enabling user-centred and open innovation initiatives to enhance soil health in Ukraine",
@@ -361,14 +217,6 @@ const horizonData = {
       "closeDate": "2026-09-23 00:00:00",
       "budget": "7000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-05-soil-02"
-    },
-    {
-      "name": "Energy efficient urban and sub-urban public transport, complemented by shared mobility",
-      "code": "HORIZON-MISS-2026-04-CIT-01",
-      "openDate": "2026-02-04",
-      "closeDate": "2026-10-08 00:00:00",
-      "budget": "10000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-04-cit-01"
     },
     {
       "name": "Monitoring soil health in practice: equipping stakeholders to sample, analyse, and interpret soil health indicators",
@@ -1005,36 +853,20 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-neb-2027-01-participation-02"
     },
     {
-      "name": "Accelerating uptake through open proposals for advanced SME innovation",
-      "code": "HORIZON-CL3-2027-01-SSRI-01",
-      "openDate": "2027-05-05",
-      "closeDate": "2027-11-04 00:00:00",
-      "budget": "1500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-ssri-01"
-    },
-    {
-      "name": "Trusted, secure, quality future digital travel credentials",
-      "code": "HORIZON-CL3-2027-01-BM-02",
+      "name": "Effective and evidence-based responses to the increased availability and use of synthetic drugs and stimulants in Europe",
+      "code": "HORIZON-CL3-2027-01-FCT-05",
       "openDate": "2027-05-05",
       "closeDate": "2027-11-04 00:00:00",
       "budget": "4000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-bm-02"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-fct-05"
     },
     {
-      "name": "Demand-led innovation in security",
-      "code": "HORIZON-CL3-2027-01-SSRI-03",
+      "name": "Detection and characterisation of threats or illegal/ smuggled goods in cargo",
+      "code": "HORIZON-CL3-2027-01-BM-03",
       "openDate": "2027-05-05",
       "closeDate": "2027-11-04 00:00:00",
-      "budget": "5830000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-ssri-03"
-    },
-    {
-      "name": "Open Topic on advanced protective gear optimized for CBRN-E (Chemical, Biological, Radiological, Nuclear, Explosives) environments and new generation of smart protective equipment for disaster responders",
-      "code": "HORIZON-CL3-2027-01-DRS-01",
-      "openDate": "2027-05-05",
-      "closeDate": "2027-11-04 00:00:00",
-      "budget": "3835000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-drs-01"
+      "budget": "3500000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-bm-03"
     },
     {
       "name": "Open grounds for future pre-commercial procurement of innovative security technologies",
@@ -1069,60 +901,36 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-fct-04"
     },
     {
-      "name": "Effective and evidence-based responses to the increased availability and use of synthetic drugs and stimulants in Europe",
-      "code": "HORIZON-CL3-2027-01-FCT-05",
+      "name": "Demand-led innovation in security",
+      "code": "HORIZON-CL3-2027-01-SSRI-03",
       "openDate": "2027-05-05",
       "closeDate": "2027-11-04 00:00:00",
-      "budget": "4000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-fct-05"
+      "budget": "5830000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-ssri-03"
     },
     {
-      "name": "Detection and characterisation of threats or illegal/ smuggled goods in cargo",
-      "code": "HORIZON-CL3-2027-01-BM-03",
-      "openDate": "2027-05-05",
-      "closeDate": "2027-11-04 00:00:00",
-      "budget": "3500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-bm-03"
-    },
-    {
-      "name": "Community policing in diverse societies in Europe",
-      "code": "HORIZON-CL3-2027-01-FCT-02",
-      "openDate": "2027-05-05",
-      "closeDate": "2027-11-04 00:00:00",
-      "budget": "3000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-fct-02"
-    },
-    {
-      "name": "Impact of malicious use of Open-Source Intelligence on critical infrastructure business continuity",
-      "code": "HORIZON-CL3-2027-01-INFRA-02",
+      "name": "Open Topic on advanced protective gear optimized for CBRN-E (Chemical, Biological, Radiological, Nuclear, Explosives) environments and new generation of smart protective equipment for disaster responders",
+      "code": "HORIZON-CL3-2027-01-DRS-01",
       "openDate": "2027-05-05",
       "closeDate": "2027-11-04 00:00:00",
       "budget": "3835000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-infra-02"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-drs-01"
     },
     {
-      "name": "Open topic on research and innovation for effective management of EU external borders that promotes fundamental rights and EU values",
-      "code": "HORIZON-CL3-2027-01-BM-01",
+      "name": "Accelerating uptake through open proposals for advanced SME innovation",
+      "code": "HORIZON-CL3-2027-01-SSRI-01",
+      "openDate": "2027-05-05",
+      "closeDate": "2027-11-04 00:00:00",
+      "budget": "1500000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-ssri-01"
+    },
+    {
+      "name": "Trusted, secure, quality future digital travel credentials",
+      "code": "HORIZON-CL3-2027-01-BM-02",
       "openDate": "2027-05-05",
       "closeDate": "2027-11-04 00:00:00",
       "budget": "4000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-bm-01"
-    },
-    {
-      "name": "Societal resilience, engagement of the younger generations and digital innovation for disaster resilience",
-      "code": "HORIZON-CL3-2027-01-DRS-02",
-      "openDate": "2027-05-05",
-      "closeDate": "2027-11-04 00:00:00",
-      "budget": "3000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-drs-02"
-    },
-    {
-      "name": "Online harms detection and investigation tools using a short development cycle model",
-      "code": "HORIZON-CL3-2027-01-FCT-01",
-      "openDate": "2027-05-05",
-      "closeDate": "2027-11-04 00:00:00",
-      "budget": "7833000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-fct-01"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-bm-02"
     },
     {
       "name": "Open topic on enhanced prevention, detection and deterrence of societal issues related to various forms of crime",
@@ -1141,20 +949,44 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-drs-03"
     },
     {
-      "name": "Integrating circularity in LCA-based modelling frameworks for renovation of buildings (Built4People Partnership)",
-      "code": "HORIZON-CL5-2027-05-D4-07",
+      "name": "Societal resilience, engagement of the younger generations and digital innovation for disaster resilience",
+      "code": "HORIZON-CL3-2027-01-DRS-02",
       "openDate": "2027-05-05",
-      "closeDate": "2027-09-15 00:00:00",
-      "budget": "6750000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2027-05-d4-07"
+      "closeDate": "2027-11-04 00:00:00",
+      "budget": "3000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-drs-02"
     },
     {
-      "name": "On-site robotic and automated techniques for building renovation and new construction",
-      "code": "HORIZON-CL5-2027-05-D4-05",
+      "name": "Community policing in diverse societies in Europe",
+      "code": "HORIZON-CL3-2027-01-FCT-02",
       "openDate": "2027-05-05",
-      "closeDate": "2027-09-15 00:00:00",
-      "budget": "6750000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2027-05-d4-05"
+      "closeDate": "2027-11-04 00:00:00",
+      "budget": "3000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-fct-02"
+    },
+    {
+      "name": "Impact of malicious use of Open-Source Intelligence on critical infrastructure business continuity",
+      "code": "HORIZON-CL3-2027-01-INFRA-02",
+      "openDate": "2027-05-05",
+      "closeDate": "2027-11-04 00:00:00",
+      "budget": "3835000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-infra-02"
+    },
+    {
+      "name": "Online harms detection and investigation tools using a short development cycle model",
+      "code": "HORIZON-CL3-2027-01-FCT-01",
+      "openDate": "2027-05-05",
+      "closeDate": "2027-11-04 00:00:00",
+      "budget": "7833000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-fct-01"
+    },
+    {
+      "name": "Open topic on research and innovation for effective management of EU external borders that promotes fundamental rights and EU values",
+      "code": "HORIZON-CL3-2027-01-BM-01",
+      "openDate": "2027-05-05",
+      "closeDate": "2027-11-04 00:00:00",
+      "budget": "4000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2027-01-bm-01"
     },
     {
       "name": "Demonstration of industrial excess/waste heat conversion to mechanical or electrical power",
@@ -1181,84 +1013,20 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2027-05-d2-08"
     },
     {
-      "name": "Towards commercialization of food systems microbiome solutions",
-      "code": "HORIZON-CL6-2027-02-FARM2FORK-07",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-23 00:00:00",
-      "budget": "7000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-farm2fork-07"
+      "name": "Integrating circularity in LCA-based modelling frameworks for renovation of buildings (Built4People Partnership)",
+      "code": "HORIZON-CL5-2027-05-D4-07",
+      "openDate": "2027-05-05",
+      "closeDate": "2027-09-15 00:00:00",
+      "budget": "6750000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2027-05-d4-07"
     },
     {
-      "name": "Enhancing farmer's profitability and resilience through innovations for diversified crops and value chains",
-      "code": "HORIZON-CL6-2027-02-FARM2FORK-05",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-23 00:00:00",
-      "budget": "6000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-farm2fork-05"
-    },
-    {
-      "name": "Unlocking a safe operating space for Antarctica and the Southern Ocean",
-      "code": "HORIZON-CL6-2027-02-CLIMATE-04",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-23 00:00:00",
-      "budget": "11000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-climate-04"
-    },
-    {
-      "name": "Carbon farming innovation and scale-up",
-      "code": "HORIZON-CL6-2027-02-CLIMATE-03",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-23 00:00:00",
-      "budget": "6000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-climate-03"
-    },
-    {
-      "name": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks",
-      "code": "HORIZON-CL6-2027-02-CLIMATE-02",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-23 00:00:00",
-      "budget": "6000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-climate-02"
-    },
-    {
-      "name": "AI-powered foodome characterization",
-      "code": "HORIZON-CL6-2027-02-FARM2FORK-08",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-23 00:00:00",
-      "budget": "7800000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-farm2fork-08"
-    },
-    {
-      "name": "Unleashing the potential of sustainable small-scale aquatic food production and recreational fisheries for prosperous local communities",
-      "code": "HORIZON-CL6-2027-02-FARM2FORK-06",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-23 00:00:00",
-      "budget": "5000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-farm2fork-06"
-    },
-    {
-      "name": "Governance, sustainable development and international politics of a future ice-free Arctic",
-      "code": "HORIZON-CL6-2027-02-CLIMATE-01",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-23 00:00:00",
-      "budget": "8000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-climate-01"
-    },
-    {
-      "name": "Improving understanding of the contribution of the organic farming sector to sustainability",
-      "code": "HORIZON-CL6-2027-02-FARM2FORK-04",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-23 00:00:00",
-      "budget": "6000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-farm2fork-04"
-    },
-    {
-      "name": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations",
-      "code": "HORIZON-CL6-2027-02-FARM2FORK-01",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-23 00:00:00",
-      "budget": "6000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-farm2fork-01"
+      "name": "On-site robotic and automated techniques for building renovation and new construction",
+      "code": "HORIZON-CL5-2027-05-D4-05",
+      "openDate": "2027-05-05",
+      "closeDate": "2027-09-15 00:00:00",
+      "budget": "6750000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2027-05-d4-05"
     },
     {
       "name": "Strengthening rural communities' resilience to shocks",
@@ -1301,12 +1069,84 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-farm2fork-03"
     },
     {
-      "name": "Enhancing the competitiveness of organic crop breeding: focus on intercropping adapted varieties",
-      "code": "HORIZON-CL6-2027-01-BIODIV-09",
+      "name": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations",
+      "code": "HORIZON-CL6-2027-02-FARM2FORK-01",
       "openDate": "2027-04-20",
-      "closeDate": "2027-09-22 00:00:00",
+      "closeDate": "2027-09-23 00:00:00",
       "budget": "6000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-biodiv-09"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-farm2fork-01"
+    },
+    {
+      "name": "Governance, sustainable development and international politics of a future ice-free Arctic",
+      "code": "HORIZON-CL6-2027-02-CLIMATE-01",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-23 00:00:00",
+      "budget": "8000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-climate-01"
+    },
+    {
+      "name": "Improving understanding of the contribution of the organic farming sector to sustainability",
+      "code": "HORIZON-CL6-2027-02-FARM2FORK-04",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-23 00:00:00",
+      "budget": "6000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-farm2fork-04"
+    },
+    {
+      "name": "AI-powered foodome characterization",
+      "code": "HORIZON-CL6-2027-02-FARM2FORK-08",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-23 00:00:00",
+      "budget": "7800000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-farm2fork-08"
+    },
+    {
+      "name": "Unleashing the potential of sustainable small-scale aquatic food production and recreational fisheries for prosperous local communities",
+      "code": "HORIZON-CL6-2027-02-FARM2FORK-06",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-23 00:00:00",
+      "budget": "5000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-farm2fork-06"
+    },
+    {
+      "name": "Towards commercialization of food systems microbiome solutions",
+      "code": "HORIZON-CL6-2027-02-FARM2FORK-07",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-23 00:00:00",
+      "budget": "7000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-farm2fork-07"
+    },
+    {
+      "name": "Enhancing farmer's profitability and resilience through innovations for diversified crops and value chains",
+      "code": "HORIZON-CL6-2027-02-FARM2FORK-05",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-23 00:00:00",
+      "budget": "6000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-farm2fork-05"
+    },
+    {
+      "name": "Unlocking a safe operating space for Antarctica and the Southern Ocean",
+      "code": "HORIZON-CL6-2027-02-CLIMATE-04",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-23 00:00:00",
+      "budget": "11000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-climate-04"
+    },
+    {
+      "name": "Carbon farming innovation and scale-up",
+      "code": "HORIZON-CL6-2027-02-CLIMATE-03",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-23 00:00:00",
+      "budget": "6000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-climate-03"
+    },
+    {
+      "name": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks",
+      "code": "HORIZON-CL6-2027-02-CLIMATE-02",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-23 00:00:00",
+      "budget": "6000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-02-climate-02"
     },
     {
       "name": "Increasing the circularity of bio-based sector: upcycling and recycling for higher value and environmental benefits",
@@ -1315,22 +1155,6 @@ const horizonData = {
       "closeDate": "2027-09-22 00:00:00",
       "budget": "6000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-circbio-09"
-    },
-    {
-      "name": "Innovative circular solutions for end-of-life footwear through collection, sorting and recycling",
-      "code": "HORIZON-CL6-2027-01-CIRCBIO-05",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-22 00:00:00",
-      "budget": "4000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-circbio-05"
-    },
-    {
-      "name": "Biotechnology application for CCU",
-      "code": "HORIZON-CL6-2027-01-CIRCBIO-08",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-22 00:00:00",
-      "budget": "6000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-circbio-08"
     },
     {
       "name": "Accelerating the transition to a nature positive economy: Integrating biodiversity into the private sector",
@@ -1365,22 +1189,6 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-biodiv-02"
     },
     {
-      "name": "Enhancing ecodesign and circularity of construction products",
-      "code": "HORIZON-CL6-2027-01-CIRCBIO-02",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-22 00:00:00",
-      "budget": "5000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-circbio-02"
-    },
-    {
-      "name": "Technical innovation to protect ecosystems and to scale up their restoration",
-      "code": "HORIZON-CL6-2027-01-BIODIV-03",
-      "openDate": "2027-04-20",
-      "closeDate": "2027-09-22 00:00:00",
-      "budget": "7000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-biodiv-03"
-    },
-    {
       "name": "Strengthening forest research for the support of Ukraine",
       "code": "HORIZON-CL6-2027-01-CIRCBIO-10",
       "openDate": "2027-04-20",
@@ -1403,6 +1211,46 @@ const horizonData = {
       "closeDate": "2027-09-22 00:00:00",
       "budget": "4900000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-zeropollution-02"
+    },
+    {
+      "name": "Living labs driving transformative change via knowledge integration and inclusive governance",
+      "code": "HORIZON-CL6-2027-01-BIODIV-06",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-22 00:00:00",
+      "budget": "7000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-biodiv-06"
+    },
+    {
+      "name": "Fostering common farmland birds and mammals for resilient food production systems",
+      "code": "HORIZON-CL6-2027-01-BIODIV-08",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-22 00:00:00",
+      "budget": "6000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-biodiv-08"
+    },
+    {
+      "name": "Enhancing the competitiveness of organic crop breeding: focus on intercropping adapted varieties",
+      "code": "HORIZON-CL6-2027-01-BIODIV-09",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-22 00:00:00",
+      "budget": "6000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-biodiv-09"
+    },
+    {
+      "name": "Innovative circular solutions for end-of-life footwear through collection, sorting and recycling",
+      "code": "HORIZON-CL6-2027-01-CIRCBIO-05",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-22 00:00:00",
+      "budget": "4000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-circbio-05"
+    },
+    {
+      "name": "Towards a Europe of Bioeconomy Places",
+      "code": "HORIZON-CL6-2027-01-CIRCBIO-06",
+      "openDate": "2027-04-20",
+      "closeDate": "2027-09-22 00:00:00",
+      "budget": "6000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2027-01-circbio-06"
     },
     {
       "name": "Enhancing ecodesign and circularity of consumer electronics",
@@ -2605,6 +2453,62 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-democracy-08"
     },
     {
+      "name": "Government in transition – how governments change the way they work and prepare the civil service for the future",
+      "code": "HORIZON-CL2-2026-01-DEMOCRACY-03",
+      "openDate": "2026-05-12",
+      "closeDate": "2026-09-23 00:00:00",
+      "budget": "3500000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-democracy-03"
+    },
+    {
+      "name": "Creative alliances: Fostering global partnerships in cultural policies and CCI innovation",
+      "code": "HORIZON-CL2-2026-01-HERITAGE-05",
+      "openDate": "2026-05-12",
+      "closeDate": "2026-09-23 00:00:00",
+      "budget": "3000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-heritage-05"
+    },
+    {
+      "name": "“Artistic intelligence” : harnessing the power of the arts to address complex challenges, enhance soft skills and boost innovation and competitiveness",
+      "code": "HORIZON-CL2-2026-01-HERITAGE-01",
+      "openDate": "2026-05-12",
+      "closeDate": "2026-09-23 00:00:00",
+      "budget": "4500000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-heritage-01"
+    },
+    {
+      "name": "Contribution of basic skills to productivity, innovation, competitiveness and economic growth",
+      "code": "HORIZON-CL2-2026-01-TRANSFO-05",
+      "openDate": "2026-05-12",
+      "closeDate": "2026-09-23 00:00:00",
+      "budget": "3000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-transfo-05"
+    },
+    {
+      "name": "Towards a fair and transparent market for cultural and creative content in the era of generative AI",
+      "code": "HORIZON-CL2-2026-01-HERITAGE-04",
+      "openDate": "2026-05-12",
+      "closeDate": "2026-09-23 00:00:00",
+      "budget": "3000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-heritage-04"
+    },
+    {
+      "name": "Open topic: Strengthen Europe's social model and sustainable competitiveness through productivity",
+      "code": "HORIZON-CL2-2026-01-TRANSFO-02",
+      "openDate": "2026-05-12",
+      "closeDate": "2026-09-23 00:00:00",
+      "budget": "3000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-transfo-02"
+    },
+    {
+      "name": "Electoral integrity in the digital context",
+      "code": "HORIZON-CL2-2026-01-DEMOCRACY-08",
+      "openDate": "2026-05-12",
+      "closeDate": "2026-09-23 00:00:00",
+      "budget": "3500000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-democracy-08"
+    },
+    {
       "name": "Research and Innovation Network for a Union of Equality",
       "code": "HORIZON-CL2-2026-01-DEMOCRACY-05",
       "openDate": "2026-05-12",
@@ -2621,52 +2525,12 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-democracy-07"
     },
     {
-      "name": "Understanding the forms of local democracy in low-income and low-middle income countries",
-      "code": "HORIZON-CL2-2026-01-DEMOCRACY-02",
+      "name": "Citizenship education as part of lifelong learning",
+      "code": "HORIZON-CL2-2026-01-DEMOCRACY-09",
       "openDate": "2026-05-12",
       "closeDate": "2026-09-23 00:00:00",
       "budget": "3500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-democracy-02"
-    },
-    {
-      "name": "Tackling child poverty and ensuring disadvantaged children's access to Early Childhood Education and Care",
-      "code": "HORIZON-CL2-2026-01-TRANSFO-03",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "3000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-transfo-03"
-    },
-    {
-      "name": "Preventing and fighting illicit trafficking of cultural goods",
-      "code": "HORIZON-CL2-2026-01-HERITAGE-07",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "4500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-heritage-07"
-    },
-    {
-      "name": "Tackling gender-based violence against politically active women and LGBTIQ people",
-      "code": "HORIZON-CL2-2026-01-DEMOCRACY-01",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "3500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-democracy-01"
-    },
-    {
-      "name": "Rethinking long-term care policy in the face of EU demographic shifts",
-      "code": "HORIZON-CL2-2026-01-TRANSFO-09",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "3750000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-transfo-09"
-    },
-    {
-      "name": "Boosting creative startups for disruptive innovation",
-      "code": "HORIZON-CL2-2026-01-HERITAGE-02",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "5000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-heritage-02"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-democracy-09"
     },
     {
       "name": "AI integration in CCSI work practice: catalysing innovation and competitiveness",
@@ -2677,28 +2541,12 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-heritage-03"
     },
     {
-      "name": "Digital and media literacy as drivers for democratic and civic resilience",
-      "code": "HORIZON-CL2-2026-01-DEMOCRACY-10",
+      "name": "Fostering cooperation and integration between SSH and STEM research and innovation in the EU",
+      "code": "HORIZON-CL2-2026-01-TRANSFO-10",
       "openDate": "2026-05-12",
       "closeDate": "2026-09-23 00:00:00",
       "budget": "3500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-democracy-10"
-    },
-    {
-      "name": "Sustainable paths to media viability",
-      "code": "HORIZON-CL2-2026-01-DEMOCRACY-04",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "3500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-democracy-04"
-    },
-    {
-      "name": "Citizenship education as part of lifelong learning",
-      "code": "HORIZON-CL2-2026-01-DEMOCRACY-09",
-      "openDate": "2026-05-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "3500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-democracy-09"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2026-01-transfo-10"
     },
     {
       "name": "Making Europe a global magnet for talent - Attracting and retaining students, researchers and high-skilled workers from outside the EU",
@@ -2765,38 +2613,6 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-infra-03"
     },
     {
-      "name": "Demand-led innovation in security",
-      "code": "HORIZON-CL3-2026-01-SSRI-02",
-      "openDate": "2026-05-06",
-      "closeDate": "2026-11-05 00:00:00",
-      "budget": "5830000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-ssri-02"
-    },
-    {
-      "name": "Improving capabilities of law enforcement to counter climate-related challenges",
-      "code": "HORIZON-CL3-2026-01-FCT-01",
-      "openDate": "2026-05-06",
-      "closeDate": "2026-11-05 00:00:00",
-      "budget": "4000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-fct-01"
-    },
-    {
-      "name": "Public procurement of innovation for security",
-      "code": "HORIZON-CL3-2026-01-SSRI-03",
-      "openDate": "2026-05-06",
-      "closeDate": "2026-11-05 00:00:00",
-      "budget": "2000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-ssri-03"
-    },
-    {
-      "name": "Security challenges of the green transition in urban und peri urban areas",
-      "code": "HORIZON-CL3-2026-01-INFRA-02",
-      "openDate": "2026-05-06",
-      "closeDate": "2026-11-05 00:00:00",
-      "budget": "4000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-infra-02"
-    },
-    {
       "name": "Advanced border surveillance and situational awareness",
       "code": "HORIZON-CL3-2026-01-BM-01",
       "openDate": "2026-05-06",
@@ -2811,14 +2627,6 @@ const horizonData = {
       "closeDate": "2026-11-05 00:00:00",
       "budget": "3000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-drs-01"
-    },
-    {
-      "name": "Enhancing the security of citizens against terrorism and lone-actor violence in confined spaces such as schools",
-      "code": "HORIZON-CL3-2026-01-FCT-05",
-      "openDate": "2026-05-06",
-      "closeDate": "2026-11-05 00:00:00",
-      "budget": "4835000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-fct-05"
     },
     {
       "name": "Missing persons: prevention and investigation",
@@ -2853,20 +2661,28 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-fct-04"
     },
     {
-      "name": "Development of ecosystem and next-generation capabilities for a secured European Critical Communication System in civil security",
-      "code": "HORIZON-CL3-2026-01-SSRI-04",
+      "name": "Demand-led innovation in security",
+      "code": "HORIZON-CL3-2026-01-SSRI-02",
       "openDate": "2026-05-06",
       "closeDate": "2026-11-05 00:00:00",
-      "budget": "3000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-ssri-04"
+      "budget": "5830000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-ssri-02"
     },
     {
-      "name": "Tools and processes to support stress tests of critical infrastructure",
-      "code": "HORIZON-CL3-2026-01-INFRA-01",
+      "name": "Public procurement of innovation for security",
+      "code": "HORIZON-CL3-2026-01-SSRI-03",
       "openDate": "2026-05-06",
       "closeDate": "2026-11-05 00:00:00",
-      "budget": "4835000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-infra-01"
+      "budget": "2000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-ssri-03"
+    },
+    {
+      "name": "Security challenges of the green transition in urban und peri urban areas",
+      "code": "HORIZON-CL3-2026-01-INFRA-02",
+      "openDate": "2026-05-06",
+      "closeDate": "2026-11-05 00:00:00",
+      "budget": "4000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-infra-02"
     },
     {
       "name": "Open topic on preventing and countering the misuse of emerging technologies for criminal purposes, including issues related to lawful access to data",
@@ -2877,6 +2693,14 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-fct-02"
     },
     {
+      "name": "Improving capabilities of law enforcement to counter climate-related challenges",
+      "code": "HORIZON-CL3-2026-01-FCT-01",
+      "openDate": "2026-05-06",
+      "closeDate": "2026-11-05 00:00:00",
+      "budget": "4000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-fct-01"
+    },
+    {
       "name": "Open topic on driving innovation uptake of disaster risk solutions",
       "code": "HORIZON-CL3-2026-01-DRS-04",
       "openDate": "2026-05-06",
@@ -2885,20 +2709,36 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-drs-04"
     },
     {
+      "name": "Enhancing the security of citizens against terrorism and lone-actor violence in confined spaces such as schools",
+      "code": "HORIZON-CL3-2026-01-FCT-05",
+      "openDate": "2026-05-06",
+      "closeDate": "2026-11-05 00:00:00",
+      "budget": "4835000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-fct-05"
+    },
+    {
+      "name": "Tools and processes to support stress tests of critical infrastructure",
+      "code": "HORIZON-CL3-2026-01-INFRA-01",
+      "openDate": "2026-05-06",
+      "closeDate": "2026-11-05 00:00:00",
+      "budget": "4835000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-infra-01"
+    },
+    {
+      "name": "Development of ecosystem and next-generation capabilities for a secured European Critical Communication System in civil security",
+      "code": "HORIZON-CL3-2026-01-SSRI-04",
+      "openDate": "2026-05-06",
+      "closeDate": "2026-11-05 00:00:00",
+      "budget": "3000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl3-2026-01-ssri-04"
+    },
+    {
       "name": "Understanding capital market dynamics for increased investment in New European Bauhaus projects in neighbourhoods",
       "code": "HORIZON-NEB-2026-01-BUSINESS-02",
       "openDate": "2026-05-05",
       "closeDate": "2026-12-01 00:00:00",
       "budget": "3500000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-neb-2026-01-business-02"
-    },
-    {
-      "name": "Innovative solutions for the sustainable and beautiful use of vertical space",
-      "code": "HORIZON-NEB-2026-01-REGEN-03",
-      "openDate": "2026-05-05",
-      "closeDate": "2026-12-01 00:00:00",
-      "budget": "5000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-neb-2026-01-regen-03"
     },
     {
       "name": "Innovative approaches for the spatial design of neighbourhoods",
@@ -2917,12 +2757,12 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-neb-2026-01-participation-01"
     },
     {
-      "name": "Advancing sustainable maintenance and repair measures for existing buildings",
-      "code": "HORIZON-NEB-2026-01-REGEN-02",
+      "name": "Innovative solutions for the sustainable and beautiful use of vertical space",
+      "code": "HORIZON-NEB-2026-01-REGEN-03",
       "openDate": "2026-05-05",
       "closeDate": "2026-12-01 00:00:00",
       "budget": "5000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-neb-2026-01-regen-02"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-neb-2026-01-regen-03"
     },
     {
       "name": "Understanding inhabitant’s experiences of neighbourhoods to support their health and well-being",
@@ -2949,44 +2789,20 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-neb-2026-01-business-01"
     },
     {
+      "name": "Advancing sustainable maintenance and repair measures for existing buildings",
+      "code": "HORIZON-NEB-2026-01-REGEN-02",
+      "openDate": "2026-05-05",
+      "closeDate": "2026-12-01 00:00:00",
+      "budget": "5000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-neb-2026-01-regen-02"
+    },
+    {
       "name": "Sustainable, inclusive, affordable and beautiful solutions for thermal comfort in buildings",
       "code": "HORIZON-NEB-2026-01-REGEN-01",
       "openDate": "2026-05-05",
       "closeDate": "2026-12-01 00:00:00",
       "budget": "4000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-neb-2026-01-regen-01"
-    },
-    {
-      "name": "Innovative technologies and solutions to improve wind energy systems supporting the Strategic Energy Technology (SET) Plan on wind",
-      "code": "HORIZON-CL5-2026-09-D3-03",
-      "openDate": "2026-05-05",
-      "closeDate": "2026-09-15 00:00:00",
-      "budget": "93000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-09-d3-03"
-    },
-    {
-      "name": "Low disturbance prefabrication approaches for deep renovation of multi-storey buildings (Built4People Partnership)",
-      "code": "HORIZON-CL5-2026-09-D4-02",
-      "openDate": "2026-05-05",
-      "closeDate": "2026-09-15 00:00:00",
-      "budget": "7000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-09-d4-02"
-    },
-    {
-      "name": "Full-scale demonstration of heat upgrade solutions in industrial processes",
-      "code": "HORIZON-CL5-2026-09-D4-08",
-      "openDate": "2026-05-05",
-      "closeDate": "2026-09-15 00:00:00",
-      "budget": "9000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-09-d4-08"
-    },
-    {
-      "name": "Validating policies and business models for affordable and sustainable housing (Built4People Partnership)",
-      "code": "HORIZON-CL5-2026-09-D4-04",
-      "openDate": "2026-05-05",
-      "closeDate": "2026-09-15 00:00:00",
-      "budget": "5000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-09-d4-04"
     },
     {
       "name": "Producing battery-grade materials for electrodes through sustainable processing and refining of raw materials or developing bio-based materials (BATT4EU Partnership)",
@@ -3003,6 +2819,38 @@ const horizonData = {
       "closeDate": "2026-09-15 00:00:00",
       "budget": "9400000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-09-d2-04"
+    },
+    {
+      "name": "Researching the technical, social & economic factors impacting the energy performance of Smart Buildings (Built4People Partnership)",
+      "code": "HORIZON-CL5-2026-09-D4-01",
+      "openDate": "2026-05-05",
+      "closeDate": "2026-09-15 00:00:00",
+      "budget": "5250000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-09-d4-01"
+    },
+    {
+      "name": "Advanced data platforms to integrate whole life carbon in building information tools, assessments, and certification (Built4People Partnership)",
+      "code": "HORIZON-CL5-2026-09-D4-03",
+      "openDate": "2026-05-05",
+      "closeDate": "2026-09-15 00:00:00",
+      "budget": "5250000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-09-d4-03"
+    },
+    {
+      "name": "Low disturbance prefabrication approaches for deep renovation of multi-storey buildings (Built4People Partnership)",
+      "code": "HORIZON-CL5-2026-09-D4-02",
+      "openDate": "2026-05-05",
+      "closeDate": "2026-09-15 00:00:00",
+      "budget": "7000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-09-d4-02"
+    },
+    {
+      "name": "Innovative technologies and solutions to improve wind energy systems supporting the Strategic Energy Technology (SET) Plan on wind",
+      "code": "HORIZON-CL5-2026-09-D3-03",
+      "openDate": "2026-05-05",
+      "closeDate": "2026-09-15 00:00:00",
+      "budget": "93000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-09-d3-03"
     },
     {
       "name": "Full-scale demonstration of heat upgrade solutions in industrial processes",
@@ -3405,20 +3253,20 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-05-soil-02-two-stage"
     },
     {
+      "name": "Open topic: Boosting organic farming for a competitive, sustainable and resilient farming sector",
+      "code": "HORIZON-CL6-2026-02-FARM2FORK-02-two-stage",
+      "openDate": "2026-02-12",
+      "closeDate": "2026-09-15 00:00:00",
+      "budget": "6000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2026-02-farm2fork-02-two-stage"
+    },
+    {
       "name": "Living labs to enhance soil health in Alpine and Atlantic biogeographical regions",
       "code": "HORIZON-MISS-2026-05-SOIL-01-two-stage",
       "openDate": "2026-02-12",
       "closeDate": "2026-09-15 00:00:00",
       "budget": "12000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-05-soil-01-two-stage"
-    },
-    {
-      "name": "Living labs to enhance soil health in managed forests and in natural/semi-natural lands",
-      "code": "HORIZON-MISS-2026-05-SOIL-02-two-stage",
-      "openDate": "2026-02-12",
-      "closeDate": "2026-09-15 00:00:00",
-      "budget": "12000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-05-soil-02-two-stage"
     },
     {
       "name": "Open topic: Improving the competitiveness of the agricultural sector by enhancing the efficient and sustainable use of agricultural production factors",
@@ -3461,6 +3309,14 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2026-01-circbio-01-two-stage"
     },
     {
+      "name": "Open topic: Uncovering the causes of specific species’ rapid decline and exploring actionable solutions",
+      "code": "HORIZON-CL6-2026-01-BIODIV-02-two-stage",
+      "openDate": "2026-02-12",
+      "closeDate": "2026-09-23 00:00:00",
+      "budget": "3000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2026-01-biodiv-02-two-stage"
+    },
+    {
       "name": "Living labs for co-creating solutions for the restoration of ecosystems",
       "code": "HORIZON-CL6-2026-01-BIODIV-01-two-stage",
       "openDate": "2026-02-12",
@@ -3485,30 +3341,6 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2026-01-zeropollution-01-two-stage"
     },
     {
-      "name": "Open topic: Uncovering the causes of specific species’ rapid decline and exploring actionable solutions",
-      "code": "HORIZON-CL6-2026-01-BIODIV-02-two-stage",
-      "openDate": "2026-02-12",
-      "closeDate": "2026-09-23 00:00:00",
-      "budget": "3000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2026-01-biodiv-02-two-stage"
-    },
-    {
-      "name": "Boosting mental health of young cancer survivors through the European Cancer Patient Digital Centre (ECPDC)",
-      "code": "HORIZON-MISS-2026-02-CANCER-05",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-09-15 00:00:00",
-      "budget": "7000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-05"
-    },
-    {
-      "name": "Earlier and more precise palliative care",
-      "code": "HORIZON-MISS-2026-02-CANCER-04",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-09-15 00:00:00",
-      "budget": "5000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-04"
-    },
-    {
       "name": "Pragmatic clinical trials to optimise immunotherapeutic interventions for patients with refractory cancers",
       "code": "HORIZON-MISS-2026-02-CANCER-03",
       "openDate": "2026-02-10",
@@ -3525,12 +3357,28 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-01"
     },
     {
+      "name": "Earlier and more precise palliative care",
+      "code": "HORIZON-MISS-2026-02-CANCER-04",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-09-15 00:00:00",
+      "budget": "5000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-04"
+    },
+    {
       "name": "Improve the Quality of Life of older cancer patients",
       "code": "HORIZON-MISS-2026-02-CANCER-07",
       "openDate": "2026-02-10",
       "closeDate": "2026-09-15 00:00:00",
       "budget": "5000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-07"
+    },
+    {
+      "name": "Boosting mental health of young cancer survivors through the European Cancer Patient Digital Centre (ECPDC)",
+      "code": "HORIZON-MISS-2026-02-CANCER-05",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-09-15 00:00:00",
+      "budget": "7000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-05"
     },
     {
       "name": "Development of a research capacity building programme on cancer with and for Ukraine",
@@ -3565,28 +3413,12 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-02-disease-12"
     },
     {
-      "name": "Support for a multilateral initiative on climate change and health research",
-      "code": "HORIZON-HLTH-2026-01-ENVHLTH-05",
+      "name": "Integrating New Approach Methodologies (NAMs) to advance biomedical research and regulatory testing",
+      "code": "HORIZON-HLTH-2026-01-TOOL-03",
       "openDate": "2026-02-10",
       "closeDate": "2026-04-16 00:00:00",
-      "budget": "3000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-envhlth-05"
-    },
-    {
-      "name": "Behavioural interventions as primary prevention for Non-Communicable Diseases (NCDs) among young people",
-      "code": "HORIZON-HLTH-2026-01-STAYHLTH-02",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-16 00:00:00",
-      "budget": "9000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-stayhlth-02"
-    },
-    {
-      "name": "Establishing a European network of Centres of Excellence (CoEs) for Advanced Therapies Medicinal Products (ATMPs)",
-      "code": "HORIZON-HLTH-2026-01-TOOL-07",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-16 00:00:00",
-      "budget": "3900000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-tool-07"
+      "budget": "5000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-tool-03"
     },
     {
       "name": "Support to European Research Area (ERA) action on accelerating New Approach Methodologies (NAMs) to advance biomedical research and testing of medicinal products and medical devices",
@@ -3597,44 +3429,28 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-tool-06"
     },
     {
-      "name": "Integrating New Approach Methodologies (NAMs) to advance biomedical research and regulatory testing",
-      "code": "HORIZON-HLTH-2026-01-TOOL-03",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-16 00:00:00",
-      "budget": "5000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-tool-03"
-    },
-    {
-      "name": "Multisectoral approach to tackle chronic non-communicable diseases: implementation research maximising collaboration and coordination with sectors and in settings beyond the healthcare system (GACD)",
-      "code": "HORIZON-HLTH-2026-01-DISEASE-09",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-16 00:00:00",
-      "budget": "3000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-disease-09"
-    },
-    {
-      "name": "Understanding of sex and/or gender-specific mechanisms of cardiovascular diseases: determinants, risk factors and pathways",
-      "code": "HORIZON-HLTH-2026-01-DISEASE-11",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-16 00:00:00",
-      "budget": "6000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-disease-11"
-    },
-    {
-      "name": "Identifying and addressing low-value care in health and care systems",
-      "code": "HORIZON-HLTH-2026-01-CARE-03",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-16 00:00:00",
-      "budget": "10000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-care-03"
-    },
-    {
       "name": "Development of novel vaccines for viral pathogens with epidemic potential",
       "code": "HORIZON-HLTH-2026-01-DISEASE-04",
       "openDate": "2026-02-10",
       "closeDate": "2026-04-16 00:00:00",
       "budget": "9000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-disease-04"
+    },
+    {
+      "name": "Establishing a European network of Centres of Excellence (CoEs) for Advanced Therapies Medicinal Products (ATMPs)",
+      "code": "HORIZON-HLTH-2026-01-TOOL-07",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-16 00:00:00",
+      "budget": "3900000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-tool-07"
+    },
+    {
+      "name": "Towards climate resilient, prepared and carbon neutral populations and healthcare systems",
+      "code": "HORIZON-HLTH-2026-01-ENVHLTH-04",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-16 00:00:00",
+      "budget": "7000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-envhlth-04"
     },
     {
       "name": "Innovative interventions to prevent the harmful effects of using digital technologies on the mental health of children and young adults",
@@ -3661,28 +3477,44 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-ind-03"
     },
     {
-      "name": "Scaling up innovation in cardiovascular health",
-      "code": "HORIZON-HLTH-2026-01-DISEASE-15",
+      "name": "Multisectoral approach to tackle chronic non-communicable diseases: implementation research maximising collaboration and coordination with sectors and in settings beyond the healthcare system (GACD)",
+      "code": "HORIZON-HLTH-2026-01-DISEASE-09",
       "openDate": "2026-02-10",
       "closeDate": "2026-04-16 00:00:00",
-      "budget": "1900000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-disease-15"
+      "budget": "3000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-disease-09"
     },
     {
-      "name": "Building public trust and outreach in the life sciences",
-      "code": "HORIZON-HLTH-2026-01-STAYHLTH-03",
+      "name": "Understanding of sex and/or gender-specific mechanisms of cardiovascular diseases: determinants, risk factors and pathways",
+      "code": "HORIZON-HLTH-2026-01-DISEASE-11",
       "openDate": "2026-02-10",
       "closeDate": "2026-04-16 00:00:00",
-      "budget": "1500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-stayhlth-03"
+      "budget": "6000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-disease-11"
     },
     {
-      "name": "Towards climate resilient, prepared and carbon neutral populations and healthcare systems",
-      "code": "HORIZON-HLTH-2026-01-ENVHLTH-04",
+      "name": "Identifying and addressing low-value care in health and care systems",
+      "code": "HORIZON-HLTH-2026-01-CARE-03",
       "openDate": "2026-02-10",
       "closeDate": "2026-04-16 00:00:00",
-      "budget": "7000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-envhlth-04"
+      "budget": "10000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-care-03"
+    },
+    {
+      "name": "Support for a multilateral initiative on climate change and health research",
+      "code": "HORIZON-HLTH-2026-01-ENVHLTH-05",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-16 00:00:00",
+      "budget": "3000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-envhlth-05"
+    },
+    {
+      "name": "Behavioural interventions as primary prevention for Non-Communicable Diseases (NCDs) among young people",
+      "code": "HORIZON-HLTH-2026-01-STAYHLTH-02",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-16 00:00:00",
+      "budget": "9000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-stayhlth-02"
     },
     {
       "name": "Public procurement of innovative solutions for improving citizens' access to healthcare through integrated or personalised approaches",
@@ -3691,6 +3523,14 @@ const horizonData = {
       "closeDate": "2026-04-16 00:00:00",
       "budget": "3000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-care-01"
+    },
+    {
+      "name": "Building public trust and outreach in the life sciences",
+      "code": "HORIZON-HLTH-2026-01-STAYHLTH-03",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-16 00:00:00",
+      "budget": "1500000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-stayhlth-03"
     },
     {
       "name": "Towards a better understanding and anticipation of the impacts of climate change on health",
@@ -3707,6 +3547,22 @@ const horizonData = {
       "closeDate": "2026-04-16 00:00:00",
       "budget": "6000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-disease-03"
+    },
+    {
+      "name": "Scaling up innovation in cardiovascular health",
+      "code": "HORIZON-HLTH-2026-01-DISEASE-15",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-16 00:00:00",
+      "budget": "1900000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-disease-15"
+    },
+    {
+      "name": "Energy efficient urban and sub-urban public transport, complemented by shared mobility",
+      "code": "HORIZON-MISS-2026-04-CIT-01",
+      "openDate": "2026-02-04",
+      "closeDate": "2026-10-08 00:00:00",
+      "budget": "10000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-04-cit-01"
     },
     {
       "name": "Enabling user-centred and open innovation initiatives to enhance soil health in Ukraine",
@@ -3731,14 +3587,6 @@ const horizonData = {
       "closeDate": "2026-09-23 00:00:00",
       "budget": "7000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-05-soil-02"
-    },
-    {
-      "name": "Energy efficient urban and sub-urban public transport, complemented by shared mobility",
-      "code": "HORIZON-MISS-2026-04-CIT-01",
-      "openDate": "2026-02-04",
-      "closeDate": "2026-10-08 00:00:00",
-      "budget": "10000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-04-cit-01"
     },
     {
       "name": "Monitoring soil health in practice: equipping stakeholders to sample, analyse, and interpret soil health indicators",
@@ -3773,6 +3621,22 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/12565?order=DESC&pageNumber=1&pageSize=50&sortBy=relevance&keywords=NGI%20Zero%20Commons%20Fund%20%282026-04Z%29&isExactMatch=true&status=31094501,31094502&frameworkProgramme=43108390"
     },
     {
+      "name": "6G Devices",
+      "code": "HORIZON-JU-SNS-2026-STREAM-CSA-02",
+      "openDate": "2026-01-29",
+      "closeDate": "2026-04-29 00:00:00",
+      "budget": "2000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-sns-2026-stream-csa-02"
+    },
+    {
+      "name": "SNS experimental infrastructure",
+      "code": "HORIZON-JU-SNS-2026-STREAM-C-01",
+      "openDate": "2026-01-29",
+      "closeDate": "2026-04-29 00:00:00",
+      "budget": "8000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-sns-2026-stream-c-01"
+    },
+    {
       "name": "Collection, Generation and Validation of Datasets  suitable for training AI Models for 6G Networks and for AIaaS",
       "code": "HORIZON-JU-SNS-2026-STREAM-B-01",
       "openDate": "2026-01-29",
@@ -3787,22 +3651,6 @@ const horizonData = {
       "closeDate": "2026-04-29 00:00:00",
       "budget": "3000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-sns-2026-stream-csa-01"
-    },
-    {
-      "name": "EU-India International Collaboration",
-      "code": "HORIZON-JU-SNS-2026-STREAM-CSA-03",
-      "openDate": "2026-01-29",
-      "closeDate": "2026-04-29 00:00:00",
-      "budget": "1000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-sns-2026-stream-csa-03"
-    },
-    {
-      "name": "6G Devices",
-      "code": "HORIZON-JU-SNS-2026-STREAM-CSA-02",
-      "openDate": "2026-01-29",
-      "closeDate": "2026-04-29 00:00:00",
-      "budget": "2000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-sns-2026-stream-csa-02"
     },
     {
       "name": "SNS experimental infrastructure",
@@ -4221,6 +4069,22 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-raise-2026-01-01"
     },
     {
+      "name": "Cooperation on innovative advanced materials with Japan (CSA)",
+      "code": "HORIZON-CL4-2026-01-MAT-PROD-24",
+      "openDate": "2026-01-06",
+      "closeDate": "2026-04-21 00:00:00",
+      "budget": "800000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-01-mat-prod-24"
+    },
+    {
+      "name": "Pilot access schemes to Technology Infrastructures for European startups, scaleups and innovative SMEs (CSA)",
+      "code": "HORIZON-CL4-2026-01-MAT-PROD-45",
+      "openDate": "2026-01-06",
+      "closeDate": "2026-04-21 00:00:00",
+      "budget": "1500000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-01-mat-prod-45"
+    },
+    {
       "name": "Mapping and service finder for Technology Infrastructures (CSA)",
       "code": "HORIZON-CL4-2026-01-MAT-PROD-46",
       "openDate": "2026-01-06",
@@ -4245,22 +4109,6 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-01-mat-prod-13"
     },
     {
-      "name": "Cooperation on innovative advanced materials with Japan (CSA)",
-      "code": "HORIZON-CL4-2026-01-MAT-PROD-24",
-      "openDate": "2026-01-06",
-      "closeDate": "2026-04-21 00:00:00",
-      "budget": "800000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-01-mat-prod-24"
-    },
-    {
-      "name": "Pilot access schemes to Technology Infrastructures for European startups, scaleups and innovative SMEs (CSA)",
-      "code": "HORIZON-CL4-2026-01-MAT-PROD-45",
-      "openDate": "2026-01-06",
-      "closeDate": "2026-04-21 00:00:00",
-      "budget": "1500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-01-mat-prod-45"
-    },
-    {
       "name": "Circular innovative advanced materials: facilitating the transition from design to markets (RIA) (Innovative Advanced Materials for the EU and Made in Europe partnerships)",
       "code": "HORIZON-CL4-2026-01-MAT-PROD-05",
       "openDate": "2026-01-06",
@@ -4277,12 +4125,12 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-01-mat-prod-23"
     },
     {
-      "name": "Attracting management talent for capacity building for Technology Infrastructures staff members (CSA)",
-      "code": "HORIZON-CL4-2026-01-MAT-PROD-44",
+      "name": "Technologies for innovative extraction of critical raw materials (RIA)",
+      "code": "HORIZON-CL4-2026-01-MAT-PROD-12",
       "openDate": "2026-01-06",
       "closeDate": "2026-04-21 00:00:00",
-      "budget": "2500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-01-mat-prod-44"
+      "budget": "5000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-01-mat-prod-12"
     },
     {
       "name": "Enhancing industry-academia knowledge exchange in Social Sciences and Humanities (SSH) (CSA)",
@@ -4293,20 +4141,20 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-01-mat-prod-41"
     },
     {
-      "name": "Technologies for innovative extraction of critical raw materials (RIA)",
-      "code": "HORIZON-CL4-2026-01-MAT-PROD-12",
-      "openDate": "2026-01-06",
-      "closeDate": "2026-04-21 00:00:00",
-      "budget": "5000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-01-mat-prod-12"
-    },
-    {
       "name": "Efficient capture / purification / utilisation of CO2 for the production of competitive products (RIA) (Processes4Planet partnership)",
       "code": "HORIZON-CL4-2026-01-MAT-PROD-31",
       "openDate": "2026-01-06",
       "closeDate": "2026-04-21 00:00:00",
       "budget": "5000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-01-mat-prod-31"
+    },
+    {
+      "name": "Attracting management talent for capacity building for Technology Infrastructures staff members (CSA)",
+      "code": "HORIZON-CL4-2026-01-MAT-PROD-44",
+      "openDate": "2026-01-06",
+      "closeDate": "2026-04-21 00:00:00",
+      "budget": "2500000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-01-mat-prod-44"
     },
     {
       "name": "‘Proof of market’ to improve valorisation and commercialisation of Horizon generated R&I results (IA)",
@@ -4365,12 +4213,20 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/12764?order=DESC&pageNumber=1&pageSize=50&sortBy=relevance&keywords=Open%20Call%20on%20Knowledge%20Transfer&isExactMatch=true&status=31094501,31094502&frameworkProgramme=43108390"
     },
     {
-      "name": "Economics of climate change and cost of inaction",
-      "code": "HORIZON-CL5-2026-07-D1-03",
+      "name": "R&I in Support of the Clean Industrial Deal: Decarbonisation of energy intensive industries (IA) (Processes4Planet and Clean Steel partnerships)",
+      "code": "HORIZON-CID-2026-01-01",
       "openDate": "2025-12-18",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "4000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-07-d1-03"
+      "closeDate": "2026-09-15 00:00:00",
+      "budget": "15000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cid-2026-01-01"
+    },
+    {
+      "name": "Non-exhaust emissions in road and railway transport",
+      "code": "HORIZON-CL5-2026-06-Two-Stage-D5-19",
+      "openDate": "2025-12-18",
+      "closeDate": "2026-10-08 00:00:00",
+      "budget": "3500000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-06-two-stage-d5-19"
     },
     {
       "name": "R&I in Support of the Clean Industrial Deal: Clean Technologies for Climate Action",
@@ -4379,14 +4235,6 @@ const horizonData = {
       "closeDate": "2026-09-15 00:00:00",
       "budget": "15000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cid-2026-01-02"
-    },
-    {
-      "name": "R&I in Support of the Clean Industrial Deal: Decarbonisation of energy intensive industries (IA) (Processes4Planet and Clean Steel partnerships)",
-      "code": "HORIZON-CID-2026-01-01",
-      "openDate": "2025-12-18",
-      "closeDate": "2026-09-15 00:00:00",
-      "budget": "15000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cid-2026-01-01"
     },
     {
       "name": "Next generation of renewable energy technologies",
@@ -4405,14 +4253,6 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-06-two-stage-d5-10"
     },
     {
-      "name": "Non-exhaust emissions in road and railway transport",
-      "code": "HORIZON-CL5-2026-06-Two-Stage-D5-19",
-      "openDate": "2025-12-18",
-      "closeDate": "2026-10-08 00:00:00",
-      "budget": "3500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-06-two-stage-d5-19"
-    },
-    {
       "name": "Closing knowledge gaps on Earth system science in support of global and regional assessments and climate policy",
       "code": "HORIZON-CL5-2026-08-Two-Stage-D1-06",
       "openDate": "2025-12-18",
@@ -4421,12 +4261,20 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-08-two-stage-d1-06"
     },
     {
-      "name": "Fighting disinformation and effectively communicating on climate change",
-      "code": "HORIZON-CL5-2026-07-D1-04",
+      "name": "Economics of climate change and cost of inaction",
+      "code": "HORIZON-CL5-2026-07-D1-03",
       "openDate": "2025-12-18",
       "closeDate": "2026-04-15 00:00:00",
       "budget": "4000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-07-d1-04"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-07-d1-03"
+    },
+    {
+      "name": "7th REINFORCING Open Call (Booster Call) on “Responsible Security”",
+      "code": "HORIZON-WIDERA-2022-ERA-01-40",
+      "openDate": "2025-12-18",
+      "closeDate": "2026-03-04 17:00:00",
+      "budget": "120000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/12722?order=DESC&pageNumber=1&pageSize=50&sortBy=relevance&keywords=7th%20REINFORCING%20Open%20Call%20%28Booster%20Call%29%20on%20%E2%80%9CResponsible%20Security%E2%80%9D&isExactMatch=true&status=31094501,31094502&frameworkProgramme=43108390"
     },
     {
       "name": "Advancing European climate risk assessments",
@@ -4435,46 +4283,6 @@ const horizonData = {
       "closeDate": "2026-04-15 00:00:00",
       "budget": "4000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-07-d1-02"
-    },
-    {
-      "name": "Ports of the future (ZEWT Partnership)",
-      "code": "HORIZON-CL5-2026-05-D5-11",
-      "openDate": "2025-12-18",
-      "closeDate": "2026-04-14 00:00:00",
-      "budget": "10500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-05-d5-11"
-    },
-    {
-      "name": "Large-scale demonstration of Heavy-Duty Battery Electric Vehicles (HD BEV) towards long-haul logistics operations (2ZERO Partnership)",
-      "code": "HORIZON-CL5-2026-05-D5-01",
-      "openDate": "2025-12-18",
-      "closeDate": "2026-04-14 00:00:00",
-      "budget": "34000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-05-d5-01"
-    },
-    {
-      "name": "Safety of renewable low and zero-carbon waterborne fuels in port areas: risk assessment, regulatory framework, and guidelines for safe bunkering, handling and storage (ZEWT partnership)",
-      "code": "HORIZON-CL5-2026-05-D5-13",
-      "openDate": "2025-12-18",
-      "closeDate": "2026-04-14 00:00:00",
-      "budget": "2000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-05-d5-13"
-    },
-    {
-      "name": "Shipyards of the future (ZEWT Partnership)",
-      "code": "HORIZON-CL5-2026-05-D5-12",
-      "openDate": "2025-12-18",
-      "closeDate": "2026-04-14 00:00:00",
-      "budget": "10500000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-05-d5-12"
-    },
-    {
-      "name": "Energy-efficient software-defined EVs (2ZERO Partnership)",
-      "code": "HORIZON-CL5-2026-05-D5-02",
-      "openDate": "2025-12-18",
-      "closeDate": "2026-04-14 00:00:00",
-      "budget": "16000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-05-d5-02"
     },
     {
       "name": "AI-assisted digital aircraft design, manufacturing and MRO, towards a competitive aviation",
@@ -4501,20 +4309,52 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-07-d1-01"
     },
     {
-      "name": "7th REINFORCING Open Call (Booster Call) on “Responsible Security”",
-      "code": "HORIZON-WIDERA-2022-ERA-01-40",
+      "name": "Fighting disinformation and effectively communicating on climate change",
+      "code": "HORIZON-CL5-2026-07-D1-04",
       "openDate": "2025-12-18",
-      "closeDate": "2026-03-04 17:00:00",
-      "budget": "120000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/12722?order=DESC&pageNumber=1&pageSize=50&sortBy=relevance&keywords=7th%20REINFORCING%20Open%20Call%20%28Booster%20Call%29%20on%20%E2%80%9CResponsible%20Security%E2%80%9D&isExactMatch=true&status=31094501,31094502&frameworkProgramme=43108390"
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "4000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-07-d1-04"
     },
     {
-      "name": "Novel solutions for off-grid storage of renewable energy for critical infrastructures",
-      "code": "HORIZON-CL5-2026-03-D3-21",
+      "name": "Ports of the future (ZEWT Partnership)",
+      "code": "HORIZON-CL5-2026-05-D5-11",
       "openDate": "2025-12-18",
-      "closeDate": "2026-03-31 00:00:00",
-      "budget": "4000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-03-d3-21"
+      "closeDate": "2026-04-14 00:00:00",
+      "budget": "10500000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-05-d5-11"
+    },
+    {
+      "name": "Large-scale demonstration of Heavy-Duty Battery Electric Vehicles (HD BEV) towards long-haul logistics operations (2ZERO Partnership)",
+      "code": "HORIZON-CL5-2026-05-D5-01",
+      "openDate": "2025-12-18",
+      "closeDate": "2026-04-14 00:00:00",
+      "budget": "34000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-05-d5-01"
+    },
+    {
+      "name": "Shipyards of the future (ZEWT Partnership)",
+      "code": "HORIZON-CL5-2026-05-D5-12",
+      "openDate": "2025-12-18",
+      "closeDate": "2026-04-14 00:00:00",
+      "budget": "10500000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-05-d5-12"
+    },
+    {
+      "name": "Energy-efficient software-defined EVs (2ZERO Partnership)",
+      "code": "HORIZON-CL5-2026-05-D5-02",
+      "openDate": "2025-12-18",
+      "closeDate": "2026-04-14 00:00:00",
+      "budget": "16000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-05-d5-02"
+    },
+    {
+      "name": "Safety of renewable low and zero-carbon waterborne fuels in port areas: risk assessment, regulatory framework, and guidelines for safe bunkering, handling and storage (ZEWT partnership)",
+      "code": "HORIZON-CL5-2026-05-D5-13",
+      "openDate": "2025-12-18",
+      "closeDate": "2026-04-14 00:00:00",
+      "budget": "2000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-05-d5-13"
     },
     {
       "name": "Industrial scale up and circularity pathway for IPV technologies (EUPI-PV Partnership)",
@@ -4565,6 +4405,22 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-03-d3-01"
     },
     {
+      "name": "Affordable and sustainable primary equipment for Future-Ready multi-terminal HVDC Systems",
+      "code": "HORIZON-CL5-2026-03-D3-19",
+      "openDate": "2025-12-18",
+      "closeDate": "2026-03-31 00:00:00",
+      "budget": "4000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-03-d3-19"
+    },
+    {
+      "name": "Novel solutions for off-grid storage of renewable energy for critical infrastructures",
+      "code": "HORIZON-CL5-2026-03-D3-21",
+      "openDate": "2025-12-18",
+      "closeDate": "2026-03-31 00:00:00",
+      "budget": "4000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-03-d3-21"
+    },
+    {
       "name": "Grid-forming capabilities for more resilient and RES-based electricity grids",
       "code": "HORIZON-CL5-2026-03-D3-18",
       "openDate": "2025-12-18",
@@ -4587,14 +4443,6 @@ const horizonData = {
       "closeDate": "2026-02-18 17:00:00",
       "budget": "300000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/12703?order=DESC&pageNumber=1&pageSize=50&sortBy=relevance&keywords=SUNDANSE%20%E2%80%93%20Open%20Call%20%231%20%28Sediment%20Matters%20%E2%80%93%20The%20Danube%20Call%29&isExactMatch=true&status=31094501,31094502&frameworkProgramme=43108390"
-    },
-    {
-      "name": "Affordable and sustainable primary equipment for Future-Ready multi-terminal HVDC Systems",
-      "code": "HORIZON-CL5-2026-03-D3-19",
-      "openDate": "2025-12-18",
-      "closeDate": "2026-03-31 00:00:00",
-      "budget": "4000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-03-d3-19"
     },
     {
       "name": "MSCA COFUND 2026",
@@ -5013,6 +4861,14 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/12406?order=DESC&pageNumber=1&pageSize=50&sortBy=relevance&keywords=COPILOT%20Extra%20Call4Travel%20Vouchers%20-%20Open%20call%203%20-%20BIOKET%0A&isExactMatch=true&status=31094501,31094502&frameworkProgramme=43108390"
     },
     {
+      "name": "Open Call 1 - Short Term and Long Term Funding to support ICT standardisation",
+      "code": "HORIZON-CL4-2024-HUMAN-03-04",
+      "openDate": "2025-11-17",
+      "closeDate": "2026-01-16 17:00:00",
+      "budget": "650000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/12403?order=DESC&pageNumber=1&pageSize=50&sortBy=relevance&keywords=Open%20Call%201%20-%20Short%20Term%20and%20Long%20Term%20Funding%20to%20support%20ICT%20standardisation&isExactMatch=true&status=31094501,31094502&frameworkProgramme=43108390"
+    },
+    {
       "name": "FORTIS Open Call #1: Boosting Development of the FORTIS Solution. ",
       "code": "HORIZON-CL4-2023-DIGITAL-EMERGING-01-02",
       "openDate": "2025-11-17",
@@ -5027,14 +4883,6 @@ const horizonData = {
       "closeDate": "2026-01-19 17:00:00",
       "budget": "728800",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/12381?order=DESC&pageNumber=1&pageSize=50&sortBy=relevance&keywords=PhotonQBoost%20Open%20Call%20for%20Solutions%2C%20Missions%2C%20Trainings%20and%20Services&isExactMatch=true&status=31094501,31094502&frameworkProgramme=43108390"
-    },
-    {
-      "name": "Open Call 1 - Short Term and Long Term Funding to support ICT standardisation",
-      "code": "HORIZON-CL4-2024-HUMAN-03-04",
-      "openDate": "2025-11-17",
-      "closeDate": "2026-01-16 17:00:00",
-      "budget": "650000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/12403?order=DESC&pageNumber=1&pageSize=50&sortBy=relevance&keywords=Open%20Call%201%20-%20Short%20Term%20and%20Long%20Term%20Funding%20to%20support%20ICT%20standardisation&isExactMatch=true&status=31094501,31094502&frameworkProgramme=43108390"
     },
     {
       "name": "Understanding and Preventing Overweight and Obesity: Mechanisms of their onset and progression, neglected determinants and novel strategies for critical transitional periods in life - PREVENT-OO",
@@ -5117,22 +4965,6 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/12103?order=DESC&pageNumber=1&pageSize=50&sortBy=relevance&keywords=EOSC%20Gravity%20Preparatory%20Grants%20Open%20Call&isExactMatch=true&status=31094501,31094502&frameworkProgramme=43108390"
     },
     {
-      "name": "NETWORK MANAGEMENT PLANNING AND CONTROL & MOBILITY MANAGEMENT IN A MULTIMODAL ENVIRONMENT AND DIGITAL ENABLERS",
-      "code": "HORIZON-JU-ER-2025-FA1-TT-01",
-      "openDate": "2025-10-30",
-      "closeDate": "2026-02-11 00:00:00",
-      "budget": "22400000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-er-2025-fa1-tt-01"
-    },
-    {
-      "name": "INTELLIGENT & INTEGRATED ASSET MANAGEMENT",
-      "code": "HORIZON-JU-ER-2025-FA3-01",
-      "openDate": "2025-10-30",
-      "closeDate": "2026-02-11 00:00:00",
-      "budget": "32800000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-er-2025-fa3-01"
-    },
-    {
       "name": "DIGITAL & AUTOMATIC UP TO AUTOMATED TRAIN OPERATIONS",
       "code": "HORIZON-JU-ER-2025-FA2-01",
       "openDate": "2025-10-30",
@@ -5157,12 +4989,28 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-er-2025-explr-01"
     },
     {
+      "name": "NETWORK MANAGEMENT PLANNING AND CONTROL & MOBILITY MANAGEMENT IN A MULTIMODAL ENVIRONMENT AND DIGITAL ENABLERS",
+      "code": "HORIZON-JU-ER-2025-FA1-TT-01",
+      "openDate": "2025-10-30",
+      "closeDate": "2026-02-11 00:00:00",
+      "budget": "22400000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-er-2025-fa1-tt-01"
+    },
+    {
       "name": "A SUSTAINABLE AND GREEN RAIL SYSTEM",
       "code": "HORIZON-JU-ER-2025-FA4-01",
       "openDate": "2025-10-30",
       "closeDate": "2026-02-11 00:00:00",
       "budget": "26600000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-er-2025-fa4-01"
+    },
+    {
+      "name": "INTELLIGENT & INTEGRATED ASSET MANAGEMENT",
+      "code": "HORIZON-JU-ER-2025-FA3-01",
+      "openDate": "2025-10-30",
+      "closeDate": "2026-02-11 00:00:00",
+      "budget": "32800000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-er-2025-fa3-01"
     },
     {
       "name": "REGIONAL RAIL SERVICES / INNOVATIVE RAIL SERVICES TO REVITALISE CAPILLARY LINES",
@@ -5701,6 +5549,14 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/11683?order=DESC&pageNumber=1&pageSize=50&sortBy=relevance&keywords=Water4All%202025%20Joint%20Transnational%20Call%20%E2%80%9CWater%20and%20health%E2%80%9D&isExactMatch=true&status=31094501,31094502&frameworkProgramme=43108390"
     },
     {
+      "name": "Scaling up deep tech ecosystems",
+      "code": "HORIZON-EIE-2026-01-CONNECT-03",
+      "openDate": "2025-09-10",
+      "closeDate": "2026-01-20 00:00:00",
+      "budget": "5000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eie-2026-01-connect-03"
+    },
+    {
       "name": "European network of national competence centers for innovation procurement",
       "code": "HORIZON-EIE-2026-01-CONNECT-01",
       "openDate": "2025-09-10",
@@ -5715,14 +5571,6 @@ const horizonData = {
       "closeDate": "2026-01-20 00:00:00",
       "budget": "1000000",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eie-2026-01-connect-02"
-    },
-    {
-      "name": "Scaling up deep tech ecosystems",
-      "code": "HORIZON-EIE-2026-01-CONNECT-03",
-      "openDate": "2025-09-10",
-      "closeDate": "2026-01-20 00:00:00",
-      "budget": "5000000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eie-2026-01-connect-03"
     },
     {
       "name": "Restoration of ecosystem functioning, integrity and connectivity",
@@ -6197,5 +6045,5 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/4602?order=DESC&pageNumber=1&pageSize=50&sortBy=relevance&keywords=Permanently%20Open%20Call%20for%20Targeted%20Innovation%20Projects&isExactMatch=true&status=31094501,31094502&frameworkProgramme=43108390"
     }
   ],
-  "lastUpdated": "2025-12-29"
+  "lastUpdated": "2026-01-05"
 };
