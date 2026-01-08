@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | M-LAB Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        mlab: {
+                            navy: '#0a192f',
+                            cyan: '#00d4ff',
+                            purple: '#7c3aed',
+                            dark: '#0f172a',
+                            orange: '#ff7e67',
+                            teal: '#0d9488'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-4">
+                    <a href="index.html">
+                        <img src="mlab-logo.png" alt="M-LAB" class="h-10 w-auto">
+                    </a>
+                    <span class="text-lg font-bold text-mlab-navy">Admin Panel</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span id="admin-email" class="text-sm text-slate-500"></span>
+                    <button onclick="logout()"
+                        class="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700 text-sm font-medium transition-colors">
+                        <i data-lucide="log-out" class="w-4 h-4"></i>
+                        Çıkış
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Tabs -->
+        <div class="flex gap-1 mb-8 bg-white rounded-xl p-1 shadow-sm border border-slate-100 inline-flex">
+            <button onclick="switchTab('pending')" id="tab-pending"
+                class="tab-btn px-6 py-3 rounded-lg font-semibold text-sm transition-all bg-mlab-navy text-white">
+                <i data-lucide="clock" class="w-4 h-4 inline mr-2"></i>
+                Onay Bekleyenler
+                <span id="pending-count" class="ml-2 bg-white/20 px-2 py-0.5 rounded-full text-xs">0</span>
+            </button>
+            <button onclick="switchTab('approved')" id="tab-approved"
+                class="tab-btn px-6 py-3 rounded-lg font-semibold text-sm transition-all text-slate-600 hover:bg-slate-100">
+                <i data-lucide="check-circle" class="w-4 h-4 inline mr-2"></i>
+                Onaylı Üyeler
+                <span id="approved-count" class="ml-2 bg-slate-100 px-2 py-0.5 rounded-full text-xs">0</span>
+            </button>
+            <button onclick="switchTab('rejected')" id="tab-rejected"
+                class="tab-btn px-6 py-3 rounded-lg font-semibold text-sm transition-all text-slate-600 hover:bg-slate-100">
+                <i data-lucide="x-circle" class="w-4 h-4 inline mr-2"></i>
+                Reddedilenler
+                <span id="rejected-count" class="ml-2 bg-slate-100 px-2 py-0.5 rounded-full text-xs">0</span>
+            </button>
+        </div>
+
+        <!-- Users List -->
+        <div class="bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden">
+            <div id="users-container" class="divide-y divide-slate-100">
+                <!-- Users will be rendered here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden py-16 text-center">
+                <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="users" class="w-8 h-8 text-slate-400"></i>
+                </div>
+                <p class="text-slate-500">Bu kategoride kullanıcı bulunmuyor.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- User Detail Modal -->
+    <div id="user-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6 border-b border-slate-100 flex items-center justify-between sticky top-0 bg-white">
+                    <h2 class="text-xl font-bold text-mlab-navy">Üyelik Detayları</h2>
+                    <button onclick="closeModal()" class="p-2 hover:bg-slate-100 rounded-lg transition-colors">
+                        <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
+                    </button>
+                </div>
+                <div id="modal-content" class="p-6">
+                    <!-- Content will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script>
+        lucide.createIcons();
+
+        let currentTab = 'pending';
+        let allUsers = [];
+        let currentUser = null;
+
+        // Check admin access
+        async function checkAdminAccess() {
+            currentUser = JSON.parse(localStorage.getItem('portal_current_user'));
+
+            if (!currentUser) {
+                window.location.href = 'portal-login.html';
+                return false;
+            }
+
+            // Check if user is admin
+            const isAdmin = window.ADMIN_EMAILS?.includes(currentUser.email?.toLowerCase()) || currentUser.isAdmin;
+
+            if (!isAdmin) {
+                alert('Bu sayfaya erişim yetkiniz yok.');
+                window.location.href = 'portal-dashboard.html';
+                return false;
+            }
+
+            document.getElementById('admin-email').textContent = currentUser.email;
+            return true;
+        }
+
+        // Load users
+        async function loadUsers() {
+            try {
+                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
+
+                if (!firebaseReady) {
+                    // Fallback to localStorage
+                    const pendingUsers = JSON.parse(localStorage.getItem('portal_pending_users') || '[]');
+                    const approvedUsers = JSON.parse(localStorage.getItem('portal_users') || '[]');
+                    allUsers = [...pendingUsers.map(u => ({ ...u, status: 'pending' })), ...approvedUsers];
+                    renderUsers();
+                    return;
+                }
+
+                const { db, collection, getDocs, query, orderBy } = window.firebaseDb;
+                const usersRef = collection(db, 'users');
+                const q = query(usersRef, orderBy('created_at', 'desc'));
+                const snapshot = await getDocs(q);
+
+                allUsers = [];
+                snapshot.forEach(doc => {
+                    allUsers.push({ id: doc.id, ...doc.data() });
+                });
+
+                renderUsers();
+            } catch (error) {
+                console.error('Kullanıcılar yüklenirken hata:', error);
+            }
+        }
+
+        // Render users
+        function renderUsers() {
+            const container = document.getElementById('users-container');
+            const emptyState = document.getElementById('empty-state');
+
+            // Filter by status
+            const filteredUsers = allUsers.filter(u => u.status === currentTab);
+
+            // Update counts
+            document.getElementById('pending-count').textContent = allUsers.filter(u => u.status === 'pending').length;
+            document.getElementById('approved-count').textContent = allUsers.filter(u => u.status === 'approved').length;
+            document.getElementById('rejected-count').textContent = allUsers.filter(u => u.status === 'rejected').length;
+
+            if (filteredUsers.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                lucide.createIcons();
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            container.innerHTML = filteredUsers.map(user => `
+                <div class="p-6 hover:bg-slate-50 transition-colors cursor-pointer" onclick="showUserDetail('${user.id}')">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl ${user.org_type === 'belediye' ? 'bg-mlab-navy/10' : 'bg-mlab-orange/10'} flex items-center justify-center">
+                                <i data-lucide="${user.org_type === 'belediye' ? 'landmark' : 'building-2'}" 
+                                   class="w-6 h-6 ${user.org_type === 'belediye' ? 'text-mlab-navy' : 'text-mlab-orange'}"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-mlab-navy">${user.org_name || 'Bilinmiyor'}</h3>
+                                <p class="text-sm text-slate-500">${user.email}</p>
+                                <p class="text-sm text-slate-400 mt-1">
+                                    ${user.contact_name || ''} ${user.contact_title ? '• ' + user.contact_title : ''}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs text-slate-400">
+                                ${formatDate(user.created_at)}
+                            </span>
+                            ${currentTab === 'pending' ? `
+                                <button onclick="event.stopPropagation(); approveUser('${user.id}')"
+                                    class="p-2 bg-green-100 hover:bg-green-200 rounded-lg text-green-700 transition-colors">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="event.stopPropagation(); rejectUser('${user.id}')"
+                                    class="p-2 bg-red-100 hover:bg-red-200 rounded-lg text-red-700 transition-colors">
+                                    <i data-lucide="x" class="w-4 h-4"></i>
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // Format date
+        function formatDate(timestamp) {
+            if (!timestamp) return '';
+            let date;
+            if (timestamp.toDate) {
+                date = timestamp.toDate();
+            } else if (typeof timestamp === 'string') {
+                date = new Date(timestamp);
+            } else {
+                return '';
+            }
+            return date.toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        }
+
+        // Switch tab
+        function switchTab(tab) {
+            currentTab = tab;
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-mlab-navy', 'text-white');
+                btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+            });
+
+            const activeTab = document.getElementById(`tab-${tab}`);
+            activeTab.classList.remove('text-slate-600', 'hover:bg-slate-100');
+            activeTab.classList.add('bg-mlab-navy', 'text-white');
+
+            renderUsers();
+        }
+
+        // Show user detail
+        function showUserDetail(userId) {
+            const user = allUsers.find(u => u.id === userId || u.id === parseInt(userId));
+            if (!user) return;
+
+            const sectorNames = {
+                'enerji': 'Enerji',
+                'ulasim': 'Ulaşım',
+                'cevre': 'Çevre',
+                'kentsel_donusum': 'Kentsel Dönüşüm',
+                'atik_yonetimi': 'Atık Yönetimi',
+                'su_yonetimi': 'Su Yönetimi',
+                'danismanlik': 'Danışmanlık',
+                'teknoloji': 'Teknoloji',
+                'diger': 'Diğer'
+            };
+
+            const content = `
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-2xl ${user.org_type === 'belediye' ? 'bg-mlab-navy/10' : 'bg-mlab-orange/10'} flex items-center justify-center">
+                            <i data-lucide="${user.org_type === 'belediye' ? 'landmark' : 'building-2'}" 
+                               class="w-8 h-8 ${user.org_type === 'belediye' ? 'text-mlab-navy' : 'text-mlab-orange'}"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-mlab-navy">${user.org_name || 'Bilinmiyor'}</h3>
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-medium ${user.org_type === 'belediye' ? 'bg-mlab-navy/10 text-mlab-navy' : 'bg-mlab-orange/10 text-mlab-orange'}">
+                                ${user.org_type === 'belediye' ? 'Belediye' : 'Özel Sektör'}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-50 rounded-xl p-4">
+                            <div class="text-xs text-slate-500 mb-1">Sektör</div>
+                            <div class="font-medium text-slate-700">${sectorNames[user.sector] || user.sector || '-'}</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-4">
+                            <div class="text-xs text-slate-500 mb-1">Web Sitesi</div>
+                            <div class="font-medium text-slate-700">${user.website ? `<a href="${user.website}" target="_blank" class="text-mlab-purple hover:underline">${user.website}</a>` : '-'}</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-4">
+                        <div class="text-xs text-slate-500 mb-1">Kurum Açıklaması</div>
+                        <div class="text-slate-700">${user.description || '-'}</div>
+                    </div>
+
+                    <hr class="border-slate-100">
+
+                    <h4 class="font-semibold text-mlab-navy">İletişim Bilgileri</h4>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-50 rounded-xl p-4">
+                            <div class="text-xs text-slate-500 mb-1">Ad Soyad</div>
+                            <div class="font-medium text-slate-700">${user.contact_name || '-'}</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-4">
+                            <div class="text-xs text-slate-500 mb-1">Unvan</div>
+                            <div class="font-medium text-slate-700">${user.contact_title || '-'}</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-4">
+                            <div class="text-xs text-slate-500 mb-1">E-posta</div>
+                            <div class="font-medium text-slate-700">${user.email || '-'}</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-4">
+                            <div class="text-xs text-slate-500 mb-1">Telefon</div>
+                            <div class="font-medium text-slate-700">${user.phone || '-'}</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-xs text-slate-400 pt-4 border-t border-slate-100">
+                        <span>Kayıt: ${formatDate(user.created_at)}</span>
+                        ${user.approved_at ? `<span>Onay: ${formatDate(user.approved_at)}</span>` : ''}
+                    </div>
+
+                    ${user.status === 'pending' ? `
+                        <div class="flex gap-3 pt-4">
+                            <button onclick="approveUser('${user.id}'); closeModal();"
+                                class="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition-colors">
+                                <i data-lucide="check" class="w-5 h-5"></i>
+                                Onayla
+                            </button>
+                            <button onclick="rejectUser('${user.id}'); closeModal();"
+                                class="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl transition-colors">
+                                <i data-lucide="x" class="w-5 h-5"></i>
+                                Reddet
+                            </button>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            document.getElementById('modal-content').innerHTML = content;
+            document.getElementById('user-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('user-modal').classList.add('hidden');
+        }
+
+        // Approve user
+        async function approveUser(userId) {
+            try {
+                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
+
+                if (!firebaseReady) {
+                    // localStorage fallback
+                    const pendingUsers = JSON.parse(localStorage.getItem('portal_pending_users') || '[]');
+                    const approvedUsers = JSON.parse(localStorage.getItem('portal_users') || '[]');
+
+                    const userIndex = pendingUsers.findIndex(u => u.id === parseInt(userId) || u.id === userId);
+                    if (userIndex !== -1) {
+                        const user = pendingUsers.splice(userIndex, 1)[0];
+                        user.status = 'approved';
+                        approvedUsers.push(user);
+                        localStorage.setItem('portal_pending_users', JSON.stringify(pendingUsers));
+                        localStorage.setItem('portal_users', JSON.stringify(approvedUsers));
+                    }
+                    await loadUsers();
+                    return;
+                }
+
+                const { db, doc, updateDoc, serverTimestamp } = window.firebaseDb;
+
+                await updateDoc(doc(db, 'users', userId), {
+                    status: 'approved',
+                    approved_at: serverTimestamp(),
+                    approved_by: currentUser.email
+                });
+
+                await loadUsers();
+            } catch (error) {
+                console.error('Onaylama hatası:', error);
+                alert('Onaylama sırasında bir hata oluştu.');
+            }
+        }
+
+        // Reject user
+        async function rejectUser(userId) {
+            if (!confirm('Bu üyelik başvurusunu reddetmek istediğinize emin misiniz?')) return;
+
+            try {
+                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
+
+                if (!firebaseReady) {
+                    // localStorage fallback
+                    const pendingUsers = JSON.parse(localStorage.getItem('portal_pending_users') || '[]');
+                    const userIndex = pendingUsers.findIndex(u => u.id === parseInt(userId) || u.id === userId);
+                    if (userIndex !== -1) {
+                        pendingUsers[userIndex].status = 'rejected';
+                    }
+                    localStorage.setItem('portal_pending_users', JSON.stringify(pendingUsers));
+                    await loadUsers();
+                    return;
+                }
+
+                const { db, doc, updateDoc, serverTimestamp } = window.firebaseDb;
+
+                await updateDoc(doc(db, 'users', userId), {
+                    status: 'rejected',
+                    rejected_at: serverTimestamp(),
+                    rejected_by: currentUser.email
+                });
+
+                await loadUsers();
+            } catch (error) {
+                console.error('Reddetme hatası:', error);
+                alert('Reddetme sırasında bir hata oluştu.');
+            }
+        }
+
+        // Logout
+        async function logout() {
+            try {
+                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
+                if (firebaseReady) {
+                    await window.firebaseAuth.signOut(window.firebaseAuth.auth);
+                }
+            } catch (e) { }
+
+            localStorage.removeItem('portal_current_user');
+            window.location.href = 'portal-login.html';
+        }
+
+        // Initialize
+        async function init() {
+            const hasAccess = await checkAdminAccess();
+            if (hasAccess) {
+                await loadUsers();
+            }
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

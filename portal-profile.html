@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil | M-LAB Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        mlab: {
+                            navy: '#0a192f',
+                            cyan: '#00d4ff',
+                            purple: '#7c3aed',
+                            dark: '#0f172a',
+                            orange: '#ff7e67',
+                            teal: '#0d9488'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAp7pCkY1IE9ttVMshgj3ze583wYIpYvOI",
+            authDomain: "mlab-match.firebaseapp.com",
+            projectId: "mlab-match",
+            storageBucket: "mlab-match.firebasestorage.app",
+            messagingSenderId: "439056741511",
+            appId: "1:439056741511:web:0b33fc13c3407560f79070"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        window.auth = auth;
+        window.db = db;
+        window.storage = storage;
+        window.doc = doc;
+        window.getDoc = getDoc;
+        window.updateDoc = updateDoc;
+        window.ref = ref;
+        window.uploadBytes = uploadBytes;
+        window.getDownloadURL = getDownloadURL;
+        window.signOut = signOut;
+
+        // Check auth from localStorage (same as dashboard)
+        const currentUser = JSON.parse(localStorage.getItem('portal_current_user'));
+        if (!currentUser) {
+            window.location.href = 'portal-login.html';
+        } else {
+            // Load profile from Firestore using stored user ID
+            loadUserProfile(currentUser.id || currentUser.uid);
+        }
+
+        window.loadUserProfile = async function (userId) {
+            try {
+                const userDoc = await getDoc(doc(db, 'users', userId));
+                if (userDoc.exists()) {
+                    const data = userDoc.data();
+                    window.currentUserData = data;
+                    window.currentUserId = userId;
+
+                    // Fill form fields
+                    document.getElementById('org_name').value = data.name || '';
+                    document.getElementById('website').value = data.website || '';
+                    document.getElementById('org_description').value = data.description || '';
+                    document.getElementById('contact_name').value = data.contact_name || '';
+                    document.getElementById('contact_title').value = data.contact_title || '';
+                    document.getElementById('email').value = data.email || '';
+                    document.getElementById('phone').value = data.phone || '';
+
+                    // Set category
+                    if (data.category === 'belediye') {
+                        document.getElementById('cat-belediye').checked = true;
+                    } else {
+                        document.getElementById('cat-ozel').checked = true;
+                    }
+
+                    // Set challenges
+                    const challenges = data.challenges || [];
+                    challenges.forEach(c => {
+                        const checkbox = document.querySelector(`input[name="challenges"][value="${c}"]`);
+                        if (checkbox) checkbox.checked = true;
+                    });
+
+                    // Set profile photo
+                    if (data.photoURL) {
+                        document.getElementById('profile-photo').src = data.photoURL;
+                        document.getElementById('profile-photo').classList.remove('hidden');
+                        document.getElementById('photo-placeholder').classList.add('hidden');
+                    }
+
+                    // Update header
+                    document.getElementById('user-name').textContent = data.contact_name || data.name || 'Kullanıcı';
+                }
+            } catch (error) {
+                console.error('Profil yüklenirken hata:', error);
+            }
+        };
+
+        window.logout = async function () {
+            await signOut(auth);
+            window.location.href = 'portal.html';
+        };
+    </script>
+</head>
+
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen">
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-mlab-navy text-white shadow-xl">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-6">
+                    <a href="index.html" class="flex items-center gap-3">
+                        <img src="mlab-logo.png" alt="M-LAB" class="h-10 w-auto brightness-0 invert">
+                    </a>
+                    <span class="hidden md:inline text-white/50">|</span>
+                    <span class="hidden md:inline text-sm font-medium text-mlab-cyan">Profil Ayarları</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="portal-dashboard.html" class="text-sm text-white/70 hover:text-white transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4 inline mr-1"></i>
+                        Dashboard'a Dön
+                    </a>
+                    <div class="relative" id="user-menu-container">
+                        <button id="user-menu-btn"
+                            class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">
+                            <div
+                                class="w-8 h-8 bg-mlab-purple rounded-full flex items-center justify-center overflow-hidden">
+                                <img id="nav-photo" src="" alt="" class="w-full h-full object-cover hidden">
+                                <i data-lucide="user" class="w-4 h-4 text-white nav-photo-placeholder"></i>
+                            </div>
+                            <span id="user-name" class="hidden md:inline text-sm font-medium">Kullanıcı</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="h-16"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="max-w-3xl mx-auto">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-2xl md:text-3xl font-bold text-mlab-navy mb-2">Profil Ayarları</h1>
+                <p class="text-slate-600">Kurum ve iletişim bilgilerinizi güncelleyin.</p>
+            </div>
+
+            <!-- Profile Form -->
+            <form id="profile-form" class="space-y-8">
+                <!-- Profile Photo Section -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                    <h2 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
+                        <i data-lucide="camera" class="w-5 h-5 text-mlab-purple"></i>
+                        Profil Fotoğrafı
+                    </h2>
+                    <div class="flex items-center gap-6">
+                        <div class="relative">
+                            <div
+                                class="w-24 h-24 rounded-full bg-slate-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
+                                <img id="profile-photo" src="" alt="Profil" class="w-full h-full object-cover hidden">
+                                <div id="photo-placeholder" class="text-center">
+                                    <i data-lucide="user" class="w-10 h-10 text-slate-400"></i>
+                                </div>
+                            </div>
+                            <label for="photo-input"
+                                class="absolute -bottom-1 -right-1 w-8 h-8 bg-mlab-purple text-white rounded-full flex items-center justify-center cursor-pointer hover:bg-mlab-navy transition-colors shadow-lg">
+                                <i data-lucide="camera" class="w-4 h-4"></i>
+                            </label>
+                            <input type="file" id="photo-input" accept="image/*" class="hidden"
+                                onchange="handlePhotoUpload(event)">
+                        </div>
+                        <div>
+                            <p class="text-sm text-slate-600 mb-1">JPG, PNG veya GIF formatında</p>
+                            <p class="text-xs text-slate-500">Maksimum 2MB</p>
+                        </div>
+                    </div>
+                    <div id="upload-progress" class="hidden mt-4">
+                        <div class="flex items-center gap-2 text-sm text-mlab-purple">
+                            <div
+                                class="animate-spin w-4 h-4 border-2 border-mlab-purple border-t-transparent rounded-full">
+                            </div>
+                            Yükleniyor...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organization Info -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                    <h2 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
+                        <i data-lucide="building" class="w-5 h-5 text-mlab-purple"></i>
+                        Kurum Bilgileri
+                    </h2>
+
+                    <!-- Category -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-medium text-slate-700 mb-3">Kurum Kategorisi</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="relative cursor-pointer">
+                                <input type="radio" id="cat-belediye" name="category" value="belediye"
+                                    class="peer sr-only">
+                                <div
+                                    class="p-4 rounded-xl border-2 border-slate-200 peer-checked:border-mlab-navy peer-checked:bg-mlab-navy/5 transition-all hover:border-slate-300">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-10 rounded-lg bg-mlab-navy/10 flex items-center justify-center">
+                                            <i data-lucide="landmark" class="w-5 h-5 text-mlab-navy"></i>
+                                        </div>
+                                        <div class="font-semibold text-mlab-navy">Belediye</div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="radio" id="cat-ozel" name="category" value="ozel_sektor"
+                                    class="peer sr-only">
+                                <div
+                                    class="p-4 rounded-xl border-2 border-slate-200 peer-checked:border-mlab-orange peer-checked:bg-mlab-orange/5 transition-all hover:border-slate-300">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-10 rounded-lg bg-mlab-orange/10 flex items-center justify-center">
+                                            <i data-lucide="building-2" class="w-5 h-5 text-mlab-orange"></i>
+                                        </div>
+                                        <div class="font-semibold text-mlab-navy">Özel Sektör</div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Kurum Adı</label>
+                            <input type="text" id="org_name" name="org_name"
+                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Web Sitesi</label>
+                            <input type="text" id="website" name="website"
+                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Kurum Açıklaması</label>
+                            <textarea id="org_description" name="org_description" rows="3"
+                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Büyük Zorluklar -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                    <h2 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
+                        <i data-lucide="target" class="w-5 h-5 text-mlab-purple"></i>
+                        Büyük Zorluklar
+                    </h2>
+                    <p class="text-sm text-slate-600 mb-4">Kurumunuz hangi Büyük Zorluklar kapsamında katkı sunabilir?
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <label
+                            class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 cursor-pointer transition">
+                            <input type="checkbox" name="challenges" value="barinma"
+                                class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
+                            <span class="text-sm text-slate-700">Uygun Fiyatlı Barınma</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 cursor-pointer transition">
+                            <input type="checkbox" name="challenges" value="hareketlilik"
+                                class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
+                            <span class="text-sm text-slate-700">Sürdürülebilir Hareketlilik</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 cursor-pointer transition">
+                            <input type="checkbox" name="challenges" value="afet"
+                                class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
+                            <span class="text-sm text-slate-700">Afetlere Dirençlilik</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 cursor-pointer transition">
+                            <input type="checkbox" name="challenges" value="gida"
+                                class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
+                            <span class="text-sm text-slate-700">Sağlıklı Gıda</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 cursor-pointer transition">
+                            <input type="checkbox" name="challenges" value="saglik"
+                                class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
+                            <span class="text-sm text-slate-700">Sağlık ve Esenlik</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 cursor-pointer transition">
+                            <input type="checkbox" name="challenges" value="egitim"
+                                class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
+                            <span class="text-sm text-slate-700">Eğitimli Nesiller</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 cursor-pointer transition">
+                            <input type="checkbox" name="challenges" value="is"
+                                class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
+                            <span class="text-sm text-slate-700">İnsana Yakışır İş</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 cursor-pointer transition">
+                            <input type="checkbox" name="challenges" value="inovasyon"
+                                class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
+                            <span class="text-sm text-slate-700">İnovasyon Üretimi</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 cursor-pointer transition">
+                            <input type="checkbox" name="challenges" value="kultur"
+                                class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
+                            <span class="text-sm text-slate-700">Kültür ve Kapsayıcılık</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 cursor-pointer transition">
+                            <input type="checkbox" name="challenges" value="dongusal"
+                                class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
+                            <span class="text-sm text-slate-700">Döngüsel Metabolizma</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Contact Person -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                    <h2 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
+                        <i data-lucide="user" class="w-5 h-5 text-mlab-purple"></i>
+                        İletişim Kişisi
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Ad Soyad</label>
+                            <input type="text" id="contact_name" name="contact_name"
+                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Unvan / Pozisyon</label>
+                            <input type="text" id="contact_title" name="contact_title"
+                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">E-posta Adresi</label>
+                            <input type="email" id="email" name="email" disabled
+                                class="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-slate-500 cursor-not-allowed">
+                            <p class="text-xs text-slate-500 mt-1">E-posta değiştirilemez</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Telefon</label>
+                            <input type="tel" id="phone" name="phone"
+                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex items-center justify-between">
+                    <a href="portal-dashboard.html" class="text-slate-600 hover:text-mlab-navy transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4 inline mr-1"></i>
+                        Vazgeç
+                    </a>
+                    <button type="submit"
+                        class="px-8 py-3 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white font-bold rounded-xl hover:shadow-xl hover:shadow-mlab-purple/20 transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-2">
+                        <i data-lucide="save" class="w-5 h-5"></i>
+                        Değişiklikleri Kaydet
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success Message -->
+            <div id="success-message"
+                class="hidden fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-xl shadow-xl flex items-center gap-2">
+                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                Profil başarıyla güncellendi!
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        // Handle photo upload
+        async function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (file.size > 2 * 1024 * 1024) {
+                alert('Dosya boyutu 2MB\'dan küçük olmalıdır.');
+                return;
+            }
+
+            const progressEl = document.getElementById('upload-progress');
+            progressEl.classList.remove('hidden');
+
+            try {
+                const userId = window.currentUserId;
+                if (!userId) {
+                    alert('Kullanıcı bulunamadı.');
+                    return;
+                }
+                const storageRef = window.ref(window.storage, `profile-photos/${userId}`);
+
+                await window.uploadBytes(storageRef, file);
+                const downloadURL = await window.getDownloadURL(storageRef);
+
+                // Update Firestore
+                await window.updateDoc(window.doc(window.db, 'users', userId), {
+                    photoURL: downloadURL
+                });
+
+                // Update UI
+                document.getElementById('profile-photo').src = downloadURL;
+                document.getElementById('profile-photo').classList.remove('hidden');
+                document.getElementById('photo-placeholder').classList.add('hidden');
+
+                // Update nav photo
+                const navPhoto = document.getElementById('nav-photo');
+                if (navPhoto) {
+                    navPhoto.src = downloadURL;
+                    navPhoto.classList.remove('hidden');
+                    document.querySelector('.nav-photo-placeholder')?.classList.add('hidden');
+                }
+
+                showSuccessMessage('Fotoğraf yüklendi!');
+            } catch (error) {
+                console.error('Fotoğraf yüklenirken hata:', error);
+                alert('Fotoğraf yüklenirken bir hata oluştu.');
+            } finally {
+                progressEl.classList.add('hidden');
+            }
+        }
+
+        // Handle form submit
+        document.getElementById('profile-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const userId = window.currentUserId;
+            if (!userId) {
+                alert('Kullanıcı bulunamadı.');
+                return;
+            }
+
+            const formData = {
+                name: document.getElementById('org_name').value,
+                website: document.getElementById('website').value,
+                description: document.getElementById('org_description').value,
+                contact_name: document.getElementById('contact_name').value,
+                contact_title: document.getElementById('contact_title').value,
+                phone: document.getElementById('phone').value,
+                category: document.querySelector('input[name="category"]:checked')?.value || 'belediye',
+                challenges: Array.from(document.querySelectorAll('input[name="challenges"]:checked')).map(cb => cb.value),
+                updatedAt: new Date()
+            };
+
+            try {
+                await window.updateDoc(window.doc(window.db, 'users', userId), formData);
+                showSuccessMessage('Profil başarıyla güncellendi!');
+            } catch (error) {
+                console.error('Profil güncellenirken hata:', error);
+                alert('Profil güncellenirken bir hata oluştu.');
+            }
+        });
+
+        function showSuccessMessage(message) {
+            const el = document.getElementById('success-message');
+            el.querySelector('span, i + *')?.remove();
+            el.innerHTML = `<i data-lucide="check-circle" class="w-5 h-5"></i> ${message}`;
+            el.classList.remove('hidden');
+            lucide.createIcons();
+            setTimeout(() => {
+                el.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | M-LAB Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        mlab: {
+                            navy: '#0a192f',
+                            cyan: '#00d4ff',
+                            purple: '#7c3aed',
+                            dark: '#0f172a',
+                            orange: '#ff7e67',
+                            teal: '#0d9488'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .coin-flip-container {
+            perspective: 1000px;
+        }
+
+        .coin-flip {
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .coin-flip:hover {
+            transform: rotateY(360deg);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen">
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-mlab-navy text-white shadow-lg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-6">
+                    <a href="index.html" class="flex items-center gap-3">
+                        <img src="mlab-logo.png" alt="M-LAB" class="h-10 w-auto brightness-0 invert">
+                    </a>
+                    <span class="hidden md:inline text-white/50">|</span>
+                    <span class="hidden md:inline text-sm font-medium text-mlab-cyan">Portal Dashboard</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="relative" id="user-menu-container">
+                        <button id="user-menu-btn"
+                            class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">
+                            <div class="w-8 h-8 bg-mlab-purple rounded-full flex items-center justify-center">
+                                <i data-lucide="user" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <span id="user-name" class="hidden md:inline text-sm font-medium">Kullanıcı</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-white/70"></i>
+                        </button>
+                        <div id="user-dropdown"
+                            class="hidden absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-200 py-2">
+                            <a href="portal.html"
+                                class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm">
+                                <i data-lucide="home" class="w-4 h-4"></i>
+                                Portal Ana Sayfa
+                            </a>
+                            <a href="portal-profile.html"
+                                class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm">
+                                <i data-lucide="user-circle" class="w-4 h-4"></i>
+                                Profil Ayarları
+                            </a>
+                            <hr class="my-2 border-slate-100">
+                            <button onclick="logout()"
+                                class="w-full flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 text-sm">
+                                <i data-lucide="log-out" class="w-4 h-4"></i>
+                                Çıkış Yap
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="h-16"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Stats Bar -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-mlab-cyan/10 rounded-xl flex items-center justify-center">
+                        <i data-lucide="message-square-plus" class="w-5 h-5 text-mlab-cyan"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-mlab-navy" id="stat-requests">0</div>
+                        <div class="text-xs text-slate-500">Destek Talebi</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-mlab-orange/10 rounded-xl flex items-center justify-center">
+                        <i data-lucide="lightbulb" class="w-5 h-5 text-mlab-orange"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-mlab-navy" id="stat-offers">0</div>
+                        <div class="text-xs text-slate-500">Uzmanlık Bildirisi</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-mlab-purple/10 rounded-xl flex items-center justify-center">
+                        <i data-lucide="landmark" class="w-5 h-5 text-mlab-purple"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-mlab-navy" id="stat-belediye">0</div>
+                        <div class="text-xs text-slate-500">Belediye</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-mlab-teal/10 rounded-xl flex items-center justify-center">
+                        <i data-lucide="building-2" class="w-5 h-5 text-mlab-teal"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-mlab-navy" id="stat-ozel">0</div>
+                        <div class="text-xs text-slate-500">Özel Sektör</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters & Content -->
+        <div class="flex flex-col lg:flex-row gap-8">
+
+            <!-- Sidebar Filters -->
+            <aside class="lg:w-64 flex-shrink-0">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sticky top-24">
+                    <h3 class="font-semibold text-mlab-navy mb-4 flex items-center gap-2">
+                        <i data-lucide="filter" class="w-4 h-4"></i>
+                        Filtreler
+                    </h3>
+
+                    <!-- Post Type Filter -->
+                    <div class="mb-5">
+                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block">Post
+                            Türü</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="post_type" value="all" checked
+                                    class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
+                                <span class="text-sm text-slate-700">Tümü</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="post_type" value="destek_talebi"
+                                    class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
+                                <span class="text-sm text-slate-700">Destek Talepleri</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="post_type" value="uzmanlik_sunumu"
+                                    class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
+                                <span class="text-sm text-slate-700">Uzmanlık Bildirileri</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div class="mb-5">
+                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block">Kurum
+                            Türü</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" name="category" value="belediye" checked
+                                    class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
+                                <span class="text-sm text-slate-700">Belediye</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" name="category" value="ozel_sektor" checked
+                                    class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
+                                <span class="text-sm text-slate-700">Özel Sektör</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Büyük Zorluk Filter -->
+                    <div>
+                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block">Büyük
+                            Zorluk</label>
+                        <select id="sector-filter"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50">
+                            <option value="all">Tümü</option>
+                            <option value="barinma">Uygun Fiyatlı Barınma</option>
+                            <option value="hareketlilik">Sürdürülebilir Hareketlilik</option>
+                            <option value="afet">Afetlere Dirençlilik</option>
+                            <option value="gida">Sağlıklı Gıda</option>
+                            <option value="saglik">Sağlık ve Esenlik</option>
+                            <option value="egitim">Eğitimli Nesiller</option>
+                            <option value="is">İnsana Yakışır İş</option>
+                            <option value="inovasyon">İnovasyon Üretimi</option>
+                            <option value="kultur">Kültür ve Kapsayıcılık</option>
+                            <option value="dongusal">Döngüsel Metabolizma</option>
+                        </select>
+                    </div>
+
+                    <button onclick="applyFilters()"
+                        class="w-full mt-5 px-4 py-2 bg-mlab-navy text-white font-medium rounded-lg hover:bg-mlab-purple transition-colors text-sm">
+                        Filtrele
+                    </button>
+                </div>
+
+                <!-- Mobile New Post Button -->
+                <button id="mobile-new-post-btn"
+                    class="md:hidden w-full mt-4 flex items-center justify-center gap-2 px-4 py-3 bg-mlab-cyan text-mlab-navy font-semibold rounded-xl hover:bg-mlab-cyan/90 transition-colors">
+                    <i data-lucide="plus" class="w-5 h-5"></i>
+                    Yeni Çağrıda Bulun
+                </button>
+            </aside>
+
+            <!-- Posts Grid -->
+            <div class="flex-grow">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-mlab-navy">Güncel Postlar</h2>
+                    <span class="text-sm text-slate-500"><span id="post-count">0</span> sonuç</span>
+                </div>
+
+                <div id="posts-container" class="space-y-4">
+                    <!-- Posts will be rendered here -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-state" class="hidden text-center py-20">
+                    <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="inbox" class="w-10 h-10 text-slate-400"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-600 mb-2">Henüz çağrı yok</h3>
+                    <p class="text-slate-500 mb-6">İlk çağrıyı siz oluşturun!</p>
+                    <button onclick="openNewPostModal()"
+                        class="inline-flex items-center gap-2 px-6 py-3 bg-mlab-purple text-white font-semibold rounded-xl hover:bg-mlab-navy transition-colors">
+                        <i data-lucide="plus" class="w-5 h-5"></i>
+                        Yeni Çağrı
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FLOATING ACTION BUTTON -->
+    <button id="new-post-btn" onclick="openNewPostModal()"
+        class="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-sm font-semibold rounded-full shadow-xl shadow-mlab-purple/30 hover:shadow-mlab-purple/50 hover:scale-105 transition-all duration-300">
+        <i data-lucide="plus" class="w-4 h-4"></i>
+        <span>Yeni Çağrı</span>
+    </button>
+
+    <!-- NEW POST MODAL -->
+    <div id="new-post-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeNewPostModal()"></div>
+        <div
+            class="absolute inset-4 md:inset-10 lg:inset-y-10 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-2xl lg:w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
+            <!-- Header -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
+                <h2 class="text-xl font-bold text-mlab-navy">Yeni Çağrıda Bulun</h2>
+                <button onclick="closeNewPostModal()" class="p-2 hover:bg-slate-200 rounded-full transition-colors">
+                    <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
+                </button>
+            </div>
+
+            <!-- Body -->
+            <div class="flex-grow overflow-y-auto p-6">
+                <form id="new-post-form" class="space-y-5">
+                    <!-- Post Type -->
+                    <div>
+                        <label class="block text-sm font-semibold text-mlab-navy mb-3">Çağrı Türü *</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="post_type" value="destek_talebi" class="peer sr-only"
+                                    required>
+                                <div
+                                    class="p-4 rounded-xl border-2 border-slate-200 peer-checked:border-mlab-cyan peer-checked:bg-mlab-cyan/5 transition-all hover:border-slate-300">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-gradient-to-br from-mlab-cyan to-teal-500 flex items-center justify-center shadow-lg shadow-mlab-cyan/30">
+                                            <i data-lucide="message-square-plus" class="w-5 h-5 text-white"></i>
+                                        </div>
+                                        <div class="font-semibold text-mlab-navy text-sm">Destek Talebi</div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="post_type" value="uzmanlik_sunumu" class="peer sr-only"
+                                    required>
+                                <div
+                                    class="p-4 rounded-xl border-2 border-slate-200 peer-checked:border-mlab-orange peer-checked:bg-mlab-orange/5 transition-all hover:border-slate-300">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-gradient-to-br from-mlab-orange to-amber-500 flex items-center justify-center shadow-lg shadow-mlab-orange/30">
+                                            <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+                                        </div>
+                                        <div class="font-semibold text-mlab-navy text-sm">Uzmanlık Bildirisi</div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Title -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Başlık *</label>
+                        <input type="text" name="title" required
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                    </div>
+
+                    <!-- Büyük Zorluk -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Büyük Zorluk *</label>
+                        <select name="sector" required
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                            <option value="">Seçiniz...</option>
+                            <option value="barinma">Uygun Fiyatlı Barınma</option>
+                            <option value="hareketlilik">Sürdürülebilir Hareketlilik</option>
+                            <option value="afet">Afetlere Dirençlilik</option>
+                            <option value="gida">Sağlıklı Gıda</option>
+                            <option value="saglik">Sağlık ve Esenlik</option>
+                            <option value="egitim">Eğitimli Nesiller</option>
+                            <option value="is">İnsana Yakışır İş</option>
+                            <option value="inovasyon">İnovasyon Üretimi</option>
+                            <option value="kultur">Kültür ve Kapsayıcılık</option>
+                            <option value="dongusal">Döngüsel Metabolizma</option>
+                        </select>
+                    </div>
+
+                    <!-- Description -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Açıklama *</label>
+                        <textarea name="description" rows="5" required
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none"></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
+                <button onclick="closeNewPostModal()"
+                    class="px-5 py-2.5 text-slate-600 font-medium rounded-xl hover:bg-slate-200 transition-colors">
+                    İptal
+                </button>
+                <button onclick="submitNewPost()"
+                    class="px-5 py-2.5 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white font-semibold rounded-xl hover:shadow-lg transition-all">
+                    Yayınla
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- POST DETAIL MODAL -->
+    <div id="post-detail-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closePostDetailModal()"></div>
+        <div
+            class="absolute inset-4 md:inset-10 lg:inset-y-10 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-2xl lg:w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
+                <h2 id="detail-title" class="text-xl font-bold text-mlab-navy">Post Detayı</h2>
+                <button onclick="closePostDetailModal()" class="p-2 hover:bg-slate-200 rounded-full transition-colors">
+                    <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
+                </button>
+            </div>
+            <div id="detail-content" class="flex-grow overflow-y-auto p-6">
+                <!-- Content will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script>
+        lucide.createIcons();
+
+        let currentUser = null;
+        let allPosts = [];
+
+        // Check authentication
+        async function checkAuth() {
+            currentUser = JSON.parse(localStorage.getItem('portal_current_user'));
+            if (!currentUser) {
+                window.location.href = 'portal-login.html';
+                return false;
+            }
+            document.getElementById('user-name').textContent = currentUser.contact_name || currentUser.org_name;
+
+            // Add admin link if user is admin
+            const isAdmin = window.ADMIN_EMAILS?.includes(currentUser.email?.toLowerCase()) || currentUser.isAdmin;
+            if (isAdmin) {
+                const dropdown = document.getElementById('user-dropdown');
+                const adminLink = document.createElement('a');
+                adminLink.href = 'portal-admin.html';
+                adminLink.className = 'flex items-center gap-2 px-4 py-2 text-mlab-purple hover:bg-mlab-purple/10 text-sm font-medium';
+                adminLink.innerHTML = '<i data-lucide="shield" class="w-4 h-4"></i>Admin Panel';
+                dropdown.insertBefore(adminLink, dropdown.querySelector('hr'));
+                lucide.createIcons();
+            }
+
+            return true;
+        }
+
+        // User menu toggle
+        document.getElementById('user-menu-btn').addEventListener('click', () => {
+            document.getElementById('user-dropdown').classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!document.getElementById('user-menu-container').contains(e.target)) {
+                document.getElementById('user-dropdown').classList.add('hidden');
+            }
+        });
+
+        async function logout() {
+            try {
+                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
+                if (firebaseReady) {
+                    await window.firebaseAuth.signOut(window.firebaseAuth.auth);
+                }
+            } catch (e) { }
+
+            localStorage.removeItem('portal_current_user');
+            window.location.href = 'portal-login.html';
+        }
+
+        // Büyük Zorluklar (Grand Challenges)
+        const challengeLabels = {
+            'barinma': 'Uygun Fiyatlı Barınma',
+            'hareketlilik': 'Sürdürülebilir Hareketlilik',
+            'afet': 'Afetlere Dirençlilik',
+            'gida': 'Sağlıklı Gıda',
+            'saglik': 'Sağlık ve Esenlik',
+            'egitim': 'Eğitimli Nesiller',
+            'is': 'İnsana Yakışır İş',
+            'inovasyon': 'İnovasyon Üretimi',
+            'kultur': 'Kültür ve Kapsayıcılık',
+            'dongusal': 'Döngüsel Metabolizma'
+        };
+        // For backward compatibility
+        const sectorLabels = challengeLabels;
+
+        // Load posts
+        async function loadPosts() {
+            try {
+                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
+
+                if (!firebaseReady) {
+                    // Fallback to localStorage
+                    if (!localStorage.getItem('portal_posts')) {
+                        localStorage.setItem('portal_posts', JSON.stringify([
+                            {
+                                id: 1,
+                                post_type: 'destek_talebi',
+                                title: 'Güneş Enerjisi Santral Kurulumu için Teknik Danışmanlık',
+                                description: 'Belediyemiz hizmet binalarına güneş enerjisi santrali kurulumu planlanmaktadır. Bu konuda deneyimli firmalardan teknik danışmanlık ve fizibilite çalışması desteği aranmaktadır.',
+                                sector: 'enerji',
+                                tags: ['güneş enerjisi', 'yenilenebilir', 'GES'],
+                                author: { name: 'Konak Belediyesi', category: 'belediye' },
+                                created_at: '2026-01-07T10:00:00Z'
+                            },
+                            {
+                                id: 2,
+                                post_type: 'uzmanlik_sunumu',
+                                title: 'Akıllı Ulaşım ve Trafik Yönetim Sistemleri',
+                                description: 'Şirketimiz, akıllı şehir uygulamaları kapsamında trafik yönetimi, toplu taşıma optimizasyonu ve mobil ulaşım çözümleri konularında hizmet sunmaktadır.',
+                                sector: 'ulasim',
+                                tags: ['akıllı şehir', 'trafik', 'IoT'],
+                                author: { name: 'SmartCity Solutions', category: 'ozel_sektor' },
+                                created_at: '2026-01-06T14:30:00Z'
+                            }
+                        ]));
+                    }
+                    allPosts = JSON.parse(localStorage.getItem('portal_posts') || '[]');
+                    renderPosts();
+                    return;
+                }
+
+                const { db, collection, getDocs, query, orderBy } = window.firebaseDb;
+                const postsRef = collection(db, 'posts');
+                const q = query(postsRef, orderBy('created_at', 'desc'));
+                const snapshot = await getDocs(q);
+
+                allPosts = [];
+                snapshot.forEach(doc => {
+                    allPosts.push({ id: doc.id, ...doc.data() });
+                });
+
+                // Also save to localStorage for offline access
+                localStorage.setItem('portal_posts', JSON.stringify(allPosts));
+                renderPosts();
+            } catch (error) {
+                console.error('Postlar yüklenirken hata:', error);
+                // Fallback to localStorage
+                allPosts = JSON.parse(localStorage.getItem('portal_posts') || '[]');
+                renderPosts();
+            }
+        }
+
+        function renderPosts() {
+            const container = document.getElementById('posts-container');
+            const emptyState = document.getElementById('empty-state');
+
+            // Update stats
+            document.getElementById('stat-requests').textContent = allPosts.filter(p => p.post_type === 'destek_talebi').length;
+            document.getElementById('stat-offers').textContent = allPosts.filter(p => p.post_type === 'uzmanlik_sunumu').length;
+            document.getElementById('stat-belediye').textContent = allPosts.filter(p => p.author?.category === 'belediye').length;
+            document.getElementById('stat-ozel').textContent = allPosts.filter(p => p.author?.category === 'ozel_sektor').length;
+            document.getElementById('post-count').textContent = allPosts.length;
+
+            if (allPosts.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            container.innerHTML = allPosts.map(post => {
+                const isRequest = post.post_type === 'destek_talebi';
+                const typeColor = isRequest ? 'cyan' : 'orange';
+                const typeIcon = isRequest ? 'message-square-plus' : 'sparkles';
+                const typeLabel = isRequest ? 'Destek Talebi' : 'Uzmanlık Bildirisi';
+                const categoryIcon = post.author?.category === 'belediye' ? 'landmark' : 'building-2';
+                const date = formatDate(post.created_at);
+                const authorDisplay = post.author?.contact_name
+                    ? `${post.author.name} - ${post.author.contact_name}`
+                    : post.author?.name || 'Bilinmiyor';
+
+                return `
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
+                        <!-- Post Content -->
+                        <div>
+                            <!-- Tags -->
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold">${typeLabel}</span>
+                                <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium">${sectorLabels[post.sector] || post.sector}</span>
+                            </div>
+                            <!-- Title -->
+                            <h3 class="font-bold text-lg text-mlab-navy mb-2">${post.title}</h3>
+                            <!-- Description -->
+                            <p class="text-slate-600 text-sm mb-4 leading-relaxed">${post.description}</p>
+                            <!-- Footer -->
+                            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+                                <div class="flex items-center gap-2 text-sm text-slate-500">
+                                    <i data-lucide="${categoryIcon}" class="w-4 h-4"></i>
+                                    <span class="font-medium">${authorDisplay}</span>
+                                    <span class="text-slate-300">•</span>
+                                    <span>${date}</span>
+                                </div>
+                                <button onclick="toggleReplyBox('${post.id}')" class="px-4 py-2 bg-mlab-purple/10 text-mlab-purple text-sm font-semibold rounded-lg hover:bg-mlab-purple hover:text-white transition-all flex items-center gap-2">
+                                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                    Yanıtla
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Reply Input (hidden by default) -->
+                        <div id="reply-box-${post.id}" class="hidden mt-4 ml-14 pl-4 border-l-2 border-mlab-cyan/30">
+                            <div class="flex gap-2">
+                                <input type="text" id="comment-input-${post.id}" placeholder="Yanıtınızı yazın..."
+                                    class="flex-grow bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50"
+                                    onkeypress="if(event.key==='Enter'){submitInlineComment('${post.id}');event.preventDefault();}">
+                                <button onclick="submitInlineComment('${post.id}')" 
+                                    class="px-3 py-2 bg-mlab-navy text-white text-sm font-medium rounded-lg hover:bg-mlab-purple transition-colors">
+                                    Gönder
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Comments (compact style) -->
+                        <div id="comments-${post.id}" class="mt-3 ml-14 space-y-2">
+                            <!-- Comments will be loaded here -->
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+            allPosts.forEach(post => loadInlineComments(post.id));
+        }
+
+        function toggleReplyBox(postId) {
+            const box = document.getElementById(`reply-box-${postId}`);
+            box.classList.toggle('hidden');
+            if (!box.classList.contains('hidden')) {
+                document.getElementById(`comment-input-${postId}`).focus();
+            }
+        }
+
+        async function loadInlineComments(postId) {
+            const container = document.getElementById(`comments-${postId}`);
+            if (!container) return;
+
+            try {
+                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
+                let comments = [];
+
+                if (!firebaseReady) {
+                    const allComments = JSON.parse(localStorage.getItem('portal_comments') || '{}');
+                    comments = allComments[postId] || [];
+                } else {
+                    const { db, collection, getDocs, query, orderBy } = window.firebaseDb;
+                    const commentsRef = collection(db, 'posts', String(postId), 'comments');
+                    const q = query(commentsRef, orderBy('created_at', 'asc'));
+                    const snapshot = await getDocs(q);
+                    snapshot.forEach(doc => {
+                        comments.push({ id: doc.id, ...doc.data() });
+                    });
+                }
+
+                if (comments.length === 0) {
+                    container.innerHTML = '';
+                } else {
+                    container.innerHTML = comments.map(comment => {
+                        let dateStr = '';
+                        if (comment.created_at) {
+                            const date = comment.created_at.toDate ? comment.created_at.toDate() : new Date(comment.created_at);
+                            dateStr = date.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' });
+                        }
+                        const authorDisplay = comment.author?.contact_name
+                            ? `${comment.author.name} - ${comment.author.contact_name}`
+                            : comment.author?.name || 'Anonim';
+
+                        return `
+                            <div class="pl-3 border-l-2 border-slate-200 py-1">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-xs font-semibold text-slate-700">${authorDisplay}</span>
+                                    <span class="text-xs text-slate-400">${dateStr}</span>
+                                </div>
+                                <p class="text-sm text-slate-600">${comment.message}</p>
+                            </div>
+                        `;
+                    }).join('');
+                }
+                lucide.createIcons();
+            } catch (error) {
+                console.error('Yorumlar yüklenirken hata:', error);
+                container.innerHTML = '';
+            }
+        }
+
+        async function submitInlineComment(postId) {
+            const input = document.getElementById(`comment-input-${postId}`);
+            const message = input.value.trim();
+
+            if (!message) {
+                alert('Lütfen bir yanıt yazın.');
+                return;
+            }
+
+            const newComment = {
+                message: message,
+                author: {
+                    name: currentUser.org_name,
+                    contact_name: currentUser.contact_name,
+                    category: currentUser.org_type || currentUser.category
+                },
+                author_id: currentUser.uid || currentUser.id
+            };
+
+            try {
+                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
+
+                if (!firebaseReady) {
+                    const allComments = JSON.parse(localStorage.getItem('portal_comments') || '{}');
+                    if (!allComments[postId]) {
+                        allComments[postId] = [];
+                    }
+                    newComment.id = Date.now();
+                    newComment.created_at = new Date().toISOString();
+                    allComments[postId].push(newComment);
+                    localStorage.setItem('portal_comments', JSON.stringify(allComments));
+                } else {
+                    const { db, collection, doc, setDoc, serverTimestamp, updateDoc, increment } = window.firebaseDb;
+                    const commentId = Date.now().toString();
+                    await setDoc(doc(db, 'posts', String(postId), 'comments', commentId), {
+                        ...newComment,
+                        created_at: serverTimestamp()
+                    });
+                    try {
+                        await updateDoc(doc(db, 'posts', String(postId)), {
+                            responses_count: increment(1)
+                        });
+                    } catch (e) { }
+                }
+
+                input.value = '';
+                await loadInlineComments(postId);
+            } catch (error) {
+                console.error('Yorum gönderme hatası:', error);
+                alert('Yanıt gönderilemedi.');
+            }
+        }
+
+        function formatDate(timestamp) {
+            if (!timestamp) return '';
+            let date;
+            if (timestamp.toDate) {
+                date = timestamp.toDate();
+            } else if (typeof timestamp === 'string') {
+                date = new Date(timestamp);
+            } else {
+                return '';
+            }
+            return date.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' });
+        }
+
+        let currentPostId = null;
+
+        async function openPostDetail(id) {
+            const post = allPosts.find(p => p.id === id || p.id === parseInt(id) || p.id === String(id));
+            if (!post) return;
+
+            currentPostId = post.id;
+            const isRequest = post.post_type === 'destek_talebi';
+            const typeLabel = isRequest ? 'Destek Talebi' : 'Uzmanlık Bildirisi';
+            const categoryLabel = post.author?.category === 'belediye' ? 'Belediye' : 'Özel Sektör';
+
+            let dateStr = '';
+            if (post.created_at) {
+                const date = post.created_at.toDate ? post.created_at.toDate() : new Date(post.created_at);
+                dateStr = date.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+            }
+
+            document.getElementById('detail-title').textContent = post.title;
+            document.getElementById('detail-content').innerHTML = `
+                <div class="space-y-6">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-mlab-${isRequest ? 'cyan' : 'orange'}/10 text-mlab-${isRequest ? 'cyan' : 'orange'} text-sm font-semibold">${typeLabel}</span>
+                        <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-sm font-medium">${sectorLabels[post.sector] || post.sector}</span>
+                    </div>
+
+                    <div class="prose prose-slate max-w-none">
+                        <p class="text-slate-700 leading-relaxed whitespace-pre-line">${post.description}</p>
+                    </div>
+
+                    ${post.tags && post.tags.length > 0 ? `
+                        <div class="flex flex-wrap gap-2">
+                            ${post.tags.map(tag => `<span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded-lg">#${tag}</span>`).join('')}
+                        </div>
+                    ` : ''}
+
+                    <div class="flex items-center justify-between bg-slate-50 rounded-xl p-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-mlab-purple/10 flex items-center justify-center">
+                                <i data-lucide="${post.author?.category === 'belediye' ? 'landmark' : 'building-2'}" class="w-5 h-5 text-mlab-purple"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-mlab-navy">${post.author?.name || 'Bilinmiyor'}</div>
+                                <div class="text-xs text-slate-500">${categoryLabel} • ${dateStr}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="border-slate-100">
+
+                    <!-- Comments Section -->
+                    <div>
+                        <h3 class="font-semibold text-mlab-navy mb-4 flex items-center gap-2">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                            Yanıtlar
+                            <span id="comments-count" class="text-sm font-normal text-slate-500">(yükleniyor...)</span>
+                        </h3>
+
+                        <!-- Comment Input -->
+                        <div class="bg-slate-50 rounded-xl p-4 mb-4">
+                            <textarea id="comment-input" rows="3" placeholder="Yanıtınızı yazın..."
+                                class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none text-sm"></textarea>
+                            <div class="flex justify-end mt-3">
+                                <button onclick="submitComment()" id="submit-comment-btn"
+                                    class="px-5 py-2 bg-mlab-navy text-white font-medium rounded-lg hover:bg-mlab-purple transition-colors text-sm flex items-center gap-2">
+                                    <i data-lucide="send" class="w-4 h-4"></i>
+                                    Gönder
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Comments List -->
+                        <div id="comments-list" class="space-y-3">
+                            <div class="text-center py-4 text-slate-400 text-sm">
+                                <i data-lucide="loader-2" class="w-5 h-5 animate-spin inline"></i>
+                                Yanıtlar yükleniyor...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+            document.getElementById('post-detail-modal').classList.remove('hidden');
+
+            // Load comments
+            await loadComments(post.id);
+        }
+
+        async function loadComments(postId) {
+            const commentsList = document.getElementById('comments-list');
+            const commentsCount = document.getElementById('comments-count');
+
+            try {
+                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
+
+                if (!firebaseReady) {
+                    // localStorage fallback
+                    const allComments = JSON.parse(localStorage.getItem('portal_comments') || '{}');
+                    const comments = allComments[postId] || [];
+                    renderComments(comments);
+                    return;
+                }
+
+                const { db, collection, getDocs, query, orderBy } = window.firebaseDb;
+                const commentsRef = collection(db, 'posts', String(postId), 'comments');
+                const q = query(commentsRef, orderBy('created_at', 'asc'));
+                const snapshot = await getDocs(q);
+
+                const comments = [];
+                snapshot.forEach(doc => {
+                    comments.push({ id: doc.id, ...doc.data() });
+                });
+
+                renderComments(comments);
+            } catch (error) {
+                console.error('Yorumlar yüklenirken hata:', error);
+                commentsList.innerHTML = '<div class="text-center py-4 text-red-500 text-sm">Yorumlar yüklenemedi.</div>';
+            }
+        }
+
+        function renderComments(comments) {
+            const commentsList = document.getElementById('comments-list');
+            const commentsCount = document.getElementById('comments-count');
+
+            commentsCount.textContent = `(${comments.length})`;
+
+            if (comments.length === 0) {
+                commentsList.innerHTML = `
+                    <div class="text-center py-8 text-slate-400 text-sm">
+                        <i data-lucide="message-circle" class="w-8 h-8 mx-auto mb-2 opacity-50"></i>
+                        <p>Henüz yanıt yok. İlk yanıtı siz yazın!</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            commentsList.innerHTML = comments.map(comment => {
+                const categoryIcon = comment.author?.category === 'belediye' ? 'landmark' : 'building-2';
+                let dateStr = '';
+                if (comment.created_at) {
+                    const date = comment.created_at.toDate ? comment.created_at.toDate() : new Date(comment.created_at);
+                    dateStr = date.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+                }
+                const authorDisplay = comment.author?.contact_name
+                    ? `${comment.author.name} - ${comment.author.contact_name}`
+                    : comment.author?.name || 'Anonim';
+
+                return `
+                    <div class="bg-white border border-slate-100 rounded-xl p-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-full ${comment.author?.category === 'belediye' ? 'bg-mlab-navy/10' : 'bg-mlab-orange/10'} flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="${categoryIcon}" class="w-4 h-4 ${comment.author?.category === 'belediye' ? 'text-mlab-navy' : 'text-mlab-orange'}"></i>
+                            </div>
+                            <div class="flex-grow min-w-0">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="font-semibold text-mlab-navy text-sm">${authorDisplay}</span>
+                                    <span class="text-xs text-slate-400">${dateStr}</span>
+                                </div>
+                                <p class="text-slate-700 text-sm whitespace-pre-line">${comment.message}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const message = input.value.trim();
+
+            if (!message) {
+                alert('Lütfen bir yanıt yazın.');
+                return;
+            }
+
+            const btn = document.getElementById('submit-comment-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Gönderiliyor...';
+            lucide.createIcons();
+
+            const newComment = {
+                message: message,
+                author: {
+                    name: currentUser.org_name,
+                    contact_name: currentUser.contact_name,
+                    category: currentUser.org_type || currentUser.category
+                },
+                author_id: currentUser.uid || currentUser.id
+            };
+
+            try {
+                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
+
+                if (!firebaseReady) {
+                    // localStorage fallback
+                    const allComments = JSON.parse(localStorage.getItem('portal_comments') || '{}');
+                    if (!allComments[currentPostId]) {
+                        allComments[currentPostId] = [];
+                    }
+                    newComment.id = Date.now();
+                    newComment.created_at = new Date().toISOString();
+                    allComments[currentPostId].push(newComment);
+                    localStorage.setItem('portal_comments', JSON.stringify(allComments));
+                } else {
+                    const { db, collection, doc, setDoc, serverTimestamp, updateDoc, increment } = window.firebaseDb;
+                    const commentId = Date.now().toString();
+                    await setDoc(doc(db, 'posts', String(currentPostId), 'comments', commentId), {
+                        ...newComment,
+                        created_at: serverTimestamp()
+                    });
+
+                    // Update post's response count (optional)
+                    try {
+                        await updateDoc(doc(db, 'posts', String(currentPostId)), {
+                            responses_count: increment(1)
+                        });
+                    } catch (e) { /* ignore if increment fails */ }
+                }
+
+                input.value = '';
+                await loadComments(currentPostId);
+
+            } catch (error) {
+                console.error('Yorum gönderme hatası:', error);
+                alert('Yorum gönderilemedi. Lütfen tekrar deneyin.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i> Gönder';
+                lucide.createIcons();
+            }
+        }
+
+        function closePostDetailModal() {
+            document.getElementById('post-detail-modal').classList.add('hidden');
+        }
+
+        // New Post Modal
+        document.getElementById('new-post-btn').addEventListener('click', openNewPostModal);
+        document.getElementById('mobile-new-post-btn').addEventListener('click', openNewPostModal);
+
+        function openNewPostModal() {
+            document.getElementById('new-post-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeNewPostModal() {
+            document.getElementById('new-post-modal').classList.add('hidden');
+            document.getElementById('new-post-form').reset();
+        }
+
+        async function submitNewPost() {
+            const form = document.getElementById('new-post-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            const newPost = {
+                post_type: data.post_type,
+                title: data.title,
+                description: data.description,
+                sector: data.sector,
+                tags: data.tags ? data.tags.split(',').map(t => t.trim()).filter(t => t) : [],
+                author: {
+                    name: currentUser.org_name,
+                    contact_name: currentUser.contact_name,
+                    category: currentUser.org_type || currentUser.category
+                },
+                author_id: currentUser.uid || currentUser.id,
+                status: 'active',
+                responses_count: 0
+            };
+
+            try {
+                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
+
+                if (!firebaseReady) {
+                    // localStorage fallback
+                    const posts = JSON.parse(localStorage.getItem('portal_posts') || '[]');
+                    newPost.id = Date.now();
+                    newPost.created_at = new Date().toISOString();
+                    posts.push(newPost);
+                    localStorage.setItem('portal_posts', JSON.stringify(posts));
+                } else {
+                    const { db, collection, doc, setDoc, serverTimestamp } = window.firebaseDb;
+                    const postId = Date.now().toString();
+                    await setDoc(doc(db, 'posts', postId), {
+                        ...newPost,
+                        created_at: serverTimestamp()
+                    });
+                }
+
+                closeNewPostModal();
+                await loadPosts();
+            } catch (error) {
+                console.error('Post oluşturma hatası:', error);
+                alert('Post oluşturulurken bir hata oluştu.');
+            }
+        }
+
+        function applyFilters() {
+            // Get filter values
+            const postType = document.querySelector('input[name="post_type"]:checked')?.value || 'all';
+            const belediyeChecked = document.querySelector('input[name="category"][value="belediye"]')?.checked;
+            const ozelSektorChecked = document.querySelector('input[name="category"][value="ozel_sektor"]')?.checked;
+            const sectorFilter = document.getElementById('sector-filter')?.value || 'all';
+
+            // Filter posts
+            let filtered = [...allPosts];
+
+            // Filter by post type
+            if (postType !== 'all') {
+                filtered = filtered.filter(post => post.post_type === postType);
+            }
+
+            // Filter by category (author type)
+            const selectedCategories = [];
+            if (belediyeChecked) selectedCategories.push('belediye');
+            if (ozelSektorChecked) selectedCategories.push('ozel_sektor');
+
+            if (selectedCategories.length > 0 && selectedCategories.length < 2) {
+                filtered = filtered.filter(post => selectedCategories.includes(post.author?.category));
+            }
+
+            // Filter by sector (Büyük Zorluk)
+            if (sectorFilter !== 'all') {
+                filtered = filtered.filter(post => post.sector === sectorFilter);
+            }
+
+            // Re-render with filtered posts
+            renderFilteredPosts(filtered);
+        }
+
+        function renderFilteredPosts(posts) {
+            const container = document.getElementById('posts-container');
+            const emptyState = document.getElementById('empty-state');
+
+            if (posts.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            const sectorLabels = {
+                'barinma': 'Uygun Fiyatlı Barınma',
+                'hareketlilik': 'Sürdürülebilir Hareketlilik',
+                'afet': 'Afetlere Dirençlilik',
+                'gida': 'Sağlıklı Gıda',
+                'saglik': 'Sağlık ve Esenlik',
+                'egitim': 'Eğitimli Nesiller',
+                'is': 'İnsana Yakışır İş',
+                'inovasyon': 'İnovasyon Üretimi',
+                'kultur': 'Kültür ve Kapsayıcılık',
+                'dongusal': 'Döngüsel Metabolizma'
+            };
+
+            container.innerHTML = posts.map(post => {
+                const isRequest = post.post_type === 'destek_talebi';
+                const typeColor = isRequest ? 'cyan' : 'orange';
+                const typeLabel = isRequest ? 'Destek Talebi' : 'Uzmanlık Bildirisi';
+                const categoryIcon = post.author?.category === 'belediye' ? 'landmark' : 'building-2';
+                const date = formatDate(post.created_at);
+                const authorDisplay = post.author?.contact_name
+                    ? `${post.author.name} - ${post.author.contact_name}`
+                    : post.author?.name || 'Bilinmiyor';
+
+                return `
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
+                        <div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold">${typeLabel}</span>
+                                <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium">${sectorLabels[post.sector] || post.sector}</span>
+                            </div>
+                            <h3 class="font-bold text-lg text-mlab-navy mb-2">${post.title}</h3>
+                            <p class="text-slate-600 text-sm mb-4 leading-relaxed">${post.description}</p>
+                            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+                                <div class="flex items-center gap-2 text-sm text-slate-500">
+                                    <i data-lucide="${categoryIcon}" class="w-4 h-4"></i>
+                                    <span class="font-medium">${authorDisplay}</span>
+                                    <span class="text-slate-300">•</span>
+                                    <span>${date}</span>
+                                </div>
+                                <button onclick="toggleReplyBox('${post.id}')" class="px-4 py-2 bg-mlab-purple/10 text-mlab-purple text-sm font-semibold rounded-lg hover:bg-mlab-purple hover:text-white transition-all flex items-center gap-2">
+                                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                    Yanıtla
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        // Initialize
+        async function init() {
+            const authenticated = await checkAuth();
+            if (authenticated) {
+                await loadPosts();
+            }
+        }
+
+        init();
+    </script>
+</body>
+
+</html>
