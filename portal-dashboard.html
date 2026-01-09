@@ -348,8 +348,29 @@
                     <!-- Description -->
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-2">Açıklama *</label>
-                        <textarea name="description" rows="5" required
+                        <textarea name="description" rows="4" required
                             class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none"></textarea>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">
+                            <i data-lucide="paperclip" class="w-4 h-4 inline mr-1"></i>
+                            Dosya Ekle (opsiyonel)
+                        </label>
+                        <div id="file-drop-zone"
+                            class="border-2 border-dashed border-slate-300 rounded-xl p-4 text-center hover:border-mlab-purple transition-colors cursor-pointer bg-slate-50">
+                            <input type="file" id="post-files" name="files" multiple
+                                accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif" class="hidden"
+                                onchange="handleFileSelect(event)">
+                            <label for="post-files" class="cursor-pointer">
+                                <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto text-slate-400 mb-2"></i>
+                                <p class="text-sm text-slate-600">Dosya seçin veya sürükleyin</p>
+                                <p class="text-xs text-slate-400 mt-1">PDF, Word, Excel, Resim (max 10MB/dosya, max 5
+                                    dosya)</p>
+                            </label>
+                        </div>
+                        <div id="selected-files-list" class="mt-2 space-y-2"></div>
                     </div>
                 </form>
             </div>
@@ -391,6 +412,118 @@
 
         let currentUser = null;
         let allPosts = [];
+        let selectedFiles = []; // Array to store selected files for post
+
+        // File handling functions
+        function handleFileSelect(event) {
+            const files = Array.from(event.target.files);
+            addFilesToList(files);
+        }
+
+        function addFilesToList(files) {
+            const maxFiles = 5;
+            const maxSize = 10 * 1024 * 1024; // 10MB
+
+            files.forEach(file => {
+                if (selectedFiles.length >= maxFiles) {
+                    alert(`En fazla ${maxFiles} dosya ekleyebilirsiniz.`);
+                    return;
+                }
+                if (file.size > maxSize) {
+                    alert(`${file.name} dosyası çok büyük. Max 10MB.`);
+                    return;
+                }
+                if (!selectedFiles.find(f => f.name === file.name)) {
+                    selectedFiles.push(file);
+                }
+            });
+
+            renderSelectedFiles();
+        }
+
+        function renderSelectedFiles() {
+            const container = document.getElementById('selected-files-list');
+            if (!container) return;
+
+            container.innerHTML = selectedFiles.map((file, index) => {
+                const icon = getFileIcon(file.type);
+                const size = formatFileSize(file.size);
+                return `
+    <div class="flex items-center justify-between bg-white border border-slate-200 rounded-lg px-3 py-2">
+        <div class="flex items-center gap-2">
+            <i data-lucide="${icon}" class="w-4 h-4 text-mlab-purple"></i>
+            <span class="text-sm text-slate-700 truncate max-w-[200px]">${file.name}</span>
+            <span class="text-xs text-slate-400">(${size})</span>
+        </div>
+        <button type="button" onclick="removeFile(${index})" class="p-1 hover:bg-red-50 rounded text-red-500">
+            <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+    </div>
+    `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            renderSelectedFiles();
+        }
+
+        function getFileIcon(mimeType) {
+            if (mimeType.includes('pdf')) return 'file-text';
+            if (mimeType.includes('word') || mimeType.includes('document')) return 'file-text';
+            if (mimeType.includes('sheet') || mimeType.includes('excel')) return 'file-spreadsheet';
+            if (mimeType.includes('image')) return 'image';
+            return 'file';
+        }
+
+        // Used for post card file display  
+        function getFileIconType(mimeType) {
+            if (!mimeType) return 'file';
+            if (mimeType.includes('pdf')) return 'file-text';
+            if (mimeType.includes('word') || mimeType.includes('document')) return 'file-text';
+            if (mimeType.includes('sheet') || mimeType.includes('excel')) return 'file-spreadsheet';
+            if (mimeType.includes('image')) return 'image';
+            return 'file';
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B'; if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB'; return
+            (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        } async function uploadFiles(postId) {
+            if
+                (selectedFiles.length === 0) return []; const { storage, ref, uploadBytes, getDownloadURL
+                } = window.firebaseStorage; const uploadedFiles = []; for (const file of selectedFiles) {
+                    const
+                        fileName = `${Date.now()}_${file.name}`; const storageRef = ref(storage, `posts/${postId}/${fileName}`); await
+                            uploadBytes(storageRef, file); const url = await getDownloadURL(storageRef); uploadedFiles.push({
+                                name: file.name,
+                                url: url, size: file.size, type: file.type
+                            });
+                } return uploadedFiles;
+        } // Setup drag and drop
+        document.addEventListener('DOMContentLoaded', () => {
+            const dropZone = document.getElementById('file-drop-zone');
+            if (dropZone) {
+                dropZone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    dropZone.classList.add('border-mlab-purple', 'bg-mlab-purple/5');
+                });
+
+                dropZone.addEventListener('dragleave', (e) => {
+                    e.preventDefault();
+                    dropZone.classList.remove('border-mlab-purple', 'bg-mlab-purple/5');
+                });
+
+                dropZone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    dropZone.classList.remove('border-mlab-purple', 'bg-mlab-purple/5');
+                    const files = Array.from(e.dataTransfer.files);
+                    addFilesToList(files);
+                });
+            }
+        });
 
         // Check authentication
         async function checkAuth() {
@@ -518,10 +651,14 @@
             const emptyState = document.getElementById('empty-state');
 
             // Update stats
-            document.getElementById('stat-requests').textContent = allPosts.filter(p => p.post_type === 'destek_talebi').length;
-            document.getElementById('stat-offers').textContent = allPosts.filter(p => p.post_type === 'uzmanlik_sunumu').length;
-            document.getElementById('stat-belediye').textContent = allPosts.filter(p => p.author?.category === 'belediye').length;
-            document.getElementById('stat-ozel').textContent = allPosts.filter(p => p.author?.category === 'ozel_sektor').length;
+            document.getElementById('stat-requests').textContent = allPosts.filter(p => p.post_type ===
+                'destek_talebi').length;
+            document.getElementById('stat-offers').textContent = allPosts.filter(p => p.post_type ===
+                'uzmanlik_sunumu').length;
+            document.getElementById('stat-belediye').textContent = allPosts.filter(p => p.author?.category ===
+                'belediye').length;
+            document.getElementById('stat-ozel').textContent = allPosts.filter(p => p.author?.category ===
+                'ozel_sektor').length;
             document.getElementById('post-count').textContent = allPosts.length;
 
             if (allPosts.length === 0) {
@@ -544,52 +681,69 @@
                     : post.author?.name || 'Bilinmiyor';
 
                 return `
-                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
-                        <!-- Post Content -->
-                        <div>
-                            <!-- Tags -->
-                            <div class="flex items-center gap-2 mb-3">
-                                <span class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold">${typeLabel}</span>
-                                <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium">${sectorLabels[post.sector] || post.sector}</span>
-                            </div>
-                            <!-- Title -->
-                            <h3 class="font-bold text-lg text-mlab-navy mb-2">${post.title}</h3>
-                            <!-- Description -->
-                            <p class="text-slate-600 text-sm mb-4 leading-relaxed">${post.description}</p>
-                            <!-- Footer -->
-                            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-                                <div class="flex items-center gap-2 text-sm text-slate-500">
-                                    <i data-lucide="${categoryIcon}" class="w-4 h-4"></i>
-                                    <span class="font-medium">${authorDisplay}</span>
-                                    <span class="text-slate-300">•</span>
-                                    <span>${date}</span>
-                                </div>
-                                <button onclick="toggleReplyBox('${post.id}')" class="px-4 py-2 bg-mlab-purple/10 text-mlab-purple text-sm font-semibold rounded-lg hover:bg-mlab-purple hover:text-white transition-all flex items-center gap-2">
-                                    <i data-lucide="message-circle" class="w-4 h-4"></i>
-                                    Yanıtla
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Reply Input (hidden by default) -->
-                        <div id="reply-box-${post.id}" class="hidden mt-4 ml-14 pl-4 border-l-2 border-mlab-cyan/30">
-                            <div class="flex gap-2">
-                                <input type="text" id="comment-input-${post.id}" placeholder="Yanıtınızı yazın..."
-                                    class="flex-grow bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50"
-                                    onkeypress="if(event.key==='Enter'){submitInlineComment('${post.id}');event.preventDefault();}">
-                                <button onclick="submitInlineComment('${post.id}')" 
-                                    class="px-3 py-2 bg-mlab-navy text-white text-sm font-medium rounded-lg hover:bg-mlab-purple transition-colors">
-                                    Gönder
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Comments (compact style) -->
-                        <div id="comments-${post.id}" class="mt-3 ml-14 space-y-2">
-                            <!-- Comments will be loaded here -->
-                        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
+            <!-- Post Content -->
+            <div>
+                <!-- Tags -->
+                <div class="flex items-center gap-2 mb-3">
+                    <span
+                        class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold">${typeLabel}</span>
+                    <span
+                        class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium">${sectorLabels[post.sector]
+                    || post.sector}</span>
+                </div>
+                <!-- Title -->
+                <h3 class="font-bold text-lg text-mlab-navy mb-2">${post.title}</h3>
+                <!-- Description -->
+                <p class="text-slate-600 text-sm mb-3 leading-relaxed">${post.description}</p>
+                ${post.files && post.files.length > 0 ? `
+                <!-- Attached Files -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                    ${post.files.map(file => `
+                        <a href="${file.url}" target="_blank" download="${file.name}"
+                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-mlab-purple/10 text-slate-700 hover:text-mlab-purple text-xs font-medium rounded-lg transition-colors">
+                            <i data-lucide="${getFileIconType(file.type)}" class="w-3.5 h-3.5"></i>
+                            ${file.name}
+                            <i data-lucide="download" class="w-3 h-3 opacity-50"></i>
+                        </a>
+                    `).join('')}
+                </div>
+                ` : ''}
+                <!-- Footer -->
+                <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+                    <div class="flex items-center gap-2 text-sm text-slate-500">
+                        <i data-lucide="${categoryIcon}" class="w-4 h-4"></i>
+                        <span class="font-medium">${authorDisplay}</span>
+                        <span class="text-slate-300">•</span>
+                        <span>${date}</span>
                     </div>
-                `;
+                    <button onclick="toggleReplyBox('${post.id}')"
+                        class="px-4 py-2 bg-mlab-purple/10 text-mlab-purple text-sm font-semibold rounded-lg hover:bg-mlab-purple hover:text-white transition-all flex items-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        Yanıtla
+                    </button>
+                </div>
+            </div>
+
+            <!-- Reply Input (hidden by default) -->
+            <div id="reply-box-${post.id}" class="hidden mt-4 ml-14 pl-4 border-l-2 border-mlab-cyan/30">
+                <div class="flex gap-2">
+                    <input type="text" id="comment-input-${post.id}" placeholder="Yanıtınızı yazın..."
+                        class="flex-grow bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50"
+                        onkeypress="if(event.key==='Enter'){submitInlineComment('${post.id}');event.preventDefault();}">
+                    <button onclick="submitInlineComment('${post.id}')"
+                        class="px-3 py-2 bg-mlab-navy text-white text-sm font-medium rounded-lg hover:bg-mlab-purple transition-colors">
+                        Gönder
+                    </button>
+                </div>
+            </div>
+
+            <!-- Comments (compact style) -->
+            <div id="comments-${post.id}" class="mt-3 ml-14 space-y-2">
+                <!-- Comments will be loaded here -->
+            </div>
+        </div>
+        `;
             }).join('');
 
             lucide.createIcons();
@@ -639,14 +793,14 @@
                             : comment.author?.name || 'Anonim';
 
                         return `
-                            <div class="pl-3 border-l-2 border-slate-200 py-1">
-                                <div class="flex items-baseline gap-2">
-                                    <span class="text-xs font-semibold text-slate-700">${authorDisplay}</span>
-                                    <span class="text-xs text-slate-400">${dateStr}</span>
-                                </div>
-                                <p class="text-sm text-slate-600">${comment.message}</p>
-                            </div>
-                        `;
+        <div class="pl-3 border-l-2 border-slate-200 py-1">
+            <div class="flex items-baseline gap-2">
+                <span class="text-xs font-semibold text-slate-700">${authorDisplay}</span>
+                <span class="text-xs text-slate-400">${dateStr}</span>
+            </div>
+            <p class="text-sm text-slate-600">${comment.message}</p>
+        </div>
+        `;
                     }).join('');
                 }
                 lucide.createIcons();
@@ -741,67 +895,72 @@
 
             document.getElementById('detail-title').textContent = post.title;
             document.getElementById('detail-content').innerHTML = `
-                <div class="space-y-6">
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full bg-mlab-${isRequest ? 'cyan' : 'orange'}/10 text-mlab-${isRequest ? 'cyan' : 'orange'} text-sm font-semibold">${typeLabel}</span>
-                        <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-sm font-medium">${sectorLabels[post.sector] || post.sector}</span>
+        <div class="space-y-6">
+            <div class="flex flex-wrap gap-2">
+                <span
+                    class="px-3 py-1 rounded-full bg-mlab-${isRequest ? 'cyan' : 'orange'}/10 text-mlab-${isRequest ? 'cyan' : 'orange'} text-sm font-semibold">${typeLabel}</span>
+                <span
+                    class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-sm font-medium">${sectorLabels[post.sector]
+                || post.sector}</span>
+            </div>
+
+            <div class="prose prose-slate max-w-none">
+                <p class="text-slate-700 leading-relaxed whitespace-pre-line">${post.description}</p>
+            </div>
+
+            ${post.tags && post.tags.length > 0 ? `
+            <div class="flex flex-wrap gap-2">
+                ${post.tags.map(tag => `<span
+                    class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded-lg">#${tag}</span>`).join('')}
+            </div>
+            ` : ''}
+
+            <div class="flex items-center justify-between bg-slate-50 rounded-xl p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-mlab-purple/10 flex items-center justify-center">
+                        <i data-lucide="${post.author?.category === 'belediye' ? 'landmark' : 'building-2'}"
+                            class="w-5 h-5 text-mlab-purple"></i>
                     </div>
-
-                    <div class="prose prose-slate max-w-none">
-                        <p class="text-slate-700 leading-relaxed whitespace-pre-line">${post.description}</p>
-                    </div>
-
-                    ${post.tags && post.tags.length > 0 ? `
-                        <div class="flex flex-wrap gap-2">
-                            ${post.tags.map(tag => `<span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded-lg">#${tag}</span>`).join('')}
-                        </div>
-                    ` : ''}
-
-                    <div class="flex items-center justify-between bg-slate-50 rounded-xl p-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-mlab-purple/10 flex items-center justify-center">
-                                <i data-lucide="${post.author?.category === 'belediye' ? 'landmark' : 'building-2'}" class="w-5 h-5 text-mlab-purple"></i>
-                            </div>
-                            <div>
-                                <div class="font-semibold text-mlab-navy">${post.author?.name || 'Bilinmiyor'}</div>
-                                <div class="text-xs text-slate-500">${categoryLabel} • ${dateStr}</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="border-slate-100">
-
-                    <!-- Comments Section -->
                     <div>
-                        <h3 class="font-semibold text-mlab-navy mb-4 flex items-center gap-2">
-                            <i data-lucide="message-circle" class="w-5 h-5"></i>
-                            Yanıtlar
-                            <span id="comments-count" class="text-sm font-normal text-slate-500">(yükleniyor...)</span>
-                        </h3>
-
-                        <!-- Comment Input -->
-                        <div class="bg-slate-50 rounded-xl p-4 mb-4">
-                            <textarea id="comment-input" rows="3" placeholder="Yanıtınızı yazın..."
-                                class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none text-sm"></textarea>
-                            <div class="flex justify-end mt-3">
-                                <button onclick="submitComment()" id="submit-comment-btn"
-                                    class="px-5 py-2 bg-mlab-navy text-white font-medium rounded-lg hover:bg-mlab-purple transition-colors text-sm flex items-center gap-2">
-                                    <i data-lucide="send" class="w-4 h-4"></i>
-                                    Gönder
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Comments List -->
-                        <div id="comments-list" class="space-y-3">
-                            <div class="text-center py-4 text-slate-400 text-sm">
-                                <i data-lucide="loader-2" class="w-5 h-5 animate-spin inline"></i>
-                                Yanıtlar yükleniyor...
-                            </div>
-                        </div>
+                        <div class="font-semibold text-mlab-navy">${post.author?.name || 'Bilinmiyor'}</div>
+                        <div class="text-xs text-slate-500">${categoryLabel} • ${dateStr}</div>
                     </div>
                 </div>
-            `;
+            </div>
+
+            <hr class="border-slate-100">
+
+            <!-- Comments Section -->
+            <div>
+                <h3 class="font-semibold text-mlab-navy mb-4 flex items-center gap-2">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    Yanıtlar
+                    <span id="comments-count" class="text-sm font-normal text-slate-500">(yükleniyor...)</span>
+                </h3>
+
+                <!-- Comment Input -->
+                <div class="bg-slate-50 rounded-xl p-4 mb-4">
+                    <textarea id="comment-input" rows="3" placeholder="Yanıtınızı yazın..."
+                        class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none text-sm"></textarea>
+                    <div class="flex justify-end mt-3">
+                        <button onclick="submitComment()" id="submit-comment-btn"
+                            class="px-5 py-2 bg-mlab-navy text-white font-medium rounded-lg hover:bg-mlab-purple transition-colors text-sm flex items-center gap-2">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            Gönder
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Comments List -->
+                <div id="comments-list" class="space-y-3">
+                    <div class="text-center py-4 text-slate-400 text-sm">
+                        <i data-lucide="loader-2" class="w-5 h-5 animate-spin inline"></i>
+                        Yanıtlar yükleniyor...
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
             lucide.createIcons();
             document.getElementById('post-detail-modal').classList.remove('hidden');
 
@@ -849,11 +1008,11 @@
 
             if (comments.length === 0) {
                 commentsList.innerHTML = `
-                    <div class="text-center py-8 text-slate-400 text-sm">
-                        <i data-lucide="message-circle" class="w-8 h-8 mx-auto mb-2 opacity-50"></i>
-                        <p>Henüz yanıt yok. İlk yanıtı siz yazın!</p>
-                    </div>
-                `;
+        <div class="text-center py-8 text-slate-400 text-sm">
+            <i data-lucide="message-circle" class="w-8 h-8 mx-auto mb-2 opacity-50"></i>
+            <p>Henüz yanıt yok. İlk yanıtı siz yazın!</p>
+        </div>
+        `;
                 lucide.createIcons();
                 return;
             }
@@ -863,28 +1022,32 @@
                 let dateStr = '';
                 if (comment.created_at) {
                     const date = comment.created_at.toDate ? comment.created_at.toDate() : new Date(comment.created_at);
-                    dateStr = date.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+                    dateStr = date.toLocaleDateString('tr-TR', {
+                        day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+                    });
                 }
                 const authorDisplay = comment.author?.contact_name
                     ? `${comment.author.name} - ${comment.author.contact_name}`
                     : comment.author?.name || 'Anonim';
 
                 return `
-                    <div class="bg-white border border-slate-100 rounded-xl p-4">
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-full ${comment.author?.category === 'belediye' ? 'bg-mlab-navy/10' : 'bg-mlab-orange/10'} flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="${categoryIcon}" class="w-4 h-4 ${comment.author?.category === 'belediye' ? 'text-mlab-navy' : 'text-mlab-orange'}"></i>
-                            </div>
-                            <div class="flex-grow min-w-0">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="font-semibold text-mlab-navy text-sm">${authorDisplay}</span>
-                                    <span class="text-xs text-slate-400">${dateStr}</span>
-                                </div>
-                                <p class="text-slate-700 text-sm whitespace-pre-line">${comment.message}</p>
-                            </div>
-                        </div>
+        <div class="bg-white border border-slate-100 rounded-xl p-4">
+            <div class="flex items-start gap-3">
+                <div
+                    class="w-8 h-8 rounded-full ${comment.author?.category === 'belediye' ? 'bg-mlab-navy/10' : 'bg-mlab-orange/10'} flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="${categoryIcon}"
+                        class="w-4 h-4 ${comment.author?.category === 'belediye' ? 'text-mlab-navy' : 'text-mlab-orange'}"></i>
+                </div>
+                <div class="flex-grow min-w-0">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="font-semibold text-mlab-navy text-sm">${authorDisplay}</span>
+                        <span class="text-xs text-slate-400">${dateStr}</span>
                     </div>
-                `;
+                    <p class="text-slate-700 text-sm whitespace-pre-line">${comment.message}</p>
+                </div>
+            </div>
+        </div>
+        `;
             }).join('');
 
             lucide.createIcons();
@@ -983,47 +1146,83 @@
 
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
+            const postId = Date.now().toString();
 
-            const newPost = {
-                post_type: data.post_type,
-                title: data.title,
-                description: data.description,
-                sector: data.sector,
-                tags: data.tags ? data.tags.split(',').map(t => t.trim()).filter(t => t) : [],
-                author: {
-                    name: currentUser.org_name,
-                    contact_name: currentUser.contact_name,
-                    category: currentUser.org_type || currentUser.category
-                },
-                author_id: currentUser.uid || currentUser.id,
-                status: 'active',
-                responses_count: 0
-            };
+            // Show loading state
+            const submitBtn = document.querySelector('#new-post-modal button[onclick="submitNewPost()"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin inline mr-2"></i>Yükleniyor...';
+            submitBtn.disabled = true;
 
             try {
+                // Upload files first if any
+                let uploadedFiles = [];
+                if (selectedFiles.length > 0 && window.firebaseStorage) {
+                    const { storage, ref, uploadBytes, getDownloadURL } = window.firebaseStorage;
+
+                    for (const file of selectedFiles) {
+                        const fileName = `${Date.now()}_${file.name}`;
+                        const storageRef = ref(storage, `posts/${postId}/${fileName}`);
+
+                        await uploadBytes(storageRef, file);
+                        const url = await getDownloadURL(storageRef);
+
+                        uploadedFiles.push({
+                            name: file.name,
+                            url: url,
+                            size: file.size,
+                            type: file.type
+                        });
+                    }
+                }
+
+                const newPost = {
+                    post_type: data.post_type,
+                    title: data.title,
+                    description: data.description,
+                    sector: data.sector,
+                    tags: data.tags ? data.tags.split(',').map(t => t.trim()).filter(t => t) : [],
+                    files: uploadedFiles,
+                    author: {
+                        name: currentUser.org_name,
+                        contact_name: currentUser.contact_name,
+                        category: currentUser.org_type || currentUser.category
+                    },
+                    author_id: currentUser.uid || currentUser.id,
+                    status: 'active',
+                    responses_count: 0
+                };
+
                 const firebaseReady = await window.firebaseHelpers.initializeFirebase();
 
                 if (!firebaseReady) {
                     // localStorage fallback
                     const posts = JSON.parse(localStorage.getItem('portal_posts') || '[]');
-                    newPost.id = Date.now();
+                    newPost.id = postId;
                     newPost.created_at = new Date().toISOString();
                     posts.push(newPost);
                     localStorage.setItem('portal_posts', JSON.stringify(posts));
                 } else {
                     const { db, collection, doc, setDoc, serverTimestamp } = window.firebaseDb;
-                    const postId = Date.now().toString();
                     await setDoc(doc(db, 'posts', postId), {
                         ...newPost,
                         created_at: serverTimestamp()
                     });
                 }
 
+                // Clear selected files
+                selectedFiles = [];
+                document.getElementById('selected-files-list').innerHTML = '';
+                document.getElementById('post-files').value = '';
+
                 closeNewPostModal();
                 await loadPosts();
             } catch (error) {
                 console.error('Post oluşturma hatası:', error);
                 alert('Post oluşturulurken bir hata oluştu.');
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
             }
         }
 
@@ -1048,7 +1247,8 @@
             if (ozelSektorChecked) selectedCategories.push('ozel_sektor');
 
             if (selectedCategories.length > 0 && selectedCategories.length < 2) {
-                filtered = filtered.filter(post => selectedCategories.includes(post.author?.category));
+                filtered = filtered.filter(post =>
+                    selectedCategories.includes(post.author?.category));
             }
 
             // Filter by sector (Büyük Zorluk)
@@ -1096,29 +1296,33 @@
                     : post.author?.name || 'Bilinmiyor';
 
                 return `
-                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
-                        <div>
-                            <div class="flex items-center gap-2 mb-3">
-                                <span class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold">${typeLabel}</span>
-                                <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium">${sectorLabels[post.sector] || post.sector}</span>
-                            </div>
-                            <h3 class="font-bold text-lg text-mlab-navy mb-2">${post.title}</h3>
-                            <p class="text-slate-600 text-sm mb-4 leading-relaxed">${post.description}</p>
-                            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-                                <div class="flex items-center gap-2 text-sm text-slate-500">
-                                    <i data-lucide="${categoryIcon}" class="w-4 h-4"></i>
-                                    <span class="font-medium">${authorDisplay}</span>
-                                    <span class="text-slate-300">•</span>
-                                    <span>${date}</span>
-                                </div>
-                                <button onclick="toggleReplyBox('${post.id}')" class="px-4 py-2 bg-mlab-purple/10 text-mlab-purple text-sm font-semibold rounded-lg hover:bg-mlab-purple hover:text-white transition-all flex items-center gap-2">
-                                    <i data-lucide="message-circle" class="w-4 h-4"></i>
-                                    Yanıtla
-                                </button>
-                            </div>
-                        </div>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span
+                            class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold">${typeLabel}</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium">${sectorLabels[post.sector]
+                    || post.sector}</span>
                     </div>
-                `;
+                    <h3 class="font-bold text-lg text-mlab-navy mb-2">${post.title}</h3>
+                    <p class="text-slate-600 text-sm mb-4 leading-relaxed">${post.description}</p>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+                        <div class="flex items-center gap-2 text-sm text-slate-500">
+                            <i data-lucide="${categoryIcon}" class="w-4 h-4"></i>
+                            <span class="font-medium">${authorDisplay}</span>
+                            <span class="text-slate-300">•</span>
+                            <span>${date}</span>
+                        </div>
+                        <button onclick="toggleReplyBox('${post.id}')"
+                            class="px-4 py-2 bg-mlab-purple/10 text-mlab-purple text-sm font-semibold rounded-lg hover:bg-mlab-purple hover:text-white transition-all flex items-center gap-2">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                            Yanıtla
+                        </button>
+                    </div>
+                </div>
+            </div>
+            `;
             }).join('');
 
             lucide.createIcons();

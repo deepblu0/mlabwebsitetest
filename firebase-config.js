@@ -28,11 +28,13 @@ async function initializeFirebase() {
         const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js');
         const { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendEmailVerification } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js');
         const { getFirestore, collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, query, where, orderBy, onSnapshot, serverTimestamp, Timestamp, increment } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
+        const { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js');
 
         // Firebase'i başlat
         app = initializeApp(firebaseConfig);
         auth = getAuth(app);
         db = getFirestore(app);
+        const storage = getStorage(app);
 
         // Modülleri global yap
         window.firebaseAuth = {
@@ -60,6 +62,14 @@ async function initializeFirebase() {
             serverTimestamp,
             Timestamp,
             increment
+        };
+
+        window.firebaseStorage = {
+            storage,
+            ref,
+            uploadBytes,
+            getDownloadURL,
+            deleteObject
         };
 
         window.ADMIN_EMAILS = ADMIN_EMAILS;
