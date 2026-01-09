@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 
 <head>
@@ -66,7 +66,7 @@
                             <div class="w-8 h-8 bg-mlab-purple rounded-full flex items-center justify-center">
                                 <i data-lucide="user" class="w-4 h-4 text-white"></i>
                             </div>
-                            <span id="user-name" class="hidden md:inline text-sm font-medium">KullanÄ±cÄ±</span>
+                            <span id="user-name" class="hidden md:inline text-sm font-medium">Kullanıcı</span>
                             <i data-lucide="chevron-down" class="w-4 h-4 text-white/70"></i>
                         </button>
                         <div id="user-dropdown"
@@ -79,13 +79,13 @@
                             <a href="portal-profile.html"
                                 class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm">
                                 <i data-lucide="user-circle" class="w-4 h-4"></i>
-                                Profil AyarlarÄ±
+                                Profil Ayarları
                             </a>
                             <hr class="my-2 border-slate-100">
                             <button onclick="logout()"
                                 class="w-full flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 text-sm">
                                 <i data-lucide="log-out" class="w-4 h-4"></i>
-                                Ã‡Ä±kÄ±ÅŸ Yap
+                                Çıkış Yap
                             </button>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                     </div>
                     <div>
                         <div class="text-2xl font-bold text-mlab-navy" id="stat-offers">0</div>
-                        <div class="text-xs text-slate-500">UzmanlÄ±k Bildirisi</div>
+                        <div class="text-xs text-slate-500">Uzmanlık Bildirisi</div>
                     </div>
                 </div>
             </div>
@@ -141,7 +141,7 @@
                     </div>
                     <div>
                         <div class="text-2xl font-bold text-mlab-navy" id="stat-ozel">0</div>
-                        <div class="text-xs text-slate-500">Ã–zel SektÃ¶r</div>
+                        <div class="text-xs text-slate-500">Özel Sektör</div>
                     </div>
                 </div>
             </div>
@@ -161,12 +161,12 @@
                     <!-- Post Type Filter -->
                     <div class="mb-5">
                         <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block">Post
-                            TÃ¼rÃ¼</label>
+                            Türü</label>
                         <div class="space-y-2">
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="radio" name="post_type" value="all" checked
                                     class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700">TÃ¼mÃ¼</span>
+                                <span class="text-sm text-slate-700">Tümü</span>
                             </label>
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="radio" name="post_type" value="destek_talebi"
@@ -176,7 +176,7 @@
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="radio" name="post_type" value="uzmanlik_sunumu"
                                     class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700">UzmanlÄ±k Bildirileri</span>
+                                <span class="text-sm text-slate-700">Uzmanlık Bildirileri</span>
                             </label>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                     <!-- Category Filter -->
                     <div class="mb-5">
                         <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block">Kurum
-                            TÃ¼rÃ¼</label>
+                            Türü</label>
                         <div class="space-y-2">
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="checkbox" name="category" value="belediye" checked
@@ -194,28 +194,28 @@
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="checkbox" name="category" value="ozel_sektor" checked
                                     class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700">Ã–zel SektÃ¶r</span>
+                                <span class="text-sm text-slate-700">Özel Sektör</span>
                             </label>
                         </div>
                     </div>
 
-                    <!-- BÃ¼yÃ¼k Zorluk Filter -->
+                    <!-- Büyük Zorluk Filter -->
                     <div>
-                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block">BÃ¼yÃ¼k
+                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block">Büyük
                             Zorluk</label>
                         <select id="sector-filter"
                             class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50">
-                            <option value="all">TÃ¼mÃ¼</option>
-                            <option value="barinma">Uygun FiyatlÄ± BarÄ±nma</option>
-                            <option value="hareketlilik">SÃ¼rdÃ¼rÃ¼lebilir Hareketlilik</option>
-                            <option value="afet">Afetlere DirenÃ§lilik</option>
-                            <option value="gida">SaÄŸlÄ±klÄ± GÄ±da</option>
-                            <option value="saglik">SaÄŸlÄ±k ve Esenlik</option>
-                            <option value="egitim">EÄŸitimli Nesiller</option>
-                            <option value="is">Ä°nsana YakÄ±ÅŸÄ±r Ä°ÅŸ</option>
-                            <option value="inovasyon">Ä°novasyon Ãœretimi</option>
-                            <option value="kultur">KÃ¼ltÃ¼r ve KapsayÄ±cÄ±lÄ±k</option>
-                            <option value="dongusal">DÃ¶ngÃ¼sel Metabolizma</option>
+                            <option value="all">Tümü</option>
+                            <option value="barinma">Uygun Fiyatlı Barınma</option>
+                            <option value="hareketlilik">Sürdürülebilir Hareketlilik</option>
+                            <option value="afet">Afetlere Dirençlilik</option>
+                            <option value="gida">Sağlıklı Gıda</option>
+                            <option value="saglik">Sağlık ve Esenlik</option>
+                            <option value="egitim">Eğitimli Nesiller</option>
+                            <option value="is">İnsana Yakışır İş</option>
+                            <option value="inovasyon">İnovasyon Üretimi</option>
+                            <option value="kultur">Kültür ve Kapsayıcılık</option>
+                            <option value="dongusal">Döngüsel Metabolizma</option>
                         </select>
                     </div>
 
@@ -229,15 +229,15 @@
                 <button id="mobile-new-post-btn"
                     class="md:hidden w-full mt-4 flex items-center justify-center gap-2 px-4 py-3 bg-mlab-cyan text-mlab-navy font-semibold rounded-xl hover:bg-mlab-cyan/90 transition-colors">
                     <i data-lucide="plus" class="w-5 h-5"></i>
-                    Yeni Ã‡aÄŸrÄ±da Bulun
+                    Yeni Çağrıda Bulun
                 </button>
             </aside>
 
             <!-- Posts Grid -->
             <div class="flex-grow">
                 <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-xl font-bold text-mlab-navy">GÃ¼ncel Postlar</h2>
-                    <span class="text-sm text-slate-500"><span id="post-count">0</span> sonuÃ§</span>
+                    <h2 class="text-xl font-bold text-mlab-navy">Güncel Postlar</h2>
+                    <span class="text-sm text-slate-500"><span id="post-count">0</span> sonuç</span>
                 </div>
 
                 <div id="posts-container" class="space-y-4">
@@ -249,12 +249,12 @@
                     <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i data-lucide="inbox" class="w-10 h-10 text-slate-400"></i>
                     </div>
-                    <h3 class="text-lg font-semibold text-slate-600 mb-2">HenÃ¼z Ã§aÄŸrÄ± yok</h3>
-                    <p class="text-slate-500 mb-6">Ä°lk Ã§aÄŸrÄ±yÄ± siz oluÅŸturun!</p>
+                    <h3 class="text-lg font-semibold text-slate-600 mb-2">Henüz çağrı yok</h3>
+                    <p class="text-slate-500 mb-6">İlk çağrıyı siz oluşturun!</p>
                     <button onclick="openNewPostModal()"
                         class="inline-flex items-center gap-2 px-6 py-3 bg-mlab-purple text-white font-semibold rounded-xl hover:bg-mlab-navy transition-colors">
                         <i data-lucide="plus" class="w-5 h-5"></i>
-                        Yeni Ã‡aÄŸrÄ±
+                        Yeni Çağrı
                     </button>
                 </div>
             </div>
@@ -265,7 +265,7 @@
     <button id="new-post-btn" onclick="openNewPostModal()"
         class="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-sm font-semibold rounded-full shadow-xl shadow-mlab-purple/30 hover:shadow-mlab-purple/50 hover:scale-105 transition-all duration-300">
         <i data-lucide="plus" class="w-4 h-4"></i>
-        <span>Yeni Ã‡aÄŸrÄ±</span>
+        <span>Yeni Çağrı</span>
     </button>
 
     <!-- NEW POST MODAL -->
@@ -275,7 +275,7 @@
             class="absolute inset-4 md:inset-10 lg:inset-y-10 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-2xl lg:w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
             <!-- Header -->
             <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
-                <h2 class="text-xl font-bold text-mlab-navy">Yeni Ã‡aÄŸrÄ±da Bulun</h2>
+                <h2 class="text-xl font-bold text-mlab-navy">Yeni Çağrıda Bulun</h2>
                 <button onclick="closeNewPostModal()" class="p-2 hover:bg-slate-200 rounded-full transition-colors">
                     <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
                 </button>
@@ -286,7 +286,7 @@
                 <form id="new-post-form" class="space-y-5">
                     <!-- Post Type -->
                     <div>
-                        <label class="block text-sm font-semibold text-mlab-navy mb-3">Ã‡aÄŸrÄ± TÃ¼rÃ¼ *</label>
+                        <label class="block text-sm font-semibold text-mlab-navy mb-3">Çağrı Türü *</label>
                         <div class="grid grid-cols-2 gap-4">
                             <label class="relative cursor-pointer">
                                 <input type="radio" name="post_type" value="destek_talebi" class="peer sr-only"
@@ -312,7 +312,7 @@
                                             class="w-10 h-10 rounded-full bg-gradient-to-br from-mlab-orange to-amber-500 flex items-center justify-center shadow-lg shadow-mlab-orange/30">
                                             <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
                                         </div>
-                                        <div class="font-semibold text-mlab-navy text-sm">UzmanlÄ±k Bildirisi</div>
+                                        <div class="font-semibold text-mlab-navy text-sm">Uzmanlık Bildirisi</div>
                                     </div>
                                 </div>
                             </label>
@@ -321,33 +321,33 @@
 
                     <!-- Title -->
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-2">BaÅŸlÄ±k *</label>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Başlık *</label>
                         <input type="text" name="title" required
                             class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                     </div>
 
-                    <!-- BÃ¼yÃ¼k Zorluk -->
+                    <!-- Büyük Zorluk -->
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-2">BÃ¼yÃ¼k Zorluk *</label>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Büyük Zorluk *</label>
                         <select name="sector" required
                             class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
-                            <option value="">SeÃ§iniz...</option>
-                            <option value="barinma">Uygun FiyatlÄ± BarÄ±nma</option>
-                            <option value="hareketlilik">SÃ¼rdÃ¼rÃ¼lebilir Hareketlilik</option>
-                            <option value="afet">Afetlere DirenÃ§lilik</option>
-                            <option value="gida">SaÄŸlÄ±klÄ± GÄ±da</option>
-                            <option value="saglik">SaÄŸlÄ±k ve Esenlik</option>
-                            <option value="egitim">EÄŸitimli Nesiller</option>
-                            <option value="is">Ä°nsana YakÄ±ÅŸÄ±r Ä°ÅŸ</option>
-                            <option value="inovasyon">Ä°novasyon Ãœretimi</option>
-                            <option value="kultur">KÃ¼ltÃ¼r ve KapsayÄ±cÄ±lÄ±k</option>
-                            <option value="dongusal">DÃ¶ngÃ¼sel Metabolizma</option>
+                            <option value="">Seçiniz...</option>
+                            <option value="barinma">Uygun Fiyatlı Barınma</option>
+                            <option value="hareketlilik">Sürdürülebilir Hareketlilik</option>
+                            <option value="afet">Afetlere Dirençlilik</option>
+                            <option value="gida">Sağlıklı Gıda</option>
+                            <option value="saglik">Sağlık ve Esenlik</option>
+                            <option value="egitim">Eğitimli Nesiller</option>
+                            <option value="is">İnsana Yakışır İş</option>
+                            <option value="inovasyon">İnovasyon Üretimi</option>
+                            <option value="kultur">Kültür ve Kapsayıcılık</option>
+                            <option value="dongusal">Döngüsel Metabolizma</option>
                         </select>
                     </div>
 
                     <!-- Description -->
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-2">AÃ§Ä±klama *</label>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Açıklama *</label>
                         <textarea name="description" rows="4" required
                             class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none"></textarea>
                     </div>
@@ -365,7 +365,7 @@
                                 onchange="handleFileSelect(event)">
                             <label for="post-file" class="cursor-pointer">
                                 <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto text-slate-400 mb-2"></i>
-                                <p class="text-sm text-slate-600">Dosya seÃ§in veya sÃ¼rÃ¼kleyin</p>
+                                <p class="text-sm text-slate-600">Dosya seçin veya sürükleyin</p>
                                 <p class="text-xs text-slate-400 mt-1">PDF, Word, Excel, Resim (max 10MB)</p>
                             </label>
                         </div>
@@ -392,11 +392,11 @@
             <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
                 <button onclick="closeNewPostModal()"
                     class="px-5 py-2.5 text-slate-600 font-medium rounded-xl hover:bg-slate-200 transition-colors">
-                    Ä°ptal
+                    İptal
                 </button>
                 <button onclick="submitNewPost()"
                     class="px-5 py-2.5 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white font-semibold rounded-xl hover:shadow-lg transition-all">
-                    YayÄ±nla
+                    Yayınla
                 </button>
             </div>
         </div>
@@ -408,7 +408,7 @@
         <div
             class="absolute inset-4 md:inset-10 lg:inset-y-10 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-2xl lg:w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
             <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
-                <h2 id="detail-title" class="text-xl font-bold text-mlab-navy">Post DetayÄ±</h2>
+                <h2 id="detail-title" class="text-xl font-bold text-mlab-navy">Post Detayı</h2>
                 <button onclick="closePostDetailModal()" class="p-2 hover:bg-slate-200 rounded-full transition-colors">
                     <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
                 </button>
@@ -440,7 +440,7 @@
 
             const maxSize = 10 * 1024 * 1024; // 10MB
             if (file.size > maxSize) {
-                alert('Dosya Ã§ok bÃ¼yÃ¼k. Maksimum 10MB olmalÄ±.');
+                alert('Dosya çok büyük. Maksimum 10MB olmalı.');
                 event.target.value = '';
                 return;
             }
@@ -479,7 +479,7 @@
 
             const maxSize = 10 * 1024 * 1024; // 10MB
             if (file.size > maxSize) {
-                alert('Dosya Ã§ok bÃ¼yÃ¼k. Maksimum 10MB olmalÄ±.');
+                alert('Dosya çok büyük. Maksimum 10MB olmalı.');
                 event.target.value = '';
                 return;
             }
@@ -605,18 +605,18 @@
             window.location.href = 'portal-login.html';
         }
 
-        // BÃ¼yÃ¼k Zorluklar (Grand Challenges)
+        // Büyük Zorluklar (Grand Challenges)
         const challengeLabels = {
-            'barinma': 'Uygun FiyatlÄ± BarÄ±nma',
-            'hareketlilik': 'SÃ¼rdÃ¼rÃ¼lebilir Hareketlilik',
-            'afet': 'Afetlere DirenÃ§lilik',
-            'gida': 'SaÄŸlÄ±klÄ± GÄ±da',
-            'saglik': 'SaÄŸlÄ±k ve Esenlik',
-            'egitim': 'EÄŸitimli Nesiller',
-            'is': 'Ä°nsana YakÄ±ÅŸÄ±r Ä°ÅŸ',
-            'inovasyon': 'Ä°novasyon Ãœretimi',
-            'kultur': 'KÃ¼ltÃ¼r ve KapsayÄ±cÄ±lÄ±k',
-            'dongusal': 'DÃ¶ngÃ¼sel Metabolizma'
+            'barinma': 'Uygun Fiyatlı Barınma',
+            'hareketlilik': 'Sürdürülebilir Hareketlilik',
+            'afet': 'Afetlere Dirençlilik',
+            'gida': 'Sağlıklı Gıda',
+            'saglik': 'Sağlık ve Esenlik',
+            'egitim': 'Eğitimli Nesiller',
+            'is': 'İnsana Yakışır İş',
+            'inovasyon': 'İnovasyon Üretimi',
+            'kultur': 'Kültür ve Kapsayıcılık',
+            'dongusal': 'Döngüsel Metabolizma'
         };
         // For backward compatibility
         const sectorLabels = challengeLabels;
@@ -633,20 +633,20 @@
                             {
                                 id: 1,
                                 post_type: 'destek_talebi',
-                                title: 'GÃ¼neÅŸ Enerjisi Santral Kurulumu iÃ§in Teknik DanÄ±ÅŸmanlÄ±k',
-                                description: 'Belediyemiz hizmet binalarÄ±na gÃ¼neÅŸ enerjisi santrali kurulumu planlanmaktadÄ±r. Bu konuda deneyimli firmalardan teknik danÄ±ÅŸmanlÄ±k ve fizibilite Ã§alÄ±ÅŸmasÄ± desteÄŸi aranmaktadÄ±r.',
+                                title: 'Güneş Enerjisi Santral Kurulumu için Teknik Danışmanlık',
+                                description: 'Belediyemiz hizmet binalarına güneş enerjisi santrali kurulumu planlanmaktadır. Bu konuda deneyimli firmalardan teknik danışmanlık ve fizibilite çalışması desteği aranmaktadır.',
                                 sector: 'enerji',
-                                tags: ['gÃ¼neÅŸ enerjisi', 'yenilenebilir', 'GES'],
+                                tags: ['güneş enerjisi', 'yenilenebilir', 'GES'],
                                 author: { name: 'Konak Belediyesi', category: 'belediye' },
                                 created_at: '2026-01-07T10:00:00Z'
                             },
                             {
                                 id: 2,
                                 post_type: 'uzmanlik_sunumu',
-                                title: 'AkÄ±llÄ± UlaÅŸÄ±m ve Trafik YÃ¶netim Sistemleri',
-                                description: 'Åirketimiz, akÄ±llÄ± ÅŸehir uygulamalarÄ± kapsamÄ±nda trafik yÃ¶netimi, toplu taÅŸÄ±ma optimizasyonu ve mobil ulaÅŸÄ±m Ã§Ã¶zÃ¼mleri konularÄ±nda hizmet sunmaktadÄ±r.',
+                                title: 'Akıllı Ulaşım ve Trafik Yönetim Sistemleri',
+                                description: 'Şirketimiz, akıllı şehir uygulamaları kapsamında trafik yönetimi, toplu taşıma optimizasyonu ve mobil ulaşım çözümleri konularında hizmet sunmaktadır.',
                                 sector: 'ulasim',
-                                tags: ['akÄ±llÄ± ÅŸehir', 'trafik', 'IoT'],
+                                tags: ['akıllı şehir', 'trafik', 'IoT'],
                                 author: { name: 'SmartCity Solutions', category: 'ozel_sektor' },
                                 created_at: '2026-01-06T14:30:00Z'
                             }
@@ -671,7 +671,7 @@
                 localStorage.setItem('portal_posts', JSON.stringify(allPosts));
                 renderPosts();
             } catch (error) {
-                console.error('Postlar yÃ¼klenirken hata:', error);
+                console.error('Postlar yüklenirken hata:', error);
                 // Fallback to localStorage
                 allPosts = JSON.parse(localStorage.getItem('portal_posts') || '[]');
                 renderPosts();
@@ -705,7 +705,7 @@
                 const isRequest = post.post_type === 'destek_talebi';
                 const typeColor = isRequest ? 'cyan' : 'orange';
                 const typeIcon = isRequest ? 'message-square-plus' : 'sparkles';
-                const typeLabel = isRequest ? 'Destek Talebi' : 'UzmanlÄ±k Bildirisi';
+                const typeLabel = isRequest ? 'Destek Talebi' : 'Uzmanlık Bildirisi';
                 const categoryIcon = post.author?.category === 'belediye' ? 'landmark' : 'building-2';
                 const date = formatDate(post.created_at);
                 const authorDisplay = post.author?.contact_name
@@ -763,7 +763,7 @@
                 <button onclick="toggleReplyBox('${post.id}')"
                     class="px-4 py-2 bg-mlab-purple/10 text-mlab-purple text-sm font-semibold rounded-lg hover:bg-mlab-purple hover:text-white transition-all flex items-center gap-2">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    YanÄ±tla
+                    Yanıtla
                 </button>
             </div>
 
@@ -771,7 +771,7 @@
             <div id="reply-box-${post.id}" class="hidden mt-4 ml-14 pl-4 border-l-2 border-mlab-cyan/30">
                 <div class="space-y-2">
                     <div class="flex gap-2">
-                        <input type="text" id="comment-input-${post.id}" placeholder="YanÄ±tÄ±nÄ±zÄ± yazÄ±n..."
+                        <input type="text" id="comment-input-${post.id}" placeholder="Yanıtınızı yazın..."
                             class="flex-grow bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50"
                             onkeypress="if(event.key==='Enter' && !event.shiftKey){submitInlineComment('${post.id}');event.preventDefault();}">
                         <label for="comment-file-${post.id}" class="px-3 py-2 bg-slate-100 text-slate-600 text-sm rounded-lg hover:bg-slate-200 cursor-pointer flex items-center gap-1" title="Dosya ekle">
@@ -780,7 +780,7 @@
                         <input type="file" id="comment-file-${post.id}" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif" onchange="handleCommentFileSelect(event, '${post.id}')">
                         <button onclick="submitInlineComment('${post.id}')"
                             class="px-3 py-2 bg-mlab-navy text-white text-sm font-medium rounded-lg hover:bg-mlab-purple transition-colors">
-                            GÃ¶nder
+                            Gönder
                         </button>
                     </div>
                     <div id="comment-file-display-${post.id}" class="hidden text-xs bg-slate-100 rounded px-2 py-1 flex items-center justify-between">
@@ -850,51 +850,53 @@
                         if (comment.file && comment.file.url) {
                             const iconType = getFileIconType(comment.file.type || '');
                             fileHtml = `
-                                <div class="mt-2 text-left" >
+                                <div class="mt-2 text-left">
                                     <a href="${comment.file.url}" target="_blank" download="${comment.file.name}"
-                                        class="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-white border border-slate-200 hover:border-mlab-purple/30 text-slate-700 hover:text-mlab-purple text-xs rounded transition-colors shadow-sm w-fit max-w-full">
-                                        <i data-lucide="${iconType}" class="w-3.5 h-3.5 text-slate-400"></i>
-                                        <span class="truncate max-w-[200px]">${comment.file.name}</span>
-                                        <i data-lucide="download" class="w-3 h-3 opacity-50 ml-1"></i>
+                                        class="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-white border border-slate-200 hover:border-mlab-purple/30 text-slate-700 hover:text-mlab-purple text-xs font-medium rounded-lg transition-colors shadow-sm w-fit max-w-full">
+                                        <i data-lucide="${iconType}" class="w-3.5 h-3.5 text-slate-400 shrink-0"></i>
+                                        <span class="truncate">${comment.file.name}</span>
+                                        <i data-lucide="download" class="w-3.5 h-3.5 opacity-50 ml-1 shrink-0"></i>
                                     </a>
-                                </div >
-                                `;
+                                </div>
+                            `;
                         }
 
-                        // Determine background color based on comment depth/context if needed, simpler for now
+                        // Check if current user is author (for styling)
+                        const isAuthor = comment.author_id === currentUser?.uid;
+
                         return `
-                                <div class="relative pl-4 sm:pl-6 py-3 group" >
-            <!--Connector Line-- >
-            <div class="absolute left-0 top-0 bottom-0 w-px bg-slate-200 group-last:bg-transparent group-last:h-6"></div>
-            <div class="absolute left-[-4px] top-4 w-2 h-2 rounded-full border-2 border-slate-200 bg-slate-50"></div>
-            
-            <div class="flex flex-col gap-1">
-                <div class="flex items-center gap-2">
-                    <span class="text-sm font-semibold text-mlab-navy">${authorDisplay}</span>
-                    <span class="text-xs text-slate-400">${dateStr}</span>
-                </div>
-                <div class="text-sm text-slate-700 bg-slate-50 p-3 rounded-lg border border-slate-100/50">
-                    <p class="leading-relaxed whitespace-pre-wrap">${comment.message || ''}</p>
-                    ${fileHtml}
-                </div>
-            </div>
-        </div >
-                                `;
+                        <div class="relative pl-4 sm:pl-6 py-3 group">
+                            <!-- Connector Line -->
+                            <div class="absolute left-0 top-0 bottom-0 w-px bg-slate-200 group-last:bg-transparent group-last:h-6"></div>
+                            <div class="absolute left-[-4px] top-5 w-2 h-2 rounded-full border-2 border-slate-200 bg-slate-50"></div>
+                            
+                            <div class="flex flex-col gap-1.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-sm font-semibold text-mlab-navy">${authorDisplay}</span>
+                                    <span class="text-xs text-slate-400">${dateStr}</span>
+                                </div>
+                                <div class="text-sm text-slate-700 bg-slate-50 p-3 rounded-lg border border-slate-100/60 ${isAuthor ? 'bg-mlab-purple/5 border-mlab-purple/10' : ''}">
+                                    <p class="leading-relaxed whitespace-pre-wrap mb-0.5">${comment.message || ''}</p>
+                                    ${fileHtml}
+                                </div>
+                            </div>
+                        </div>
+                        `;
                     }).join('');
                 }
                 lucide.createIcons();
             } catch (error) {
-                console.error('Yorumlar yÃ¼klenirken hata:', error);
+                console.error('Yorumlar yüklenirken hata:', error);
                 container.innerHTML = '';
             }
         }
 
         async function submitInlineComment(postId) {
-            const input = document.getElementById(`comment-input- ${postId} `);
+            const input = document.getElementById(`comment-input-${postId}`);
             const message = input.value.trim();
 
             if (!message && !commentFiles[postId]) {
-                alert('LÃ¼tfen bir yanÄ±t yazÄ±n veya dosya ekleyin.');
+                alert('Lütfen bir yanıt yazın veya dosya ekleyin.');
                 return;
             }
 
@@ -907,7 +909,7 @@
                     const { storage, ref, uploadBytes, getDownloadURL } = window.firebaseStorage;
                     const file = commentFiles[postId];
                     const commentId = Date.now().toString();
-                    const fileName = `${commentId}_${file.name} `;
+                    const fileName = `${commentId}_${file.name}`;
                     const storageRef = ref(storage, `comments/${postId}/${fileName}`);
 
                     await uploadBytes(storageRef, file);
@@ -959,8 +961,8 @@
                 removeCommentFile(postId);
                 await loadInlineComments(postId);
             } catch (error) {
-                console.error('Yorum gÃ¶nderme hatasÄ±:', error);
-                alert('YanÄ±t gÃ¶nderilemedi.');
+                console.error('Yorum gönderme hatası:', error);
+                alert('Yanıt gönderilemedi.');
             }
         }
 
@@ -985,8 +987,8 @@
 
             currentPostId = post.id;
             const isRequest = post.post_type === 'destek_talebi';
-            const typeLabel = isRequest ? 'Destek Talebi' : 'UzmanlÄ±k Bildirisi';
-            const categoryLabel = post.author?.category === 'belediye' ? 'Belediye' : 'Ã–zel SektÃ¶r';
+            const typeLabel = isRequest ? 'Destek Talebi' : 'Uzmanlık Bildirisi';
+            const categoryLabel = post.author?.category === 'belediye' ? 'Belediye' : 'Özel Sektör';
 
             let dateStr = '';
             if (post.created_at) {
@@ -1024,7 +1026,7 @@
                     </div>
                     <div>
                         <div class="font-semibold text-mlab-navy">${post.author?.name || 'Bilinmiyor'}</div>
-                        <div class="text-xs text-slate-500">${categoryLabel} â€¢ ${dateStr}</div>
+                        <div class="text-xs text-slate-500">${categoryLabel} • ${dateStr}</div>
                     </div>
                 </div>
             </div>
@@ -1035,19 +1037,19 @@
             <div>
                 <h3 class="font-semibold text-mlab-navy mb-4 flex items-center gap-2">
                     <i data-lucide="message-circle" class="w-5 h-5"></i>
-                    YanÄ±tlar
-                    <span id="comments-count" class="text-sm font-normal text-slate-500">(yÃ¼kleniyor...)</span>
+                    Yanıtlar
+                    <span id="comments-count" class="text-sm font-normal text-slate-500">(yükleniyor...)</span>
                 </h3>
 
                 <!-- Comment Input -->
                 <div class="bg-slate-50 rounded-xl p-4 mb-4">
-                    <textarea id="comment-input" rows="3" placeholder="YanÄ±tÄ±nÄ±zÄ± yazÄ±n..."
+                    <textarea id="comment-input" rows="3" placeholder="Yanıtınızı yazın..."
                         class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none text-sm"></textarea>
                     <div class="flex justify-end mt-3">
                         <button onclick="submitComment()" id="submit-comment-btn"
                             class="px-5 py-2 bg-mlab-navy text-white font-medium rounded-lg hover:bg-mlab-purple transition-colors text-sm flex items-center gap-2">
                             <i data-lucide="send" class="w-4 h-4"></i>
-                            GÃ¶nder
+                            Gönder
                         </button>
                     </div>
                 </div>
@@ -1056,7 +1058,7 @@
                 <div id="comments-list" class="space-y-3">
                     <div class="text-center py-4 text-slate-400 text-sm">
                         <i data-lucide="loader-2" class="w-5 h-5 animate-spin inline"></i>
-                        YanÄ±tlar yÃ¼kleniyor...
+                        Yanıtlar yükleniyor...
                     </div>
                 </div>
             </div>
@@ -1096,8 +1098,8 @@
 
                 renderComments(comments);
             } catch (error) {
-                console.error('Yorumlar yÃ¼klenirken hata:', error);
-                commentsList.innerHTML = '<div class="text-center py-4 text-red-500 text-sm">Yorumlar yÃ¼klenemedi.</div>';
+                console.error('Yorumlar yüklenirken hata:', error);
+                commentsList.innerHTML = '<div class="text-center py-4 text-red-500 text-sm">Yorumlar yüklenemedi.</div>';
             }
         }
 
@@ -1111,7 +1113,7 @@
                 commentsList.innerHTML = `
         <div class="text-center py-8 text-slate-400 text-sm">
             <i data-lucide="message-circle" class="w-8 h-8 mx-auto mb-2 opacity-50"></i>
-            <p>HenÃ¼z yanÄ±t yok. Ä°lk yanÄ±tÄ± siz yazÄ±n!</p>
+            <p>Henüz yanıt yok. İlk yanıtı siz yazın!</p>
         </div>
         `;
                 lucide.createIcons();
@@ -1159,13 +1161,13 @@
             const message = input.value.trim();
 
             if (!message) {
-                alert('LÃ¼tfen bir yanÄ±t yazÄ±n.');
+                alert('Lütfen bir yanıt yazın.');
                 return;
             }
 
             const btn = document.getElementById('submit-comment-btn');
             btn.disabled = true;
-            btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> GÃ¶nderiliyor...';
+            btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Gönderiliyor...';
             lucide.createIcons();
 
             const newComment = {
@@ -1211,11 +1213,11 @@
                 await loadComments(currentPostId);
 
             } catch (error) {
-                console.error('Yorum gÃ¶nderme hatasÄ±:', error);
-                alert('Yorum gÃ¶nderilemedi. LÃ¼tfen tekrar deneyin.');
+                console.error('Yorum gönderme hatası:', error);
+                alert('Yorum gönderilemedi. Lütfen tekrar deneyin.');
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i> GÃ¶nder';
+                btn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i> Gönder';
                 lucide.createIcons();
             }
         }
@@ -1252,7 +1254,7 @@
             // Show loading state
             const submitBtn = document.querySelector('#new-post-modal button[onclick="submitNewPost()"]');
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin inline mr-2"></i>YÃ¼kleniyor...';
+            submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin inline mr-2"></i>Yükleniyor...';
             submitBtn.disabled = true;
 
             try {
@@ -1318,8 +1320,8 @@
                 closeNewPostModal();
                 await loadPosts();
             } catch (error) {
-                console.error('Post oluÅŸturma hatasÄ±:', error);
-                alert('Post oluÅŸturulurken bir hata oluÅŸtu.');
+                console.error('Post oluşturma hatası:', error);
+                alert('Post oluşturulurken bir hata oluştu.');
             } finally {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
@@ -1351,7 +1353,7 @@
                     selectedCategories.includes(post.author?.category));
             }
 
-            // Filter by sector (BÃ¼yÃ¼k Zorluk)
+            // Filter by sector (Büyük Zorluk)
             if (sectorFilter !== 'all') {
                 filtered = filtered.filter(post => post.sector === sectorFilter);
             }
@@ -1373,22 +1375,22 @@
             emptyState.classList.add('hidden');
 
             const sectorLabels = {
-                'barinma': 'Uygun FiyatlÄ± BarÄ±nma',
-                'hareketlilik': 'SÃ¼rdÃ¼rÃ¼lebilir Hareketlilik',
-                'afet': 'Afetlere DirenÃ§lilik',
-                'gida': 'SaÄŸlÄ±klÄ± GÄ±da',
-                'saglik': 'SaÄŸlÄ±k ve Esenlik',
-                'egitim': 'EÄŸitimli Nesiller',
-                'is': 'Ä°nsana YakÄ±ÅŸÄ±r Ä°ÅŸ',
-                'inovasyon': 'Ä°novasyon Ãœretimi',
-                'kultur': 'KÃ¼ltÃ¼r ve KapsayÄ±cÄ±lÄ±k',
-                'dongusal': 'DÃ¶ngÃ¼sel Metabolizma'
+                'barinma': 'Uygun Fiyatlı Barınma',
+                'hareketlilik': 'Sürdürülebilir Hareketlilik',
+                'afet': 'Afetlere Dirençlilik',
+                'gida': 'Sağlıklı Gıda',
+                'saglik': 'Sağlık ve Esenlik',
+                'egitim': 'Eğitimli Nesiller',
+                'is': 'İnsana Yakışır İş',
+                'inovasyon': 'İnovasyon Üretimi',
+                'kultur': 'Kültür ve Kapsayıcılık',
+                'dongusal': 'Döngüsel Metabolizma'
             };
 
             container.innerHTML = posts.map(post => {
                 const isRequest = post.post_type === 'destek_talebi';
                 const typeColor = isRequest ? 'cyan' : 'orange';
-                const typeLabel = isRequest ? 'Destek Talebi' : 'UzmanlÄ±k Bildirisi';
+                const typeLabel = isRequest ? 'Destek Talebi' : 'Uzmanlık Bildirisi';
                 const categoryIcon = post.author?.category === 'belediye' ? 'landmark' : 'building-2';
                 const date = formatDate(post.created_at);
                 const authorDisplay = post.author?.contact_name
@@ -1411,13 +1413,13 @@
                         <div class="flex items-center gap-2 text-sm text-slate-500">
                             <i data-lucide="${categoryIcon}" class="w-4 h-4"></i>
                             <span class="font-medium">${authorDisplay}</span>
-                            <span class="text-slate-300">â€¢</span>
+                            <span class="text-slate-300">•</span>
                             <span>${date}</span>
                         </div>
                         <button onclick="toggleReplyBox('${post.id}')"
                             class="px-4 py-2 bg-mlab-purple/10 text-mlab-purple text-sm font-semibold rounded-lg hover:bg-mlab-purple hover:text-white transition-all flex items-center gap-2">
                             <i data-lucide="message-circle" class="w-4 h-4"></i>
-                            YanÄ±tla
+                            Yanıtla
                         </button>
                     </div>
                 </div>
@@ -1441,4 +1443,3 @@
 </body>
 
 </html>
-
