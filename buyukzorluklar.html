@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Büyük Zorluklar | M-LAB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { mlab: { navy: '#0a192f', cyan: '#00d4ff', purple: '#7c3aed', dark: '#0f172a' } },
+                    gridTemplateColumns: {
+                        '10': 'repeat(10, minmax(0, 1fr))'
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .coin-flip-container {
+            perspective: 1000px;
+        }
+
+        .coin-flip {
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .coin-flip:hover {
+            transform: rotateY(360deg);
+        }
+
+        /* Custom Filters for Brand Colors */
+        .filter-mlab-navy {
+            filter: brightness(0) saturate(100%) invert(8%) sepia(34%) saturate(6325%) hue-rotate(209deg) brightness(95%) contrast(100%);
+        }
+
+        .filter-mlab-purple {
+            filter: brightness(0) saturate(100%) invert(26%) sepia(96%) saturate(4171%) hue-rotate(256deg) brightness(92%) contrast(93%) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- NAVBAR -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="mlab-logo.png" alt="M-LAB"
+                        class="h-12 w-auto transition-transform duration-300 group-hover:scale-105">
+                </a>
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="sehirler-misyonu.html"
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">
+                        Şehirler Misyonu
+                        <span
+                            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                    <a href="buyukzorluklar.html"
+                        class="nav-link relative px-4 py-2 text-mlab-navy font-semibold transition-colors text-sm group">
+                        Büyük Zorluklar
+                        <span
+                            class="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple transition-all duration-300 w-3/4"></span>
+                    </a>
+                    <a href="ufuk-hibeleri.html"
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">
+                        Ufuk Hibeleri
+                        <span
+                            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                    <a href="projeler.html"
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">
+                        Projeler
+                        <span
+                            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                    <a href="dokumanlar.html"
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">
+                        Dokümanlar
+                        <span
+                            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                    <a href="analizler.html"
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">
+                        Analizler
+                        <span
+                            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                    <a href="iletisim.html"
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">
+                        İletişim
+                        <span
+                            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                    <a href="portal.html"
+                        class="ml-2 px-5 py-2.5 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-mlab-purple/25 transition-all duration-300 hover:-translate-y-0.5">
+                        Portal
+                    </a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-1 bg-slate-100 rounded-full p-1">
+                        <button
+                            class="px-3 py-1.5 rounded-full bg-mlab-navy text-white text-xs font-bold shadow-sm">TR</button>
+                        <button
+                            class="px-3 py-1.5 rounded-full text-slate-500 hover:text-mlab-navy text-xs font-medium transition-colors">EN</button>
+                    </div>
+                    <button id="mobile-menu-btn"
+                        class="lg:hidden p-2.5 text-slate-600 hover:text-mlab-navy hover:bg-slate-100 rounded-xl transition-all">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden lg:hidden pb-6 pt-2">
+                <div class="flex flex-col gap-1 bg-slate-50 rounded-2xl p-3">
+                    <a href="sehirler-misyonu.html"
+                        class="px-4 py-3 rounded-xl text-slate-600 hover:text-mlab-navy hover:bg-white transition-all text-sm font-medium">Şehirler
+                        Misyonu</a>
+                    <a href="buyukzorluklar.html"
+                        class="px-4 py-3 rounded-xl text-mlab-navy bg-white transition-all text-sm font-bold shadow-sm">Büyük
+                        Zorluklar</a>
+                    <a href="ufuk-hibeleri.html"
+                        class="px-4 py-3 rounded-xl text-slate-600 hover:text-mlab-navy hover:bg-white transition-all text-sm font-medium">Ufuk
+                        Hibeleri</a>
+                    <a href="projeler.html"
+                        class="px-4 py-3 rounded-xl text-slate-600 hover:text-mlab-navy hover:bg-white transition-all text-sm font-medium">Projeler</a>
+                    <a href="sandbox.html"
+                        class="px-4 py-3 rounded-xl text-slate-600 hover:text-mlab-navy hover:bg-white transition-all text-sm font-medium">Sandbox</a>
+                    <a href="dokumanlar.html"
+                        class="px-4 py-3 rounded-xl text-slate-600 hover:text-mlab-navy hover:bg-white transition-all text-sm font-medium">Dokümanlar</a>
+                    <a href="analizler.html"
+                        class="px-4 py-3 rounded-xl text-slate-600 hover:text-mlab-navy hover:bg-white transition-all text-sm font-medium">Analizler</a>
+                    <a href="portal.html"
+                        class="px-4 py-3 rounded-xl text-slate-600 hover:text-mlab-navy hover:bg-white transition-all text-sm font-medium">Portal</a>
+                    <a href="iletisim.html"
+                        class="mt-2 px-4 py-3 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white text-sm font-semibold rounded-xl text-center">İletişim</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="h-20"></div>
+
+    <!-- HERO -->
+    <section
+        class="bg-gradient-to-br from-mlab-navy via-mlab-dark to-mlab-purple py-12 md:py-20 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-72 h-72 bg-mlab-cyan rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 bg-mlab-purple rounded-full blur-3xl"></div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 md:mb-6">Büyük Zorluklar</h1>
+            <p class="text-base md:text-xl text-slate-200 leading-relaxed max-w-4xl mx-auto">
+                Misyon Kent 2030 İzmir vizyonu doğrultusunda tarafından hazırlanan
+                <a href="Docs/İzmir Kentsel Politika Notları.pdf" target="_blank"
+                    class="text-mlab-cyan font-semibold hover:text-white underline decoration-2 decoration-mlab-cyan/50 hover:decoration-mlab-cyan transition-all">bu
+                    politika notları</a>;
+                kentin karşı karşıya olduğu sistemsel sorunlara yenilikçi, sürdürülebilir ve toplum odaklı çözümler
+                sunmayı amaçlamaktadır.
+                İzmir’in önümüzdeki yıllarda aşması gereken 10 Büyük Zorluk, misyon odaklı bir inovasyon anlayışıyla
+                aşağıda özetlenmiştir.
+            </p>
+        </div>
+    </section>
+
+    <!-- CONTENT SECTION -->
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+    </style>
+
+    <script>
+        // Challenge Data Configuration
+        const challenges = [
+            {
+                id: 1,
+                title: "Uygun Fiyatlı ve Yeterli Barınma",
+                icon: "buyukzorluklar/header_icon_page_6.png",
+                desc: "Herkes için makul, uygun fiyatlı, sürdürülebilir ve güvenli konutlar sağlamak temel bir haktır. Gelişen toplumlar yaratmak; doğal afetler ve iklim değişikliği risklerini azaltan, dayanıklı evlerin ve yerleşimlerin inşasını veya var olanların güçlendirilmesini gerektirir.",
+                zorluk: "Barınma hakkının hem sosyal hem de mekânsal adalet açısından kırılma noktasında olması. Konut arzının piyasa koşullarına endekslenmesi sonucu konutun bir 'yatırım aracı'na dönüşmesi, düşük gelirli grupların ve kırılgan hanelerin güvenli barınma olanaklarının kısıtlanması.",
+                amac: "Barınmayı bir meta değil, bir insan hakkı olarak ele alan; herkes için erişilebilir, nitelikli ve sürdürülebilir konut üretimini mümkün kılacak bütüncül bir sistem kurmak. Sosyal konut politikalarını, kamu-özel işbirliklerini ve kooperatifçilik gibi topluluk temelli modelleri güçlendirmek.",
+                fayda: "Kısa vadede barınma krizinden etkilenen grupların yaşam koşullarında iyileşme ve konut adaletsizliğine yönelik farkındalık sağlanacaktır. Uzun vadede ise mekânsal adaletin sağlandığı, ayrışmanın azaldığı, iklime dayanıklı ve sosyal konut alanında örnek modeller geliştiren bir kent yapısı oluşacaktır.",
+                paydaslar: "Yerel yönetimlerin imar ve planlama birimleri, üniversiteler, konut kooperatifleri, mahalle dernekleri, şehir plancıları, mimarlar ve yeşil bina teknolojisi geliştiren özel sektör temsilcileri."
+            },
+            {
+                id: 2,
+                title: "Sürdürülebilir Hareketlilik",
+                icon: "buyukzorluklar/header_icon_page_8.png",
+                desc: "Hareketlilik, kentsel akış içerisinde yerleri ve insanları birbirine bağlayarak sosyal katılımı destekleyen temel haklardan biridir. Çeşitli hareketlilik biçimlerine dayalı entegre ulaşım sistemleri, 'İklim Nötr ve Akıllı Şehirler' misyonuyla uyumlu uygulandığında sosyal entegrasyonu ve kapsayıcılığı sağlar.",
+                zorluk: "Ulaşım altyapısının hem çevresel sürdürülebilirliği hem de sosyal kapsayıcılığı destekleyecek bütünleşik bir yapıya kavuşamaması. Toplu taşımaya erişimdeki eşitsizlikler, yaya ve bisiklet altyapısının eksikliği ve karbon emisyonlarını artıran özel araç bağımlılığı.",
+                amac: "Kent içinde erişimi ve hareketliliği yalnızca hız ve verimlilik üzerinden değil; insan hakları, toplumsal adalet ve ekolojik sınırlar çerçevesinde yeniden tanımlamak. Toplu taşıma, yaya ve bisiklet odaklı ulaşımı yaygınlaştırarak düşük karbonlu ve insan odaklı bir sistem kurmak.",
+                fayda: "Kısa vadede trafik yoğunluğu ve özel araç bağımlılığı azalacak, hava kalitesi iyileşecektir. Uzun vadede ise düşük karbonlu, çevre dostu bir ulaşım modeliyle iklim hedeflerine yaklaşılacak; otomobillere kapalı alanlar ve düşük emisyon bölgeleriyle kentin fiziksel ve duygusal bağları güçlenecektir.",
+                paydaslar: "Ulaşım ve çevre daire başkanlıkları, üniversiteler, mobilite teknolojisi firmaları, engelli ve çevre hakları odaklı STK’lar, ulaşım kooperatifleri."
+            },
+            {
+                id: 3,
+                title: "Afetlere Dirençlilik",
+                icon: "buyukzorluklar/header_icon_page_10.png",
+                desc: "Afet direnci, bir afetin yaratabileceği olumsuz etkileri önleyebilme ve etkilere karşı koyabilme kabiliyetini ifade eder. Dirençli bir kent yaratmak; afet risk azaltımının planlamaya entegrasyonunu, kurumların kapasitelerinin güçlendirilmesini ve acil durumlarda herkes için korumanın sağlanmasını gerektirir.",
+                zorluk: "İzmir’in yüksek doğal afet riski taşıyan coğrafyası ve iklim krizinin artan etkileri (aşırı sıcaklar, sel, kuraklık). Fiziksel altyapının, sosyal dokunun ve kurumsal hazırlık düzeyinin bu çoklu risklere karşı yetersiz kalması ve plansız yapılaşmanın riskleri artırması.",
+                amac: "İzmir’i afetlere ve iklim krizine karşı önleyici, dayanıklı ve kapsayıcı bir yaklaşımla yeniden tasarlamak. Doğa tabanlı çözümleri yaygınlaştırmak, erken uyarı sistemlerini geliştirmek ve ilçeler arası entegrasyonu sağlayan koordinasyon planlarını hayata geçirmek.",
+                fayda: "Kısa vadede veri odaklı risk haritaları ve erken uyarı sistemleriyle can ve mal kayıpları azalacaktır. Uzun vadede su yönetimi, enerji ve gıda sistemleri iklime uyumlu hâle gelecek; dirençlilik sadece teknik bir hedef değil, ortak bir yaşam kültürü olacaktır.",
+                paydaslar: "AFAD, İZSU, İklim Değişikliği ve Sıfır Atık Dairesi, üniversitelerin mühendislik bölümleri, çevre hareketleri, mahalle örgütleri ve sigorta sektörü."
+            },
+            {
+                id: 4,
+                title: "Sağlıklı Gıda ve Tarım",
+                icon: "buyukzorluklar/header_icon_page_12.png",
+                desc: "Sağlıklı bir yaşam için günlük temel ihtiyaç olan gıdaya tüm insanların yeterli, uygun fiyatlı, güvenli ve besleyici bir şekilde erişiminin sağlanması temel bir haktır. Bu durum, toplumların ve ekosistemlerin sağlığını 'Tek Sağlık' çerçevesinde koruyan yenileyici bir tarım sistemini zorunlu kılar.",
+                zorluk: "Küçük üreticilerin ekonomik sürdürülebilirlik sorunları, iklim değişikliği kaynaklı verim kayıpları ve su krizi. Gıdaya erişim eşitsizliklerinin özellikle dar gelirli gruplar üzerindeki baskısı ve tarımda doğa dostu yöntemlerin yeterince yaygınlaşamaması.",
+                amac: "İzmir’in kır-kent ilişkilerini yeniden tanımlayan, yerel üretimi destekleyen, doğayla uyumlu ve dayanışmacı bir gıda sistemi inşa etmek. Kısa tedarik zincirleri, agroekolojik üretim ve kentsel tarım uygulamalarıyla sağlıklı gıdaya erişimi güvence altına almak.",
+                fayda: "Kısa vadede üreticilerin doğa dostu yöntemlere geçişiyle gıda güvenliği artacak, kooperatifler aracılığıyla yeni erişim kanalları oluşacaktır. Uzun vadede İzmir, kendi kendine yeten, krizlere dayanıklı bir gıda sistemine kavuşacak; gıda israfı azalırken döngüsel bir metabolizma kurulacaktır.",
+                paydaslar: "Yerel üreticiler, tarımsal kalkınma kooperatifleri, Ziraat Odaları, gıda mühendisleri, gıda toplulukları ve tüketici kooperatifleri."
+            },
+            {
+                id: 5,
+                title: "Sağlık ve Esenlik",
+                icon: "buyukzorluklar/header_icon_page_14.png",
+                desc: "Proaktif esenlik, iyi olma hâlini gösteren reaktif sağlık ve bütüncül bir sağlık durumuna yol açan faaliyetlerin, seçimlerin ve yaşam tarzlarının aktif olarak takip edilmesini tanımlayan bir kavramdır. Sağlık ve esenlik, fiziksel aktiviteden iş-yaşam dengesine kadar çok boyutlu bir yaklaşımı gerektirir.",
+                zorluk: "Sosyo-ekonomik eşitsizliklerin (gelir, cinsiyet, mekân) sağlık hizmetlerine erişimde yarattığı engeller. Kent yaşamına bağlı stres, yalnızlık ve artan psikososyal risklerin bireylerin bütüncül sağlığını tehdit etmesi.",
+                amac: "Sağlığı yalnızca hastalığın tedavisi olarak görmeyen; bedensel, ruhsal ve sosyal iyi olma hâlini kapsayan bütüncül bir sistemi inşa etmek. Koruyucu sağlık hizmetlerini, topluluk temelli bakım modellerini ve kentsel yaşamın esenliği destekleyen unsurlarını (yeşil alanlar, temiz hava) güçlendirmek.",
+                fayda: "Kısa vadede dezavantajlı bölgelerde sağlık hizmetlerine erişim artacak, toplum ruh sağlığına yönelik farkındalık yükselecektir. Uzun vadede İzmir; güven, aidiyet ve dayanışma ağlarının güçlü olduğu, sağlıklı ve eşitlikçi bir 'esenlik kenti'ne dönüşecektir.",
+                paydaslar: "Sağlık ve sosyal hizmetler birimleri, Aile Sağlığı Merkezleri, psikologlar, halk sağlığı uzmanları, kadın ve gençlik örgütleri."
+            },
+            {
+                id: 6,
+                title: "Eğitimli Nesiller",
+                icon: "buyukzorluklar/header_icon_page_16.png",
+                desc: "Eğitim, her bireyin topluma katılma ve yaşamı boyunca fırsatları değerlendirme becerisinin temelini oluşturur. Hızla değişen koşulların üstesinden gelmek için yaşam boyu öğrenmeye erişim hakkı; istihdam edilebilirliği artırır, dijital dönüşüme uyumu sağlar ve toplumsal iyi olma hâlini destekler.",
+                zorluk: "Eğitime erişim ve kalitenin mahalleler ve gelir grupları arasında keskin farklılıklar göstermesi. Dijital uçurum, mesleki rehberlik yetersizliği ve gençlerin değişen iş dünyasının gerektirdiği yetkinliklere ulaşmada yaşadığı zorluklar.",
+                amac: "Her yaştan bireyin gelişimini destekleyen, dijital ve yaratıcı becerileri teşvik eden, fırsat eşitliğine dayalı bir eğitim ekosistemi oluşturmak. Erken çocukluk eğitiminden yaşam boyu öğrenmeye kadar kapsayıcı ve erişilebilir mekanizmalar kurmak.",
+                fayda: "Kısa vadede okul öncesi eğitime erişim artacak, gençlere yönelik mentorluk ve beceri geliştirme hizmetleri yaygınlaşacaktır. Uzun vadede veriye dayalı, üretken ve bilgi ekonomisine entegre olmuş bir toplum yapısı ile İzmir’in kentsel dirençliliği artacaktır.",
+                paydaslar: "Belediyeler, üniversiteler, meslek yüksekokulları, eğitim odaklı STK’lar, gönüllü yapılar ve yerel girişimcilik destek kuruluşları."
+            },
+            {
+                id: 7,
+                title: "İnsana Yakışır Gelir ve Çalışma",
+                icon: "buyukzorluklar/header_icon_page_18.png",
+                desc: "Herkes için insana yakışır yeterli gelir ve çalışma koşullarının sağlanması; hane halklarının ihtiyaçlarını karşılamalarını sağlayan, fiziksel ve zihinsel sağlıklarını destekleyen temel bir haktır. Bu hak, zarar görmekten korunmayı, topluluk olmayı ve gelişim fırsatlarını içerir.",
+                zorluk: "Gelir eşitsizliği, güvencesiz ve kayıt dışı çalışma koşulları. Özellikle gençler, kadınlar ve dezavantajlı grupların işgücü piyasasında karşılaştığı engeller ve nitelikli işgücünün beyin göçüyle kaybı.",
+                amac: "İstihdamın sadece niceliksel değil niteliksel boyutuna da odaklanarak; onurlu, güvenli ve adil çalışma koşullarını yaygınlaştırmak. Yeşil ve dijital dönüşümle uyumlu yeni iş alanlarını teşvik etmek, girişimcilik ve sosyal ekonomiyi desteklemek.",
+                fayda: "Kısa vadede gençlere yönelik istihdam destekleri ve alternatif gelir modelleriyle güvencesizlik azalacaktır. Uzun vadede İzmir, emek yoğun sektörlerden bilgi yoğun ve yüksek katma değerli bir ekonomik yapıya geçiş yapacaktır.",
+                paydaslar: "Meslek odaları (EBSO, İZTO), sendikalar, gençlik STK’ları, kadın kooperatifleri, teknoloji merkezleri ve sosyal girişimler."
+            },
+            {
+                id: 8,
+                title: "Yenilik ve Teknoloji Üretimi",
+                icon: "buyukzorluklar/header_icon_page_20.png",
+                desc: "Yenilik ve teknoloji, çevresel güçlerin üzerinde kontrol sahibi olmaktan üretimin organize edilme biçimine kadar birçok unsuru kapsar. Kimseyi geride bırakmayan bir ekonomi; verimlilik artışını adil bölüşüm ve sürdürülebilirlik ile birleştiren, tüketen değil üreten bir yapıya sahip olmalıdır.",
+                zorluk: "Ar-Ge yatırımlarının yetersizliği ve dağınıklığı, üniversite-sanayi işbirliklerinin zayıflığı. Ekosistemin bütünlüğünü tehdit eden beyin göçü ve yüksek teknolojiye dayalı üretimin ticarileşmesindeki yapısal eksiklikler.",
+                amac: "İzmir’in yerel potansiyeline dayanan, araştırma ve sanayi arasında köprü kuran, işbirliğine dayalı bir inovasyon sistemi inşa etmek. Yüksek katma değerli, yeşil ve dijital teknolojileri önceleyen, gençlerin hayallerini kentte gerçekleştirebileceği bir ortam yaratmak.",
+                fayda: "Kısa vadede kuluçka merkezleri ve teknoloji transfer ofisleri güçlenecek, girişimcilerin fona erişimi kolaylaşacaktır. Uzun vadede İzmir; yazılım, biyoteknoloji ve ileri tarım teknolojilerinde uzmanlaşan, küresel ölçekte rekabetçi bir teknoloji kentine dönüşecektir.",
+                paydaslar: "Teknoparklar, üniversiteler, İZKA, girişimcilik merkezleri, İzmir Yüksek Teknoloji Enstitüsü ve yatırımcı ağları."
+            },
+            {
+                id: 9,
+                title: "Kültür, Bağlantılılık ve Kapsayıcılık",
+                icon: "buyukzorluklar/header_icon_page_22.png",
+                desc: "Kültürün toplum ve vatandaşların iyi olma hâli üzerindeki etkisi dikkate alındığında; eşitlik ve kapsayıcılık ilkesine dayalı olarak kültürel yaşama erişimin tüm çeşitliliği kucaklayacak şekilde sağlanması büyük öneme sahiptir. Kültür, sosyal uyumun ve kentsel dayanıklılığın temel bileşenidir.",
+                zorluk: "Kültürel faaliyetlerin kent merkezinde yoğunlaşması sonucu oluşan mekânsal eşitsizlikler. Farklı sosyo-kültürel grupların kendilerini ifade alanlarının sınırlılığı ve kent belleğinin sürdürülebilir bir kültür politikasıyla desteklenme ihtiyacı.",
+                amac: "Kültürel yaşamı kentin tamamına yaymak, çok dilli ve kapsayıcı bir kültürel ortam inşa etmek. Yaratıcı alanlarla kültürel hafızayı birbirine bağlayan, toplumsal dayanışma odaklı bir ekosistem geliştirmek.",
+                fayda: "Kısa vadede kültürel faaliyetler çeşitlenecek ve merkezin dışına yayılacaktır. Uzun vadede İzmir, kültürel mirası çağdaş yaratıcı alanlarla birleştiren, kültür diplomasisinde örnek gösterilen ve aidiyet duygusunun güçlendiği bir kent olacaktır.",
+                paydaslar: "Kültür-sanat STK’ları, sanatçılar, kolektifler, göçmen toplulukları, üniversiteler ve kültür-sanat eğitimi veren kurumlar."
+            },
+            {
+                id: 10,
+                title: "Döngüsel Kentsel Metabolizma",
+                icon: "buyukzorluklar/header_icon_page_24.png",
+                desc: "Şehirler; sera gazı emisyonlarının, üretilen atık miktarının ve kirletici kaynakların büyük bir kısmından sorumludur. Döngüsel kentsel metabolizma; şehri bir organizma gibi ele alarak su, enerji ve atık akışlarını 'İklim Nötr' hedefi doğrultusunda optimize etmeyi gerektirir.",
+                zorluk: "Plansız kentleşme ve kaynakların verimsiz kullanımı sonucu ekolojik kapasitenin zorlanması. Atık yönetiminde ayrıştırma ve geri kazanım eksikliği, enerji verimliliğinin düşüklüğü ve fosil yakıta dayalı sistemlerin karbon ayak izini büyütmesi.",
+                amac: "Doğal kaynak kullanımını optimize eden, atıkları kaynağında dönüştüren ve 'atık üretmeyen' bütüncül bir metabolizma modeli geliştirmek. Sektörel sınırları aşarak su, enerji ve gıda sistemleri arasında döngüsel geri besleme mekanizmaları kurmak.",
+                fayda: "Kısa vadede pilot bölgelerde döngüsel uygulamalarla kaynak verimliliği artacak, atık yönetimi iyileşecektir. Uzun vadede İzmir; ekolojik ayak izini küçülten, yeşil iş alanları yaratan ve iklim krizine karşı dirençli bir yaşam ortamı sunan döngüsel bir kent olacaktır.",
+                paydaslar: "Altyapı ve çevre birimleri, çevre mühendisleri, özel sektör (inşaat, enerji), kooperatifler, üniversiteler ve sosyal girişimciler."
+            }
+        ];
+
+        let activeChallengeId = 1;
+
+        function renderChallenges() {
+            const navContainer = document.getElementById('challenge-nav');
+            const contentContainer = document.getElementById('challenge-content');
+
+            // Render Navigation Icons
+            navContainer.innerHTML = challenges.map(c => {
+                const isActive = c.id === activeChallengeId;
+                return `
+                <button onclick="setActiveChallenge(${c.id})" 
+                    class="group relative flex flex-col items-center justify-between gap-1 transition-all duration-300 flex-shrink-0 w-28 md:w-32 lg:w-auto snap-start pt-1 pb-0 h-full">
+                    
+                    <!-- Icon Circle -->
+                    <div class="w-full aspect-square rounded-2xl flex items-center justify-center transition-all duration-500 transform overflow-hidden
+                        ${isActive
+                        ? 'bg-white shadow-xl shadow-mlab-purple/15 scale-100 border border-slate-200'
+                        : 'bg-slate-50 border border-slate-200 group-hover:border-slate-300 group-hover:bg-white'}">
+                        <img src="${c.icon}" alt="${c.title}" 
+                            class="w-full h-full object-contain p-0.5 scale-110 transition-all duration-500 
+                            ${isActive ? 'filter-mlab-purple' : 'filter-mlab-navy opacity-85 group-hover:opacity-100 group-hover:scale-125'}">
+                    </div>
+
+                    <!-- Title -->
+                    <span class="text-[10px] md:text-[10px] lg:text-[11px] font-bold text-center leading-tight transition-all duration-300 w-full px-0.5 flex-grow flex items-center justify-center
+                        ${isActive ? 'text-mlab-purple' : 'text-slate-500 group-hover:text-mlab-navy'}">
+                        ${c.title}
+                    </span>
+                    
+                </button>
+                `;
+            }).join('');
+
+            // Render Content
+            const activeData = challenges.find(c => c.id === activeChallengeId);
+            contentContainer.innerHTML = `
+                <div class="animate-fadeIn">
+                    <div class="mb-10">
+                        <h2 class="text-3xl md:text-4xl font-black text-mlab-navy mb-4 leading-tight">${activeData.title}</h2>
+                        <p class="text-lg md:text-xl text-slate-500 font-light leading-relaxed max-w-4xl">${activeData.desc}</p>
+                    </div>
+                    
+                    <div class="flex flex-col gap-8">
+                        <div>
+                            <h3 class="text-lg font-bold text-mlab-navy mb-2 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-mlab-navy"></span>
+                                Zorluk
+                            </h3>
+                            <p class="text-slate-600 leading-relaxed text-base">${activeData.zorluk}</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-bold text-mlab-navy mb-2 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-mlab-cyan"></span>
+                                Amaç
+                            </h3>
+                            <p class="text-slate-600 leading-relaxed text-base">${activeData.amac}</p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-bold text-mlab-navy mb-2 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                Fayda
+                            </h3>
+                            <p class="text-slate-600 leading-relaxed text-base">${activeData.fayda}</p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-bold text-mlab-navy mb-2 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-mlab-purple"></span>
+                                Paydaşlar
+                            </h3>
+                            <p class="text-slate-600 leading-relaxed text-base">${activeData.paydaslar}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            // Remove lucide icons as they are not used in this layout
+        }
+
+        function setActiveChallenge(id) {
+            activeChallengeId = id;
+            renderChallenges();
+        }
+    </script>
+
+    <section class="py-8 md:py-12 bg-white relative">
+        <!-- Background Decor -->
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent">
+        </div>
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-mlab-cyan/5 rounded-full blur-3xl pointer-events-none">
+        </div>
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+            <!-- Icon Navigation Grid (Responsive: Scroll on mobile, Grid on Laptop) -->
+            <div class="relative group/nav mb-8 md:mb-12">
+                <!-- Fade Edges (Visible only on scrollable small screens) -->
+                <div
+                    class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none lg:hidden">
+                </div>
+                <div
+                    class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none lg:hidden">
+                </div>
+
+                <div class="flex overflow-x-auto lg:grid lg:grid-cols-10 pb-4 pt-2 gap-2 lg:gap-3 px-4 lg:px-0 no-scrollbar items-stretch snap-x snap-mandatory scroll-smooth"
+                    id="challenge-nav">
+                    <!-- Icons rendered by JS -->
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="w-full">
+                <div
+                    class="bg-white rounded-[2.5rem] shadow-2xl shadow-slate-200/50 border border-slate-100 p-8 md:p-16 relative overflow-hidden backdrop-blur-sm">
+
+                    <div id="challenge-content" class="relative z-10">
+                        <!-- Content rendered by JS -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-mlab-navy text-white">
+        <div class="h-1 w-full bg-gradient-to-r from-mlab-cyan via-mlab-purple to-mlab-cyan"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+                <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
+                    <a href="yasal.html?page=privacy" class="hover:text-slate-300 transition-colors">Gizlilik
+                        Politikası</a>
+                    <span class="text-slate-700">•</span>
+                    <a href="yasal.html?page=cookie" class="hover:text-slate-300 transition-colors">Çerez Politikası</a>
+                    <span class="text-slate-700">•</span>
+                    <a href="yasal.html?page=kvkk" class="hover:text-slate-300 transition-colors">KVKK Aydınlatma
+                        Metni</a>
+                </div>
+                <div class="coin-flip-container">
+                    <img src="label-circle.png" alt="EU Mission Label"
+                        class="h-20 w-auto drop-shadow-lg coin-flip cursor-pointer">
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-3 text-sm text-slate-400">
+                    <a href="mailto:info@m-lab.izmir.bel.tr"
+                        class="hover:text-mlab-cyan transition-colors flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        info@m-lab.izmir.bel.tr
+                    </a>
+                    <span class="hidden sm:inline text-slate-700">|</span>
+                    <span class="text-xs text-slate-500">&copy; 2025 M-LAB İzmir</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+            document.getElementById('mobile-menu')?.classList.toggle('hidden');
+        });
+
+        // Init Challenges
+        renderChallenges();
+    </script>
+</body>
+
+</html>

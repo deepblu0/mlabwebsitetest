@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proje Detayları - M-LAB</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        mlab: {
+                            navy: '#0a192f',
+                            cyan: '#00d4ff',
+                            purple: '#7c3aed',
+                            dark: '#0f172a',
+                            orange: '#ff7e67',
+                            energy: '#FFC107',
+                            infrastructure: '#616161',
+                            waste: '#795548',
+                            transport: '#2196F3',
+                            nature: '#4CAF50',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .coin-flip-container {
+            perspective: 1000px;
+        }
+
+        .coin-flip {
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .coin-flip:hover {
+            transform: rotateY(360deg);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Back Button -->
+            <a href="index.html"
+                class="flex items-center gap-2 text-slate-500 hover:text-mlab-navy transition-colors font-medium">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span class="hidden sm:inline">Ana Sayfaya Dön</span>
+            </a>
+
+            <!-- Centered Logo -->
+            <div class="absolute left-1/2 transform -translate-x-1/2">
+                <a href="index.html">
+                    <img src="mlab-logo.png" alt="M-LAB" class="h-10 w-auto">
+                </a>
+            </div>
+
+            <!-- Empty Right for Balance -->
+            <div class="w-24"></div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12" id="project-content">
+        <!-- Content injected by JS -->
+        <div class="flex justify-center items-center h-64">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-mlab-navy"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-mlab-navy text-white mt-auto">
+        <div class="h-1 w-full bg-gradient-to-r from-mlab-cyan via-mlab-purple to-mlab-cyan"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+                <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
+                    <a href="yasal.html?page=privacy" class="hover:text-slate-300 transition-colors">Gizlilik
+                        Politikası</a>
+                    <span class="text-slate-700">•</span>
+                    <a href="yasal.html?page=cookie" class="hover:text-slate-300 transition-colors">Çerez Politikası</a>
+                    <span class="text-slate-700">•</span>
+                    <a href="yasal.html?page=kvkk" class="hover:text-slate-300 transition-colors">KVKK Aydınlatma
+                        Metni</a>
+                </div>
+                <div class="coin-flip-container">
+                    <img src="label-circle.png" alt="EU Mission Label"
+                        class="h-20 w-auto drop-shadow-lg coin-flip cursor-pointer">
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-3 text-sm text-slate-400">
+                    <a href="mailto:info@m-lab.izmir.bel.tr"
+                        class="hover:text-mlab-cyan transition-colors flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        info@m-lab.izmir.bel.tr
+                    </a>
+                    <span class="hidden sm:inline text-slate-700">|</span>
+                    <span class="text-xs text-slate-500">&copy; 2025 M-LAB İzmir</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // SHARED DATA (Same as preview.html)
+        const projects = [
+            { id: 1, title: "Garden District Ter Elst Becomes A Climate Community", category: "ENERGY", startDate: "March 2024", status: "In Progress", progress: 65, partners: "Ter Elst residents", themes: "Collective renovation", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200", description: "This project aims to transform the Garden District Ter Elst into a fully climate-neutral community through collective renovation efforts, renewable energy integration, and community engagement." },
+            { id: 2, title: "FEAST: Healthy and Sustainable Food", category: "CONSUMPTION", startDate: "October 2022", status: "In Progress", progress: 40, partners: "Leuven 2030, KU Leuven", themes: "Healthy food", image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&q=80&w=1200", description: "FEAST focuses on promoting healthy and sustainable food consumption patterns among the citizens, working with local producers and schools." },
+            { id: 3, title: "Wijgmaal Seen From A Spatial Perspective", category: "ADAPTATION", startDate: "January 2020", status: "Completed", progress: 100, partners: "City of Leuven", themes: "Energy, Mobility", image: "https://images.unsplash.com/photo-1449824913929-4bdd42b98d0d?auto=format&fit=crop&q=80&w=1200", description: "A comprehensive spatial analysis of Wijgmaal to identify opportunities for climate adaptation, improved mobility, and energy efficiency." },
+            { id: 4, title: "Liman Bölgesi Elektrifikasyonu", category: "ENERGY", startDate: "June 2023", status: "Planning", progress: 15, partners: "Port Authority", themes: "Electrification", image: "https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=1200", description: "Electrification of the port area to reduce emissions from shipping and port operations, including shore-to-ship power solutions." },
+            { id: 5, title: "Alsancak Akıllı Ulaşım", category: "MOBILITY", startDate: "August 2023", status: "In Progress", progress: 30, partners: "Izmir Metro", themes: "AI, Traffic", image: "https://images.unsplash.com/photo-1494522358652-f30e61a60313?auto=format&fit=crop&q=80&w=1200", description: "Implementing AI-driven traffic management systems in Alsancak to optimize traffic flow, reduce congestion, and lower carbon emissions." },
+            { id: 6, title: "Yeşil Bina Sertifikasyon", category: "BUILDINGS", startDate: "Jan 2024", status: "Planning", progress: 10, partners: "Chamber of Architects", themes: "Retrofitting", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200", description: "Developing a local green building certification program to encourage sustainable construction and retrofitting practices across the city." }
+        ];
+
+        const categoryColors = {
+            ENERGY: { label: 'Enerji', bg: 'bg-mlab-energy', text: 'text-mlab-energy' },
+            CONSUMPTION: { label: 'Tüketim', bg: 'bg-mlab-waste', text: 'text-mlab-waste' },
+            ADAPTATION: { label: 'Uyum', bg: 'bg-mlab-nature', text: 'text-mlab-nature' },
+            MOBILITY: { label: 'Hareketlilik', bg: 'bg-mlab-transport', text: 'text-mlab-transport' },
+            BUILDINGS: { label: 'Binalar', bg: 'bg-mlab-infrastructure', text: 'text-mlab-infrastructure' },
+            INFRASTRUCTURE: { label: 'Altyapı', bg: 'bg-mlab-infrastructure', text: 'text-mlab-infrastructure' },
+            WASTE: { label: 'Atık', bg: 'bg-mlab-waste', text: 'text-mlab-waste' },
+            NATURE: { label: 'Doğa', bg: 'bg-mlab-nature', text: 'text-mlab-nature' }
+        };
+
+        // Parse URL Params
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = parseInt(urlParams.get('id'));
+
+        const project = projects.find(p => p.id === projectId);
+        const container = document.getElementById('project-content');
+
+        if (project) {
+            const colors = categoryColors[project.category] || { label: project.category, bg: 'bg-mlab-navy', text: 'text-mlab-navy' };
+
+            container.innerHTML = `
+                <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 animate-fade-in-up">
+                    <!-- Hero Image -->
+                    <div class="h-64 md:h-96 w-full relative">
+                        <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-8 text-white">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold ${colors.bg} text-white mb-4 shadow-lg uppercase tracking-wider">
+                                ${colors.label}
+                            </span>
+                            <h1 class="text-3xl md:text-5xl font-black leading-tight mb-2 drop-shadow-lg">${project.title}</h1>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-8 md:p-12">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                            <!-- Main Info -->
+                            <div class="md:col-span-2 space-y-8">
+                                <div>
+                                    <h2 class="text-2xl font-bold text-mlab-navy mb-4">Proje Hakkında</h2>
+                                    <p class="text-slate-600 leading-relaxed text-lg">
+                                        ${project.description}
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                                    <h3 class="font-bold text-mlab-navy mb-4 flex items-center gap-2">
+                                        <i data-lucide="target" class="w-5 h-5 text-mlab-cyan"></i> Hedefler & Temalar
+                                    </h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        ${project.themes.split(',').map(t => `<span class="px-3 py-1 bg-white border border-slate-200 rounded-full text-sm text-slate-600">${t.trim()}</span>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sidebar Stats -->
+                            <div class="space-y-6">
+                                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Başlangıç Tarihi</div>
+                                    <div class="text-mlab-navy font-semibold flex items-center gap-2">
+                                        <i data-lucide="calendar" class="w-4 h-4 text-mlab-cyan"></i> ${project.startDate}
+                                    </div>
+                                </div>
+
+                                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Durum</div>
+                                    <div class="text-mlab-navy font-semibold flex items-center gap-2 mb-2">
+                                        <i data-lucide="activity" class="w-4 h-4 text-mlab-cyan"></i> ${project.status}
+                                    </div>
+                                    <div class="w-full bg-slate-100 rounded-full h-2">
+                                        <div class="bg-mlab-cyan h-2 rounded-full" style="width: ${project.progress}%"></div>
+                                    </div>
+                                    <div class="text-right text-xs text-slate-400 mt-1">%${project.progress} Tamamlandı</div>
+                                </div>
+
+                                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Paydaşlar</div>
+                                    <div class="text-mlab-navy font-semibold flex items-start gap-2">
+                                        <i data-lucide="users" class="w-4 h-4 text-mlab-cyan mt-1"></i> 
+                                        <span>${project.partners}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        } else {
+            container.innerHTML = `
+                <div class="text-center py-20">
+                    <h2 class="text-2xl font-bold text-slate-400">Proje bulunamadı.</h2>
+                    <a href="index.html" class="text-mlab-cyan hover:underline mt-4 inline-block">Ana Sayfaya Dön</a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+
+</html>

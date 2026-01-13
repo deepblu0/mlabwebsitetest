@@ -67,7 +67,9 @@
             window.location.href = 'portal-login.html';
         } else {
             // Load profile from Firestore using stored user ID
-            loadUserProfile(currentUser.id || currentUser.uid);
+            const userId = currentUser.id || currentUser.uid;
+            window.currentUserId = userId;
+            loadUserProfile(userId);
         }
 
         window.loadUserProfile = async function (userId) {
