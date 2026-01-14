@@ -10,8 +10,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         preview: resolve(__dirname, 'preview.html'),
-        legal: resolve(__dirname, 'legal.html'),
-        project: resolve(__dirname, 'project-detail.html'),
+        yasal: resolve(__dirname, 'yasal.html'),
+        projeler: resolve(__dirname, 'projeler.html'),
       },
     },
     commonjsOptions: {
