@@ -1,5 +1,9 @@
 {
   "buildCommand": "",
   "outputDirectory": ".",
-  "framework": null
+  "framework": null,
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/anasayfa" }
+  ]
 }
