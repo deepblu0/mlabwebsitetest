@@ -34,7 +34,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
         import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js";
+
 
         const firebaseConfig = {
             apiKey: "AIzaSyAp7pCkY1IE9ttVMshgj3ze583wYIpYvOI",
@@ -48,17 +48,15 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        const storage = getStorage(app);
+
 
         window.auth = auth;
         window.db = db;
-        window.storage = storage;
+
         window.doc = doc;
         window.getDoc = getDoc;
         window.updateDoc = updateDoc;
-        window.ref = ref;
-        window.uploadBytes = uploadBytes;
-        window.getDownloadURL = getDownloadURL;
+
         window.signOut = signOut;
 
         // Check auth from localStorage (same as dashboard)
@@ -104,11 +102,7 @@
                     });
 
                     // Set profile photo
-                    if (data.photoURL) {
-                        document.getElementById('profile-photo').src = data.photoURL;
-                        document.getElementById('profile-photo').classList.remove('hidden');
-                        document.getElementById('photo-placeholder').classList.add('hidden');
-                    }
+
 
                     // Update header
                     document.getElementById('user-name').textContent = data.contact_name || data.name || 'Kullanıcı';
@@ -147,8 +141,7 @@
                             class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">
                             <div
                                 class="w-8 h-8 bg-mlab-purple rounded-full flex items-center justify-center overflow-hidden">
-                                <img id="nav-photo" src="" alt="" class="w-full h-full object-cover hidden">
-                                <i data-lucide="user" class="w-4 h-4 text-white nav-photo-placeholder"></i>
+                                <i data-lucide="user" class="w-4 h-4 text-white"></i>
                             </div>
                             <span id="user-name" class="hidden md:inline text-sm font-medium">Kullanıcı</span>
                         </button>
@@ -172,41 +165,7 @@
             <!-- Profile Form -->
             <form id="profile-form" class="space-y-8">
                 <!-- Profile Photo Section -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                    <h2 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
-                        <i data-lucide="camera" class="w-5 h-5 text-mlab-purple"></i>
-                        Profil Fotoğrafı
-                    </h2>
-                    <div class="flex items-center gap-6">
-                        <div class="relative">
-                            <div
-                                class="w-24 h-24 rounded-full bg-slate-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
-                                <img id="profile-photo" src="" alt="Profil" class="w-full h-full object-cover hidden">
-                                <div id="photo-placeholder" class="text-center">
-                                    <i data-lucide="user" class="w-10 h-10 text-slate-400"></i>
-                                </div>
-                            </div>
-                            <label for="photo-input"
-                                class="absolute -bottom-1 -right-1 w-8 h-8 bg-mlab-purple text-white rounded-full flex items-center justify-center cursor-pointer hover:bg-mlab-navy transition-colors shadow-lg">
-                                <i data-lucide="camera" class="w-4 h-4"></i>
-                            </label>
-                            <input type="file" id="photo-input" accept="image/*" class="hidden"
-                                onchange="handlePhotoUpload(event)">
-                        </div>
-                        <div>
-                            <p class="text-sm text-slate-600 mb-1">JPG, PNG veya GIF formatında</p>
-                            <p class="text-xs text-slate-500">Maksimum 2MB</p>
-                        </div>
-                    </div>
-                    <div id="upload-progress" class="hidden mt-4">
-                        <div class="flex items-center gap-2 text-sm text-mlab-purple">
-                            <div
-                                class="animate-spin w-4 h-4 border-2 border-mlab-purple border-t-transparent rounded-full">
-                            </div>
-                            Yükleniyor...
-                        </div>
-                    </div>
-                </div>
+
 
                 <!-- Organization Info -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
@@ -399,55 +358,7 @@
         lucide.createIcons();
 
         // Handle photo upload
-        async function handlePhotoUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
 
-            if (file.size > 2 * 1024 * 1024) {
-                alert('Dosya boyutu 2MB\'dan küçük olmalıdır.');
-                return;
-            }
-
-            const progressEl = document.getElementById('upload-progress');
-            progressEl.classList.remove('hidden');
-
-            try {
-                const userId = window.currentUserId;
-                if (!userId) {
-                    alert('Kullanıcı bulunamadı.');
-                    return;
-                }
-                const storageRef = window.ref(window.storage, `profile-photos/${userId}`);
-
-                await window.uploadBytes(storageRef, file);
-                const downloadURL = await window.getDownloadURL(storageRef);
-
-                // Update Firestore
-                await window.updateDoc(window.doc(window.db, 'users', userId), {
-                    photoURL: downloadURL
-                });
-
-                // Update UI
-                document.getElementById('profile-photo').src = downloadURL;
-                document.getElementById('profile-photo').classList.remove('hidden');
-                document.getElementById('photo-placeholder').classList.add('hidden');
-
-                // Update nav photo
-                const navPhoto = document.getElementById('nav-photo');
-                if (navPhoto) {
-                    navPhoto.src = downloadURL;
-                    navPhoto.classList.remove('hidden');
-                    document.querySelector('.nav-photo-placeholder')?.classList.add('hidden');
-                }
-
-                showSuccessMessage('Fotoğraf yüklendi!');
-            } catch (error) {
-                console.error('Fotoğraf yüklenirken hata:', error);
-                alert('Fotoğraf yüklenirken bir hata oluştu.');
-            } finally {
-                progressEl.classList.add('hidden');
-            }
-        }
 
         // Handle form submit
         document.getElementById('profile-form').addEventListener('submit', async (e) => {
