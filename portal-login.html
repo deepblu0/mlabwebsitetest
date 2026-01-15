@@ -197,6 +197,13 @@
             ]));
         }
 
+        // Check for saved email (Remember Me)
+        const savedEmail = localStorage.getItem('portal_remember_email');
+        if (savedEmail) {
+            document.querySelector('input[name="email"]').value = savedEmail;
+            document.querySelector('input[name="remember"]').checked = true;
+        }
+
         document.getElementById('login-form').addEventListener('submit', async function (e) {
             e.preventDefault();
             if (isSubmitting) return;
@@ -238,8 +245,13 @@
                     return;
                 }
 
-                const { auth, signInWithEmailAndPassword } = window.firebaseAuth;
+                const { auth, signInWithEmailAndPassword, setPersistence, browserLocalPersistence, browserSessionPersistence } = window.firebaseAuth;
                 const { db, doc, getDoc } = window.firebaseDb;
+
+                // Handle Remember Me (Session Persistence)
+                const rememberMe = this.remember.checked;
+                const persistenceMode = rememberMe ? browserLocalPersistence : browserSessionPersistence;
+                await setPersistence(auth, persistenceMode);
 
                 // Sign in with Firebase
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -286,6 +298,13 @@
                     ...userData,
                     isAdmin: window.firebaseHelpers.isAdmin(user.email)
                 };
+                // Manage Remember Me (Local Storage)
+                if (rememberMe) {
+                    localStorage.setItem('portal_remember_email', email);
+                } else {
+                    localStorage.removeItem('portal_remember_email');
+                }
+
                 localStorage.setItem('portal_current_user', JSON.stringify(sessionData));
 
                 // Redirect to dashboard
