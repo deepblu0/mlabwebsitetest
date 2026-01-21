@@ -798,7 +798,6 @@
                 'belediye').length;
             document.getElementById('stat-ozel').textContent = allPosts.filter(p => p.author?.category ===
                 'ozel_sektor').length;
-            document.getElementById('post-count').textContent = allPosts.length;
 
             if (allPosts.length === 0) {
                 container.innerHTML = '';
