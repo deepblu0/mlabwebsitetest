@@ -30,6 +30,16 @@
         }
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+            (function () {
+                // ÖNEMLİ: Kendi EmailJS Public Key'inizi buraya yapıştırın
+                // Hesap oluşturmak için: https://www.emailjs.com/
+                emailjs.init("9vXnBpTi1DpXAbi4p");
+            })();
+    </script>
 </head>
 
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
@@ -531,13 +541,14 @@
             document.getElementById('user-modal').classList.add('hidden');
         }
 
+
         // Approve user
         async function approveUser(userId) {
             try {
                 const firebaseReady = await window.firebaseHelpers.initializeFirebase();
 
                 if (!firebaseReady) {
-                    // localStorage fallback
+                    // localStorage fallback (Email gönderimi sadece Firebase modunda çalışır veya buraya da eklenebilir ama şu an atlıyoruz)
                     const pendingUsers = JSON.parse(localStorage.getItem('portal_pending_users') || '[]');
                     const approvedUsers = JSON.parse(localStorage.getItem('portal_users') || '[]');
 
@@ -553,18 +564,55 @@
                     return;
                 }
 
-                const { db, doc, updateDoc, serverTimestamp } = window.firebaseDb;
+                const { db, doc, updateDoc, getDoc, serverTimestamp } = window.firebaseDb;
 
-                await updateDoc(doc(db, 'users', userId), {
+                // Kullanıcı bilgilerini al (E-posta için)
+                const userDocRef = doc(db, 'users', userId);
+                const userSnap = await getDoc(userDocRef);
+
+                if (!userSnap.exists()) {
+                    throw new Error("Kullanıcı bulunamadı!");
+                }
+
+                const userData = userSnap.data();
+
+                // 1. Firebase güncellemesi
+                await updateDoc(userDocRef, {
                     status: 'approved',
                     approved_at: serverTimestamp(),
                     approved_by: currentUser.email
                 });
 
+                // 2. Email Gönderimi (EmailJS)
+                // ÖNEMLİ: Kendi Service ID ve Template ID bilgilerinizi buraya girin
+                const serviceID = "service_wxuxtfr";
+                const templateID = "template_sdlim3u";
+
+                // Eğer Service ID değiştirilmemişse uyarı ver
+                if (serviceID === "YOUR_SERVICE_ID") {
+                    console.warn("EmailJS Service ID tanımlanmamış. E-posta gönderilemedi.");
+                    alert("Kullanıcı sistemde onaylandı.\nANCAK: E-posta bildirimi gönderilemedi çünkü EmailJS ayarları yapılmamış.\nLütfen koddaki YOUR_SERVICE_ID alanlarını düzenleyin.");
+                } else {
+                    const templateParams = {
+                        to_email: userData.email,
+                        to_name: userData.contact_name || userData.org_name || 'Kullanıcı',
+                        message: "M-LAB Portal üyelik başvurunuz onaylanmıştır. Giriş yapabilirsiniz."
+                    };
+
+                    emailjs.send(serviceID, templateID, templateParams)
+                        .then(() => {
+                            console.log('ONAY E-POSTASI GÖNDERİLDİ!');
+                            alert("Kullanıcı onaylandı ve bildirim e-postası gönderildi.");
+                        }, (err) => {
+                            console.error('ONAY E-POSTASI GÖNDERİLEMEDİ:', JSON.stringify(err));
+                            alert('Kullanıcı onaylandı ancak e-posta gönderilemedi. Hata: ' + JSON.stringify(err));
+                        });
+                }
+
                 await loadUsers();
             } catch (error) {
                 console.error('Onaylama hatası:', error);
-                alert('Onaylama sırasında bir hata oluştu.');
+                alert('Onaylama sırasında bir hata oluştu: ' + error.message);
             }
         }
 
