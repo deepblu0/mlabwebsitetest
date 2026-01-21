@@ -417,28 +417,25 @@
                     </div>
                 </div>
             </div>
+            <!-- Modal Footer -->
+            <div class="p-6 border-t border-slate-200 bg-slate-50 rounded-b-2xl">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button id="reject-coc" type="button"
+                        class="flex-1 py-3 px-6 border border-slate-300 text-slate-700 font-medium rounded-xl hover:bg-slate-100 transition-all">
+                        Kabul Etmiyorum
+                    </button>
+                    <button id="accept-coc" type="button" disabled
+                        class="flex-1 py-3 px-6 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white font-bold rounded-xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                        <i data-lucide="check" class="w-5 h-5"></i>
+                        Okudum ve Kabul Ediyorum
+                    </button>
+                </div>
+                <p id="scroll-hint" class="text-center text-xs text-slate-500 mt-3">
+                    <i data-lucide="chevrons-down" class="w-4 h-4 inline-block animate-bounce"></i>
+                    Kabul etmek için metni sonuna kadar okuyunuz
+                </p>
+            </div>
         </div>
-    </div>
-
-    <!-- Modal Footer -->
-    <div class="p-6 border-t border-slate-200 bg-slate-50 rounded-b-2xl">
-        <div class="flex flex-col sm:flex-row gap-3">
-            <button id="reject-coc" type="button"
-                class="flex-1 py-3 px-6 border border-slate-300 text-slate-700 font-medium rounded-xl hover:bg-slate-100 transition-all">
-                Kabul Etmiyorum
-            </button>
-            <button id="accept-coc" type="button" disabled
-                class="flex-1 py-3 px-6 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white font-bold rounded-xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
-                <i data-lucide="check" class="w-5 h-5"></i>
-                Okudum ve Kabul Ediyorum
-            </button>
-        </div>
-        <p id="scroll-hint" class="text-center text-xs text-slate-500 mt-3">
-            <i data-lucide="chevrons-down" class="w-4 h-4 inline-block animate-bounce"></i>
-            Kabul etmek için metni sonuna kadar okuyunuz
-        </p>
-    </div>
-    </div>
     </div>
 
     <script>
