@@ -360,35 +360,60 @@
         // Handle photo upload
 
 
-        // Handle form submit
-        document.getElementById('profile-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
+        // Wait for DOM and Firebase to be ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Handle form submit
+            document.getElementById('profile-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
 
-            const userId = window.currentUserId;
-            if (!userId) {
-                alert('Kullanıcı bulunamadı.');
-                return;
-            }
+                const userId = window.currentUserId;
+                if (!userId) {
+                    alert('Kullanıcı bulunamadı. Lütfen tekrar giriş yapın.');
+                    return;
+                }
 
-            const formData = {
-                name: document.getElementById('org_name').value,
-                website: document.getElementById('website').value,
-                description: document.getElementById('org_description').value,
-                contact_name: document.getElementById('contact_name').value,
-                contact_title: document.getElementById('contact_title').value,
-                phone: document.getElementById('phone').value,
-                category: document.querySelector('input[name="category"]:checked')?.value || 'belediye',
-                challenges: Array.from(document.querySelectorAll('input[name="challenges"]:checked')).map(cb => cb.value),
-                updatedAt: new Date()
-            };
+                // Check if Firebase functions are available
+                if (!window.updateDoc || !window.doc || !window.db) {
+                    alert('Bağlantı hazır değil. Lütfen sayfayı yenileyip tekrar deneyin.');
+                    console.error('Firebase functions not available:', { updateDoc: !!window.updateDoc, doc: !!window.doc, db: !!window.db });
+                    return;
+                }
 
-            try {
-                await window.updateDoc(window.doc(window.db, 'users', userId), formData);
-                showSuccessMessage('Profil başarıyla güncellendi!');
-            } catch (error) {
-                console.error('Profil güncellenirken hata:', error);
-                alert('Profil güncellenirken bir hata oluştu.');
-            }
+                const submitBtn = e.target.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Kaydediliyor...';
+                submitBtn.disabled = true;
+
+                const formData = {
+                    name: document.getElementById('org_name').value,
+                    website: document.getElementById('website').value,
+                    description: document.getElementById('org_description').value,
+                    contact_name: document.getElementById('contact_name').value,
+                    contact_title: document.getElementById('contact_title').value,
+                    phone: document.getElementById('phone').value,
+                    category: document.querySelector('input[name="category"]:checked')?.value || 'belediye',
+                    challenges: Array.from(document.querySelectorAll('input[name="challenges"]:checked')).map(cb => cb.value),
+                    updatedAt: new Date()
+                };
+
+                try {
+                    await window.updateDoc(window.doc(window.db, 'users', userId), formData);
+
+                    // Also update localStorage
+                    const currentUser = JSON.parse(localStorage.getItem('portal_current_user') || '{}');
+                    Object.assign(currentUser, formData);
+                    localStorage.setItem('portal_current_user', JSON.stringify(currentUser));
+
+                    showSuccessMessage('Profil başarıyla güncellendi!');
+                } catch (error) {
+                    console.error('Profil güncellenirken hata:', error);
+                    alert('Profil güncellenirken bir hata oluştu: ' + error.message);
+                } finally {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    lucide.createIcons();
+                }
+            });
         });
 
         function showSuccessMessage(message) {
