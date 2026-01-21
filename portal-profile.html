@@ -59,18 +59,8 @@
 
         window.signOut = signOut;
 
-        // Check auth from localStorage (same as dashboard)
-        const currentUser = JSON.parse(localStorage.getItem('portal_current_user'));
-        if (!currentUser) {
-            window.location.href = 'portal-login.html';
-        } else {
-            // Load profile from Firestore using stored user ID
-            const userId = currentUser.id || currentUser.uid;
-            window.currentUserId = userId;
-            loadUserProfile(userId);
-        }
-
-        window.loadUserProfile = async function (userId) {
+        // Define loadUserProfile function first
+        async function loadUserProfile(userId) {
             try {
                 const userDoc = await getDoc(doc(db, 'users', userId));
                 if (userDoc.exists()) {
@@ -101,16 +91,27 @@
                         if (checkbox) checkbox.checked = true;
                     });
 
-                    // Set profile photo
-
-
                     // Update header
                     document.getElementById('user-name').textContent = data.contact_name || data.name || 'Kullanıcı';
                 }
             } catch (error) {
                 console.error('Profil yüklenirken hata:', error);
             }
-        };
+        }
+
+        // Also expose to window for external access
+        window.loadUserProfile = loadUserProfile;
+
+        // Check auth from localStorage (same as dashboard)
+        const currentUser = JSON.parse(localStorage.getItem('portal_current_user'));
+        if (!currentUser) {
+            window.location.href = 'portal-login.html';
+        } else {
+            // Load profile from Firestore using stored user ID
+            const userId = currentUser.id || currentUser.uid;
+            window.currentUserId = userId;
+            loadUserProfile(userId);
+        }
 
         window.logout = async function () {
             await signOut(auth);
