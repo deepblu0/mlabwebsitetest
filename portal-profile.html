@@ -61,41 +61,58 @@
 
         // Define loadUserProfile function first
         async function loadUserProfile(userId) {
+            // Helper function to fill form fields
+            function fillFormWithData(data) {
+                window.currentUserData = data;
+
+                // Fill form fields
+                document.getElementById('org_name').value = data.name || '';
+                document.getElementById('website').value = data.website || '';
+                document.getElementById('org_description').value = data.description || '';
+                document.getElementById('contact_name').value = data.contact_name || '';
+                document.getElementById('contact_title').value = data.contact_title || '';
+                document.getElementById('email').value = data.email || '';
+                document.getElementById('phone').value = data.phone || '';
+
+                // Set category
+                if (data.category === 'belediye') {
+                    document.getElementById('cat-belediye').checked = true;
+                } else {
+                    document.getElementById('cat-ozel').checked = true;
+                }
+
+                // Set challenges
+                const challenges = data.challenges || [];
+                challenges.forEach(c => {
+                    const checkbox = document.querySelector(`input[name="challenges"][value="${c}"]`);
+                    if (checkbox) checkbox.checked = true;
+                });
+
+                // Update header
+                document.getElementById('user-name').textContent = data.contact_name || data.name || 'Kullanıcı';
+            }
+
             try {
                 const userDoc = await getDoc(doc(db, 'users', userId));
                 if (userDoc.exists()) {
                     const data = userDoc.data();
-                    window.currentUserData = data;
                     window.currentUserId = userId;
+                    fillFormWithData(data);
 
-                    // Fill form fields
-                    document.getElementById('org_name').value = data.name || '';
-                    document.getElementById('website').value = data.website || '';
-                    document.getElementById('org_description').value = data.description || '';
-                    document.getElementById('contact_name').value = data.contact_name || '';
-                    document.getElementById('contact_title').value = data.contact_title || '';
-                    document.getElementById('email').value = data.email || '';
-                    document.getElementById('phone').value = data.phone || '';
-
-                    // Set category
-                    if (data.category === 'belediye') {
-                        document.getElementById('cat-belediye').checked = true;
-                    } else {
-                        document.getElementById('cat-ozel').checked = true;
-                    }
-
-                    // Set challenges
-                    const challenges = data.challenges || [];
-                    challenges.forEach(c => {
-                        const checkbox = document.querySelector(`input[name="challenges"][value="${c}"]`);
-                        if (checkbox) checkbox.checked = true;
-                    });
-
-                    // Update header
-                    document.getElementById('user-name').textContent = data.contact_name || data.name || 'Kullanıcı';
+                    // Also save to localStorage for offline access
+                    const currentUser = JSON.parse(localStorage.getItem('portal_current_user') || '{}');
+                    Object.assign(currentUser, data);
+                    localStorage.setItem('portal_current_user', JSON.stringify(currentUser));
                 }
             } catch (error) {
                 console.error('Profil yüklenirken hata:', error);
+
+                // Fallback to localStorage when offline
+                const cachedUser = JSON.parse(localStorage.getItem('portal_current_user') || '{}');
+                if (cachedUser && (cachedUser.name || cachedUser.email)) {
+                    console.log('Çevrimdışı mod: localStorage verisi kullanılıyor');
+                    fillFormWithData(cachedUser);
+                }
             }
         }
 
