@@ -359,6 +359,30 @@
         </div>
     </div>
 
+    <!-- ERROR MODAL -->
+    <div id="error-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeErrorModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 text-center relative">
+                <button onclick="closeErrorModal()"
+                    class="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full transition-colors">
+                    <i data-lucide="x" class="w-5 h-5 text-slate-400"></i>
+                </button>
+                <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="alert-circle" class="w-10 h-10 text-red-500"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800 mb-3">Hata Oluştu!</h2>
+                <p id="error-modal-message" class="text-slate-600 mb-6">
+                    Bir hata meydana geldi.
+                </p>
+                <button onclick="closeErrorModal()"
+                    class="inline-flex items-center gap-2 px-6 py-3 bg-red-500 text-white font-semibold rounded-xl hover:bg-red-600 transition-colors">
+                    Tamam
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer class="bg-mlab-navy text-white mt-auto">
         <div class="h-1 w-full bg-gradient-to-r from-mlab-cyan via-mlab-purple to-mlab-cyan"></div>
@@ -391,7 +415,12 @@
         let isSubmitting = false;
 
         function showError(message) {
-            alert(message);
+            document.getElementById('error-modal-message').textContent = message;
+            document.getElementById('error-modal').classList.remove('hidden');
+        }
+
+        function closeErrorModal() {
+            document.getElementById('error-modal').classList.add('hidden');
         }
 
         function setLoading(loading) {
@@ -426,6 +455,7 @@
                 return;
             }
 
+            // Immediately disable button to prevent double clicks
             setLoading(true);
 
             try {
@@ -500,8 +530,63 @@
                 console.error('Kayıt hatası:', error);
 
                 let errorMessage = 'Kayıt sırasında bir hata oluştu.';
+
+                // Self-healing for "Email already in use" but missing Firestore profile
                 if (error.code === 'auth/email-already-in-use') {
-                    errorMessage = 'Bu e-posta adresi zaten kayıtlı.';
+                    try {
+                        console.log('E-posta kullanımda, yetim hesap kontrolü yapılıyor...');
+
+                        // Re-initialize variables needed in catch block
+                        const { auth, signInWithEmailAndPassword } = window.firebaseAuth;
+                        const { db, doc, setDoc, serverTimestamp } = window.firebaseDb;
+
+                        // Try to sign in with provided credentials
+                        const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
+                        const user = userCredential.user;
+
+                        // Check if profile exists
+                        const docSnap = await window.firebaseDb.getDoc(doc(db, 'users', user.uid));
+
+                        if (!docSnap.exists()) {
+                            console.log('Yetim hesap tespit edildi. Profil yeniden oluşturuluyor...');
+
+                            // Re-create profile logic (duplicated from above to ensure scope access)
+                            const selectedChallenges = Array.from(document.querySelectorAll('input[name="challenges"]:checked'))
+                                .map(cb => cb.value);
+
+                            const userProfile = {
+                                email: data.email,
+                                org_name: data.org_name,
+                                org_type: data.category,
+                                challenges: selectedChallenges,
+                                description: data.org_description || '',
+                                website: data.website || '',
+                                contact_name: data.contact_name,
+                                contact_title: data.contact_title,
+                                phone: data.phone || '',
+                                status: 'pending',
+                                created_at: serverTimestamp(),
+                                approved_at: null,
+                                approved_by: null
+                            };
+
+                            await setDoc(doc(db, 'users', user.uid), userProfile);
+                            await window.firebaseAuth.signOut(auth);
+
+                            document.getElementById('success-modal').classList.remove('hidden');
+                            return; // Success!
+                        } else {
+                            errorMessage = 'Bu e-posta adresiyle zaten bir hesabınız var. Lütfen giriş yapın.';
+                        }
+                    } catch (recoveryError) {
+                        console.error('Kurtarma denemesi başarısız:', recoveryError);
+                        // If login fails (wrong password for existing email), show original error or "Email in use"
+                        if (recoveryError.code === 'auth/wrong-password') {
+                            errorMessage = 'Bu e-posta adresi zaten kayıtlı ve girdiğiniz şifre yanlış.';
+                        } else {
+                            errorMessage = 'Bu e-posta adresi sistemde zaten kayıtlı. Lütfen giriş yapın.';
+                        }
+                    }
                 } else if (error.code === 'auth/weak-password') {
                     errorMessage = 'Şifre çok zayıf. Lütfen daha güçlü bir şifre seçin.';
                 } else if (error.code === 'auth/invalid-email') {
@@ -510,7 +595,11 @@
 
                 showError(errorMessage);
             } finally {
-                setLoading(false);
+                // Keep loading true if successful to prevent re-submit while showing success modal
+                // But set to false if error
+                if (document.getElementById('success-modal').classList.contains('hidden')) {
+                    setLoading(false);
+                }
             }
         });
     </script>
