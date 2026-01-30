@@ -1769,8 +1769,9 @@
         }
 
         // New Post Modal
-        document.getElementById('new-post-btn').addEventListener('click', openNewPostModal);
-        document.getElementById('mobile-new-post-btn').addEventListener('click', openNewPostModal);
+        // New Post Modal - Button logic handled inline
+        // document.getElementById('new-post-btn')?.addEventListener('click', openNewPostModal);
+        // document.getElementById('mobile-new-post-btn')?.addEventListener('click', openNewPostModal);
 
         function openNewPostModal() {
             document.getElementById('new-post-modal').classList.remove('hidden');
