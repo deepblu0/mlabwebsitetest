@@ -57,40 +57,30 @@
                         <img src="mlab-logo.png" alt="M-LAB" class="h-10 w-auto brightness-0 invert">
                     </a>
                     <span class="hidden md:inline text-white/50">|</span>
-                    <span class="hidden md:inline text-sm font-medium text-mlab-cyan">Portal Dashboard</span>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="relative" id="user-menu-container">
-                        <button id="user-menu-btn"
-                            class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">
-                            <div class="w-8 h-8 bg-mlab-purple rounded-full flex items-center justify-center">
-                                <i data-lucide="user" class="w-4 h-4 text-white"></i>
-                            </div>
-                            <span id="user-name" class="hidden md:inline text-sm font-medium">Kullanıcı</span>
-                            <i data-lucide="chevron-down" class="w-4 h-4 text-white/70"></i>
+                    <i data-lucide="chevron-down" class="w-4 h-4 text-white/70"></i>
+                    </button>
+                    <div id="user-dropdown"
+                        class="hidden absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-200 py-2">
+                        <a href="portal"
+                            class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm">
+                            <i data-lucide="home" class="w-4 h-4"></i>
+                            Portal Ana Sayfa
+                        </a>
+                        <a href="portal-profile"
+                            class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm">
+                            <i data-lucide="user-circle" class="w-4 h-4"></i>
+                            Profil Ayarları
+                        </a>
+                        <hr class="my-2 border-slate-100">
+                        <button onclick="logout()"
+                            class="w-full flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 text-sm">
+                            <i data-lucide="log-out" class="w-4 h-4"></i>
+                            Çıkış Yap
                         </button>
-                        <div id="user-dropdown"
-                            class="hidden absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-200 py-2">
-                            <a href="portal"
-                                class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm">
-                                <i data-lucide="home" class="w-4 h-4"></i>
-                                Portal Ana Sayfa
-                            </a>
-                            <a href="portal-profile"
-                                class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm">
-                                <i data-lucide="user-circle" class="w-4 h-4"></i>
-                                Profil Ayarları
-                            </a>
-                            <hr class="my-2 border-slate-100">
-                            <button onclick="logout()"
-                                class="w-full flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 text-sm">
-                                <i data-lucide="log-out" class="w-4 h-4"></i>
-                                Çıkış Yap
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </nav>
 
@@ -246,7 +236,7 @@
                     </div>
                     <h3 class="text-lg font-semibold text-slate-600 mb-2">Henüz çağrı yok</h3>
                     <p class="text-slate-500 mb-6">İlk çağrıyı siz oluşturun!</p>
-                    <button onclick="openNewPostModal()"
+                    <button onclick="submitNewPost()" id="submit-btn"
                         class="inline-flex items-center gap-2 px-6 py-3 bg-mlab-purple text-white font-semibold rounded-xl hover:bg-mlab-navy transition-colors">
                         <i data-lucide="plus" class="w-5 h-5"></i>
                         Yeni Çağrı
@@ -254,14 +244,431 @@
                 </div>
             </div>
         </div>
+
+    </main>
+
+    <!-- FLOATING ACTION BUTTONS -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-4">
+        <!-- Expert Application Button -->
+        <button id="expert-btn" onclick="openExpertModal()"
+            class="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-mlab-orange to-red-500 text-white text-sm font-semibold rounded-full shadow-xl shadow-mlab-orange/30 hover:shadow-mlab-orange/50 hover:scale-105 transition-all duration-300">
+            <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+            <span>Uzman Havuzuna Katıl!</span>
+        </button>
+
+        <!-- New Post Button -->
+        <button id="new-post-btn" onclick="openNewPostModal()"
+            class="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-sm font-semibold rounded-full shadow-xl shadow-mlab-purple/30 hover:shadow-mlab-purple/50 hover:scale-105 transition-all duration-300">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>Yeni Çağrı</span>
+        </button>
+    </div>
+
+    <!-- NEW POST MODAL -->
+    <div id="new-post-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeNewPostModal()"></div>
+        <div
+            class="absolute inset-4 md:inset-10 lg:inset-y-10 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-2xl lg:w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
+            <!-- Header -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
+                <h2 class="text-xl font-bold text-mlab-navy">Yeni Çağrıda Bulun</h2>
+                <button onclick="closeNewPostModal()" class="p-2 hover:bg-slate-200 rounded-full transition-colors">
+                    <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
+                </button>
+            </div>
+
+            <!-- Body -->
+            <div class="flex-grow overflow-y-auto p-6">
+                <form id="new-post-form" class="space-y-5">
+                    <!-- Post Type -->
+                    <div>
+                        <label class="block text-sm font-semibold text-mlab-navy mb-3">Çağrı Türü *</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="post_type" value="destek_talebi" class="peer sr-only"
+                                    required>
+                                <div
+                                    class="p-4 rounded-xl border-2 border-slate-200 peer-checked:border-mlab-cyan peer-checked:bg-mlab-cyan/5 transition-all hover:border-slate-300 h-full flex flex-col">
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-gradient-to-br from-mlab-cyan to-teal-500 flex items-center justify-center shadow-lg shadow-mlab-cyan/30 shrink-0">
+                                            <i data-lucide="message-square-plus" class="w-5 h-5 text-white"></i>
+                                        </div>
+                                        <div class="font-semibold text-mlab-navy text-sm">Destek Talebi</div>
+                                    </div>
+                                    <p class="text-xs text-slate-500 leading-relaxed">
+                                        İnovatif, yaşanabilir ve iklim nötr odaklı projeleriniz için ihtiyaç duyduğunuz
+                                        partner, finansman veya teknik altyapı desteğini buradan duyurun.
+                                    </p>
+                                </div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="post_type" value="uzmanlik_sunumu" class="peer sr-only"
+                                    required>
+                                <div
+                                    class="p-4 rounded-xl border-2 border-slate-200 peer-checked:border-mlab-orange peer-checked:bg-mlab-orange/5 transition-all hover:border-slate-300 h-full flex flex-col">
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-gradient-to-br from-mlab-orange to-amber-500 flex items-center justify-center shadow-lg shadow-mlab-orange/30 shrink-0">
+                                            <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+                                        </div>
+                                        <div class="font-semibold text-mlab-navy text-sm">Uzmanlık Bildirisi</div>
+                                    </div>
+                                    <p class="text-xs text-slate-500 leading-relaxed">
+                                        Şehrin dönüşüm hedeflerine değer katacak kurumsal yetkinliklerinizi, akademik
+                                        birikiminizi veya teknolojik çözüm önerilerinizi çözüm ağına ekleyin.
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Expert Support Call-to-Action -->
+                    <div
+                        class="bg-gradient-to-r from-mlab-orange/10 to-transparent p-4 rounded-xl border border-mlab-orange/20 mb-6">
+                        <div class="flex items-center justify-between gap-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-mlab-orange to-amber-500 flex items-center justify-center shrink-0">
+                                    <i data-lucide="award" class="w-5 h-5 text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-800 text-sm">Uzman mısınız?</h3>
+                                    <p class="text-xs text-slate-500">Çözüm ağımıza katılın ve projelerde yer alın.</p>
+                                </div>
+                            </div>
+                            <button type="button" onclick="closeNewPostModal(); openExpertModal();"
+                                class="px-4 py-2 bg-gradient-to-r from-mlab-orange to-amber-500 text-white text-xs font-bold rounded-lg hover:shadow-lg transition-transform hover:-translate-y-0.5 whitespace-nowrap">
+                                Beni Uzman Havuzuna Dahil Et!
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Title -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Başlık *</label>
+                        <input type="text" name="title" required
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                    </div>
+
+                    <!-- Büyük Zorluk -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Büyük Zorluk *</label>
+                        <select name="sector" required
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                            <option value="">Seçiniz...</option>
+                            <option value="barinma">Uygun Fiyatlı Barınma</option>
+                            <option value="hareketlilik">Sürdürülebilir Hareketlilik</option>
+                            <option value="afet">Afetlere Dirençlilik</option>
+                            <option value="gida">Sağlıklı Gıda</option>
+                            <option value="saglik">Sağlık ve Esenlik</option>
+                            <option value="egitim">Eğitimli Nesiller</option>
+                            <option value="is">İnsana Yakışır İş</option>
+                            <option value="inovasyon">İnovasyon Üretimi</option>
+                            <option value="kultur">Kültür ve Kapsayıcılık</option>
+                            <option value="dongusal">Döngüsel Metabolizma</option>
+                        </select>
+                    </div>
+
+                    <!-- Description -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Açıklama *</label>
+                        <textarea name="description" rows="4" required
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none"></textarea>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">
+                            <i data-lucide="paperclip" class="w-4 h-4 inline mr-1"></i>
+                            Dosya Ekle (opsiyonel)
+                        </label>
+                        <div id="file-drop-zone"
+                            class="border-2 border-dashed border-slate-300 rounded-xl p-4 text-center hover:border-mlab-purple transition-colors cursor-pointer bg-slate-50">
+                            <input type="file" id="post-file" name="file"
+                                accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif" class="hidden"
+                                onchange="handleFileSelect(event)">
+                            <label for="post-file" class="cursor-pointer">
+                                <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto text-slate-400 mb-2"></i>
+                                <p class="text-sm text-slate-600">Dosya seçin veya sürükleyin</p>
+                                <p class="text-xs text-slate-400 mt-1">PDF, Word, Excel, Resim (max 10MB)</p>
+                            </label>
+                        </div>
+                        <div id="selected-file-display" class="mt-2 hidden">
+                            <div
+                                class="flex items-center justify-between bg-white border border-slate-200 rounded-lg px-3 py-2">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="file" id="selected-file-icon" class="w-4 h-4 text-mlab-purple"></i>
+                                    <span id="selected-file-name"
+                                        class="text-sm text-slate-700 truncate max-w-[200px]"></span>
+                                    <span id="selected-file-size" class="text-xs text-slate-400"></span>
+                                </div>
+                                <button type="button" onclick="removeSelectedFile()"
+                                    class="p-1 hover:bg-red-50 rounded text-red-500">
+                                    <i data-lucide="x" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
+                <button onclick="closeNewPostModal()"
+                    class="px-5 py-2.5 text-slate-600 font-medium rounded-xl hover:bg-slate-200 transition-colors">
+                    İptal
+                </button>
+                <button onclick="submitNewPost()" id="submit-btn"
+                    class="inline-flex items-center gap-2 px-6 py-3 bg-mlab-purple text-white font-semibold rounded-xl hover:bg-mlab-navy transition-colors">
+                    <i data-lucide="plus" class="w-5 h-5"></i>
+                    Yeni Çağrı
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPERT APPLICATION MODAL -->
+    <div id="expert-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeExpertModal()"></div>
+        <div
+            class="absolute inset-4 md:inset-10 lg:inset-y-10 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-3xl lg:w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-mlab-navy to-mlab-purple p-6 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
+                        <i data-lucide="clipboard-list" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white">Uzman Başvuru Formu</h2>
+                        <p class="text-white/70 text-sm">Tüm alanları eksiksiz doldurunuz.</p>
+                    </div>
+                </div>
+                <button onclick="closeExpertModal()" class="text-white/70 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Body -->
+            <div class="flex-grow overflow-y-auto p-6 md:p-8">
+                <form id="expert-form" class="space-y-8">
+                    <!-- Kişisel Bilgiler -->
+                    <div>
+                        <h3 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
+                            <span
+                                class="w-8 h-8 bg-mlab-cyan/10 rounded-lg flex items-center justify-center text-mlab-cyan text-sm font-bold">1</span>
+                            Kişisel Bilgiler
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Ad Soyad *</label>
+                                <input type="text" name="fullName" required
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Meslek *</label>
+                                <input type="text" name="profession" required
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Çalıştığı Kurum
+                                    *</label>
+                                <input type="text" name="organization" required
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Ünvan *</label>
+                                <input type="text" name="title" required
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- İletişim Bilgileri -->
+                    <div>
+                        <h3 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
+                            <span
+                                class="w-8 h-8 bg-mlab-cyan/10 rounded-lg flex items-center justify-center text-mlab-cyan text-sm font-bold">2</span>
+                            İletişim Bilgileri
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">E-posta Adresi
+                                    *</label>
+                                <input type="email" name="email" required
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Telefon Numarası
+                                    *</label>
+                                <input type="tel" name="phone" required
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Uzmanlık Bilgileri -->
+                    <div>
+                        <h3 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
+                            <span
+                                class="w-8 h-8 bg-mlab-cyan/10 rounded-lg flex items-center justify-center text-mlab-cyan text-sm font-bold">3</span>
+                            Uzmanlık Bilgileri
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Uzmanlık Alanı
+                                    *</label>
+                                <input type="text" name="expertiseArea" required
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Uzmanlık Detayları
+                                    *</label>
+                                <textarea name="expertiseDetails" required rows="4"
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all resize-none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Eğitim Bilgileri -->
+                    <div>
+                        <h3 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
+                            <span
+                                class="w-8 h-8 bg-mlab-cyan/10 rounded-lg flex items-center justify-center text-mlab-cyan text-sm font-bold">4</span>
+                            Eğitim Bilgileri
+                        </h3>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Eğitim Geçmişi *</label>
+                            <textarea name="education" required rows="3"
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all resize-none"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Etik Taahhüt -->
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+                        <h3 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
+                            <span
+                                class="w-8 h-8 bg-mlab-purple/10 rounded-lg flex items-center justify-center text-mlab-purple text-sm font-bold">5</span>
+                            Etik Taahhütname
+                        </h3>
+                        <div class="flex items-start gap-3">
+                            <input type="checkbox" id="coc-checkbox" name="cocAccepted"
+                                class="mt-1.5 w-5 h-5 rounded border-slate-300 text-mlab-purple focus:ring-mlab-purple cursor-pointer"
+                                disabled>
+                            <div>
+                                <label for="coc-checkbox" class="text-sm text-slate-700 cursor-pointer">
+                                    <span class="font-medium">Çıkar Çatışması ve Gizlilik Taahhütnamesini</span>
+                                    okudum ve kabul ediyorum.
+                                </label>
+                                <button type="button" onclick="openCocModal()"
+                                    class="block mt-2 text-sm text-mlab-purple hover:text-mlab-navy font-medium underline underline-offset-2">
+                                    <i data-lucide="file-text" class="w-4 h-4 inline-block mr-1"></i>
+                                    Taahhütnameyi Oku (Zorunlu)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3 shrink-0">
+                <button onclick="closeExpertModal()"
+                    class="px-5 py-2.5 text-slate-600 font-medium rounded-xl hover:bg-slate-200 transition-colors">
+                    İptal
+                </button>
+                <button type="submit" form="expert-form" id="expert-submit-btn" disabled
+                    class="px-6 py-2.5 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white font-bold rounded-xl hover:shadow-lg hover:shadow-mlab-purple/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Başvuruyu Gönder
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CODE OF CONDUCT MODAL -->
+    <div id="coc-modal" class="fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeCocModal()"></div>
+        <div
+            class="absolute inset-x-4 top-1/2 -translate-y-1/2 md:max-w-2xl md:mx-auto bg-white rounded-2xl shadow-2xl max-h-[90vh] flex flex-col">
+            <!-- Header -->
+            <div
+                class="bg-gradient-to-r from-mlab-navy to-mlab-purple p-6 rounded-t-2xl flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Çıkar Çatışması ve Gizlilik Taahhütnamesi</h3>
+                        <p class="text-white/70 text-sm">Lütfen sonuna kadar okuyunuz</p>
+                    </div>
+                </div>
+                <button onclick="closeCocModal()" class="text-white/70 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Body -->
+            <div class="p-6 overflow-y-auto flex-grow">
+                <div class="prose prose-slate max-w-none text-sm">
+                    <h4 class="text-mlab-navy font-bold text-lg mb-4">Etik Beyan</h4>
+                    <p class="text-slate-600 mb-6">
+                        İzmir Büyükşehir Belediyesi çalışmalarında bağımsız uzman olarak görev almak üzere başvuruda
+                        bulunuyorum. Bu kapsamda aşağıdaki hususları beyan ederim:
+                    </p>
+                    <div class="space-y-4 text-slate-600">
+                        <p><strong>1. Çıkar Çatışması:</strong> Danışmanlık veya değerlendirme desteği verdiğim
+                            konularda ihale, proje veya hibe süreçlerine katılmayacağım. Yakınlarımın dahil olduğu
+                            süreçlerden çekileceğim.</p>
+                        <p><strong>2. Gizlilik:</strong> Görevim sırasında edindiğim bilgileri gizli tutacağım ve
+                            üçüncü
+                            kişilerle paylaşmayacağım.</p>
+                        <p><strong>3. Tarafsızlık:</strong> Değerlendirmelerimi objektif kriterlere göre yapacağım.
+                        </p>
+                    </div>
+                    <div class="bg-slate-100 rounded-xl p-4 mt-6">
+                        <p class="text-slate-600 text-sm">
+                            Bu formu göndererek yukarıdaki beyanları kabul etmiş sayılırım.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="p-6 border-t border-slate-200 bg-slate-50 rounded-b-2xl shrink-0">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="closeCocModal()" type="button"
+                        class="flex-1 py-3 px-6 border border-slate-300 text-slate-700 font-medium rounded-xl hover:bg-slate-100 transition-all">
+                        Kabul Etmiyorum
+                    </button>
+                    <button onclick="acceptCoc()" type="button"
+                        class="flex-1 py-3 px-6 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white font-bold rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="check" class="w-5 h-5"></i>
+                        Okudum ve Kabul Ediyorum
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     </main>
 
     <!-- FLOATING ACTION BUTTON -->
-    <button id="new-post-btn" onclick="openNewPostModal()"
-        class="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-sm font-semibold rounded-full shadow-xl shadow-mlab-purple/30 hover:shadow-mlab-purple/50 hover:scale-105 transition-all duration-300">
-        <i data-lucide="plus" class="w-4 h-4"></i>
-        <span>Yeni Çağrı</span>
-    </button>
+    <!-- FLOATING ACTION BUTTONS -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-4">
+        <!-- Expert Application Button -->
+        <button id="expert-btn" onclick="openExpertModal()"
+            class="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-mlab-orange to-red-500 text-white text-sm font-semibold rounded-full shadow-xl shadow-mlab-orange/30 hover:shadow-mlab-orange/50 hover:scale-105 transition-all duration-300">
+            <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+            <span>Uzman Havuzuna Katıl!</span>
+        </button>
+
+        <!-- New Post Button -->
+        <button id="new-post-btn" onclick="openNewPostModal()"
+            class="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-sm font-semibold rounded-full shadow-xl shadow-mlab-purple/30 hover:shadow-mlab-purple/50 hover:scale-105 transition-all duration-300">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>Yeni Çağrı</span>
+        </button>
+    </div>
 
     <!-- NEW POST MODAL -->
     <div id="new-post-modal" class="fixed inset-0 z-50 hidden">
@@ -1451,7 +1858,101 @@
             }
         }
 
+        // --- EXPERT MODAL LOGIC ---
+        function openExpertModal() {
+            document.getElementById('expert-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+
+            // Auto-fill some fields if possible
+            if (currentUser) {
+                document.querySelector('[name="fullName"]').value = currentUser.contact_name || '';
+                document.querySelector('[name="email"]').value = currentUser.email || '';
+                document.querySelector('[name="organization"]').value = currentUser.org_name || '';
+                document.querySelector('[name="title"]').value = currentUser.contact_title || '';
+                document.querySelector('[name="phone"]').value = currentUser.phone || '';
+            }
+        }
+
+        function closeExpertModal() {
+            document.getElementById('expert-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function openCocModal() {
+            document.getElementById('coc-modal').classList.remove('hidden');
+        }
+
+        function closeCocModal() {
+            document.getElementById('coc-modal').classList.add('hidden');
+        }
+
+        function acceptCoc() {
+            const cocCheckbox = document.getElementById('coc-checkbox');
+            const submitBtn = document.getElementById('expert-submit-btn');
+
+            cocCheckbox.disabled = false;
+            cocCheckbox.checked = true;
+            submitBtn.disabled = false;
+            closeCocModal();
+        }
+
+        document.getElementById('coc-checkbox').addEventListener('change', (e) => {
+            document.getElementById('expert-submit-btn').disabled = !e.target.checked;
+        });
+
+        // Expert Form Submission
+        document.getElementById('expert-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('expert-submit-btn');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Gönderiliyor...';
+            lucide.createIcons();
+
+            try {
+                // Initialize Firebase if not already
+                if (!window.firebaseDb) await window.firebaseHelpers.initializeFirebase();
+                const { db, collection, doc, setDoc, serverTimestamp } = window.firebaseDb;
+
+                const formData = {
+                    fullName: this.querySelector('[name="fullName"]').value,
+                    profession: this.querySelector('[name="profession"]').value,
+                    organization: this.querySelector('[name="organization"]').value,
+                    title: this.querySelector('[name="title"]').value,
+                    email: this.querySelector('[name="email"]').value,
+                    phone: this.querySelector('[name="phone"]').value,
+                    expertiseArea: this.querySelector('[name="expertiseArea"]').value,
+                    expertiseDetails: this.querySelector('[name="expertiseDetails"]').value,
+                    education: this.querySelector('[name="education"]').value,
+                    ethicsAccepted: true,
+                    status: 'pending',
+                    createdAt: serverTimestamp(),
+                    userId: currentUser?.uid || null // Link to portal user if available
+                };
+
+                const docId = `expert_${Date.now()}`;
+                await setDoc(doc(db, 'expert_applications', docId), formData);
+
+                // Success State
+                alert('Başvurunuz başarıyla alındı! Değerlendirme sonucunda sizinle iletişime geçilecektir.');
+                this.reset();
+                closeExpertModal();
+
+            } catch (error) {
+                console.error('Uzman başvuru hatası:', error);
+                alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
         function applyFilters() {
+            // Check if current user is expert (if we want to hide/show things, but here just robust check)
+            if (!allPosts) return;
+
             // Get filter values
             const postType = document.querySelector('input[name="post_type"]:checked')?.value || 'all';
             const belediyeChecked = document.querySelector('input[name="category"][value="belediye"]')?.checked;
