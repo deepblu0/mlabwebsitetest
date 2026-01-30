@@ -2347,20 +2347,26 @@
             submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Yayınlanıyor...';
 
             try {
-                if (window.firebaseReady && window.firebaseDb) {
+                // Ensure Firebase is initialized before posting
+                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
+
+                if (!firebaseReady) {
+                    // localStorage fallback
+                    const localPosts = JSON.parse(localStorage.getItem('portal_posts') || '[]');
+                    newPost.id = Date.now().toString();
+                    newPost.created_at = new Date().toISOString();
+                    localPosts.unshift(newPost);
+                    localStorage.setItem('portal_posts', JSON.stringify(localPosts));
+                } else {
+                    if (!window.firebaseDb) {
+                        await window.firebaseHelpers.initializeFirebase();
+                    }
                     const { db, collection, doc, setDoc, serverTimestamp } = window.firebaseDb;
                     const postId = Date.now().toString();
                     await setDoc(doc(db, 'posts', postId), {
                         ...newPost,
                         created_at: serverTimestamp()
                     });
-                } else {
-                    // Local Storage Fallback
-                    const localPosts = JSON.parse(localStorage.getItem('portal_posts') || '[]');
-                    newPost.id = Date.now().toString();
-                    newPost.created_at = new Date().toISOString();
-                    localPosts.unshift(newPost);
-                    localStorage.setItem('portal_posts', JSON.stringify(localPosts));
                 }
 
                 closePartnerModal();
