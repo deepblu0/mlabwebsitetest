@@ -898,19 +898,25 @@
                             </div>
 
                             <!-- Horizon Call Selection -->
-                            <div class="space-y-1">
+                            <div class="space-y-1 relative group">
                                 <label class="text-sm font-medium text-slate-700 flex items-center gap-2">
                                     İlgili Ufuk Avrupa Çağrısı
                                     <span class="text-xs text-slate-400 font-normal">(Listeden seçin veya arayın)</span>
                                 </label>
                                 <div class="relative">
-                                    <input type="text" id="horizon-call-search" list="horizon-calls-list"
-                                        placeholder="Çağrı kodu veya adı yazın..." required
+                                    <input type="text" id="horizon-call-search"
+                                        placeholder="Çağrı kodu veya adı yazın..." required autocomplete="off"
+                                        oninput="filterHorizonCalls(this.value)"
+                                        onfocus="filterHorizonCalls(this.value)"
                                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 pl-10 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all">
                                     <i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-3 top-3"></i>
-                                    <datalist id="horizon-calls-list">
-                                        <!-- Will be populated by JS -->
-                                    </datalist>
+
+                                    <!-- Custom Dropdown Container -->
+                                    <div id="horizon-custom-dropdown"
+                                        class="hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-xl max-h-60 overflow-y-auto overflow-x-hidden">
+                                        <!-- Items will be injected here -->
+                                        <div class="p-3 text-sm text-slate-400 text-center">Yükleniyor...</div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -2202,29 +2208,39 @@
 
         // --- Partner Call Modal Logic ---
 
+        // Global variable to store cached calls for filtering
+        let cachedHorizonCalls = [];
+
         function openPartnerModal() {
             document.getElementById('partner-modal').classList.remove('hidden');
-            populateHorizonCalls(); // Ensure list is populated
+            // Cache data once
+            if (cachedHorizonCalls.length === 0) {
+                cacheHorizonData();
+            }
         }
 
         function closePartnerModal() {
             document.getElementById('partner-modal').classList.add('hidden');
             document.getElementById('partner-form').reset();
+            document.getElementById('horizon-custom-dropdown').classList.add('hidden'); // Hide dropdown
         }
 
-        function populateHorizonCalls() {
-            const dataList = document.getElementById('horizon-calls-list');
-            if (dataList.children.length > 0) return; // Already populated
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+            const dropdown = document.getElementById('horizon-custom-dropdown');
+            const input = document.getElementById('horizon-call-search');
+            if (dropdown && input && !dropdown.contains(e.target) && !input.contains(e.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
 
+        function cacheHorizonData() {
             if (typeof horizonData === 'undefined' || !horizonData) {
                 console.error("Horizon Data not loaded!");
                 return;
             }
 
-            // Combine all calls (newCalls + missionCalls + allCalls)
-            // Use a Set to avoid duplicates based on code
             const uniqueCalls = new Map();
-
             const addCalls = (calls) => {
                 if (!calls) return;
                 calls.forEach(call => {
@@ -2238,10 +2254,38 @@
             addCalls(horizonData.missionCalls);
             addCalls(horizonData.allCalls);
 
-            uniqueCalls.forEach(call => {
-                const option = document.createElement('option');
-                option.value = `${call.code} - ${call.name}`;
-                dataList.appendChild(option);
+            cachedHorizonCalls = Array.from(uniqueCalls.values());
+        }
+
+        function filterHorizonCalls(query) {
+            const dropdown = document.getElementById('horizon-custom-dropdown');
+            dropdown.classList.remove('hidden');
+            dropdown.innerHTML = ''; // Clear current
+
+            const lowerQuery = query.toLowerCase();
+            // Filter
+            const matches = cachedHorizonCalls.filter(call =>
+                call.code.toLowerCase().includes(lowerQuery) ||
+                call.name.toLowerCase().includes(lowerQuery)
+            ).slice(0, 50); // Limit rendered items for performance
+
+            if (matches.length === 0) {
+                dropdown.innerHTML = '<div class="p-3 text-sm text-slate-500 text-center italic">Sonuç bulunamadı.</div>';
+                return;
+            }
+
+            matches.forEach(call => {
+                const div = document.createElement('div');
+                div.className = 'px-4 py-3 hover:bg-slate-50 cursor-pointer border-b border-slate-50 last:border-0 transition-colors text-left';
+                div.innerHTML = `
+                    <div class="font-bold text-mlab-navy text-xs mb-0.5 whitespace-nowrap overflow-hidden text-ellipsis">${call.code}</div>
+                    <div class="text-sm text-slate-700 leading-snug line-clamp-2">${call.name}</div>
+                `;
+                div.onclick = () => {
+                    document.getElementById('horizon-call-search').value = `${call.code} - ${call.name}`;
+                    dropdown.classList.add('hidden');
+                };
+                dropdown.appendChild(div);
             });
         }
 
