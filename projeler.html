@@ -219,7 +219,7 @@
             {
                 id: 1,
                 title: "Garden District Ter Elst Becomes A Climate Community",
-                category: "ENERGY",
+                category: "BARINMA",
                 startDate: "March 2024",
                 status: "In Progress",
                 progress: 65,
@@ -229,7 +229,7 @@
             {
                 id: 2,
                 title: "FEAST: Healthy and Sustainable Food",
-                category: "WASTE",
+                category: "GIDA",
                 startDate: "October 2022",
                 status: "In Progress",
                 progress: 40,
@@ -239,7 +239,7 @@
             {
                 id: 3,
                 title: "Wijgmaal Seen From A Spatial Perspective",
-                category: "NATURE",
+                category: "AFET",
                 startDate: "January 2020",
                 status: "Completed",
                 progress: 100,
@@ -249,7 +249,7 @@
             {
                 id: 4,
                 title: "Liman Bölgesi Elektrifikasyonu",
-                category: "ENERGY",
+                category: "HAREKETLILIK",
                 startDate: "June 2023",
                 status: "Planning",
                 progress: 15,
@@ -259,7 +259,7 @@
             {
                 id: 5,
                 title: "Alsancak Akıllı Ulaşım",
-                category: "TRANSPORT",
+                category: "HAREKETLILIK",
                 startDate: "August 2023",
                 status: "In Progress",
                 progress: 30,
@@ -269,23 +269,48 @@
             {
                 id: 6,
                 title: "Yeşil Bina Sertifikasyon",
-                category: "INFRASTRUCTURE",
+                category: "DONGUSEL",
                 startDate: "January 2024",
                 status: "Planning",
                 progress: 10,
                 partners: "Chamber of Architects",
                 image: "https://picsum.photos/seed/building1/800/400"
+            },
+            {
+                id: 7,
+                title: "Genç Yazılımcı Yetiştirme Programı",
+                category: "EGITIM",
+                startDate: "September 2023",
+                status: "In Progress",
+                progress: 55,
+                partners: "Izmir Institute of Technology",
+                image: "https://picsum.photos/seed/tech1/800/400"
+            },
+            {
+                id: 8,
+                title: "Kültürpark Dijital Arşiv Projesi",
+                category: "KULTUR",
+                startDate: "February 2024",
+                status: "Planning",
+                progress: 5,
+                partners: "Izmir Foundation",
+                image: "https://picsum.photos/seed/culture1/800/400"
             }
         ];
 
         // Filter definitions
         const filters = [
-            { id: 'ALL', label: 'TÜM PROJELER', color: 'bg-mlab-navy' },
-            { id: 'ENERGY', label: 'ENERJİ', color: 'bg-mlab-energy', categories: ['ENERGY'] },
-            { id: 'INFRASTRUCTURE', label: 'KENTSEL ALTYAPI', color: 'bg-mlab-infrastructure', categories: ['INFRASTRUCTURE'] },
-            { id: 'WASTE', label: 'ATIK', color: 'bg-mlab-waste', categories: ['WASTE'] },
-            { id: 'TRANSPORT', label: 'ULAŞIM', color: 'bg-mlab-transport', categories: ['TRANSPORT'] },
-            { id: 'NATURE', label: 'DOĞA', color: 'bg-mlab-nature', categories: ['NATURE'] }
+            { id: 'ALL', label: 'Tüm Projeler', color: 'bg-mlab-navy' },
+            { id: 'BARINMA', label: 'Uygun Fiyatlı ve Yeterli Barınma', color: 'bg-mlab-infrastructure', categories: ['BARINMA'] },
+            { id: 'HAREKETLILIK', label: 'Sürdürülebilir Hareketlilik', color: 'bg-mlab-transport', categories: ['HAREKETLILIK'] },
+            { id: 'AFET', label: 'Afetlere Dirençlilik', color: 'bg-red-500', categories: ['AFET'] },
+            { id: 'GIDA', label: 'Sağlıklı Gıda ve Tarım', color: 'bg-mlab-nature', categories: ['GIDA'] },
+            { id: 'SAGLIK', label: 'Sağlık ve Esenlik', color: 'bg-mlab-cyan', categories: ['SAGLIK'] },
+            { id: 'EGITIM', label: 'Eğitimli Nesiller', color: 'bg-mlab-purple', categories: ['EGITIM'] },
+            { id: 'IS', label: 'İnsana Yakışır Gelir ve Çalışma', color: 'bg-mlab-energy', categories: ['IS'] },
+            { id: 'TEKNOLOJI', label: 'Yenilik ve Teknoloji Üretimi', color: 'bg-blue-600', categories: ['TEKNOLOJI'] },
+            { id: 'KULTUR', label: 'Kültür, Bağlantılılık ve Kapsayıcılık', color: 'bg-pink-500', categories: ['KULTUR'] },
+            { id: 'DONGUSEL', label: 'Döngüsel Kentsel Metabolizma', color: 'bg-mlab-waste', categories: ['DONGUSEL'] }
         ];
 
         let activeFilterId = 'ALL';
@@ -294,7 +319,7 @@
             const container = document.getElementById('filter-container');
             container.innerHTML = filters.map(f => `
         <button onclick="setFilter('${f.id}')" 
-            class="px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg transition-all duration-300 ${activeFilterId === f.id ? `${f.color} text-white shadow-lg transform -translate-y-0.5` : `bg-white text-slate-600 hover:bg-slate-100 border border-slate-200`}">
+            class="px-5 py-2.5 text-xs font-bold tracking-wider rounded-lg transition-all duration-300 ${activeFilterId === f.id ? `${f.color} text-white shadow-lg transform -translate-y-0.5` : `bg-white text-slate-600 hover:bg-slate-100 border border-slate-200`}">
             ${f.label}
         </button>
       `).join('');

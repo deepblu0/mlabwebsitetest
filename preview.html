@@ -330,37 +330,122 @@
         lucide.createIcons();
 
         // DATA
+        // DATA
         const projects = [
-            { id: 1, title: "Garden District Ter Elst Becomes A Climate Community", category: "ENERGY", startDate: "March 2024", status: "In Progress", progress: 65, partners: "Ter Elst residents", themes: "Collective renovation", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" },
-            { id: 2, title: "FEAST: Healthy and Sustainable Food", category: "CONSUMPTION", startDate: "October 2022", status: "In Progress", progress: 40, partners: "Leuven 2030, KU Leuven", themes: "Healthy food", image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&q=80&w=1200" },
-            { id: 3, title: "Wijgmaal Seen From A Spatial Perspective", category: "ADAPTATION", startDate: "January 2020", status: "Completed", progress: 100, partners: "City of Leuven", themes: "Energy, Mobility", image: "https://images.unsplash.com/photo-1449824913929-4bdd42b98d0d?auto=format&fit=crop&q=80&w=1200" },
-            { id: 4, title: "Liman Bölgesi Elektrifikasyonu", category: "ENERGY", startDate: "June 2023", status: "Planning", progress: 15, partners: "Port Authority", themes: "Electrification", image: "https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=1200" },
-            { id: 5, title: "Alsancak Akıllı Ulaşım", category: "MOBILITY", startDate: "August 2023", status: "In Progress", progress: 30, partners: "Izmir Metro", themes: "AI, Traffic", image: "https://images.unsplash.com/photo-1494522358652-f30e61a60313?auto=format&fit=crop&q=80&w=1200" },
-            { id: 6, title: "Yeşil Bina Sertifikasyon", category: "BUILDINGS", startDate: "Jan 2024", status: "Planning", progress: 10, partners: "Chamber of Architects", themes: "Retrofitting", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200" }
+            {
+                id: 1,
+                title: "Garden District Ter Elst Becomes A Climate Community",
+                category: "BARINMA",
+                startDate: "March 2024",
+                status: "In Progress",
+                progress: 65,
+                partners: "Ter Elst residents",
+                image: "https://picsum.photos/seed/energy1/800/400"
+            },
+            {
+                id: 2,
+                title: "FEAST: Healthy and Sustainable Food",
+                category: "GIDA",
+                startDate: "October 2022",
+                status: "In Progress",
+                progress: 40,
+                partners: "Leuven 2030, KU Leuven",
+                image: "https://picsum.photos/seed/food1/800/400"
+            },
+            {
+                id: 3,
+                title: "Wijgmaal Seen From A Spatial Perspective",
+                category: "AFET",
+                startDate: "January 2020",
+                status: "Completed",
+                progress: 100,
+                partners: "City of Leuven",
+                image: "https://picsum.photos/seed/nature1/800/400"
+            },
+            {
+                id: 4,
+                title: "Liman Bölgesi Elektrifikasyonu",
+                category: "HAREKETLILIK",
+                startDate: "June 2023",
+                status: "Planning",
+                progress: 15,
+                partners: "Port Authority",
+                image: "https://picsum.photos/seed/port1/800/400"
+            },
+            {
+                id: 5,
+                title: "Alsancak Akıllı Ulaşım",
+                category: "HAREKETLILIK",
+                startDate: "August 2023",
+                status: "In Progress",
+                progress: 30,
+                partners: "Izmir Metro",
+                image: "https://picsum.photos/seed/transport1/800/400"
+            },
+            {
+                id: 6,
+                title: "Yeşil Bina Sertifikasyon",
+                category: "DONGUSEL",
+                startDate: "January 2024",
+                status: "Planning",
+                progress: 10,
+                partners: "Chamber of Architects",
+                image: "https://picsum.photos/seed/building1/800/400"
+            },
+            {
+                id: 7,
+                title: "Genç Yazılımcı Yetiştirme Programı",
+                category: "EGITIM",
+                startDate: "September 2023",
+                status: "In Progress",
+                progress: 55,
+                partners: "Izmir Institute of Technology",
+                image: "https://picsum.photos/seed/tech1/800/400"
+            },
+            {
+                id: 8,
+                title: "Kültürpark Dijital Arşiv Projesi",
+                category: "KULTUR",
+                startDate: "February 2024",
+                status: "Planning",
+                progress: 5,
+                partners: "Izmir Foundation",
+                image: "https://picsum.photos/seed/culture1/800/400"
+            }
         ];
 
         const filters = [
-            { id: 'ALL', label: 'TÜM PROJELER', color: 'bg-mlab-navy', hover: 'hover:bg-mlab-navy/90' },
-            { id: 'ENERGY', label: 'ENERJİ', color: 'bg-mlab-energy', hover: 'hover:bg-mlab-energy/90', categories: ['ENERGY'] },
-            { id: 'INFRASTRUCTURE', label: 'KENTSEL ALTYAPI', color: 'bg-mlab-infrastructure', hover: 'hover:bg-mlab-infrastructure/90', categories: ['BUILDINGS', 'INFRASTRUCTURE', 'FINANCING'] },
-            { id: 'WASTE', label: 'ATIK', color: 'bg-mlab-waste', hover: 'hover:bg-mlab-waste/90', categories: ['WASTE', 'CONSUMPTION', 'CIRCULAR'] },
-            { id: 'TRANSPORT', label: 'ULAŞIM', color: 'bg-mlab-transport', hover: 'hover:bg-mlab-transport/90', categories: ['MOBILITY', 'TRANSPORT'] },
-            { id: 'NATURE', label: 'DOĞA', color: 'bg-mlab-nature', hover: 'hover:bg-mlab-nature/90', categories: ['NATURE', 'ADAPTATION'] }
+            { id: 'ALL', label: 'Tüm Projeler', color: 'bg-mlab-navy' },
+            { id: 'BARINMA', label: 'Uygun Fiyatlı ve Yeterli Barınma', color: 'bg-mlab-infrastructure', categories: ['BARINMA'] },
+            { id: 'HAREKETLILIK', label: 'Sürdürülebilir Hareketlilik', color: 'bg-mlab-transport', categories: ['HAREKETLILIK'] },
+            { id: 'AFET', label: 'Afetlere Dirençlilik', color: 'bg-red-500', categories: ['AFET'] },
+            { id: 'GIDA', label: 'Sağlıklı Gıda ve Tarım', color: 'bg-mlab-nature', categories: ['GIDA'] },
+            { id: 'SAGLIK', label: 'Sağlık ve Esenlik', color: 'bg-mlab-cyan', categories: ['SAGLIK'] },
+            { id: 'EGITIM', label: 'Eğitimli Nesiller', color: 'bg-mlab-purple', categories: ['EGITIM'] },
+            { id: 'IS', label: 'İnsana Yakışır Gelir ve Çalışma', color: 'bg-mlab-energy', categories: ['IS'] },
+            { id: 'TEKNOLOJI', label: 'Yenilik ve Teknoloji Üretimi', color: 'bg-blue-600', categories: ['TEKNOLOJI'] },
+            { id: 'KULTUR', label: 'Kültür, Bağlantılılık ve Kapsayıcılık', color: 'bg-pink-500', categories: ['KULTUR'] },
+            { id: 'DONGUSEL', label: 'Döngüsel Kentsel Metabolizma', color: 'bg-mlab-waste', categories: ['DONGUSEL'] }
         ];
 
         const mapPins = [
-            { id: 1, x: '45%', y: '40%', title: 'Liman Bölgesi Elektrifikasyonu', desc: 'Liman operasyonlarından kaynaklanan emisyonları azaltmak için gemi-kıyı elektrik bağlantısı.', category: 'ENERGY' },
-            { id: 2, x: '60%', y: '55%', title: 'Alsancak Akıllı Ulaşım', desc: 'Yapay zeka destekli trafik yönetim sistemi ile yoğunluğu azaltma.', category: 'TRANSPORT' },
-            { id: 3, x: '30%', y: '65%', title: 'Karşıyaka Enerji Kooperatifi', desc: 'Vatandaş odaklı yenilenebilir enerji üretimi ve paylaşım platformu.', category: 'ENERGY' },
-            { id: 4, x: '75%', y: '30%', title: 'Bornova İnovasyon Kampüsü', desc: 'Sıfır karbon operasyonları için yenilenen üniversite binaları.', category: 'INFRASTRUCTURE' },
+            { id: 1, x: '45%', y: '40%', title: 'Liman Bölgesi Elektrifikasyonu', desc: 'Liman operasyonlarından kaynaklanan emisyonları azaltmak için gemi-kıyı elektrik bağlantısı.', category: 'HAREKETLILIK' },
+            { id: 2, x: '60%', y: '55%', title: 'Alsancak Akıllı Ulaşım', desc: 'Yapay zeka destekli trafik yönetim sistemi ile yoğunluğu azaltma.', category: 'HAREKETLILIK' },
+            { id: 3, x: '30%', y: '65%', title: 'Karşıyaka Enerji Kooperatifi', desc: 'Vatandaş odaklı yenilenebilir enerji üretimi ve paylaşım platformu.', category: 'DONGUSEL' },
+            { id: 4, x: '75%', y: '30%', title: 'Bornova İnovasyon Kampüsü', desc: 'Sıfır karbon operasyonları için yenilenen üniversite binaları.', category: 'TEKNOLOJI' },
         ];
 
         const categoryColors = {
-            ENERGY: { dot: 'bg-mlab-energy', pulse: 'bg-mlab-energy/30', label: 'Enerji', text: 'text-mlab-energy', bg: 'bg-mlab-energy/10' },
-            TRANSPORT: { dot: 'bg-mlab-transport', pulse: 'bg-mlab-transport/30', label: 'Ulaşım', text: 'text-mlab-transport', bg: 'bg-mlab-transport/10' },
-            INFRASTRUCTURE: { dot: 'bg-mlab-infrastructure', pulse: 'bg-mlab-infrastructure/30', label: 'Kentsel Altyapı', text: 'text-mlab-infrastructure', bg: 'bg-mlab-infrastructure/10' },
-            WASTE: { dot: 'bg-mlab-waste', pulse: 'bg-mlab-waste/30', label: 'Atık', text: 'text-mlab-waste', bg: 'bg-mlab-waste/10' },
-            NATURE: { dot: 'bg-mlab-nature', pulse: 'bg-mlab-nature/30', label: 'Doğa', text: 'text-mlab-nature', bg: 'bg-mlab-nature/10' }
+            BARINMA: { dot: 'bg-mlab-infrastructure', pulse: 'bg-mlab-infrastructure/30', label: 'Barınma', text: 'text-mlab-infrastructure', bg: 'bg-mlab-infrastructure/10' },
+            HAREKETLILIK: { dot: 'bg-mlab-transport', pulse: 'bg-mlab-transport/30', label: 'Hareketlilik', text: 'text-mlab-transport', bg: 'bg-mlab-transport/10' },
+            AFET: { dot: 'bg-red-500', pulse: 'bg-red-500/30', label: 'Afet Dirençliliği', text: 'text-red-500', bg: 'bg-red-500/10' },
+            GIDA: { dot: 'bg-mlab-nature', pulse: 'bg-mlab-nature/30', label: 'Gıda ve Tarım', text: 'text-mlab-nature', bg: 'bg-mlab-nature/10' },
+            SAGLIK: { dot: 'bg-mlab-cyan', pulse: 'bg-mlab-cyan/30', label: 'Sağlık ve Esenlik', text: 'text-mlab-cyan', bg: 'bg-mlab-cyan/10' },
+            EGITIM: { dot: 'bg-mlab-purple', pulse: 'bg-mlab-purple/30', label: 'Eğitim', text: 'text-mlab-purple', bg: 'bg-mlab-purple/10' },
+            IS: { dot: 'bg-mlab-energy', pulse: 'bg-mlab-energy/30', label: 'Gelir ve Çalışma', text: 'text-mlab-energy', bg: 'bg-mlab-energy/10' },
+            TEKNOLOJI: { dot: 'bg-blue-600', pulse: 'bg-blue-600/30', label: 'Teknoloji', text: 'text-blue-600', bg: 'bg-blue-600/10' },
+            KULTUR: { dot: 'bg-pink-500', pulse: 'bg-pink-500/30', label: 'Kültür', text: 'text-pink-500', bg: 'bg-pink-500/10' },
+            DONGUSEL: { dot: 'bg-mlab-waste', pulse: 'bg-mlab-waste/30', label: 'Döngüsel Metabolizma', text: 'text-mlab-waste', bg: 'bg-mlab-waste/10' }
         };
 
         // --- FILTER & PROJECTS LOGIC ---
@@ -370,7 +455,7 @@
             const container = document.getElementById('filter-container');
             container.innerHTML = filters.map(f => `
                 <button onclick="setFilter('${f.id}')" 
-                    class="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-md transition-all duration-300 ${activeFilterId === f.id ? `${f.color} text-white shadow-md transform -translate-y-0.5` : `bg-slate-200 text-slate-600 ${f.hover} hover:text-white`}">
+                    class="px-5 py-2.5 text-xs font-bold tracking-wider rounded-lg transition-all duration-300 ${activeFilterId === f.id ? `${f.color} text-white shadow-lg transform -translate-y-0.5` : `bg-white text-slate-600 hover:bg-slate-100 border border-slate-200`}">
                     ${f.label}
                 </button>
             `).join('');
