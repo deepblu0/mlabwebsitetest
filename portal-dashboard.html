@@ -119,7 +119,8 @@
             <!-- Sidebar Filters -->
             <aside class="lg:w-64 flex-shrink-0">
                 <!-- Alignment Spacer (Desktop Only) - Matches the height of the placeholder in the feed -->
-                <div class="mb-8 min-h-[100px] hidden lg:block" aria-hidden="true"></div>
+                <!-- Alignment Spacer (Desktop Only) - Matches the height of the buttons row -->
+                <div class="mb-6 h-[42px] hidden lg:block" aria-hidden="true"></div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sticky top-24">
                     <h3 class="font-semibold text-mlab-navy mb-4 flex items-center gap-2">
@@ -205,10 +206,31 @@
             <!-- Feed Section -->
             <div class="flex-1 min-w-0">
 
-                <!-- Stats Bar (Hidden but space preserved for future content) -->
-                <div
-                    class="mb-8 min-h-[100px] flex items-center justify-center border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50/50">
-                    <span class="text-slate-400 text-sm font-medium">Bu alan yeni içerikler için ayrılmıştır</span>
+                <!-- Quick Action Buttons -->
+                <div class="mb-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <button onclick="openNewPostModal()"
+                        class="flex items-center justify-center gap-2 px-3 py-2.5 bg-mlab-purple text-white text-xs font-semibold rounded-xl shadow-md hover:bg-mlab-navy hover:scale-[1.02] transition-all">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                        <span>Yeni Çağrı</span>
+                    </button>
+
+                    <button onclick="openExpertModal()"
+                        class="flex items-center justify-center gap-2 px-3 py-2.5 bg-mlab-orange text-white text-xs font-semibold rounded-xl shadow-md hover:bg-red-500 hover:scale-[1.02] transition-all">
+                        <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+                        <span>Uzman Havuzuna Katıl!</span>
+                    </button>
+
+                    <a href="#"
+                        class="flex items-center justify-center gap-2 px-3 py-2.5 bg-white border border-slate-200 text-mlab-navy text-xs font-semibold rounded-xl shadow-sm hover:border-mlab-cyan hover:text-mlab-cyan hover:shadow-md hover:scale-[1.02] transition-all">
+                        <i data-lucide="users" class="w-4 h-4"></i>
+                        <span>Partner Çağrısı</span>
+                    </a>
+
+                    <a href="ufuk-hibeleri.html"
+                        class="flex items-center justify-center gap-2 px-3 py-2.5 bg-white border border-slate-200 text-mlab-navy text-xs font-semibold rounded-xl shadow-sm hover:border-mlab-infrastructure hover:text-mlab-infrastructure hover:shadow-md hover:scale-[1.02] transition-all">
+                        <i data-lucide="euro" class="w-4 h-4"></i>
+                        <span>Hibeleri İncele</span>
+                    </a>
                 </div>
 
                 <div id="posts-container" class="space-y-4">
@@ -234,22 +256,7 @@
     </main>
 
     <!-- FLOATING ACTION BUTTONS -->
-    <!-- FLOATING ACTION BUTTONS -->
-    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3 items-end">
-        <!-- New Post Button (Top) -->
-        <button id="new-post-btn" onclick="openNewPostModal()"
-            class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-xs font-semibold rounded-full shadow-lg shadow-mlab-purple/30 hover:shadow-mlab-purple/50 hover:scale-105 transition-all duration-300">
-            <i data-lucide="plus" class="w-4 h-4"></i>
-            <span>Yeni Çağrı</span>
-        </button>
 
-        <!-- Expert Application Button (Bottom) -->
-        <button id="expert-btn" onclick="openExpertModal()"
-            class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-mlab-orange to-red-500 text-white text-xs font-semibold rounded-full shadow-lg shadow-mlab-orange/30 hover:shadow-mlab-orange/50 hover:scale-105 transition-all duration-300">
-            <i data-lucide="clipboard-list" class="w-4 h-4"></i>
-            <span>Uzman Havuzuna Katıl!</span>
-        </button>
-    </div>
 
     <!-- NEW POST MODAL -->
     <div id="new-post-modal" class="fixed inset-0 z-50 hidden">
