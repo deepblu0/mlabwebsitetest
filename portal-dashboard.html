@@ -56,8 +56,34 @@
                     <a href="/" class="flex items-center gap-3">
                         <img src="mlab-logo.png" alt="M-LAB" class="h-10 w-auto brightness-0 invert">
                     </a>
+                </div>
+
+                <!-- Right Side: User Profile -->
+                <div class="flex items-center gap-4 relative">
+                    <button id="user-menu-btn" onclick="toggleUserMenu()"
+                        class="flex items-center gap-3 hover:bg-white/10 px-3 py-2 rounded-xl transition-colors">
+                        <div class="text-right hidden md:block">
+                            <div class="text-sm font-semibold" id="user-name">Yükleniyor...</div>
+                            <div class="text-xs text-white/70" id="user-role">Üye</div>
+                        </div>
+                        <div
+                            class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center border-2 border-white/20 overflow-hidden">
+                            <img id="user-avatar" src="" alt="Profile" class="w-full h-full object-cover hidden">
+                            <i data-lucide="user" id="default-user-icon" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-white/70"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
                     <div id="user-dropdown"
-                        class="hidden absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-200 py-2">
+                        class="hidden absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-slate-200 py-2 z-50">
+                        <!-- Admin Link (Hidden by default) -->
+                        <a href="portal-admin.html" id="admin-link"
+                            class="hidden flex items-center gap-2 px-4 py-2 text-mlab-purple hover:bg-mlab-purple/5 text-sm font-semibold border-b border-slate-100">
+                            <i data-lucide="shield-alert" class="w-4 h-4"></i>
+                            Admin Paneli
+                        </a>
+
                         <a href="portal"
                             class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm">
                             <i data-lucide="home" class="w-4 h-4"></i>
@@ -999,27 +1025,36 @@
             // Add admin link if user is admin
             const isAdmin = window.ADMIN_EMAILS?.includes(currentUser.email?.toLowerCase()) || currentUser.isAdmin;
             if (isAdmin) {
-                const dropdown = document.getElementById('user-dropdown');
-                const adminLink = document.createElement('a');
-                adminLink.href = 'portal-admin.html';
-                adminLink.className = 'flex items-center gap-2 px-4 py-2 text-mlab-purple hover:bg-mlab-purple/10 text-sm font-medium';
-                adminLink.innerHTML = '<i data-lucide="shield" class="w-4 h-4"></i>Admin Panel';
-                dropdown.insertBefore(adminLink, dropdown.querySelector('hr'));
-                lucide.createIcons();
+                const adminLink = document.getElementById('admin-link');
+                if (adminLink) {
+                    adminLink.classList.remove('hidden');
+                    adminLink.classList.add('flex');
+                }
             }
 
+            // Update user role display
+            const roleEl = document.getElementById('user-role');
+            if (roleEl) {
+                if (isAdmin) roleEl.textContent = 'Yönetici';
+                else if (currentUser.org_type) roleEl.textContent = currentUser.org_type === 'belediye' ? 'Belediye' : 'Özel Sektör';
+                else roleEl.textContent = 'Üye';
+            }
+            lucide.createIcons();
             return true;
         }
 
-        // User menu toggle
-        document.getElementById('user-menu-btn').addEventListener('click', () => {
-            document.getElementById('user-dropdown').classList.toggle('hidden');
-        });
+        // User Menu Logic
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('user-dropdown');
+            if (dropdown) dropdown.classList.toggle('hidden');
+        }
 
         // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
-            if (!document.getElementById('user-menu-container').contains(e.target)) {
-                document.getElementById('user-dropdown').classList.add('hidden');
+            const btn = document.getElementById('user-menu-btn');
+            const dropdown = document.getElementById('user-dropdown');
+            if (btn && dropdown && !btn.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.add('hidden');
             }
         });
 
