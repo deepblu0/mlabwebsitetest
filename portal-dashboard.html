@@ -1183,14 +1183,12 @@
             const emptyState = document.getElementById('empty-state');
 
             // Update stats
-            document.getElementById('stat-requests').textContent = allPosts.filter(p => p.post_type ===
-                'destek_talebi').length;
-            document.getElementById('stat-offers').textContent = allPosts.filter(p => p.post_type ===
-                'uzmanlik_sunumu').length;
-            document.getElementById('stat-belediye').textContent = allPosts.filter(p => p.author?.category ===
-                'belediye').length;
-            document.getElementById('stat-ozel').textContent = allPosts.filter(p => p.author?.category ===
-                'ozel_sektor').length;
+            if (document.getElementById('stat-requests')) {
+                document.getElementById('stat-requests').textContent = allPosts.filter(p => p.post_type === 'destek_talebi').length;
+                document.getElementById('stat-offers').textContent = allPosts.filter(p => p.post_type === 'uzmanlik_bildirisi').length;
+                document.getElementById('stat-belediye').textContent = allPosts.filter(p => p.author?.category === 'belediye').length;
+                document.getElementById('stat-ozel').textContent = allPosts.filter(p => p.author?.category === 'ozel_sektor').length;
+            }
 
             if (allPosts.length === 0) {
                 container.innerHTML = '';
