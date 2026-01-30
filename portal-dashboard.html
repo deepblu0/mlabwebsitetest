@@ -1168,6 +1168,9 @@
                     return;
                 }
 
+                if (!window.firebaseDb) {
+                    await window.firebaseHelpers.initializeFirebase();
+                }
                 const { db, collection, getDocs, query, orderBy } = window.firebaseDb;
                 const postsRef = collection(db, 'posts');
                 const q = query(postsRef, orderBy('created_at', 'desc'));
@@ -1487,6 +1490,7 @@
         }
 
         let currentPostId = null;
+
 
         async function openPostDetail(id) {
             const post = allPosts.find(p => p.id === id || p.id === parseInt(id) || p.id === String(id));
@@ -1979,18 +1983,7 @@
 
             emptyState.classList.add('hidden');
 
-            const sectorLabels = {
-                'barinma': 'Uygun Fiyatlı Barınma',
-                'hareketlilik': 'Sürdürülebilir Hareketlilik',
-                'afet': 'Afetlere Dirençlilik',
-                'gida': 'Sağlıklı Gıda',
-                'saglik': 'Sağlık ve Esenlik',
-                'egitim': 'Eğitimli Nesiller',
-                'is': 'İnsana Yakışır İş',
-                'inovasyon': 'İnovasyon Üretimi',
-                'kultur': 'Kültür ve Kapsayıcılık',
-                'dongusal': 'Döngüsel Metabolizma'
-            };
+
 
             container.innerHTML = posts.map(post => {
                 const isRequest = post.post_type === 'destek_talebi';
