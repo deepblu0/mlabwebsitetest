@@ -149,6 +149,11 @@
                                     class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
                                 <span class="text-sm text-slate-700">Uzmanlık Bildirileri</span>
                             </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="post_type" value="partner_call"
+                                    class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
+                                <span class="text-sm text-slate-700">Ufuk Avrupa Partner Çağrıları</span>
+                            </label>
                         </div>
                     </div>
 
@@ -862,32 +867,7 @@
                     <!-- Modal Body -->
                     <div class="px-6 py-6 max-h-[70vh] overflow-y-auto">
                         <form id="partner-form" class="space-y-5">
-                            <!-- Personal Info Grid -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="space-y-1">
-                                    <label class="text-sm font-medium text-slate-700">Ad Soyad</label>
-                                    <input type="text" name="fullName" required
-                                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all font-medium">
-                                </div>
-                                <div class="space-y-1">
-                                    <label class="text-sm font-medium text-slate-700">Kurum</label>
-                                    <input type="text" name="institution" required
-                                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all">
-                                </div>
-                                <div class="space-y-1">
-                                    <label class="text-sm font-medium text-slate-700">Ünvan</label>
-                                    <input type="text" name="title" required
-                                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all">
-                                </div>
-                                <div class="space-y-1">
-                                    <label class="text-sm font-medium text-slate-700">İletişim Adresi
-                                        (E-posta/Tel)</label>
-                                    <input type="text" name="contact" required
-                                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all">
-                                </div>
-                            </div>
 
-                            <div class="border-t border-slate-100 my-2"></div>
 
                             <!-- Post Title -->
                             <div class="space-y-1">
@@ -2156,9 +2136,17 @@
             };
 
             container.innerHTML = posts.map(post => {
-                const isRequest = post.post_type === 'destek_talebi';
-                const typeColor = isRequest ? 'cyan' : 'orange';
-                const typeLabel = isRequest ? 'Destek Talebi' : 'Uzmanlık Bildirisi';
+                let typeColor = 'orange'; // Default: Uzmanlık Bildirisi
+                let typeLabel = 'Uzmanlık Bildirisi';
+
+                if (post.post_type === 'destek_talebi') {
+                    typeColor = 'cyan';
+                    typeLabel = 'Destek Talebi';
+                } else if (post.post_type === 'partner_call') {
+                    typeColor = 'blue';
+                    typeLabel = 'Partner Çağrısı';
+                }
+
                 const categoryIcon = post.author?.category === 'belediye' ? 'landmark' : 'building-2';
                 const date = formatDate(post.created_at);
                 const authorDisplay = post.author?.contact_name
@@ -2307,11 +2295,6 @@
             const callCode = callSelection.split(' - ')[0] || callSelection;
 
             const postContent = `
-**Ad Soyad:** ${formData.get('fullName')}
-**Kurum:** ${formData.get('institution')}
-**Ünvan:** ${formData.get('title')}
-**İletişim:** ${formData.get('contact')}
-
 **İlgili Çağrı:** ${callSelection}
 **Konsorsiyum Durumu:** ${formData.get('consortium') ? '✅ Bir konsorsiyuma dahilim' : '❌ Henüz dahil değilim'}
 
@@ -2320,17 +2303,22 @@ ${formData.get('partnerArea')}
             `.trim();
 
             const newPost = {
-                author: currentUser.name || currentUser.email,
-                authorId: currentUser.uid,
-                authorRole: currentUser.role || 'Üye',
-                content: postContent,
+                post_type: 'partner_call',
                 title: formData.get('postTitle'),
-                timestamp: new Date().toISOString(), // Fallback for local
-                type: 'partner_call',
+                description: postContent,
+                sector: callCode, // Display Call Code in sector badge
                 tags: ['Partner Arayışı', callCode, 'Ufuk Avrupa'],
-                likes: 0,
-                comments: [],
-                likedBy: []
+                files: [],
+                author: {
+                    name: currentUser.org_name,
+                    contact_name: currentUser.contact_name,
+                    contact_title: currentUser.contact_title,
+                    email: currentUser.email,
+                    category: currentUser.org_type || currentUser.category
+                },
+                author_id: currentUser.uid || currentUser.id,
+                status: 'active',
+                responses_count: 0
             };
 
             const submitBtn = document.getElementById('partner-submit-btn');
@@ -2339,21 +2327,24 @@ ${formData.get('partnerArea')}
             submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Yayınlanıyor...';
 
             try {
-                if (window.db) {
-                    await window.addDoc(window.collection(window.db, "posts"), {
+                if (window.firebaseReady && window.firebaseDb) {
+                    const { db, collection, doc, setDoc, serverTimestamp } = window.firebaseDb;
+                    const postId = Date.now().toString();
+                    await setDoc(doc(db, 'posts', postId), {
                         ...newPost,
-                        timestamp: window.serverTimestamp()
+                        created_at: serverTimestamp()
                     });
                 } else {
                     // Local Storage Fallback
-                    const localPosts = JSON.parse(localStorage.getItem('posts') || '[]');
+                    const localPosts = JSON.parse(localStorage.getItem('portal_posts') || '[]');
+                    newPost.id = Date.now().toString();
+                    newPost.created_at = new Date().toISOString();
                     localPosts.unshift(newPost);
-                    localStorage.setItem('posts', JSON.stringify(localPosts));
+                    localStorage.setItem('portal_posts', JSON.stringify(localPosts));
                 }
 
                 closePartnerModal();
-                loadPosts(); // Refresh feed
-                // showToast? Alert?
+                loadPosts(); // Refresh feed -- this will re-fetch from Firebase if connected
                 alert("Partner çağrınız başarıyla yayınlandı! 🚀");
 
             } catch (error) {
