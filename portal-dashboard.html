@@ -1330,6 +1330,7 @@
                     const allComments = JSON.parse(localStorage.getItem('portal_comments') || '{}');
                     comments = allComments[postId] || [];
                 } else {
+                    if (!window.firebaseDb) await window.firebaseHelpers.initializeFirebase();
                     const { db, collection, getDocs, query, orderBy } = window.firebaseDb;
                     const commentsRef = collection(db, 'posts', String(postId), 'comments');
                     const q = query(commentsRef, orderBy('created_at', 'asc'));
@@ -1454,6 +1455,7 @@
                     allComments[postId].push(newComment);
                     localStorage.setItem('portal_comments', JSON.stringify(allComments));
                 } else {
+                    if (!window.firebaseDb) await window.firebaseHelpers.initializeFirebase();
                     const { db, collection, doc, setDoc, serverTimestamp, updateDoc, increment } = window.firebaseDb;
                     const commentId = Date.now().toString();
                     await setDoc(doc(db, 'posts', String(postId), 'comments', commentId), {
@@ -1597,6 +1599,7 @@
                     return;
                 }
 
+                if (!window.firebaseDb) await window.firebaseHelpers.initializeFirebase();
                 const { db, collection, getDocs, query, orderBy } = window.firebaseDb;
                 const commentsRef = collection(db, 'posts', String(postId), 'comments');
                 const q = query(commentsRef, orderBy('created_at', 'asc'));
@@ -1707,6 +1710,7 @@
                     allComments[currentPostId].push(newComment);
                     localStorage.setItem('portal_comments', JSON.stringify(allComments));
                 } else {
+                    if (!window.firebaseDb) await window.firebaseHelpers.initializeFirebase();
                     const { db, collection, doc, setDoc, serverTimestamp, updateDoc, increment } = window.firebaseDb;
                     const commentId = Date.now().toString();
                     await setDoc(doc(db, 'posts', String(currentPostId), 'comments', commentId), {
@@ -1821,6 +1825,9 @@
                     posts.push(newPost);
                     localStorage.setItem('portal_posts', JSON.stringify(posts));
                 } else {
+                    if (!window.firebaseDb) {
+                        await window.firebaseHelpers.initializeFirebase();
+                    }
                     const { db, collection, doc, setDoc, serverTimestamp } = window.firebaseDb;
                     await setDoc(doc(db, 'posts', postId), {
                         ...newPost,
