@@ -932,19 +932,30 @@
         }
 
         function formatFileSize(bytes) {
-            if (bytes < 1024) return bytes + ' B'; if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB'; return
-            (bytes / (1024 * 1024)).toFixed(1) + ' MB';
-        } async function uploadFiles(postId) {
-            if
-                (selectedFiles.length === 0) return []; const { storage, ref, uploadBytes, getDownloadURL
-                } = window.firebaseStorage; const uploadedFiles = []; for (const file of selectedFiles) {
-                    const
-                        fileName = `${Date.now()}_${file.name}`; const storageRef = ref(storage, `posts/${postId}/${fileName}`); await
-                            uploadBytes(storageRef, file); const url = await getDownloadURL(storageRef); uploadedFiles.push({
-                                name: file.name,
-                                url: url, size: file.size, type: file.type
-                            });
-                } return uploadedFiles;
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+
+        async function uploadFiles(postId) {
+            if (!selectedFiles || selectedFiles.length === 0) return [];
+
+            const { storage, ref, uploadBytes, getDownloadURL } = window.firebaseStorage;
+            const uploadedFiles = [];
+
+            for (const file of selectedFiles) {
+                const fileName = `${Date.now()}_${file.name}`;
+                const storageRef = ref(storage, `posts/${postId}/${fileName}`);
+                await uploadBytes(storageRef, file);
+                const url = await getDownloadURL(storageRef);
+                uploadedFiles.push({
+                    name: file.name,
+                    url: url,
+                    size: file.size,
+                    type: file.type
+                });
+            }
+            return uploadedFiles;
         } // Setup drag and drop
         document.addEventListener('DOMContentLoaded', () => {
             const dropZone = document.getElementById('file-drop-zone');
