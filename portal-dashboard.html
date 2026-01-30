@@ -884,7 +884,7 @@
                                     <span class="text-xs text-slate-400 font-normal">(Listeden seçin veya arayın)</span>
                                 </label>
                                 <div class="relative">
-                                    <input type="text" id="horizon-call-search"
+                                    <input type="text" id="horizon-call-search" name="horizon_call"
                                         placeholder="Çağrı kodu veya adı yazın..." required autocomplete="off"
                                         oninput="filterHorizonCalls(this.value)"
                                         onfocus="filterHorizonCalls(this.value)"
@@ -1341,10 +1341,17 @@
             emptyState.classList.add('hidden');
 
             container.innerHTML = allPosts.map(post => {
-                const isRequest = post.post_type === 'destek_talebi';
-                const typeColor = isRequest ? 'cyan' : 'orange';
-                const typeIcon = isRequest ? 'message-square-plus' : 'sparkles';
-                const typeLabel = isRequest ? 'Destek Talebi' : 'Uzmanlık Bildirisi';
+                let typeColor = 'orange'; // Default: Uzmanlık Bildirisi
+                let typeLabel = 'Uzmanlık Bildirisi';
+
+                if (post.post_type === 'destek_talebi') {
+                    typeColor = 'cyan';
+                    typeLabel = 'Destek Talebi';
+                } else if (post.post_type === 'partner_call') {
+                    typeColor = 'blue';
+                    typeLabel = 'Partner Çağrısı';
+                }
+
                 const categoryIcon = post.author?.category === 'belediye' ? 'landmark' : 'building-2';
                 const date = formatDate(post.created_at);
                 const authorDisplay = post.author?.contact_name
@@ -1365,9 +1372,8 @@
                             <div class="text-xs text-slate-400">${date}</div>
                         </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200">${sectorLabels[post.sector] || post.sector}</span>
-                        <span class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold border border-mlab-${typeColor}/10">${typeLabel}</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200 max-w-[200px] md:max-w-[300px] truncate inline-block align-middle" title="${sectorLabels[post.sector] || post.sector}">${sectorLabels[post.sector] || post.sector}</span>
+                        <span class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold border border-mlab-${typeColor}/10 whitespace-nowrap">${typeLabel}</span>
                     </div>
                 </div>
             </div>
@@ -2158,9 +2164,9 @@
                 <div>
                     <div class="flex items-center gap-2 mb-3">
                         <span
-                            class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold">${typeLabel}</span>
+                            class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold whitespace-nowrap">${typeLabel}</span>
                         <span
-                            class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium">${sectorLabels[post.sector]
+                            class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium max-w-[200px] md:max-w-[300px] truncate inline-block align-middle" title="${sectorLabels[post.sector] || post.sector}">${sectorLabels[post.sector]
                     || post.sector}</span>
                     </div>
                     <h3 class="font-bold text-lg text-mlab-navy mb-2">${post.title}</h3>
@@ -2290,24 +2296,22 @@
             }
 
             const formData = new FormData(form);
-            const callSelection = formData.get('horizon-call-search');
-            // Extract code from selection if possible, otherwise use full string
-            const callCode = callSelection.split(' - ')[0] || callSelection;
+            const callSelection = formData.get('horizon_call');
+            // User requested full string in the badge
+            const sectorBadge = callSelection;
 
-            const postContent = `
-**İlgili Çağrı:** ${callSelection}
-**Konsorsiyum Durumu:** ${formData.get('consortium') ? '✅ Bir konsorsiyuma dahilim' : '❌ Henüz dahil değilim'}
+            // Format description: Just the user's text + Consortium status
+            const partnerAreaText = formData.get('partnerArea');
+            const consortiumStatus = formData.get('consortium') ? '✅ Konsorsiyum: Dahil' : '❌ Konsorsiyum: Dahil Değil';
 
-**Partner Arayışı ve Beklentiler:**
-${formData.get('partnerArea')}
-            `.trim();
+            const finalDescription = `${partnerAreaText}\n\n${consortiumStatus}`;
 
             const newPost = {
                 post_type: 'partner_call',
                 title: formData.get('postTitle'),
-                description: postContent,
-                sector: callCode, // Display Call Code in sector badge
-                tags: ['Partner Arayışı', callCode, 'Ufuk Avrupa'],
+                description: finalDescription,
+                sector: sectorBadge, // Full Call String
+                tags: ['Partner Arayışı', 'Ufuk Avrupa', formData.get('consortium') ? 'Konsorsiyum Üyesi' : 'Konsorsiyum Aranıyor'],
                 files: [],
                 author: {
                     name: currentUser.org_name,
