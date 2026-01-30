@@ -2147,13 +2147,16 @@
             container.innerHTML = posts.map(post => {
                 let typeColor = 'orange'; // Default: Uzmanlık Bildirisi
                 let typeLabel = 'Uzmanlık Bildirisi';
+                let gradientClass = 'from-mlab-orange to-amber-500';
 
                 if (post.post_type === 'destek_talebi') {
                     typeColor = 'cyan';
                     typeLabel = 'Destek Talebi';
+                    gradientClass = 'from-mlab-cyan to-blue-500';
                 } else if (post.post_type === 'partner_call') {
                     typeColor = 'blue';
                     typeLabel = 'Partner Çağrısı';
+                    gradientClass = 'from-blue-500 to-indigo-600';
                 }
 
                 const categoryIcon = post.author?.category === 'belediye' ? 'landmark' : 'building-2';
@@ -2163,23 +2166,32 @@
                     : post.author?.name || 'Bilinmiyor';
 
                 return `
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
-                <div>
-                    <div class="flex items-center gap-2 mb-3">
-                        <span
-                            class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold whitespace-nowrap">${typeLabel}</span>
-                        <span
-                            class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium max-w-[200px] md:max-w-[300px] truncate inline-block align-middle" title="${sectorLabels[post.sector] || post.sector}">${sectorLabels[post.sector]
-                    || post.sector}</span>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow overflow-hidden">
+                <!-- Post Header: Author, Date & Tags -->
+                <div class="px-6 py-4 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br ${gradientClass} flex items-center justify-center shadow-md cursor-pointer" onclick="showUserProfile('${post.author_id || post.id}', ${JSON.stringify(post.author).replace(/"/g, '&quot;')})">
+                                <i data-lucide="${categoryIcon}" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-mlab-navy text-sm cursor-pointer hover:text-mlab-purple transition-colors" onclick="showUserProfile('${post.author_id || post.id}', ${JSON.stringify(post.author).replace(/"/g, '&quot;')})">${authorDisplay}</div>
+                                <div class="text-xs text-slate-400">${date}</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200 max-w-[200px] md:max-w-[300px] truncate inline-block align-middle" title="${sectorLabels[post.sector] || post.sector}">${sectorLabels[post.sector] || post.sector}</span>
+                            <span class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold border border-mlab-${typeColor}/10 whitespace-nowrap">${typeLabel}</span>
+                        </div>
                     </div>
+                </div>
+
+                <div class="p-6">
                     <h3 class="font-bold text-lg text-mlab-navy mb-2">${post.title}</h3>
                     <p class="text-slate-600 text-sm mb-4 leading-relaxed">${post.description}</p>
                     <div class="flex items-center justify-between pt-3 border-t border-slate-100">
                         <div class="flex items-center gap-2 text-sm text-slate-500">
-                            <i data-lucide="${categoryIcon}" class="w-4 h-4"></i>
-                            <span class="font-medium">${authorDisplay}</span>
-                            <span class="text-slate-300">•</span>
-                            <span>${date}</span>
+                            <!-- Footer empty primarily, just reply button -->
                         </div>
                         <button onclick="toggleReplyBox('${post.id}')"
                             class="px-4 py-2 bg-mlab-purple/10 text-mlab-purple text-sm font-semibold rounded-lg hover:bg-mlab-purple hover:text-white transition-all flex items-center gap-2">
