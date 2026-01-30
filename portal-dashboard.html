@@ -2181,7 +2181,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
-                            <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200 max-w-[200px] md:max-w-[300px] truncate inline-block align-middle" title="${sectorLabels[post.sector] || post.sector}">${sectorLabels[post.sector] || post.sector}</span>
+                            <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200 max-w-[300px] md:max-w-[450px] truncate inline-block align-middle" title="${sectorLabels[post.sector] || post.sector}">${sectorLabels[post.sector] || post.sector}</span>
                             <span class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold border border-mlab-${typeColor}/10 whitespace-nowrap">${typeLabel}</span>
                         </div>
                     </div>
@@ -2316,18 +2316,16 @@
             // User requested full string in the badge
             const sectorBadge = callSelection;
 
-            // Format description: Just the user's text + Consortium status
+            // Format description: Just the user's text
             const partnerAreaText = formData.get('partnerArea');
-            const consortiumStatus = formData.get('consortium') ? '✅ Konsorsiyum: Dahil' : '❌ Konsorsiyum: Dahil Değil';
-
-            const finalDescription = `${partnerAreaText}\n\n${consortiumStatus}`;
+            const finalDescription = partnerAreaText;
 
             const newPost = {
                 post_type: 'partner_call',
                 title: formData.get('postTitle'),
                 description: finalDescription,
                 sector: sectorBadge, // Full Call String
-                tags: ['Partner Arayışı', 'Ufuk Avrupa', formData.get('consortium') ? 'Konsorsiyum Üyesi' : 'Konsorsiyum Aranıyor'],
+                tags: ['Partner Arayışı', 'Ufuk Avrupa'],
                 files: [],
                 author: {
                     name: currentUser.org_name,
