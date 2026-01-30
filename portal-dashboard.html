@@ -2364,7 +2364,7 @@
                 }
 
                 closePartnerModal();
-                loadPosts(); // Refresh feed -- this will re-fetch from Firebase if connected
+                await loadPosts(); // Refresh feed -- this will re-fetch from Firebase if connected
 
             } catch (error) {
                 console.error("Partner post error:", error);
