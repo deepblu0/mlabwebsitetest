@@ -1375,6 +1375,7 @@
                             <div class="text-xs text-slate-400">${date}</div>
                         </div>
                     </div>
+                    <div class="flex items-center gap-2">
                         <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200 max-w-[200px] md:max-w-[300px] truncate inline-block align-middle" title="${sectorLabels[post.sector] || post.sector}">${sectorLabels[post.sector] || post.sector}</span>
                         <span class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold border border-mlab-${typeColor}/10 whitespace-nowrap">${typeLabel}</span>
                     </div>
@@ -2364,7 +2365,6 @@
 
                 closePartnerModal();
                 loadPosts(); // Refresh feed -- this will re-fetch from Firebase if connected
-                alert("Partner çağrınız başarıyla yayınlandı! 🚀");
 
             } catch (error) {
                 console.error("Partner post error:", error);
