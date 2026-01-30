@@ -120,7 +120,8 @@
             <aside class="lg:w-64 flex-shrink-0">
                 <!-- Alignment Spacer (Desktop Only) - Matches the height of the placeholder in the feed -->
                 <!-- Alignment Spacer (Desktop Only) - Matches the height of the buttons row -->
-                <div class="mb-6 h-[42px] hidden lg:block" aria-hidden="true"></div>
+                <!-- Alignment Spacer (Desktop Only) - Matches the height of the buttons row -->
+                <div class="mb-6 h-[56px] hidden lg:block" aria-hidden="true"></div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sticky top-24">
                     <h3 class="font-semibold text-mlab-navy mb-4 flex items-center gap-2">
@@ -207,28 +208,32 @@
             <div class="flex-1 min-w-0">
 
                 <!-- Quick Action Buttons -->
-                <div class="mb-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="mb-6 grid grid-cols-2 md:grid-cols-4 gap-4">
                     <button onclick="openNewPostModal()"
-                        class="flex items-center justify-center gap-2 px-3 py-2.5 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-xs font-semibold rounded-xl shadow-md hover:shadow-mlab-purple/30 hover:scale-[1.02] transition-all">
-                        <i data-lucide="plus" class="w-4 h-4"></i>
+                        class="group flex items-center justify-center gap-2 px-4 py-4 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-sm font-bold rounded-2xl shadow-lg shadow-mlab-purple/20 hover:shadow-mlab-purple/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300">
+                        <i data-lucide="plus"
+                            class="w-5 h-5 group-hover:rotate-90 transition-transform duration-300"></i>
                         <span>Yeni Çağrı</span>
                     </button>
 
                     <button onclick="openExpertModal()"
-                        class="flex items-center justify-center gap-2 px-3 py-2.5 bg-gradient-to-r from-mlab-orange to-red-500 text-white text-xs font-semibold rounded-xl shadow-md hover:shadow-mlab-orange/30 hover:scale-[1.02] transition-all">
-                        <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+                        class="group flex items-center justify-center gap-2 px-4 py-4 bg-gradient-to-r from-mlab-orange to-red-500 text-white text-sm font-bold rounded-2xl shadow-lg shadow-mlab-orange/20 hover:shadow-mlab-orange/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300">
+                        <i data-lucide="clipboard-list"
+                            class="w-5 h-5 group-hover:scale-110 transition-transform duration-300"></i>
                         <span>Uzman Havuzuna Katıl!</span>
                     </button>
 
                     <a href="#"
-                        class="flex items-center justify-center gap-2 px-3 py-2.5 bg-white border border-slate-200 text-mlab-navy text-xs font-semibold rounded-xl shadow-sm hover:border-mlab-cyan hover:text-mlab-cyan hover:shadow-md hover:scale-[1.02] transition-all">
-                        <i data-lucide="users" class="w-4 h-4"></i>
+                        class="group flex items-center justify-center gap-2 px-4 py-4 bg-white border border-slate-200 text-mlab-navy text-sm font-bold rounded-2xl shadow-sm hover:border-mlab-cyan hover:text-mlab-cyan hover:shadow-md hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300">
+                        <i data-lucide="users"
+                            class="w-5 h-5 text-slate-400 group-hover:text-mlab-cyan transition-colors"></i>
                         <span>Ufuk Avrupa Partner Çağrısı</span>
                     </a>
 
                     <a href="ufuk-hibeleri.html"
-                        class="flex items-center justify-center gap-2 px-3 py-2.5 bg-white border border-slate-200 text-mlab-navy text-xs font-semibold rounded-xl shadow-sm hover:border-mlab-infrastructure hover:text-mlab-infrastructure hover:shadow-md hover:scale-[1.02] transition-all">
-                        <i data-lucide="euro" class="w-4 h-4"></i>
+                        class="group flex items-center justify-center gap-2 px-4 py-4 bg-white border border-slate-200 text-mlab-navy text-sm font-bold rounded-2xl shadow-sm hover:border-mlab-infrastructure hover:text-mlab-infrastructure hover:shadow-md hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300">
+                        <i data-lucide="euro"
+                            class="w-5 h-5 text-slate-400 group-hover:text-mlab-infrastructure transition-colors"></i>
                         <span>Ufuk Avrupa Hibelerini İncele</span>
                     </a>
                 </div>
@@ -832,11 +837,7 @@
 
     <script src="firebase-config.js"></script>
     <script>
-        // DEBUG ERROR HANDLER
-        window.onerror = function (msg, url, line, col, error) {
-            alert("Hata: " + msg + "\nSatır: " + line);
-            return false;
-        };
+
         lucide.createIcons();
 
         let currentUser = null;
@@ -2080,11 +2081,7 @@
             }
         }
 
-        try {
-            init().catch(e => alert("Init Hatası: " + e));
-        } catch (e) {
-            alert("Global Run Hatası: " + e);
-        }
+        init();
     </script>
 </body>
 
