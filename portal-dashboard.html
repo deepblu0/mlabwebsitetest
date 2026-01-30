@@ -271,19 +271,20 @@
     </main>
 
     <!-- FLOATING ACTION BUTTONS -->
-    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-4">
-        <!-- Expert Application Button -->
-        <button id="expert-btn" onclick="openExpertModal()"
-            class="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-mlab-orange to-red-500 text-white text-sm font-semibold rounded-full shadow-xl shadow-mlab-orange/30 hover:shadow-mlab-orange/50 hover:scale-105 transition-all duration-300">
-            <i data-lucide="clipboard-list" class="w-4 h-4"></i>
-            <span>Uzman Havuzuna Katıl!</span>
-        </button>
-
-        <!-- New Post Button -->
+    <!-- FLOATING ACTION BUTTONS -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3 items-end">
+        <!-- New Post Button (Top) -->
         <button id="new-post-btn" onclick="openNewPostModal()"
-            class="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-sm font-semibold rounded-full shadow-xl shadow-mlab-purple/30 hover:shadow-mlab-purple/50 hover:scale-105 transition-all duration-300">
+            class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-xs font-semibold rounded-full shadow-lg shadow-mlab-purple/30 hover:shadow-mlab-purple/50 hover:scale-105 transition-all duration-300">
             <i data-lucide="plus" class="w-4 h-4"></i>
             <span>Yeni Çağrı</span>
+        </button>
+
+        <!-- Expert Application Button (Bottom) -->
+        <button id="expert-btn" onclick="openExpertModal()"
+            class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-mlab-orange to-red-500 text-white text-xs font-semibold rounded-full shadow-lg shadow-mlab-orange/30 hover:shadow-mlab-orange/50 hover:scale-105 transition-all duration-300">
+            <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+            <span>Uzman Havuzuna Katıl!</span>
         </button>
     </div>
 
@@ -303,6 +304,27 @@
             <!-- Body -->
             <div class="flex-grow overflow-y-auto p-6">
                 <form id="new-post-form" class="space-y-5">
+                    <!-- Expert Support Call-to-Action -->
+                    <div
+                        class="bg-gradient-to-r from-mlab-orange/10 to-transparent p-4 rounded-xl border border-mlab-orange/20 mb-6">
+                        <div class="flex items-center justify-between gap-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-mlab-orange to-amber-500 flex items-center justify-center shrink-0">
+                                    <i data-lucide="award" class="w-5 h-5 text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-800 text-sm">Uzman mısınız?</h3>
+                                    <p class="text-xs text-slate-500">Çözüm ağımıza katılın</p>
+                                </div>
+                            </div>
+                            <button type="button" onclick="closeNewPostModal(); openExpertModal();"
+                                class="px-4 py-2 bg-gradient-to-r from-mlab-orange to-amber-500 text-white text-xs font-bold rounded-lg hover:shadow-lg transition-transform hover:-translate-y-0.5 whitespace-nowrap">
+                                Beni Uzman Havuzuna Dahil Et!
+                            </button>
+                        </div>
+                    </div>
+
                     <!-- Post Type -->
                     <div>
                         <label class="block text-sm font-semibold text-mlab-navy mb-3">Çağrı Türü *</label>
