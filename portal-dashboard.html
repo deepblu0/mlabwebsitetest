@@ -223,13 +223,13 @@
                     <a href="#"
                         class="flex items-center justify-center gap-2 px-3 py-2.5 bg-white border border-slate-200 text-mlab-navy text-xs font-semibold rounded-xl shadow-sm hover:border-mlab-cyan hover:text-mlab-cyan hover:shadow-md hover:scale-[1.02] transition-all">
                         <i data-lucide="users" class="w-4 h-4"></i>
-                        <span>Partner Çağrısı</span>
+                        <span>Ufuk Avrupa Partner Çağrısı</span>
                     </a>
 
                     <a href="ufuk-hibeleri.html"
                         class="flex items-center justify-center gap-2 px-3 py-2.5 bg-white border border-slate-200 text-mlab-navy text-xs font-semibold rounded-xl shadow-sm hover:border-mlab-infrastructure hover:text-mlab-infrastructure hover:shadow-md hover:scale-[1.02] transition-all">
                         <i data-lucide="euro" class="w-4 h-4"></i>
-                        <span>Hibeleri İncele</span>
+                        <span>Ufuk Avrupa Hibelerini İncele</span>
                     </a>
                 </div>
 
@@ -1194,12 +1194,8 @@
             const emptyState = document.getElementById('empty-state');
 
             // Update stats
-            if (document.getElementById('stat-requests')) {
-                document.getElementById('stat-requests').textContent = allPosts.filter(p => p.post_type === 'destek_talebi').length;
-                document.getElementById('stat-offers').textContent = allPosts.filter(p => p.post_type === 'uzmanlik_bildirisi').length;
-                document.getElementById('stat-belediye').textContent = allPosts.filter(p => p.author?.category === 'belediye').length;
-                document.getElementById('stat-ozel').textContent = allPosts.filter(p => p.author?.category === 'ozel_sektor').length;
-            }
+            // Stats update logic removed to prevent errors with missing elements
+            // if (document.getElementById('stat-requests')) { ... }
 
             if (allPosts.length === 0) {
                 container.innerHTML = '';
