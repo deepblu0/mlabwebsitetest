@@ -119,8 +119,7 @@
             <!-- Sidebar Filters -->
             <aside class="lg:w-64 flex-shrink-0">
                 <!-- Alignment Spacer (Desktop Only) - Matches the height of the placeholder in the feed -->
-                <!-- Alignment Spacer (Desktop Only) - Matches the height of the buttons row -->
-                <div class="mb-6 h-[42px] hidden lg:block" aria-hidden="true"></div>
+                <div class="mb-8 min-h-[100px] hidden lg:block" aria-hidden="true"></div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sticky top-24">
                     <h3 class="font-semibold text-mlab-navy mb-4 flex items-center gap-2">
@@ -206,31 +205,10 @@
             <!-- Feed Section -->
             <div class="flex-1 min-w-0">
 
-                <!-- Quick Action Buttons -->
-                <div class="mb-6 grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <button onclick="openNewPostModal()"
-                        class="flex items-center justify-center gap-2 px-3 py-2.5 bg-mlab-purple text-white text-xs font-semibold rounded-xl shadow-md hover:bg-mlab-navy hover:scale-[1.02] transition-all">
-                        <i data-lucide="plus" class="w-4 h-4"></i>
-                        <span>Yeni Çağrı</span>
-                    </button>
-
-                    <button onclick="openExpertModal()"
-                        class="flex items-center justify-center gap-2 px-3 py-2.5 bg-mlab-orange text-white text-xs font-semibold rounded-xl shadow-md hover:bg-red-500 hover:scale-[1.02] transition-all">
-                        <i data-lucide="clipboard-list" class="w-4 h-4"></i>
-                        <span>Uzman Havuzuna Katıl!</span>
-                    </button>
-
-                    <a href="#"
-                        class="flex items-center justify-center gap-2 px-3 py-2.5 bg-white border border-slate-200 text-mlab-navy text-xs font-semibold rounded-xl shadow-sm hover:border-mlab-cyan hover:text-mlab-cyan hover:shadow-md hover:scale-[1.02] transition-all">
-                        <i data-lucide="users" class="w-4 h-4"></i>
-                        <span>Ufuk Avrupa Partner Çağrısı</span>
-                    </a>
-
-                    <a href="ufuk-hibeleri.html"
-                        class="flex items-center justify-center gap-2 px-3 py-2.5 bg-white border border-slate-200 text-mlab-navy text-xs font-semibold rounded-xl shadow-sm hover:border-mlab-infrastructure hover:text-mlab-infrastructure hover:shadow-md hover:scale-[1.02] transition-all">
-                        <i data-lucide="euro" class="w-4 h-4"></i>
-                        <span>Ufuk Avrupa Hibelerini İncele</span>
-                    </a>
+                <!-- Stats Bar (Hidden but space preserved for future content) -->
+                <div
+                    class="mb-8 min-h-[100px] flex items-center justify-center border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50/50">
+                    <span class="text-slate-400 text-sm font-medium">Bu alan yeni içerikler için ayrılmıştır</span>
                 </div>
 
                 <div id="posts-container" class="space-y-4">
@@ -256,7 +234,22 @@
     </main>
 
     <!-- FLOATING ACTION BUTTONS -->
+    <!-- FLOATING ACTION BUTTONS -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3 items-end">
+        <!-- New Post Button (Top) -->
+        <button id="new-post-btn" onclick="openNewPostModal()"
+            class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-xs font-semibold rounded-full shadow-lg shadow-mlab-purple/30 hover:shadow-mlab-purple/50 hover:scale-105 transition-all duration-300">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>Yeni Çağrı</span>
+        </button>
 
+        <!-- Expert Application Button (Bottom) -->
+        <button id="expert-btn" onclick="openExpertModal()"
+            class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-mlab-orange to-red-500 text-white text-xs font-semibold rounded-full shadow-lg shadow-mlab-orange/30 hover:shadow-mlab-orange/50 hover:scale-105 transition-all duration-300">
+            <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+            <span>Uzman Havuzuna Katıl!</span>
+        </button>
+    </div>
 
     <!-- NEW POST MODAL -->
     <div id="new-post-modal" class="fixed inset-0 z-50 hidden">
@@ -1168,9 +1161,6 @@
                     return;
                 }
 
-                if (!window.firebaseDb) {
-                    await window.firebaseHelpers.initializeFirebase();
-                }
                 const { db, collection, getDocs, query, orderBy } = window.firebaseDb;
                 const postsRef = collection(db, 'posts');
                 const q = query(postsRef, orderBy('created_at', 'desc'));
@@ -1197,8 +1187,12 @@
             const emptyState = document.getElementById('empty-state');
 
             // Update stats
-            // Stats update logic removed to prevent errors with missing elements
-            // if (document.getElementById('stat-requests')) { ... }
+            if (document.getElementById('stat-requests')) {
+                document.getElementById('stat-requests').textContent = allPosts.filter(p => p.post_type === 'destek_talebi').length;
+                document.getElementById('stat-offers').textContent = allPosts.filter(p => p.post_type === 'uzmanlik_bildirisi').length;
+                document.getElementById('stat-belediye').textContent = allPosts.filter(p => p.author?.category === 'belediye').length;
+                document.getElementById('stat-ozel').textContent = allPosts.filter(p => p.author?.category === 'ozel_sektor').length;
+            }
 
             if (allPosts.length === 0) {
                 container.innerHTML = '';
@@ -1330,7 +1324,6 @@
                     const allComments = JSON.parse(localStorage.getItem('portal_comments') || '{}');
                     comments = allComments[postId] || [];
                 } else {
-                    if (!window.firebaseDb) await window.firebaseHelpers.initializeFirebase();
                     const { db, collection, getDocs, query, orderBy } = window.firebaseDb;
                     const commentsRef = collection(db, 'posts', String(postId), 'comments');
                     const q = query(commentsRef, orderBy('created_at', 'asc'));
@@ -1455,7 +1448,6 @@
                     allComments[postId].push(newComment);
                     localStorage.setItem('portal_comments', JSON.stringify(allComments));
                 } else {
-                    if (!window.firebaseDb) await window.firebaseHelpers.initializeFirebase();
                     const { db, collection, doc, setDoc, serverTimestamp, updateDoc, increment } = window.firebaseDb;
                     const commentId = Date.now().toString();
                     await setDoc(doc(db, 'posts', String(postId), 'comments', commentId), {
@@ -1492,7 +1484,6 @@
         }
 
         let currentPostId = null;
-
 
         async function openPostDetail(id) {
             const post = allPosts.find(p => p.id === id || p.id === parseInt(id) || p.id === String(id));
@@ -1599,7 +1590,6 @@
                     return;
                 }
 
-                if (!window.firebaseDb) await window.firebaseHelpers.initializeFirebase();
                 const { db, collection, getDocs, query, orderBy } = window.firebaseDb;
                 const commentsRef = collection(db, 'posts', String(postId), 'comments');
                 const q = query(commentsRef, orderBy('created_at', 'asc'));
@@ -1710,7 +1700,6 @@
                     allComments[currentPostId].push(newComment);
                     localStorage.setItem('portal_comments', JSON.stringify(allComments));
                 } else {
-                    if (!window.firebaseDb) await window.firebaseHelpers.initializeFirebase();
                     const { db, collection, doc, setDoc, serverTimestamp, updateDoc, increment } = window.firebaseDb;
                     const commentId = Date.now().toString();
                     await setDoc(doc(db, 'posts', String(currentPostId), 'comments', commentId), {
@@ -1825,9 +1814,6 @@
                     posts.push(newPost);
                     localStorage.setItem('portal_posts', JSON.stringify(posts));
                 } else {
-                    if (!window.firebaseDb) {
-                        await window.firebaseHelpers.initializeFirebase();
-                    }
                     const { db, collection, doc, setDoc, serverTimestamp } = window.firebaseDb;
                     await setDoc(doc(db, 'posts', postId), {
                         ...newPost,
@@ -1990,7 +1976,18 @@
 
             emptyState.classList.add('hidden');
 
-
+            const sectorLabels = {
+                'barinma': 'Uygun Fiyatlı Barınma',
+                'hareketlilik': 'Sürdürülebilir Hareketlilik',
+                'afet': 'Afetlere Dirençlilik',
+                'gida': 'Sağlıklı Gıda',
+                'saglik': 'Sağlık ve Esenlik',
+                'egitim': 'Eğitimli Nesiller',
+                'is': 'İnsana Yakışır İş',
+                'inovasyon': 'İnovasyon Üretimi',
+                'kultur': 'Kültür ve Kapsayıcılık',
+                'dongusal': 'Döngüsel Metabolizma'
+            };
 
             container.innerHTML = posts.map(post => {
                 const isRequest = post.post_type === 'destek_talebi';
