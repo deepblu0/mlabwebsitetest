@@ -149,10 +149,15 @@
         </div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <h1 class="text-4xl md:text-5xl font-black text-white mb-4">İzmir'in Projeleri</h1>
-            <p class="text-slate-300 text-lg max-w-2xl mx-auto">
+            <p class="text-slate-300 text-lg max-w-2xl mx-auto mb-8">
                 İzmir 2030 Kent Taahhüdü kapsamında şehri iklim nötr ve akıllı bir geleceğe taşıyan tüm çalışmaları
                 burada bir araya getiriyoruz. Yaşam kalitesini artıran kentsel inovasyon projelerini keşfedin.
             </p>
+            <button onclick="openProjectModal()"
+                class="px-8 py-4 bg-gradient-to-r from-mlab-cyan to-mlab-infrastructure text-mlab-navy font-bold rounded-xl shadow-lg shadow-mlab-cyan/20 hover:shadow-mlab-cyan/40 hover:scale-105 transition-all duration-300 flex items-center gap-2 mx-auto">
+                <i data-lucide="upload-cloud" class="w-5 h-5"></i>
+                Projenizi Yayınlayalım!
+            </button>
         </div>
     </section>
 
@@ -212,6 +217,176 @@
         </div>
     </footer>
 
+    <!-- PROJECT SUBMISSION MODAL -->
+    <div id="project-modal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog"
+        aria-modal="true">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop">
+        </div>
+
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <!-- Modal Panel -->
+                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-2xl opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    id="modal-panel">
+
+                    <!-- Header -->
+                    <div class="bg-mlab-navy px-4 py-5 sm:px-6 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-xl font-bold leading-6 text-white" id="modal-title">Yeni Proje Gönder</h3>
+                            <p class="mt-1 text-sm text-slate-300">Projenizi platformda yayınlamak için bilgileri
+                                doldurun.</p>
+                        </div>
+                        <button onclick="closeProjectModal()" class="text-slate-400 hover:text-white transition-colors">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="project-form" onsubmit="submitProject(event)"
+                        class="px-4 py-5 sm:p-6 bg-slate-50 space-y-6">
+
+                        <!-- Personal Info Section -->
+                        <div class="space-y-6">
+                            <h4
+                                class="text-sm font-bold text-mlab-cyan uppercase tracking-wider border-b border-mlab-cyan/20 pb-2">
+                                Kişisel Bilgiler</h4>
+                            <!-- Row 1: Name, Title -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="contact-name" class="block text-sm font-bold text-mlab-navy mb-1">Ad
+                                        Soyad</label>
+                                    <input type="text" id="contact-name" required
+                                        class="w-full rounded-lg border-slate-300 border p-2.5 text-sm focus:ring-2 focus:ring-mlab-cyan focus:border-mlab-cyan outline-none transition-all placeholder:text-slate-400"
+                                        placeholder="Adınız Soyadınız">
+                                </div>
+                                <div>
+                                    <label for="contact-title"
+                                        class="block text-sm font-bold text-mlab-navy mb-1">Ünvan</label>
+                                    <input type="text" id="contact-title" required
+                                        class="w-full rounded-lg border-slate-300 border p-2.5 text-sm focus:ring-2 focus:ring-mlab-cyan focus:border-mlab-cyan outline-none transition-all placeholder:text-slate-400"
+                                        placeholder="Örn: Proje Yöneticisi">
+                                </div>
+                            </div>
+                            <!-- Row 2: Institution, Email -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="contact-org"
+                                        class="block text-sm font-bold text-mlab-navy mb-1">Kurum</label>
+                                    <input type="text" id="contact-org" required
+                                        class="w-full rounded-lg border-slate-300 border p-2.5 text-sm focus:ring-2 focus:ring-mlab-cyan focus:border-mlab-cyan outline-none transition-all placeholder:text-slate-400"
+                                        placeholder="Kurumunuz">
+                                </div>
+                                <div>
+                                    <label for="contact-email"
+                                        class="block text-sm font-bold text-mlab-navy mb-1">İletişim Adresi
+                                        (E-posta)</label>
+                                    <input type="email" id="contact-email" required
+                                        class="w-full rounded-lg border-slate-300 border p-2.5 text-sm focus:ring-2 focus:ring-mlab-cyan focus:border-mlab-cyan outline-none transition-all placeholder:text-slate-400"
+                                        placeholder="ornek@email.com">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Info Section -->
+                        <div class="space-y-6">
+                            <h4
+                                class="text-sm font-bold text-mlab-cyan uppercase tracking-wider border-b border-mlab-cyan/20 pb-2">
+                                Proje Bilgileri</h4>
+
+                            <!-- Row 3 -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="project-name" class="block text-sm font-bold text-mlab-navy mb-1">Proje
+                                        Adı</label>
+                                    <input type="text" id="project-name" required
+                                        class="w-full rounded-lg border-slate-300 border p-2.5 text-sm focus:ring-2 focus:ring-mlab-cyan focus:border-mlab-cyan outline-none transition-all placeholder:text-slate-400"
+                                        placeholder="Örn: Yeşil Alsancak Dönüşümü">
+                                </div>
+                                <div>
+                                    <label for="project-status"
+                                        class="block text-sm font-bold text-mlab-navy mb-1">Durumu</label>
+                                    <select id="project-status" required
+                                        class="w-full rounded-lg border-slate-300 border p-2.5 text-sm focus:ring-2 focus:ring-mlab-cyan focus:border-mlab-cyan outline-none transition-all">
+                                        <option value="Planning">Planlanıyor</option>
+                                        <option value="In Progress">Devam Ediyor</option>
+                                        <option value="Completed">Tamamlandı</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Row 4 -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="project-date"
+                                        class="block text-sm font-bold text-mlab-navy mb-1">Başlangıç
+                                        Tarihi</label>
+                                    <input type="date" id="project-date" required
+                                        class="w-full rounded-lg border-slate-300 border p-2.5 text-sm focus:ring-2 focus:ring-mlab-cyan focus:border-mlab-cyan outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label for="project-partners"
+                                        class="block text-sm font-bold text-mlab-navy mb-1">Paydaşlar</label>
+                                    <input type="text" id="project-partners" required
+                                        class="w-full rounded-lg border-slate-300 border p-2.5 text-sm focus:ring-2 focus:ring-mlab-cyan focus:border-mlab-cyan outline-none transition-all placeholder:text-slate-400"
+                                        placeholder="Örn: İZBB, Ege Üniversitesi, ...">
+                                </div>
+                            </div>
+
+                            <!-- Description -->
+                            <div>
+                                <label for="project-desc" class="block text-sm font-bold text-mlab-navy mb-1">Açıklama
+                                    Metni</label>
+                                <textarea id="project-desc" rows="3" required
+                                    class="w-full rounded-lg border-slate-300 border p-2.5 text-sm focus:ring-2 focus:ring-mlab-cyan focus:border-mlab-cyan outline-none transition-all placeholder:text-slate-400"
+                                    placeholder="Projenin amacı, kapsamı ve hedefleri..."></textarea>
+                            </div>
+
+                            <!-- Challenges -->
+                            <div>
+                                <label class="block text-sm font-bold text-mlab-navy mb-3">İlgili Büyük Zorluklar
+                                    (Seçiniz)</label>
+                                <div id="challenges-checkboxes"
+                                    class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-48 overflow-y-auto p-3 bg-white rounded-lg border border-slate-200">
+                                    <!-- Generated by JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- KVKK Checkbox -->
+                        <div class="flex items-start bg-slate-100 p-4 rounded-lg border border-slate-200">
+                            <div class="flex items-center h-5">
+                                <input id="kvkk-consent" name="kvkk-consent" type="checkbox" required
+                                    class="w-4 h-4 rounded border-slate-300 text-mlab-navy focus:ring-mlab-cyan cursor-pointer">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="kvkk-consent" class="text-slate-600 font-medium">
+                                    <a href="yasal.html?page=kvkk" target="_blank"
+                                        class="text-mlab-cyan hover:underline hover:text-mlab-purple">KVKK Aydınlatma
+                                        Metni</a>'ni okudum, kişisel verilerimin işlenmesini kabul ediyorum.
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-200">
+                            <button type="button" onclick="closeProjectModal()"
+                                class="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors">
+                                İptal
+                            </button>
+                            <button type="submit"
+                                class="px-4 py-2 text-sm font-bold text-white bg-mlab-navy rounded-lg hover:bg-mlab-purple transition-colors flex items-center gap-2">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                                Gönder
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
     <script>
         lucide.createIcons();
 
@@ -302,8 +477,12 @@
         // Filter definitions
         const filters = [
             { id: 'ALL', label: 'Tüm Projeler', color: 'bg-mlab-navy' },
-            { id: 'BARINMA', label: 'Uygun Fiyatlı ve Yeterli Barınma', color: 'bg-mlab-infrastructure', categories: ['BARINMA'] },
-            { id: 'HAREKETLILIK', label: 'Sürdürülebilir Hareketlilik', color: 'bg-mlab-transport', categories: ['HAREKETLILIK'] },
+            {
+                id: 'BARINMA', label: 'Uygun Fiyatlı ve Yeterli Barınma', color: 'bg-mlab-infrastructure', categories: ['BARINMA']
+            },
+            {
+                id: 'HAREKETLILIK', label: 'Sürdürülebilir Hareketlilik', color: 'bg-mlab-transport', categories: ['HAREKETLILIK']
+            },
             { id: 'AFET', label: 'Afetlere Dirençlilik', color: 'bg-red-500', categories: ['AFET'] },
             { id: 'GIDA', label: 'Sağlıklı Gıda ve Tarım', color: 'bg-mlab-nature', categories: ['GIDA'] },
             { id: 'SAGLIK', label: 'Sağlık ve Esenlik', color: 'bg-mlab-cyan', categories: ['SAGLIK'] },
@@ -319,18 +498,19 @@
         function renderFilters() {
             const container = document.getElementById('filter-container');
             container.innerHTML = filters.map(f => `
-        <button onclick="setFilter('${f.id}')" 
-            class="px-5 py-2.5 text-xs font-bold tracking-wider rounded-lg transition-all duration-300 ${activeFilterId === f.id ? `${f.color} text-white shadow-lg transform -translate-y-0.5` : `bg-white text-slate-600 hover:bg-slate-100 border border-slate-200`}">
-            ${f.label}
-        </button>
-      `).join('');
+    <button onclick="setFilter('${f.id}')"
+        class="px-5 py-2.5 text-xs font-bold tracking-wider rounded-lg transition-all duration-300 ${activeFilterId === f.id ? `${f.color} text-white shadow-lg transform -translate-y-0.5` : `bg-white text-slate-600 hover:bg-slate-100 border border-slate-200`}">
+        ${f.label}
+    </button>
+    `).join('');
         }
 
         function renderProjects() {
             const container = document.getElementById('projects-grid');
             const emptyState = document.getElementById('empty-state');
             const activeFilter = filters.find(f => f.id === activeFilterId);
-            const filtered = activeFilterId === 'ALL' ? projects : projects.filter(p => activeFilter.categories.includes(p.category));
+            const filtered = activeFilterId === 'ALL' ? projects : projects.filter(p =>
+                activeFilter.categories.includes(p.category));
 
             if (filtered.length === 0) {
                 container.classList.add('hidden');
@@ -342,45 +522,50 @@
             emptyState.classList.add('hidden');
 
             container.innerHTML = filtered.map(p => `
-        <a href="proje-detay.html?id=${p.id}" class="block h-full">
-          <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full group cursor-pointer border border-slate-100 hover:border-mlab-cyan/30 overflow-hidden">
+    <a href="proje-detay.html?id=${p.id}" class="block h-full">
+        <div
+            class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full group cursor-pointer border border-slate-100 hover:border-mlab-cyan/30 overflow-hidden">
             <div class="h-48 w-full relative overflow-hidden bg-slate-200">
-              <img src="${p.image}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://placehold.co/800x400/e2e8f0/64748b?text=Proje'">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                <img src="${p.image}"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    onerror="this.src='https://placehold.co/800x400/e2e8f0/64748b?text=Proje'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
             <div class="p-6 flex-grow flex flex-col">
-              <h3 class="text-lg font-extrabold text-mlab-navy mb-4 uppercase leading-tight group-hover:text-mlab-purple transition-colors line-clamp-2">${p.title}</h3>
-              <div class="space-y-4 mt-auto">
-                <div class="grid grid-cols-2 gap-4">
-                  <div>
-                    <div class="flex items-center text-mlab-navy font-bold text-xs mb-1">
-                      <i data-lucide="clock" class="w-3 h-3 mr-1"></i> START DATE
+                <h3
+                    class="text-lg font-extrabold text-mlab-navy mb-4 uppercase leading-tight group-hover:text-mlab-purple transition-colors line-clamp-2">
+                    ${p.title}</h3>
+                <div class="space-y-4 mt-auto">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <div class="flex items-center text-mlab-navy font-bold text-xs mb-1">
+                                <i data-lucide="clock" class="w-3 h-3 mr-1"></i> START DATE
+                            </div>
+                            <div class="text-slate-500 text-sm">${p.startDate}</div>
+                        </div>
+                        <div>
+                            <div class="flex items-center text-mlab-navy font-bold text-xs mb-1">
+                                <i data-lucide="check-circle" class="w-3 h-3 mr-1"></i> STATUS
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="flex-grow bg-slate-200 rounded-full h-1.5 w-16">
+                                    <div class="bg-mlab-cyan h-1.5 rounded-full" style="width: ${p.progress}%"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-slate-500 text-sm">${p.startDate}</div>
-                  </div>
-                  <div>
-                    <div class="flex items-center text-mlab-navy font-bold text-xs mb-1">
-                      <i data-lucide="check-circle" class="w-3 h-3 mr-1"></i> STATUS
+                    <hr class="border-slate-100" />
+                    <div>
+                        <div class="flex items-center text-mlab-navy font-bold text-xs mb-1">
+                            <i data-lucide="users" class="w-3 h-3 mr-1"></i> PARTNERS
+                        </div>
+                        <div class="text-slate-500 text-sm truncate">${p.partners}</div>
                     </div>
-                    <div class="flex items-center gap-2">
-                      <div class="flex-grow bg-slate-200 rounded-full h-1.5 w-16">
-                        <div class="bg-mlab-cyan h-1.5 rounded-full" style="width: ${p.progress}%"></div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-                <hr class="border-slate-100" />
-                <div>
-                  <div class="flex items-center text-mlab-navy font-bold text-xs mb-1">
-                    <i data-lucide="users" class="w-3 h-3 mr-1"></i> PARTNERS
-                  </div>
-                  <div class="text-slate-500 text-sm truncate">${p.partners}</div>
-                </div>
-              </div>
             </div>
-          </div>
-        </a>
-      `).join('');
+        </div>
+    </a>
+    `).join('');
 
             lucide.createIcons();
         }
@@ -399,6 +584,86 @@
         // Initial render
         renderFilters();
         renderProjects();
+
+        // --- MODAL LOGIC ---
+        const modal = document.getElementById('project-modal');
+        const backdrop = document.getElementById('modal-backdrop');
+        const panel = document.getElementById('modal-panel');
+        const challengesContainer = document.getElementById('challenges-checkboxes');
+
+        function openProjectModal() {
+            modal.classList.remove('hidden');
+            // Animate in
+            setTimeout(() => {
+                backdrop.classList.remove('opacity-0');
+                panel.classList.remove('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
+                panel.classList.add('opacity-100', 'translate-y-0', 'sm:scale-100');
+            }, 10);
+            renderChallengeCheckboxes();
+        }
+
+        function closeProjectModal() {
+            // Animate out
+            backdrop.classList.add('opacity-0');
+            panel.classList.remove('opacity-100', 'translate-y-0', 'sm:scale-100');
+            panel.classList.add('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.getElementById('project-form').reset();
+            }, 300);
+        }
+
+        function renderChallengeCheckboxes() {
+            // Skip the "ALL" filter
+            const challengeFilters = filters.filter(f => f.id !== 'ALL');
+            challengesContainer.innerHTML = challengeFilters.map((f, index) => `
+    <div class="flex items-start">
+        <div class="flex h-5 items-center">
+            <input id="challenge-${f.id}" name="challenges" value="${f.id}" type="checkbox"
+                class="h-4 w-4 rounded border-slate-300 text-mlab-navy focus:ring-mlab-cyan cursor-pointer">
+        </div>
+        <div class="ml-3 text-sm">
+            <label for="challenge-${f.id}"
+                class="font-medium text-slate-700 cursor-pointer select-none">${f.label}</label>
+        </div>
+    </div>
+    `).join('');
+        }
+
+        function submitProject(e) {
+            e.preventDefault();
+
+            const formData = {
+                id: Date.now(), // Temp ID
+                // Contact Info
+                contactName: document.getElementById('contact-name').value,
+                contactTitle: document.getElementById('contact-title').value,
+                contactOrg: document.getElementById('contact-org').value,
+                contactEmail: document.getElementById('contact-email').value,
+                // Project Info
+                title: document.getElementById('project-name').value,
+                desc: document.getElementById('project-desc').value,
+                startDate: document.getElementById('project-date').value,
+                status: document.getElementById('project-status').value,
+                partners: document.getElementById('project-partners').value,
+                challenges: Array.from(document.querySelectorAll('input[name="challenges"]:checked')).map(cb => cb.value),
+                kvkkConsent: document.getElementById('kvkk-consent').checked,
+                submittedAt: new Date().toISOString()
+            };
+
+            console.log('Project Submitted:', formData);
+
+            // Simulate saving to DB (LocalStorage for demo)
+            const existing = JSON.parse(localStorage.getItem('pendingProjects') || '[]');
+            existing.push(formData);
+            localStorage.setItem('pendingProjects', JSON.stringify(existing));
+
+            // Success feedback
+            alert('Projeniz başarıyla gönderildi! Yönetici onayı sonrası yayınlanacaktır.');
+            closeProjectModal();
+        }
+
     </script>
 </body>
 
