@@ -1343,13 +1343,16 @@
             container.innerHTML = allPosts.map(post => {
                 let typeColor = 'orange'; // Default: Uzmanlık Bildirisi
                 let typeLabel = 'Uzmanlık Bildirisi';
+                let gradientClass = 'from-mlab-orange to-amber-500';
 
                 if (post.post_type === 'destek_talebi') {
                     typeColor = 'cyan';
                     typeLabel = 'Destek Talebi';
+                    gradientClass = 'from-mlab-cyan to-blue-500';
                 } else if (post.post_type === 'partner_call') {
                     typeColor = 'blue';
                     typeLabel = 'Partner Çağrısı';
+                    gradientClass = 'from-blue-500 to-indigo-600';
                 }
 
                 const categoryIcon = post.author?.category === 'belediye' ? 'landmark' : 'building-2';
@@ -1364,7 +1367,7 @@
             <div class="px-6 py-4 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br ${isRequest ? 'from-mlab-cyan to-blue-500' : 'from-mlab-orange to-amber-500'} flex items-center justify-center shadow-md cursor-pointer" onclick="showUserProfile('${post.author_id || post.id}', ${JSON.stringify(post.author).replace(/"/g, '&quot;')})">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br ${gradientClass} flex items-center justify-center shadow-md cursor-pointer" onclick="showUserProfile('${post.author_id || post.id}', ${JSON.stringify(post.author).replace(/"/g, '&quot;')})">
                             <i data-lucide="${categoryIcon}" class="w-5 h-5 text-white"></i>
                         </div>
                         <div>
