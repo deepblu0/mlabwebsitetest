@@ -223,12 +223,12 @@
                         <span>Uzman Havuzuna Katıl!</span>
                     </button>
 
-                    <a href="#"
+                    <button onclick="openPartnerModal()"
                         class="group flex items-center justify-center gap-2 px-4 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-bold rounded-2xl shadow-lg shadow-cyan/20 hover:shadow-cyan/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300">
                         <i data-lucide="users"
                             class="w-5 h-5 text-white/90 group-hover:scale-110 transition-transform duration-300"></i>
                         <span>Ufuk Avrupa Partner Çağrısı</span>
-                    </a>
+                    </button>
 
                     <a href="ufuk-hibeleri.html"
                         class="group flex items-center justify-center gap-2 px-4 py-4 bg-gradient-to-r from-blue-700 to-indigo-900 text-white text-sm font-bold rounded-2xl shadow-lg shadow-blue/20 hover:shadow-blue/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300">
@@ -835,6 +835,125 @@
         </div>
     </div>
 
+    <!-- PARTNER CALL MODAL -->
+    <div id="partner-modal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog"
+        aria-modal="true">
+        <div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity" onclick="closePartnerModal()">
+        </div>
+
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div
+                    class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl">
+
+                    <!-- Modal Header -->
+                    <div
+                        class="px-6 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 border-b border-white/10 flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <i data-lucide="users" class="w-6 h-6 text-white/90"></i>
+                            Partner Arayışı Oluştur
+                        </h3>
+                        <button onclick="closePartnerModal()"
+                            class="text-white/70 hover:text-white transition-colors p-1 hover:bg-white/10 rounded-lg">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="px-6 py-6 max-h-[70vh] overflow-y-auto">
+                        <form id="partner-form" class="space-y-5">
+                            <!-- Personal Info Grid -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label class="text-sm font-medium text-slate-700">Ad Soyad</label>
+                                    <input type="text" name="fullName" required
+                                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all font-medium">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-sm font-medium text-slate-700">Kurum</label>
+                                    <input type="text" name="institution" required
+                                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-sm font-medium text-slate-700">Ünvan</label>
+                                    <input type="text" name="title" required
+                                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-sm font-medium text-slate-700">İletişim Adresi
+                                        (E-posta/Tel)</label>
+                                    <input type="text" name="contact" required
+                                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all">
+                                </div>
+                            </div>
+
+                            <div class="border-t border-slate-100 my-2"></div>
+
+                            <!-- Post Title -->
+                            <div class="space-y-1">
+                                <label class="text-sm font-medium text-slate-700">Başlık</label>
+                                <input type="text" name="postTitle" required
+                                    placeholder="Partner arayışınız için kısa bir başlık..."
+                                    class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all font-semibold">
+                            </div>
+
+                            <!-- Horizon Call Selection -->
+                            <div class="space-y-1">
+                                <label class="text-sm font-medium text-slate-700 flex items-center gap-2">
+                                    İlgili Ufuk Avrupa Çağrısı
+                                    <span class="text-xs text-slate-400 font-normal">(Listeden seçin veya arayın)</span>
+                                </label>
+                                <div class="relative">
+                                    <input type="text" id="horizon-call-search" list="horizon-calls-list"
+                                        placeholder="Çağrı kodu veya adı yazın..." required
+                                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 pl-10 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all">
+                                    <i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-3 top-3"></i>
+                                    <datalist id="horizon-calls-list">
+                                        <!-- Will be populated by JS -->
+                                    </datalist>
+                                </div>
+                            </div>
+
+                            <!-- Consortium Status -->
+                            <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <input type="checkbox" id="consortium-check" name="consortium"
+                                    class="w-5 h-5 rounded border-slate-300 text-cyan-600 focus:ring-cyan-500">
+                                <label for="consortium-check" class="text-sm font-medium text-slate-700 select-none">
+                                    Bir konsorsiyuma dahilim (Evet)
+                                </label>
+                            </div>
+
+                            <!-- Partner Area Description -->
+                            <div class="space-y-1">
+                                <label class="text-sm font-medium text-slate-700">Hangi çalışma alanlarında partner
+                                    arıyorsunuz?</label>
+                                <textarea name="partnerArea" rows="4" required
+                                    placeholder="Aradığınız partnerin özellikleri, çalışma alanı ve beklentileriniz..."
+                                    class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all resize-none"></textarea>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div
+                        class="bg-slate-50 px-6 py-4 flex items-center justify-end gap-3 rounded-b-2xl border-t border-slate-200">
+                        <button onclick="closePartnerModal()"
+                            class="px-5 py-2.5 text-slate-600 font-medium hover:bg-slate-200 rounded-xl transition-colors">
+                            İptal
+                        </button>
+                        <button onclick="submitPartnerCall()" id="partner-submit-btn"
+                            class="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold rounded-xl shadow-lg shadow-cyan/20 hover:shadow-cyan/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                            Yayınla
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="horizon-data.js"></script> <!-- Import Horizon Data -->
     <script src="firebase-config.js"></script>
     <script>
 
@@ -2078,6 +2197,128 @@
             const authenticated = await checkAuth();
             if (authenticated) {
                 await loadPosts();
+            }
+        }
+
+        // --- Partner Call Modal Logic ---
+
+        function openPartnerModal() {
+            document.getElementById('partner-modal').classList.remove('hidden');
+            populateHorizonCalls(); // Ensure list is populated
+        }
+
+        function closePartnerModal() {
+            document.getElementById('partner-modal').classList.add('hidden');
+            document.getElementById('partner-form').reset();
+        }
+
+        function populateHorizonCalls() {
+            const dataList = document.getElementById('horizon-calls-list');
+            if (dataList.children.length > 0) return; // Already populated
+
+            if (typeof horizonData === 'undefined' || !horizonData) {
+                console.error("Horizon Data not loaded!");
+                return;
+            }
+
+            // Combine all calls (newCalls + missionCalls + allCalls)
+            // Use a Set to avoid duplicates based on code
+            const uniqueCalls = new Map();
+
+            const addCalls = (calls) => {
+                if (!calls) return;
+                calls.forEach(call => {
+                    if (!uniqueCalls.has(call.code)) {
+                        uniqueCalls.set(call.code, call);
+                    }
+                });
+            };
+
+            addCalls(horizonData.newCalls);
+            addCalls(horizonData.missionCalls);
+            addCalls(horizonData.allCalls);
+
+            uniqueCalls.forEach(call => {
+                const option = document.createElement('option');
+                option.value = `${call.code} - ${call.name}`;
+                dataList.appendChild(option);
+            });
+        }
+
+        async function submitPartnerCall() {
+            if (!currentUser) {
+                alert("Lütfen önce giriş yapın!");
+                return;
+            }
+
+            const form = document.getElementById('partner-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const formData = new FormData(form);
+            const callSelection = formData.get('horizon-call-search');
+            // Extract code from selection if possible, otherwise use full string
+            const callCode = callSelection.split(' - ')[0] || callSelection;
+
+            const postContent = `
+**Ad Soyad:** ${formData.get('fullName')}
+**Kurum:** ${formData.get('institution')}
+**Ünvan:** ${formData.get('title')}
+**İletişim:** ${formData.get('contact')}
+
+**İlgili Çağrı:** ${callSelection}
+**Konsorsiyum Durumu:** ${formData.get('consortium') ? '✅ Bir konsorsiyuma dahilim' : '❌ Henüz dahil değilim'}
+
+**Partner Arayışı ve Beklentiler:**
+${formData.get('partnerArea')}
+            `.trim();
+
+            const newPost = {
+                author: currentUser.name || currentUser.email,
+                authorId: currentUser.uid,
+                authorRole: currentUser.role || 'Üye',
+                content: postContent,
+                title: formData.get('postTitle'),
+                timestamp: new Date().toISOString(), // Fallback for local
+                type: 'partner_call',
+                tags: ['Partner Arayışı', callCode, 'Ufuk Avrupa'],
+                likes: 0,
+                comments: [],
+                likedBy: []
+            };
+
+            const submitBtn = document.getElementById('partner-submit-btn');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Yayınlanıyor...';
+
+            try {
+                if (window.db) {
+                    await window.addDoc(window.collection(window.db, "posts"), {
+                        ...newPost,
+                        timestamp: window.serverTimestamp()
+                    });
+                } else {
+                    // Local Storage Fallback
+                    const localPosts = JSON.parse(localStorage.getItem('posts') || '[]');
+                    localPosts.unshift(newPost);
+                    localStorage.setItem('posts', JSON.stringify(localPosts));
+                }
+
+                closePartnerModal();
+                loadPosts(); // Refresh feed
+                // showToast? Alert?
+                alert("Partner çağrınız başarıyla yayınlandı! 🚀");
+
+            } catch (error) {
+                console.error("Partner post error:", error);
+                alert("Hata oluştu: " + error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                lucide.createIcons();
             }
         }
 
