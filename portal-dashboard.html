@@ -832,6 +832,11 @@
 
     <script src="firebase-config.js"></script>
     <script>
+        // DEBUG ERROR HANDLER
+        window.onerror = function (msg, url, line, col, error) {
+            alert("Hata: " + msg + "\nSatır: " + line);
+            return false;
+        };
         lucide.createIcons();
 
         let currentUser = null;
@@ -2074,7 +2079,11 @@
             }
         }
 
-        init();
+        try {
+            init().catch(e => alert("Init Hatası: " + e));
+        } catch (e) {
+            alert("Global Run Hatası: " + e);
+        }
     </script>
 </body>
 
