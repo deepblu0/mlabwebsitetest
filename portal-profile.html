@@ -30,6 +30,7 @@
         }
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="i18n.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
@@ -137,7 +138,7 @@
     </script>
 </head>
 
-<body class="bg-slate-100 text-slate-800 antialiased min-h-screen">
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen" data-i18n-title="portal.nav.profile">
     <!-- NAVBAR -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-mlab-navy text-white shadow-xl">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -147,12 +148,22 @@
                         <img src="mlab-logo.png" alt="M-LAB" class="h-10 w-auto brightness-0 invert">
                     </a>
                     <span class="hidden md:inline text-white/50">|</span>
-                    <span class="hidden md:inline text-sm font-medium text-mlab-cyan">Profil Ayarları</span>
+                    <span class="hidden md:inline text-sm font-medium text-mlab-cyan"
+                        data-i18n="portal.nav.profile">Profil Ayarları</span>
                 </div>
                 <div class="flex items-center gap-4">
+                    <!-- Language Toggle -->
+                    <div class="flex items-center gap-1 bg-white/10 rounded-full p-1 border border-white/10">
+                        <button onclick="setLang('tr')"
+                            class="lang-btn px-2 py-1 rounded-full text-xs font-bold transition-colors text-white"
+                            data-lang="tr">TR</button>
+                        <button onclick="setLang('en')"
+                            class="lang-btn px-2 py-1 rounded-full text-xs font-medium transition-colors text-white/70 hover:text-white"
+                            data-lang="en">EN</button>
+                    </div>
                     <a href="portal-dashboard" class="text-sm text-white/70 hover:text-white transition-colors">
                         <i data-lucide="arrow-left" class="w-4 h-4 inline mr-1"></i>
-                        Dashboard'a Dön
+                        <span data-i18n="portal.login.back_to_portal">Dashboard'a Dön</span>
                     </a>
                     <div class="relative" id="user-menu-container">
                         <button id="user-menu-btn"
@@ -176,8 +187,10 @@
         <div class="max-w-3xl mx-auto">
             <!-- Header -->
             <div class="mb-8">
-                <h1 class="text-2xl md:text-3xl font-bold text-mlab-navy mb-2">Profil Ayarları</h1>
-                <p class="text-slate-600">Kurum ve iletişim bilgilerinizi güncelleyin.</p>
+                <h1 class="text-2xl md:text-3xl font-bold text-mlab-navy mb-2" data-i18n="portal.nav.profile">Profil
+                    Ayarları</h1>
+                <p class="text-slate-600" data-i18n="portal.profile.subtitle">Kurum ve iletişim bilgilerinizi
+                    güncelleyin.</p>
             </div>
 
             <!-- Profile Form -->
@@ -187,14 +200,16 @@
 
                 <!-- Organization Info -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                    <h2 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
+                    <h2 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2"
+                        data-i18n="portal.register.org_info">
                         <i data-lucide="building" class="w-5 h-5 text-mlab-purple"></i>
                         Kurum Bilgileri
                     </h2>
 
                     <!-- Category -->
                     <div class="mb-5">
-                        <label class="block text-sm font-medium text-slate-700 mb-3">Kurum Kategorisi</label>
+                        <label class="block text-sm font-medium text-slate-700 mb-3"
+                            data-i18n="portal.register.category">Kurum Kategorisi</label>
                         <div class="grid grid-cols-2 gap-4">
                             <label class="relative cursor-pointer">
                                 <input type="radio" id="cat-belediye" name="category" value="belediye"
@@ -206,7 +221,8 @@
                                             class="w-10 h-10 rounded-lg bg-mlab-navy/10 flex items-center justify-center">
                                             <i data-lucide="landmark" class="w-5 h-5 text-mlab-navy"></i>
                                         </div>
-                                        <div class="font-semibold text-mlab-navy">Belediye</div>
+                                        <div class="font-semibold text-mlab-navy"
+                                            data-i18n="portal.filters.municipality">Belediye</div>
                                     </div>
                                 </div>
                             </label>
@@ -220,7 +236,8 @@
                                             class="w-10 h-10 rounded-lg bg-mlab-orange/10 flex items-center justify-center">
                                             <i data-lucide="building-2" class="w-5 h-5 text-mlab-orange"></i>
                                         </div>
-                                        <div class="font-semibold text-mlab-navy">Özel Sektör</div>
+                                        <div class="font-semibold text-mlab-navy" data-i18n="portal.filters.private">
+                                            Özel Sektör</div>
                                     </div>
                                 </div>
                             </label>
@@ -229,17 +246,20 @@
 
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">Kurum Adı</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2"
+                                data-i18n="portal.register.org_name">Kurum Adı</label>
                             <input type="text" id="org_name" name="org_name"
                                 class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">Web Sitesi</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2"
+                                data-i18n="portal.register.website">Web Sitesi</label>
                             <input type="text" id="website" name="website"
                                 class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">Kurum Açıklaması</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2"
+                                data-i18n="portal.register.org_desc">Kurum Açıklaması</label>
                             <textarea id="org_description" name="org_description" rows="3"
                                 class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none"></textarea>
                         </div>
@@ -248,11 +268,13 @@
 
                 <!-- Büyük Zorluklar -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                    <h2 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
+                    <h2 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2"
+                        data-i18n="nav.challenges">
                         <i data-lucide="target" class="w-5 h-5 text-mlab-purple"></i>
                         Büyük Zorluklar
                     </h2>
-                    <p class="text-sm text-slate-600 mb-4">Kurumunuz hangi Büyük Zorluklar kapsamında katkı sunabilir?
+                    <p class="text-sm text-slate-600 mb-4" data-i18n="portal.register.challenges_label">Kurumunuz hangi
+                        Büyük Zorluklar kapsamında katkı sunabilir?
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <label
@@ -320,29 +342,35 @@
 
                 <!-- Contact Person -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                    <h2 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
+                    <h2 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2"
+                        data-i18n="portal.register.contact_person">
                         <i data-lucide="user" class="w-5 h-5 text-mlab-purple"></i>
                         İletişim Kişisi
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">Ad Soyad</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2"
+                                data-i18n="portal.register.contact_name">Ad Soyad</label>
                             <input type="text" id="contact_name" name="contact_name"
                                 class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">Unvan / Pozisyon</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2"
+                                data-i18n="portal.register.contact_title">Unvan / Pozisyon</label>
                             <input type="text" id="contact_title" name="contact_title"
                                 class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">E-posta Adresi</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2"
+                                data-i18n="portal.login.email_auth">E-posta Adresi</label>
                             <input type="email" id="email" name="email" disabled
                                 class="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-slate-500 cursor-not-allowed">
-                            <p class="text-xs text-slate-500 mt-1">E-posta değiştirilemez</p>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="portal.profile.email_fixed">E-posta
+                                değiştirilemez</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">Telefon</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2"
+                                data-i18n="portal.register.phone">Telefon</label>
                             <input type="tel" id="phone" name="phone"
                                 class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                         </div>
@@ -353,12 +381,12 @@
                 <div class="flex items-center justify-between">
                     <a href="portal-dashboard" class="text-slate-600 hover:text-mlab-navy transition-colors">
                         <i data-lucide="arrow-left" class="w-4 h-4 inline mr-1"></i>
-                        Vazgeç
+                        <span data-i18n="portal.common.cancel">Vazgeç</span>
                     </a>
                     <button type="submit"
                         class="px-8 py-3 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white font-bold rounded-xl hover:shadow-xl hover:shadow-mlab-purple/20 transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-2">
                         <i data-lucide="save" class="w-5 h-5"></i>
-                        Değişiklikleri Kaydet
+                        <span data-i18n="portal.profile.save">Değişiklikleri Kaydet</span>
                     </button>
                 </div>
             </form>
@@ -367,7 +395,7 @@
             <div id="success-message"
                 class="hidden fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-xl shadow-xl flex items-center gap-2">
                 <i data-lucide="check-circle" class="w-5 h-5"></i>
-                Profil başarıyla güncellendi!
+                <span data-i18n="portal.profile.success">Profil başarıyla güncellendi!</span>
             </div>
         </div>
     </main>

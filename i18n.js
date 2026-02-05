@@ -281,6 +281,318 @@ const translations = {
         tr: 'Admin Paneli',
         en: 'Admin Panel'
     },
+    'portal.nav.home': {
+        tr: 'Portal Ana Sayfa',
+        en: 'Portal Home'
+    },
+    'portal.nav.profile': {
+        tr: 'Profil Ayarları',
+        en: 'Profile Settings'
+    },
+    'portal.nav.logout': {
+        tr: 'Çıkış Yap',
+        en: 'Logout'
+    },
+    'portal.dashboard.title': {
+        tr: 'Panel | M-LAB Portal',
+        en: 'Dashboard | M-LAB Portal'
+    },
+    'portal.filters.title': {
+        tr: 'Filtreler',
+        en: 'Filters'
+    },
+    'portal.filters.type': {
+        tr: 'Post Türü',
+        en: 'Post Type'
+    },
+    'portal.filters.all': {
+        tr: 'Tümü',
+        en: 'All'
+    },
+    'portal.filters.support': {
+        tr: 'Destek Talepleri',
+        en: 'Support Requests'
+    },
+    'portal.filters.expert': {
+        tr: 'Uzmanlık Bildirileri',
+        en: 'Expertise Declarations'
+    },
+    'portal.filters.partner': {
+        tr: 'Partner Çağrıları',
+        en: 'Partner Calls'
+    },
+    'portal.filters.org_type': {
+        tr: 'Kurum Türü',
+        en: 'Organization Type'
+    },
+    'portal.filters.municipality': {
+        tr: 'Belediye',
+        en: 'Municipality'
+    },
+    'portal.filters.private': {
+        tr: 'Özel Sektör',
+        en: 'Private Sector'
+    },
+    'portal.filters.challenge': {
+        tr: 'Büyük Zorluk',
+        en: 'Grand Challenge'
+    },
+    'portal.filters.apply': {
+        tr: 'Filtrele',
+        en: 'Filter'
+    },
+    'portal.actions.mobile_new': {
+        tr: 'Yeni Çağrıda Bulun',
+        en: 'Create New Call'
+    },
+    'portal.actions.new_call': {
+        tr: 'Yeni Çağrı',
+        en: 'New Call'
+    },
+    'portal.actions.expert_pool': {
+        tr: 'Uzman Havuzuna Katıl!',
+        en: 'Join Expert Pool!'
+    },
+    'portal.actions.partner_search': {
+        tr: 'Partner Ara',
+        en: 'Search Partner'
+    },
+    'portal.expert.are_you': {
+        tr: 'Uzman mısınız?',
+        en: 'Are you an expert?'
+    },
+    'portal.expert.join_network': {
+        tr: 'Çözüm ağımıza katılın',
+        en: 'Join our solution network'
+    },
+    'portal.expert.include_me': {
+        tr: 'Beni Uzman Havuzuna Dahil Et!',
+        en: 'Include Me in Expert Pool!'
+    },
+    'portal.login.title': {
+        tr: 'Portal\'a Giriş',
+        en: 'Login to Portal'
+    },
+    'portal.login.subtitle': {
+        tr: 'Hesabınıza giriş yapın',
+        en: 'Sign in to your account'
+    },
+    'portal.login.email_auth': {
+        tr: 'E-posta Adresi',
+        en: 'Email Address'
+    },
+    'portal.login.password_auth': {
+        tr: 'Şifre',
+        en: 'Password'
+    },
+    'portal.login.remember_me': {
+        tr: 'Beni hatırla',
+        en: 'Remember me'
+    },
+    'portal.login.forgot_password': {
+        tr: 'Şifremi unuttum',
+        en: 'Forgot password'
+    },
+    'portal.login.no_account': {
+        tr: 'Hesabınız yok mu?',
+        en: 'Don\'t have an account?'
+    },
+    'portal.login.back_to_portal': {
+        tr: 'Portal\'a Dön',
+        en: 'Back to Portal'
+    },
+    'portal.register.title': {
+        tr: 'Platforma Kayıt Ol',
+        en: 'Register to Platform'
+    },
+    'portal.register.subtitle': {
+        tr: 'Bilgilerinizi doldurun ve onay sürecini başlatın.',
+        en: 'Fill in your details and start the approval process.'
+    },
+    'portal.register.category': {
+        tr: 'Kurum Kategorisi *',
+        en: 'Organization Category *'
+    },
+    'portal.register.org_info': {
+        tr: 'Kurum Bilgileri',
+        en: 'Organization Info'
+    },
+    'portal.register.org_name': {
+        tr: 'Kurum Adı *',
+        en: 'Organization Name *'
+    },
+    'portal.register.website': {
+        tr: 'Web Sitesi',
+        en: 'Website'
+    },
+    'portal.register.org_desc': {
+        tr: 'Kurum Açıklaması',
+        en: 'Organization Description'
+    },
+    'portal.register.challenges_label': {
+        tr: 'Kurumunuz hangi Büyük Zorluklar kapsamında katkı sunabilir? *',
+        en: 'Which Grand Challenges can your organization contribute to? *'
+    },
+    'portal.register.contact_person': {
+        tr: 'İletişim Kişisi',
+        en: 'Contact Person'
+    },
+    'portal.register.contact_name': {
+        tr: 'Ad Soyad *',
+        en: 'Full Name *'
+    },
+    'portal.register.contact_title': {
+        tr: 'Unvan / Pozisyon *',
+        en: 'Title / Position *'
+    },
+    'portal.register.phone': {
+        tr: 'Telefon',
+        en: 'Phone'
+    },
+    'portal.register.create_password': {
+        tr: 'Şifre Oluştur',
+        en: 'Create Password'
+    },
+    'portal.register.password': {
+        tr: 'Şifre *',
+        en: 'Password *'
+    },
+    'portal.register.password_confirm': {
+        tr: 'Şifre Tekrar *',
+        en: 'Confirm Password *'
+    },
+    'portal.register.kvkk_text': {
+        tr: 'okudum ve kişisel verilerimin işlenmesini kabul ediyorum.',
+        en: 'I have read and agree to the processing of my personal data.'
+    },
+    'portal.register.submit': {
+        tr: 'Başvuruyu Gönder',
+        en: 'Submit Application'
+    },
+    'portal.register.already_account': {
+        tr: 'Zaten hesabınız var mı?',
+        en: 'Already have an account?'
+    },
+    'portal.register.success_title': {
+        tr: 'Başvurunuz Alındı!',
+        en: 'Application Received!'
+    },
+    'portal.register.success_message': {
+        tr: 'Başvurunuz M-LAB ekibi tarafından incelenecektir. Onay sonrası e-posta ile bilgilendirileceksiniz. Bu işlem genellikle 1-2 iş günü sürmektedir.',
+        en: 'Your application will be reviewed by the M-LAB team. You will be informed via email after approval. This process usually takes 1-2 business days.'
+    },
+    'portal.error.title': {
+        tr: 'Hata Oluştu!',
+        en: 'Error Occurred!'
+    },
+    'portal.error.default': {
+        tr: 'Bir hata meydana geldi.',
+        en: 'An error occurred.'
+    },
+    'portal.common.ok': {
+        tr: 'Tamam',
+        en: 'OK'
+    },
+    'portal.profile.subtitle': {
+        tr: 'Kurum ve iletişim bilgilerinizi güncelleyin.',
+        en: 'Update your organization and contact information.'
+    },
+    'portal.common.cancel': {
+        tr: 'Vazgeç',
+        en: 'Cancel'
+    },
+    'portal.profile.save': {
+        tr: 'Değişiklikleri Kaydet',
+        en: 'Save Changes'
+    },
+    'portal.profile.success': {
+        tr: 'Profil başarıyla güncellendi!',
+        en: 'Profile updated successfully!'
+    },
+    'portal.common.saving': {
+        tr: 'Kaydediliyor...',
+        en: 'Saving...'
+    },
+    'portal.profile.email_fixed': {
+        tr: 'E-posta değiştirilemez',
+        en: 'Email cannot be changed'
+    },
+    'portal.admin.title': {
+        tr: 'Admin Panel | M-LAB Portal',
+        en: 'Admin Panel | M-LAB Portal'
+    },
+    'portal.admin.panel': {
+        tr: 'Admin Panel',
+        en: 'Admin Panel'
+    },
+    'portal.admin.pending': {
+        tr: 'Onay Bekleyenler',
+        en: 'Pending Approval'
+    },
+    'portal.admin.approved': {
+        tr: 'Onaylı Üyeler',
+        en: 'Approved Members'
+    },
+    'portal.admin.rejected': {
+        tr: 'Reddedilenler',
+        en: 'Rejected'
+    },
+    'portal.admin.experts': {
+        tr: 'Uzman Başvuruları',
+        en: 'Expert Applications'
+    },
+    'portal.admin.empty': {
+        tr: 'Bu kategoride kullanıcı bulunmuyor.',
+        en: 'No users found in this category.'
+    },
+    'portal.admin.user_details': {
+        tr: 'Üyelik Detayları',
+        en: 'Membership Details'
+    },
+    'portal.admin.approve': {
+        tr: 'Onayla',
+        en: 'Approve'
+    },
+    'portal.admin.reject': {
+        tr: 'Reddet',
+        en: 'Reject'
+    },
+    'portal.form.call_type': {
+        tr: 'Çağrı Türü *',
+        en: 'Call Type *'
+    },
+    'portal.form.support_request': {
+        tr: 'Destek Talebi',
+        en: 'Support Request'
+    },
+    'portal.form.partner_call': {
+        tr: 'Ufuk Avrupa Partner Çağrısı',
+        en: 'Horizon Europe Partner Call'
+    },
+    'portal.form.subject': {
+        tr: 'Konu Başlığı *',
+        en: 'Subject *'
+    },
+    'portal.form.grand_challenge': {
+        tr: 'Büyük Zorluk *',
+        en: 'Grand Challenge *'
+    },
+    'portal.form.description': {
+        tr: 'Açıklama *',
+        en: 'Description *'
+    },
+    'portal.form.publish': {
+        tr: 'Yayınla',
+        en: 'Publish'
+    },
+    'portal.empty.title': {
+        tr: 'Henüz çağrı yok',
+        en: 'No calls yet'
+    },
+    'portal.empty.subtitle': {
+        tr: 'İlk çağrıyı siz oluşturun!',
+        en: 'Create the first call!'
+    },
 
     // Common
     'common.readMore': {

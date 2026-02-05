@@ -30,6 +30,7 @@
         }
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="i18n.js"></script>
     <style>
         .coin-flip-container {
             perspective: 1000px;
@@ -46,7 +47,7 @@
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col" data-i18n-title="portal.register.title">
 
     <!-- NAVBAR -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50">
@@ -58,27 +59,45 @@
                 </a>
                 <div class="hidden lg:flex items-center gap-1">
                     <a href="sehirler-misyonu"
-                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">Şehirler
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group"
+                        data-i18n="nav.mission">Şehirler
                         Misyonu</a>
                     <a href="buyukzorluklar"
-                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group"
+                        data-i18n="nav.challenges">
                         Büyük Zorluklar
                         <span
                             class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple transition-all duration-300 group-hover:w-3/4"></span>
                     </a>
                     <a href="ufuk-hibeleri"
-                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">Ufuk
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group"
+                        data-i18n="nav.grants">Ufuk
                         Hibeleri</a>
                     <a href="projeler"
-                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">Projeler</a>
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group"
+                        data-i18n="nav.projects">Projeler</a>
                     <a href="dokumanlar"
-                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">Dokümanlar</a>
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group"
+                        data-i18n="nav.documents">Dokümanlar</a>
                     <a href="analizler"
-                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">Analizler</a>
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group"
+                        data-i18n="nav.analytics">Analizler</a>
                     <a href="iletisim"
-                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group">İletişim</a>
+                        class="nav-link relative px-4 py-2 text-slate-600 hover:text-mlab-navy transition-colors text-sm font-medium group"
+                        data-i18n="nav.contact">İletişim</a>
                     <a href="portal"
-                        class="ml-2 px-5 py-2.5 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white text-sm font-semibold rounded-full shadow-lg shadow-mlab-purple/25">Portal</a>
+                        class="ml-2 px-5 py-2.5 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white text-sm font-semibold rounded-full shadow-lg shadow-mlab-purple/25"
+                        data-i18n="portal.login.back_to_portal">Portal</a>
+
+                    <!-- Language Toggle -->
+                    <div class="flex items-center gap-1 bg-slate-100 rounded-full p-1 ml-2">
+                        <button onclick="setLang('tr')"
+                            class="lang-btn px-3 py-1.5 rounded-full text-xs font-bold transition-colors"
+                            data-lang="tr">TR</button>
+                        <button onclick="setLang('en')"
+                            class="lang-btn px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
+                            data-lang="en">EN</button>
+                    </div>
                 </div>
                 <button id="mobile-menu-btn"
                     class="lg:hidden p-2.5 text-slate-600 hover:text-mlab-navy hover:bg-slate-100 rounded-xl">
@@ -99,10 +118,12 @@
                     <a href="portal"
                         class="inline-flex items-center gap-2 text-mlab-purple hover:text-mlab-navy transition-colors mb-4">
                         <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                        Portal'a Dön
+                        <span data-i18n="portal.login.back_to_portal">Portal'a Dön</span>
                     </a>
-                    <h1 class="text-3xl md:text-4xl font-bold text-mlab-navy mb-3">Platforma Kayıt Ol</h1>
-                    <p class="text-slate-600">Bilgilerinizi doldurun ve onay sürecini başlatın.</p>
+                    <h1 class="text-3xl md:text-4xl font-bold text-mlab-navy mb-3" data-i18n="portal.register.title">
+                        Platforma Kayıt Ol</h1>
+                    <p class="text-slate-600" data-i18n="portal.register.subtitle">Bilgilerinizi doldurun ve onay
+                        sürecini başlatın.</p>
                 </div>
 
                 <!-- Form Card -->
@@ -111,7 +132,8 @@
 
                         <!-- Category Selection -->
                         <div>
-                            <label class="block text-sm font-semibold text-mlab-navy mb-3">Kurum Kategorisi *</label>
+                            <label class="block text-sm font-semibold text-mlab-navy mb-3"
+                                data-i18n="portal.register.category">Kurum Kategorisi *</label>
                             <div class="grid grid-cols-2 gap-4">
                                 <label class="relative cursor-pointer">
                                     <input type="radio" name="category" value="belediye" class="peer sr-only" required>
@@ -122,7 +144,8 @@
                                                 class="w-10 h-10 rounded-lg bg-mlab-navy/10 flex items-center justify-center">
                                                 <i data-lucide="landmark" class="w-5 h-5 text-mlab-navy"></i>
                                             </div>
-                                            <div class="font-semibold text-mlab-navy">Belediye</div>
+                                            <div class="font-semibold text-mlab-navy"
+                                                data-i18n="portal.filters.municipality">Belediye</div>
                                         </div>
                                     </div>
                                 </label>
@@ -136,7 +159,8 @@
                                                 class="w-10 h-10 rounded-lg bg-mlab-orange/10 flex items-center justify-center">
                                                 <i data-lucide="building-2" class="w-5 h-5 text-mlab-orange"></i>
                                             </div>
-                                            <div class="font-semibold text-mlab-navy">Özel Sektör</div>
+                                            <div class="font-semibold text-mlab-navy"
+                                                data-i18n="portal.filters.private">Özel Sektör</div>
                                         </div>
                                     </div>
                                 </label>
@@ -147,34 +171,39 @@
 
                         <!-- Organization Info -->
                         <div class="space-y-4">
-                            <h3 class="font-semibold text-mlab-navy flex items-center gap-2">
+                            <h3 class="font-semibold text-mlab-navy flex items-center gap-2"
+                                data-i18n="portal.register.org_info">
                                 <i data-lucide="building" class="w-4 h-4"></i>
                                 Kurum Bilgileri
                             </h3>
 
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Kurum Adı *</label>
+                                <label class="block text-sm font-medium text-slate-700 mb-2"
+                                    data-i18n="portal.register.org_name">Kurum Adı *</label>
                                 <input type="text" name="org_name" required
                                     class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div class="md:col-span-2">
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">Web Sitesi</label>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2"
+                                        data-i18n="portal.register.website">Web Sitesi</label>
                                     <input type="text" name="website"
                                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                                 </div>
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Kurum Açıklaması</label>
+                                <label class="block text-sm font-medium text-slate-700 mb-2"
+                                    data-i18n="portal.register.org_desc">Kurum Açıklaması</label>
                                 <textarea name="org_description" rows="3"
                                     class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none"></textarea>
                             </div>
 
                             <!-- Büyük Zorluklar -->
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-3">Kurumunuz hangi Büyük
+                                <label class="block text-sm font-medium text-slate-700 mb-3"
+                                    data-i18n="portal.register.challenges_label">Kurumunuz hangi Büyük
                                     Zorluklar kapsamında katkı sunabilir? *</label>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                                     <label
@@ -245,19 +274,22 @@
 
                         <!-- Contact Person -->
                         <div class="space-y-4">
-                            <h3 class="font-semibold text-mlab-navy flex items-center gap-2">
+                            <h3 class="font-semibold text-mlab-navy flex items-center gap-2"
+                                data-i18n="portal.register.contact_person">
                                 <i data-lucide="user" class="w-4 h-4"></i>
                                 İletişim Kişisi
                             </h3>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">Ad Soyad *</label>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2"
+                                        data-i18n="portal.register.contact_name">Ad Soyad *</label>
                                     <input type="text" name="contact_name" required
                                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">Unvan / Pozisyon
+                                    <label class="block text-sm font-medium text-slate-700 mb-2"
+                                        data-i18n="portal.register.contact_title">Unvan / Pozisyon
                                         *</label>
                                     <input type="text" name="contact_title" required
                                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
@@ -266,13 +298,15 @@
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">E-posta Adresi
+                                    <label class="block text-sm font-medium text-slate-700 mb-2"
+                                        data-i18n="portal.login.email_auth">E-posta Adresi
                                         *</label>
                                     <input type="email" name="email" required
                                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">Telefon</label>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2"
+                                        data-i18n="portal.register.phone">Telefon</label>
                                     <input type="tel" name="phone"
                                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                                 </div>
@@ -283,20 +317,23 @@
 
                         <!-- Password -->
                         <div class="space-y-4">
-                            <h3 class="font-semibold text-mlab-navy flex items-center gap-2">
+                            <h3 class="font-semibold text-mlab-navy flex items-center gap-2"
+                                data-i18n="portal.register.create_password">
                                 <i data-lucide="lock" class="w-4 h-4"></i>
                                 Şifre Oluştur
                             </h3>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">Şifre *</label>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2"
+                                        data-i18n="portal.register.password">Şifre *</label>
                                     <input type="password" name="password" required minlength="8"
                                         placeholder="En az 8 karakter"
                                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">Şifre Tekrar *</label>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2"
+                                        data-i18n="portal.register.password_confirm">Şifre Tekrar *</label>
                                     <input type="password" name="password_confirm" required minlength="8"
                                         placeholder="Şifrenizi tekrar girin"
                                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
@@ -310,11 +347,9 @@
                                 class="w-5 h-5 mt-0.5 rounded border-slate-300 text-mlab-purple focus:ring-mlab-purple/50 cursor-pointer">
                             <label for="kvkk-consent" class="text-sm text-slate-600 leading-relaxed">
                                 <a href="yasal.html?page=kvkk" target="_blank"
-                                    class="text-mlab-purple font-semibold hover:underline">KVKK Aydınlatma Metni</a>'ni
-                                okudum ve kişisel verilerimin işlenmesini kabul ediyorum. Platformda paylaştığım
-                                gönderilerde <span class="font-medium text-slate-700">kurum adım, iletişim ismim,
-                                    ünvanım ve
-                                    e-posta adresimin</span> diğer üyeler tarafından görüntülenebileceğini biliyorum. *
+                                    class="text-mlab-purple font-semibold hover:underline" data-i18n="footer.kvkk">KVKK
+                                    Aydınlatma Metni</a><span data-i18n="portal.register.kvkk_text">'ni
+                                    okudum ve kişisel verilerimin işlenmesini kabul ediyorum.</span> *
                             </label>
                         </div>
 
@@ -322,12 +357,13 @@
                         <button type="submit"
                             class="w-full bg-gradient-to-r from-mlab-navy to-mlab-purple text-white font-bold py-4 rounded-xl hover:shadow-xl hover:shadow-mlab-purple/20 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2">
                             <i data-lucide="send" class="w-5 h-5"></i>
-                            Başvuruyu Gönder
+                            <span data-i18n="portal.register.submit">Başvuruyu Gönder</span>
                         </button>
 
                         <p class="text-center text-sm text-slate-500">
-                            Zaten hesabınız var mı?
-                            <a href="portal-login" class="text-mlab-purple font-semibold hover:underline">Giriş
+                            <span data-i18n="portal.register.already_account">Zaten hesabınız var mı?</span>
+                            <a href="portal-login" class="text-mlab-purple font-semibold hover:underline"
+                                data-i18n="portal.login">Giriş
                                 Yapın</a>
                         </p>
                     </form>
@@ -345,15 +381,16 @@
                     class="w-20 h-20 bg-gradient-to-br from-mlab-teal to-mlab-cyan rounded-full flex items-center justify-center mx-auto mb-6">
                     <i data-lucide="check" class="w-10 h-10 text-white"></i>
                 </div>
-                <h2 class="text-2xl font-bold text-mlab-navy mb-3">Başvurunuz Alındı!</h2>
-                <p class="text-slate-600 mb-6">
+                <h2 class="text-2xl font-bold text-mlab-navy mb-3" data-i18n="portal.register.success_title">Başvurunuz
+                    Alındı!</h2>
+                <p class="text-slate-600 mb-6" data-i18n="portal.register.success_message">
                     Başvurunuz M-LAB ekibi tarafından incelenecektir. Onay sonrası e-posta ile bilgilendirileceksiniz.
                     Bu işlem genellikle 1-2 iş günü sürmektedir.
                 </p>
                 <a href="portal"
                     class="inline-flex items-center gap-2 px-6 py-3 bg-mlab-navy text-white font-semibold rounded-xl hover:bg-mlab-purple transition-colors">
                     <i data-lucide="home" class="w-4 h-4"></i>
-                    Portal'a Dön
+                    <span data-i18n="portal.login.back_to_portal">Portal'a Dön</span>
                 </a>
             </div>
         </div>
@@ -371,13 +408,13 @@
                 <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <i data-lucide="alert-circle" class="w-10 h-10 text-red-500"></i>
                 </div>
-                <h2 class="text-2xl font-bold text-slate-800 mb-3">Hata Oluştu!</h2>
-                <p id="error-modal-message" class="text-slate-600 mb-6">
+                <h2 class="text-2xl font-bold text-slate-800 mb-3" data-i18n="portal.error.title">Hata Oluştu!</h2>
+                <p id="error-modal-message" class="text-slate-600 mb-6" data-i18n="portal.error.default">
                     Bir hata meydana geldi.
                 </p>
                 <button onclick="closeErrorModal()"
                     class="inline-flex items-center gap-2 px-6 py-3 bg-red-500 text-white font-semibold rounded-xl hover:bg-red-600 transition-colors">
-                    Tamam
+                    <span data-i18n="portal.common.ok">Tamam</span>
                 </button>
             </div>
         </div>

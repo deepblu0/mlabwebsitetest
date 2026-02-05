@@ -30,6 +30,7 @@
         }
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="i18n.js"></script>
     <style>
         .coin-flip-container {
             perspective: 1000px;
@@ -46,7 +47,7 @@
     </style>
 </head>
 
-<body class="bg-slate-100 text-slate-800 antialiased min-h-screen">
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen" data-i18n-title="portal.dashboard.title">
 
     <!-- NAVBAR -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-mlab-navy text-white shadow-lg">
@@ -60,6 +61,16 @@
 
                 <!-- Right Side: User Profile -->
                 <div class="flex items-center gap-4 relative">
+                    <!-- Language Toggle -->
+                    <div class="flex items-center gap-1 bg-mlab-dark/30 rounded-full p-1 border border-white/10">
+                        <button onclick="setLang('tr')"
+                            class="lang-btn px-3 py-1.5 rounded-full text-xs font-bold transition-colors"
+                            data-lang="tr">TR</button>
+                        <button onclick="setLang('en')"
+                            class="lang-btn px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
+                            data-lang="en">EN</button>
+                    </div>
+
                     <button id="user-menu-btn" onclick="toggleUserMenu()"
                         class="flex items-center gap-3 hover:bg-white/10 px-3 py-2 rounded-xl transition-colors">
                         <div class="text-right hidden md:block">
@@ -85,18 +96,21 @@
                         </a>
 
                         <a href="portal"
-                            class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm">
+                            class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm"
+                            data-i18n="portal.nav.home">
                             <i data-lucide="home" class="w-4 h-4"></i>
                             Portal Ana Sayfa
                         </a>
                         <a href="portal-profile"
-                            class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm">
+                            class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm"
+                            data-i18n="portal.nav.profile">
                             <i data-lucide="user-circle" class="w-4 h-4"></i>
                             Profil Ayarları
                         </a>
                         <hr class="my-2 border-slate-100">
                         <button onclick="logout()"
-                            class="w-full flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 text-sm">
+                            class="w-full flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 text-sm"
+                            data-i18n="portal.nav.logout">
                             <i data-lucide="log-out" class="w-4 h-4"></i>
                             Çıkış Yap
                         </button>
@@ -124,25 +138,28 @@
                 <div class="mb-6 h-[56px] hidden lg:block" aria-hidden="true"></div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sticky top-24">
-                    <h3 class="font-semibold text-mlab-navy mb-4 flex items-center gap-2">
+                    <h3 class="font-semibold text-mlab-navy mb-4 flex items-center gap-2"
+                        data-i18n="portal.filters.title">
                         <i data-lucide="filter" class="w-4 h-4"></i>
                         Filtreler
                     </h3>
 
                     <!-- Post Type Filter -->
                     <div class="mb-5">
-                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block">Post
+                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block"
+                            data-i18n="portal.filters.type">Post
                             Türü</label>
                         <div class="space-y-2">
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="radio" name="post_type" value="all" checked
                                     class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700">Tümü</span>
+                                <span class="text-sm text-slate-700" data-i18n="portal.filters.all">Tümü</span>
                             </label>
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="radio" name="post_type" value="destek_talebi"
                                     class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700">Destek Talepleri</span>
+                                <span class="text-sm text-slate-700" data-i18n="portal.filters.support">Destek
+                                    Talepleri</span>
                             </label>
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="radio" name="post_type" value="uzmanlik_sunumu"
@@ -159,25 +176,29 @@
 
                     <!-- Category Filter -->
                     <div class="mb-5">
-                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block">Kurum
+                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block"
+                            data-i18n="portal.filters.org_type">Kurum
                             Türü</label>
                         <div class="space-y-2">
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="checkbox" name="category" value="belediye" checked
                                     class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700">Belediye</span>
+                                <span class="text-sm text-slate-700"
+                                    data-i18n="portal.filters.municipality">Belediye</span>
                             </label>
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="checkbox" name="category" value="ozel_sektor" checked
                                     class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700">Özel Sektör</span>
+                                <span class="text-sm text-slate-700" data-i18n="portal.filters.private">Özel
+                                    Sektör</span>
                             </label>
                         </div>
                     </div>
 
                     <!-- Büyük Zorluk Filter -->
                     <div>
-                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block">Büyük
+                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block"
+                            data-i18n="portal.filters.challenge">Büyük
                             Zorluk</label>
                         <select id="sector-filter"
                             class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50">
@@ -196,7 +217,8 @@
                     </div>
 
                     <button onclick="applyFilters()"
-                        class="w-full mt-5 px-4 py-2 bg-mlab-navy text-white font-medium rounded-lg hover:bg-mlab-purple transition-colors text-sm">
+                        class="w-full mt-5 px-4 py-2 bg-mlab-navy text-white font-medium rounded-lg hover:bg-mlab-purple transition-colors text-sm"
+                        data-i18n="portal.filters.apply">
                         Filtrele
                     </button>
                 </div>
@@ -205,7 +227,7 @@
                 <button id="mobile-new-post-btn"
                     class="md:hidden w-full mt-4 flex items-center justify-center gap-2 px-4 py-3 bg-mlab-cyan text-mlab-navy font-semibold rounded-xl hover:bg-mlab-cyan/90 transition-colors">
                     <i data-lucide="plus" class="w-5 h-5"></i>
-                    Yeni Çağrıda Bulun
+                    <span data-i18n="portal.actions.mobile_new">Yeni Çağrıda Bulun</span>
                 </button>
             </aside>
 
@@ -218,14 +240,14 @@
                         class="group flex items-center justify-center gap-2 px-4 py-4 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-sm font-bold rounded-2xl shadow-lg shadow-mlab-purple/20 hover:shadow-mlab-purple/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300">
                         <i data-lucide="plus"
                             class="w-5 h-5 group-hover:rotate-90 transition-transform duration-300"></i>
-                        <span>Yeni Çağrı</span>
+                        <span data-i18n="portal.actions.new_call">Yeni Çağrı</span>
                     </button>
 
                     <button onclick="openExpertModal()"
                         class="group flex items-center justify-center gap-2 px-4 py-4 bg-gradient-to-r from-mlab-orange to-red-500 text-white text-sm font-bold rounded-2xl shadow-lg shadow-mlab-orange/20 hover:shadow-mlab-orange/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300">
                         <i data-lucide="clipboard-list"
                             class="w-5 h-5 group-hover:scale-110 transition-transform duration-300"></i>
-                        <span>Uzman Havuzuna Katıl!</span>
+                        <span data-i18n="portal.actions.expert_pool">Uzman Havuzuna Katıl!</span>
                     </button>
 
                     <button onclick="openPartnerModal()"
@@ -252,12 +274,13 @@
                     <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i data-lucide="inbox" class="w-10 h-10 text-slate-400"></i>
                     </div>
-                    <h3 class="text-lg font-semibold text-slate-600 mb-2">Henüz çağrı yok</h3>
-                    <p class="text-slate-500 mb-6">İlk çağrıyı siz oluşturun!</p>
+                    <h3 class="text-lg font-semibold text-slate-600 mb-2" data-i18n="portal.empty.title">Henüz çağrı yok
+                    </h3>
+                    <p class="text-slate-500 mb-6" data-i18n="portal.empty.subtitle">İlk çağrıyı siz oluşturun!</p>
                     <button onclick="submitNewPost()" id="submit-btn"
                         class="inline-flex items-center gap-2 px-6 py-3 bg-mlab-purple text-white font-semibold rounded-xl hover:bg-mlab-navy transition-colors">
                         <i data-lucide="plus" class="w-5 h-5"></i>
-                        Yeni Çağrı
+                        <span data-i18n="portal.actions.new_call">Yeni Çağrı</span>
                     </button>
                 </div>
             </div>
@@ -275,7 +298,8 @@
             class="absolute inset-4 md:inset-10 lg:inset-y-10 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-2xl lg:w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
             <!-- Header -->
             <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
-                <h2 class="text-xl font-bold text-mlab-navy">Yeni Çağrıda Bulun</h2>
+                <h2 class="text-xl font-bold text-mlab-navy" data-i18n="portal.actions.mobile_new">Yeni Çağrıda Bulun
+                </h2>
                 <button onclick="closeNewPostModal()" class="p-2 hover:bg-slate-200 rounded-full transition-colors">
                     <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
                 </button>
@@ -294,12 +318,15 @@
                                     <i data-lucide="award" class="w-5 h-5 text-white"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-bold text-slate-800 text-sm">Uzman mısınız?</h3>
-                                    <p class="text-xs text-slate-500">Çözüm ağımıza katılın</p>
+                                    <h3 class="font-bold text-slate-800 text-sm" data-i18n="portal.expert.are_you">Uzman
+                                        mısınız?</h3>
+                                    <p class="text-xs text-slate-500" data-i18n="portal.expert.join_network">Çözüm
+                                        ağımıza katılın</p>
                                 </div>
                             </div>
                             <button type="button" onclick="closeNewPostModal(); openExpertModal();"
-                                class="px-4 py-2 bg-gradient-to-r from-mlab-orange to-amber-500 text-white text-xs font-bold rounded-lg hover:shadow-lg transition-transform hover:-translate-y-0.5 whitespace-nowrap">
+                                class="px-4 py-2 bg-gradient-to-r from-mlab-orange to-amber-500 text-white text-xs font-bold rounded-lg hover:shadow-lg transition-transform hover:-translate-y-0.5 whitespace-nowrap"
+                                data-i18n="portal.expert.include_me">
                                 Beni Uzman Havuzuna Dahil Et!
                             </button>
                         </div>
@@ -421,7 +448,8 @@
             <!-- Footer -->
             <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
                 <button onclick="closeNewPostModal()"
-                    class="px-5 py-2.5 text-slate-600 font-medium rounded-xl hover:bg-slate-200 transition-colors">
+                    class="px-5 py-2.5 text-slate-600 font-medium rounded-xl hover:bg-slate-200 transition-colors"
+                    data-i18n="common.cancel">
                     İptal
                 </button>
                 <button onclick="submitNewPost()" id="submit-btn"
