@@ -26,13 +26,7 @@
                             navy: '#0a192f',
                             cyan: '#00d4ff',
                             purple: '#7c3aed',
-                            dark: '#0f172a',
-                            orange: '#ff7e67',
-                            energy: '#FFC107',
-                            infrastructure: '#616161',
-                            waste: '#795548',
-                            transport: '#2196F3',
-                            nature: '#4CAF50',
+                            dark: '#0f172a'
                         }
                     }
                 }
@@ -63,10 +57,10 @@
     <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Back Button -->
-            <a href="/"
+            <a href="projeler"
                 class="flex items-center gap-2 text-slate-500 hover:text-mlab-navy transition-colors font-medium">
                 <i data-lucide="arrow-left" class="w-5 h-5"></i>
-                <span class="hidden sm:inline">Ana Sayfaya Dön</span>
+                <span class="hidden sm:inline">Projelere Dön</span>
             </a>
 
             <!-- Centered Logo -->
@@ -123,26 +117,232 @@
     <script>
         lucide.createIcons();
 
-        // SHARED DATA (Same as preview.html)
-        const projects = [
-            { id: 1, title: "Garden District Ter Elst Becomes A Climate Community", category: "ENERGY", startDate: "March 2024", status: "In Progress", progress: 65, partners: "Ter Elst residents", themes: "Collective renovation", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200", description: "This project aims to transform the Garden District Ter Elst into a fully climate-neutral community through collective renovation efforts, renewable energy integration, and community engagement." },
-            { id: 2, title: "FEAST: Healthy and Sustainable Food", category: "CONSUMPTION", startDate: "October 2022", status: "In Progress", progress: 40, partners: "Leuven 2030, KU Leuven", themes: "Healthy food", image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&q=80&w=1200", description: "FEAST focuses on promoting healthy and sustainable food consumption patterns among the citizens, working with local producers and schools." },
-            { id: 3, title: "Wijgmaal Seen From A Spatial Perspective", category: "ADAPTATION", startDate: "January 2020", status: "Completed", progress: 100, partners: "City of Leuven", themes: "Energy, Mobility", image: "https://images.unsplash.com/photo-1449824913929-4bdd42b98d0d?auto=format&fit=crop&q=80&w=1200", description: "A comprehensive spatial analysis of Wijgmaal to identify opportunities for climate adaptation, improved mobility, and energy efficiency." },
-            { id: 4, title: "Liman Bölgesi Elektrifikasyonu", category: "ENERGY", startDate: "June 2023", status: "Planning", progress: 15, partners: "Port Authority", themes: "Electrification", image: "https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=1200", description: "Electrification of the port area to reduce emissions from shipping and port operations, including shore-to-ship power solutions." },
-            { id: 5, title: "Alsancak Akıllı Ulaşım", category: "MOBILITY", startDate: "August 2023", status: "In Progress", progress: 30, partners: "Izmir Metro", themes: "AI, Traffic", image: "https://images.unsplash.com/photo-1494522358652-f30e61a60313?auto=format&fit=crop&q=80&w=1200", description: "Implementing AI-driven traffic management systems in Alsancak to optimize traffic flow, reduce congestion, and lower carbon emissions." },
-            { id: 6, title: "Yeşil Bina Sertifikasyon", category: "BUILDINGS", startDate: "Jan 2024", status: "Planning", progress: 10, partners: "Chamber of Architects", themes: "Retrofitting", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200", description: "Developing a local green building certification program to encourage sustainable construction and retrofitting practices across the city." }
-        ];
-
-        const categoryColors = {
-            ENERGY: { label: 'Enerji', bg: 'bg-mlab-energy', text: 'text-mlab-energy' },
-            CONSUMPTION: { label: 'Tüketim', bg: 'bg-mlab-waste', text: 'text-mlab-waste' },
-            ADAPTATION: { label: 'Uyum', bg: 'bg-mlab-nature', text: 'text-mlab-nature' },
-            MOBILITY: { label: 'Hareketlilik', bg: 'bg-mlab-transport', text: 'text-mlab-transport' },
-            BUILDINGS: { label: 'Binalar', bg: 'bg-mlab-infrastructure', text: 'text-mlab-infrastructure' },
-            INFRASTRUCTURE: { label: 'Altyapı', bg: 'bg-mlab-infrastructure', text: 'text-mlab-infrastructure' },
-            WASTE: { label: 'Atık', bg: 'bg-mlab-waste', text: 'text-mlab-waste' },
-            NATURE: { label: 'Doğa', bg: 'bg-mlab-nature', text: 'text-mlab-nature' }
+        // Büyük Zorluk tanımları
+        const bigChallenges = {
+            1: { id: 1, name: 'Uygun Fiyatlı ve Yeterli Barınma', color: 'bg-blue-500', textColor: 'text-blue-600' },
+            2: { id: 2, name: 'Sürdürülebilir Hareketlilik', color: 'bg-purple-500', textColor: 'text-purple-600' },
+            3: { id: 3, name: 'Afetlere Dirençlilik', color: 'bg-red-500', textColor: 'text-red-600' },
+            4: { id: 4, name: 'Sağlıklı Gıda ve Tarım', color: 'bg-green-500', textColor: 'text-green-600' },
+            5: { id: 5, name: 'Sağlık ve Esenlik', color: 'bg-cyan-500', textColor: 'text-cyan-600' },
+            6: { id: 6, name: 'Eğitimli Nesiller', color: 'bg-indigo-500', textColor: 'text-indigo-600' },
+            7: { id: 7, name: 'İnsana Yakışır Gelir ve Çalışma', color: 'bg-amber-500', textColor: 'text-amber-600' },
+            8: { id: 8, name: 'Yenilik ve Teknoloji Üretimi', color: 'bg-sky-500', textColor: 'text-sky-600' },
+            9: { id: 9, name: 'Kültür, Bağlantılılık ve Kapsayıcılık', color: 'bg-pink-500', textColor: 'text-pink-600' },
+            10: { id: 10, name: 'Döngüsel Kentsel Metabolizma', color: 'bg-emerald-500', textColor: 'text-emerald-600' }
         };
+
+        // SHARED DATA - projeler.html ile aynı
+        const projects = [
+            {
+                id: 1,
+                title: "İzmir'de Su Tutma Peyzajlarının Geliştirilmesi Projesi",
+                description: "İzmir'deki kentsel çevrenin sürdürülebilirliğini ve dirençliliğini artırmak amacıyla, su yönetimi kapasitesini güçlendirerek, iklim değişikliğine uyum sağlanmasını ve biyoçeşitliliğin desteklenmesini sağlamaktır. Proje, Bostanlı'da bir Su Tutma Parkı inşasını, Sadi Hoşses Parkı'nda \"sünger kaplamalar\" gibi geçirgen yüzeylerin uygulanmasını kapsamaktadır.",
+                duration: "24 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "İzmir Büyükşehir Belediyesi, Karşıyaka Belediyesi",
+                bigChallengeId: 3,
+                image: "https://picsum.photos/seed/su-tutma/800/400"
+            },
+            {
+                id: 2,
+                title: "Avrupa'da Kardiyovasküler Sağlığın İyileştirilmesi için Şehir Temelli Stratejiler (CITIES@HEART)",
+                description: "Proje, kent ölçeğinde kardiyovasküler hastalıkların (KVH) farkındalık, erken tanı, önleme ve yönetimine odaklanmaktadır. Özellikle obezite, yüksek tansiyon ve diyabet gibi kalp hastalıklarına yol açan risk faktörlerine odaklanan proje, bu hastalıkların erken teşhis ve tedavisi için yeni yöntemler geliştirmektedir.",
+                duration: "60 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "Utrecht Üniversitesi Tıp Merkezi, Ege Üniversitesi, İzmir Büyükşehir Belediyesi",
+                bigChallengeId: 5,
+                image: "https://picsum.photos/seed/cities-heart/800/400"
+            },
+            {
+                id: 3,
+                title: "Mobilitede Sürdürülebilirlik Yönünde Davranış Değişikliği Sağlamak (SHIFT2SUSTAIN)",
+                description: "Proje, dört ana hedef çerçevesinde kentsel hareketlilik sorunlarına çözüm üretmeyi amaçlamaktadır. Davranış değişikliklerini teşvik etmek amacıyla, oyunlaştırma, farkındalık kampanyaları ve araçtan şebekeye (V2G) çözümler gibi yenilikçi yaklaşımları içeren pilot projeler uygulanacaktır.",
+                duration: "36 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "TIS PT-Ulaşım, İnovasyon ve Sistemler Danışmanlık Şirketi, İzmir Büyükşehir Belediyesi",
+                bigChallengeId: 2,
+                image: "https://picsum.photos/seed/shift2sustain/800/400"
+            },
+            {
+                id: 4,
+                title: "SUN4Ukraine – The Sustainable Urban Net Zero Network for Ukraine",
+                description: "Program, Ukrayna kentlerinin iklim nötr hedefler doğrultusunda yeniden yapılanma süreçlerine destek olmayı amaçlamaktadır. İzmir Büyükşehir Belediyesi, ekonomik profili ve enerji konusundaki deneyim benzerliği nedeniyle Ukrayna'nın Harkov (Kharkiv) kenti ile eşleştirilmiştir.",
+                duration: "18 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "İzmir Büyükşehir Belediyesi, Harkov (Kharkiv) Belediyesi",
+                bigChallengeId: 10,
+                image: "https://picsum.photos/seed/sun4ukraine/800/400"
+            },
+            {
+                id: 5,
+                title: "İklime Dirençli Akdeniz Kentleri için Doğa Temelli Çözümler Projesi - NBS4MED",
+                description: "Proje, Akdeniz bölgesinde iklim değişikliğine uyumu güçlendirmek amacıyla doğa esaslı çözümler yoluyla risk azaltma, afet direncini artırma ve ortak metodolojik çerçeveler geliştirmeyi hedeflemektedir.",
+                duration: "36 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "Hellenik Araştırma ve Geliştirme Metodolojilerini Destekleme Derneği (PROMEA), İzmir Büyükşehir Belediyesi",
+                bigChallengeId: 3,
+                image: "https://picsum.photos/seed/nbs4med/800/400"
+            },
+            {
+                id: 6,
+                title: "Dirençli Kentsel Su Yönetimi İçin Geleneksel Olmayan Su Kaynakları (RESWATER)",
+                description: "Proje, kentsel kıyı havzalarında artan su talebinin doğal tatlı su kaynaklarına bağımlılığı artırmadan karşılanması amacıyla konvansiyonel olmayan su kaynaklarının araştırılmasını ve pilot uygulamalarla test edilmesini hedeflemektedir.",
+                duration: "36 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "Malta Enerji ve Su Ajansı, İzmir Büyükşehir Belediyesi, Su Araştırmaları ve Teknolojileri Merkezi, Cagliari Üniversitesi, Mısır Su Kaynakları ve Sulama Bakanlığı",
+                bigChallengeId: 10,
+                image: "https://picsum.photos/seed/reswater/800/400"
+            },
+            {
+                id: 7,
+                title: "İklim Gündeminin Büyükşehirlerde Uygulanması (CLI-MET) Projesi",
+                description: "Proje, Avrupa metropol bölgelerinde iklim değişikliğiyle mücadeleye yönelik stratejik farkındalığı artırmayı ve belediyelerin iklim gündemindeki rolünü güçlendirmeyi hedefleyen bütüncül bir kapasite geliştirme girişimidir.",
+                duration: "36 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "Palermo Üniversitesi, İzmir Büyükşehir Belediyesi, Dortmund Teknik Üniversitesi, Madrid Teknik Üniversitesi, Milano Büyükşehir Belediyesi, METREX",
+                bigChallengeId: 3,
+                image: "https://picsum.photos/seed/cli-met/800/400"
+            },
+            {
+                id: 8,
+                title: "İzmir Körfezi'nde Denizel Ekosistemlerin Geliştirilmesi Kapsamında Biyomücadele Yoluyla Kirliliğin Azaltılması",
+                description: "İzmir Körfezi'nde su kirliliğini azaltmaya yönelik olarak ekolojik temelli, sürdürülebilir ve bütüncül bir model geliştirerek, deniz ekosisteminin restorasyonuna katkı sağlamak hedeflenmektedir.",
+                duration: "18 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "İzmir Büyükşehir Belediyesi, Mavişehir Su Ürünleri Kooperatifi, İZSU",
+                bigChallengeId: 10,
+                image: "https://picsum.photos/seed/biyomucadele/800/400"
+            },
+            {
+                id: 9,
+                title: "İzmir Küresel İklim Topluluğu (KİT) Yoluyla Elektrikte Dekarbonizasyon için Dijital Çözümler Projesi (GCC-Synergy)",
+                description: "Proje, karbon emisyonlarının önemli bir kısmını oluşturan binalar, tesisler ve altyapıdaki kritik elektrik tüketimi sorununu ele almaktadır. KİT-SİNERJİ dijital platformunun geliştirilmesiyle, gerçek zamanın izleme, analiz ve eyleme dönüştürülebilir bilgiler sağlanarak elektrik tüketiminin yönetiminde devrim yaratmak hedeflenmektedir.",
+                duration: "24 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "İzmir Büyükşehir Belediyesi, Ege Üniversitesi, İZENERJİ A.Ş., GDZ Elektrik Dağıtım A.Ş, ENSİA, Ege Orman Vakfı",
+                bigChallengeId: 8,
+                image: "https://picsum.photos/seed/gcc-synergy/800/400"
+            },
+            {
+                id: 10,
+                title: "İklime Hazır İzmir: Dirençlilik Stratejilerinin Geliştirilmesi Projesi (CRIZ-ERS)",
+                description: "Proje, iklim değişikliğinin İzmir kentinde oluşturduğu etkileri kent ve Konak ilçe ölçeğinde analiz etmeyi ve kırılganlık düzeyi yüksek bölgeleri belirlemeyi amaçlayan kapsamlı bir risk değerlendirme ve uyum çalışmasıdır.",
+                duration: "22 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "İzmir Büyükşehir Belediyesi, Bölgesel ve Ulusal Sivil Koruma Ajansları, KOBİ'ler",
+                bigChallengeId: 3,
+                image: "https://picsum.photos/seed/criz-ers/800/400"
+            },
+            {
+                id: 11,
+                title: "İzmir İklim İçin Yurttaş Meclisi Projesi",
+                description: "Proje, İzmir'de iklim değişikliğinin etkilerine karşı toplumsal direnç geliştirmek ve yerel halkın karar alma süreçlerinde doğrudan söz sahibi olmasını sağlamak amacıyla \"İklim Meclisi\" modelinin uygulanmasını hedeflemektedir.",
+                duration: "15 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "Yuva Derneği, UNDP, HUDOTO vakfı, İzmir Büyükşehir Belediyesi",
+                bigChallengeId: 9,
+                image: "https://picsum.photos/seed/iklim-meclisi/800/400"
+            },
+            {
+                id: 12,
+                title: "Territoires cultivés (Cultivated Territories)",
+                description: "Proje, bölgenin ekolojik dönüşümünü, kentsel planlamayı ve kültürel politikaları birleştiren projeler yoluyla kültürü kalkınmalarının itici gücü haline getiren Akdeniz metropollerinden oluşan bir ağ kurmayı amaçlamaktadır.",
+                duration: "24 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "AVITEM, Vitrolles Şehri Belediyesi, Korsika Yerel Yönetimi, Nice Şehri Belediyesi, Nice Condé Sanat Okulu, İzmir Büyükşehir Belediyesi",
+                bigChallengeId: 9,
+                image: "https://picsum.photos/seed/cultivated/800/400"
+            },
+            {
+                id: 13,
+                title: "INHERIT-Sürdürülebilir, Kapsayıcı, Kaynak Verimli ve Dirençli Kültürel Miras için Yeni Nesil Çözümler",
+                description: "Projenin amacı, sürdürülebilir, kapsayıcı ve verimli kültürel miras çözümlerine yönelik olarak IoT, Yapay Zeka ve veri analitiği eşliğinde sistematik bir metodoloji oluşturmaktır.",
+                duration: null,
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "Singularlogic Anonymi Etaireia Pliroforiakon Sysel, İzmir Büyükşehir Belediyesi",
+                bigChallengeId: 9,
+                image: "https://picsum.photos/seed/inherit/800/400"
+            },
+            {
+                id: 14,
+                title: "Cool Noons",
+                description: "Akdeniz şehirlerinde doğa temelli çözümler de dahil olmak üzere yenilikçi çözümleri test etmek, kentsel turizm sektöründe sürdürülebilirliği engelleyen iklim değişikliği riskleriyle mücadele etmek ve Akdeniz şehirlerinin rekabet gücünü artırmak amaçlanmaktadır.",
+                duration: null,
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "AVITEM, Marsilya Belediyesi, Coimbra Üniversitesi, Bolonya Belediyesi, Imola Faenza Turizm Şirketi, Dubrovnik Kalkınma Ajansı, Budva Belediyesi, Rebus, İzmir Büyükşehir Belediyesi",
+                bigChallengeId: 3,
+                image: "https://picsum.photos/seed/cool-noons/800/400"
+            },
+            {
+                id: 15,
+                title: "DIALOGUE4NATURE Projesi (D4N)",
+                description: "Bölgedeki kurumlar arasında kalıcı ve etkili diyalog mekanizmaları kurarak Akdeniz havzasında yönetişimin güçlendirilmesi, ortak sorunlara yönelik çözüm üretme kapasitesinin artırılması hedeflenmektedir.",
+                duration: "7 Yıl",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "Girit Bölgesi, IUCN Akdeniz İşbirliği Merkezi, Plan Bleu, Sardinya Bölgesi, MedCities Ağı, Hırvatistan Deniz Enstitüsü, Karadağ Ekoloji ve Şehir Planlama Bakanlığı, İzmir Büyükşehir Belediyesi",
+                bigChallengeId: 9,
+                image: "https://picsum.photos/seed/d4n/800/400"
+            },
+            {
+                id: 16,
+                title: "Re-Value (Avrupa Kıyı Şehirlerinde Kentsel Kalite ve İklim Tarafsızlığına Yeniden Değer Vermek) Projesi",
+                description: "İzmir ve diğer ortak kentlerde, sürdürülebilir miras ve turizm yönetimi ile kentsel gelişim için iklim nötr yatırım yapılmasına katkıda bulunmak ve kıyı bölgelerinde pilot uygulamalar için yol haritaları hazırlamak amaçlanmaktadır.",
+                duration: "48 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "Norveç Bilim ve Teknoloji Üniversitesi, İzmir Büyükşehir Belediyesi, İzmir Yüksek Teknoloji Enstitüsü",
+                bigChallengeId: 10,
+                image: "https://picsum.photos/seed/re-value/800/400"
+            },
+            {
+                id: 17,
+                title: "CARDIMED (Akdeniz Bölgesinde İklim Değişikliğine Uyum ve Direnç Gösterilmesi Projesi)",
+                description: "Proje, Akdeniz biyocoğrafik bölgesinde iklim değişikliğinin etkilerine karşı dayanıklılığın artırılmasını ve doğa temelli çözümler değer zincirinin desteklenmesini amaçlamaktadır.",
+                duration: "54 Ay",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "Athena Ulusal Teknik Üniversitesi, İzmir Büyükşehir Belediyesi, İzdoğa A.Ş., İzmir Yüksek Teknoloji Enstitüsü, Doğa Derneği, İZSU",
+                bigChallengeId: 3,
+                image: "https://picsum.photos/seed/cardimed/800/400"
+            },
+            {
+                id: 18,
+                title: "Toplumlar İçin İklim Dayanıklılığı Projesi",
+                description: "Proje, mahalle ölçeğinde iklim krizinin yarattığı etkileri analiz etmeyi, iklim risklerini belirlemeyi ve toplumun iklim kaynaklı tehlikelerden en az düzeyde etkilenmesini sağlayacak çözümler geliştirmeyi amaçlamaktadır.",
+                duration: "3 Yıl",
+                startDate: null,
+                status: "Devam Ediyor",
+                partners: "İzmir Büyükşehir Belediyesi, ICLEI, Z Zurich Vakfı, Zurich Sigorta",
+                bigChallengeId: 3,
+                image: "https://picsum.photos/seed/iklim-dayniklilik/800/400"
+            },
+            {
+                id: 19,
+                title: "URBAN GreenUP: Doğa Esaslı Çözümlerle Şehirlerin Yeniden Doğallaştırılması Projesi",
+                description: "Avrupa Birliği'nin Ufuk 2020 programı tarafından finanse edilen bu proje, kentlerin iklim değişikliğine uyum sağlaması ve sürdürülebilirliğinin artırılması için \"Doğa Esaslı Çözümler\" (NBS) geliştirmeyi hedeflemiştir.",
+                duration: null,
+                startDate: "1 Haziran 2017",
+                status: "Tamamlandı",
+                partners: "İzmir Büyükşehir Belediyesi, Ege Üniversitesi, İzmir Yüksek Teknoloji Enstitüsü (İYTE), CARTIF (Proje Koordinatörü)",
+                bigChallengeId: 10,
+                image: "https://picsum.photos/seed/urban-greenup/800/400"
+            }
+        ];
 
         // Parse URL Params
         const urlParams = new URLSearchParams(window.location.search);
@@ -152,7 +352,9 @@
         const container = document.getElementById('project-content');
 
         if (project) {
-            const colors = categoryColors[project.category] || { label: project.category, bg: 'bg-mlab-navy', text: 'text-mlab-navy' };
+            const challenge = bigChallenges[project.bigChallengeId];
+            const timeLabel = project.duration ? `Proje Süresi: ${project.duration}` : (project.startDate ? `Başlangıç: ${project.startDate}` : 'Belirtilmemiş');
+            const statusColor = project.status === 'Tamamlandı' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700';
 
             container.innerHTML = `
                 <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 animate-fade-in-up">
@@ -161,9 +363,6 @@
                         <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-8 text-white">
-                            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold ${colors.bg} text-white mb-4 shadow-lg uppercase tracking-wider">
-                                ${colors.label}
-                            </span>
                             <h1 class="text-3xl md:text-5xl font-black leading-tight mb-2 drop-shadow-lg">${project.title}</h1>
                         </div>
                     </div>
@@ -182,10 +381,10 @@
                                 
                                 <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                                     <h3 class="font-bold text-mlab-navy mb-4 flex items-center gap-2">
-                                        <i data-lucide="target" class="w-5 h-5 text-mlab-cyan"></i> Hedefler & Temalar
+                                        <i data-lucide="target" class="w-5 h-5 text-mlab-cyan"></i> Büyük Zorluk
                                     </h3>
                                     <div class="flex flex-wrap gap-2">
-                                        ${project.themes.split(',').map(t => `<span class="px-3 py-1 bg-white border border-slate-200 rounded-full text-sm text-slate-600">${t.trim()}</span>`).join('')}
+                                        <span class="px-4 py-2 rounded-full text-sm font-semibold ${challenge.color} text-white shadow-md">${challenge.name}</span>
                                     </div>
                                 </div>
                             </div>
@@ -193,21 +392,18 @@
                             <!-- Sidebar Stats -->
                             <div class="space-y-6">
                                 <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Başlangıç Tarihi</div>
+                                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">${project.duration ? 'Proje Süresi' : 'Başlangıç Tarihi'}</div>
                                     <div class="text-mlab-navy font-semibold flex items-center gap-2">
-                                        <i data-lucide="calendar" class="w-4 h-4 text-mlab-cyan"></i> ${project.startDate}
+                                        <i data-lucide="clock" class="w-4 h-4 text-mlab-cyan"></i> ${project.duration || project.startDate || 'Belirtilmemiş'}
                                     </div>
                                 </div>
 
                                 <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
                                     <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Durum</div>
-                                    <div class="text-mlab-navy font-semibold flex items-center gap-2 mb-2">
-                                        <i data-lucide="activity" class="w-4 h-4 text-mlab-cyan"></i> ${project.status}
+                                    <div class="flex items-center gap-2">
+                                        <i data-lucide="activity" class="w-4 h-4 text-mlab-cyan"></i>
+                                        <span class="px-3 py-1 rounded-full text-sm font-semibold ${statusColor}">${project.status}</span>
                                     </div>
-                                    <div class="w-full bg-slate-100 rounded-full h-2">
-                                        <div class="bg-mlab-cyan h-2 rounded-full" style="width: ${project.progress}%"></div>
-                                    </div>
-                                    <div class="text-right text-xs text-slate-400 mt-1">%${project.progress} Tamamlandı</div>
                                 </div>
 
                                 <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
@@ -227,7 +423,7 @@
             container.innerHTML = `
                 <div class="text-center py-20">
                     <h2 class="text-2xl font-bold text-slate-400">Proje bulunamadı.</h2>
-                    <a href="/" class="text-mlab-cyan hover:underline mt-4 inline-block">Ana Sayfaya Dön</a>
+                    <a href="projeler" class="text-mlab-cyan hover:underline mt-4 inline-block">Projelere Dön</a>
                 </div>
             `;
         }
