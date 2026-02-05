@@ -263,6 +263,10 @@ const translations = {
         tr: 'KVKK Aydınlatma Metni',
         en: 'Data Protection Notice'
     },
+    'footer.copyright': {
+        tr: '© 2025 M-LAB İzmir',
+        en: '© 2025 M-LAB Izmir'
+    },
 
     // Grand Challenges
     'challenge.1': {
