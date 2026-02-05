@@ -251,7 +251,7 @@
     </div>
   </section>
 
-  <!-- PROJECT CARDS (Orijinal filtreler korundu + CTA eklendi) -->
+  <!-- PROJECT CARDS (Carousel with navigation) -->
   <section id="projects" class="py-20 bg-slate-50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
@@ -267,9 +267,29 @@
         <!-- Filters will be injected here by JS -->
       </div>
 
-      <!-- Projects Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="projects-grid">
-        <!-- Projects will be injected here by JS -->
+      <!-- Projects Carousel -->
+      <div class="relative group/carousel">
+        <!-- Left Arrow -->
+        <button id="projects-prev"
+          class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg border border-slate-100 rounded-full p-3 text-mlab-navy transition-all -ml-4 md:-ml-6 opacity-0 group-hover/carousel:opacity-100 focus:opacity-100 hover:scale-110">
+          <i data-lucide="chevron-left" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Scrollable Container -->
+        <div id="projects-slider" class="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4">
+          <!-- Projects will be injected here by JS -->
+        </div>
+
+        <!-- Right Arrow -->
+        <button id="projects-next"
+          class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg border border-slate-100 rounded-full p-3 text-mlab-navy transition-all -mr-4 md:-mr-6 opacity-0 group-hover/carousel:opacity-100 focus:opacity-100 hover:scale-110">
+          <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Carousel Dots (optional indicator) -->
+      <div id="carousel-dots" class="flex justify-center gap-2 mt-6">
+        <!-- Dots will be injected here by JS -->
       </div>
     </div>
   </section>
@@ -637,16 +657,16 @@
     }
 
     function renderProjects() {
-      const container = document.getElementById('projects-grid');
+      const container = document.getElementById('projects-slider');
       const filtered = activeFilterId === 'ALL' ? projects : projects.filter(p => p.bigChallengeId == activeFilterId);
 
-      container.innerHTML = filtered.slice(0, 3).map(p => {
+      container.innerHTML = filtered.map(p => {
         const challenge = bigChallenges[p.bigChallengeId];
         const timeLabel = p.duration ? `Proje Süresi: ${p.duration}` : (p.startDate ? `Başlangıç: ${p.startDate}` : 'Belirtilmemiş');
         const statusColor = p.status === 'Tamamlandı' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700';
 
         return `
-        <a href="proje-detay.html?id=${p.id}" class="block h-full">
+        <a href="proje-detay.html?id=${p.id}" class="block flex-shrink-0 w-[calc(100%-1rem)] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
           <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full group cursor-pointer border border-slate-100 hover:border-mlab-cyan/30 overflow-hidden">
             <div class="h-48 w-full relative overflow-hidden bg-slate-200">
               <img src="${p.image}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://placehold.co/800x400/e2e8f0/64748b?text=Proje'">
@@ -688,12 +708,116 @@
         `;
       }).join('');
       lucide.createIcons();
+      renderCarouselDots();
+      startAutoScroll();
     }
+
+    // --- CAROUSEL LOGIC ---
+    let currentSlide = 0;
+    let autoScrollInterval = null;
+
+    function renderCarouselDots() {
+      const dotsContainer = document.getElementById('carousel-dots');
+      const slider = document.getElementById('projects-slider');
+      const filtered = activeFilterId === 'ALL' ? projects : projects.filter(p => p.bigChallengeId == activeFilterId);
+      const visibleCards = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+      const totalDots = Math.max(1, filtered.length - visibleCards + 1);
+
+      dotsContainer.innerHTML = Array.from({ length: Math.min(totalDots, 10) }, (_, i) => `
+        <button onclick="goToSlide(${i})" 
+          class="w-2 h-2 rounded-full transition-all duration-300 ${i === currentSlide ? 'bg-mlab-navy w-6' : 'bg-slate-300 hover:bg-slate-400'}">
+        </button>
+      `).join('');
+    }
+
+    function scrollToCard(direction) {
+      const slider = document.getElementById('projects-slider');
+      const card = slider.querySelector('a');
+      if (!card) return;
+
+      const cardWidth = card.offsetWidth;
+      const gap = 24; // gap-6
+      const scrollAmount = cardWidth + gap;
+
+      if (direction === 'next') {
+        slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      } else {
+        slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      }
+
+      setTimeout(updateCurrentSlide, 350);
+    }
+
+    function updateCurrentSlide() {
+      const slider = document.getElementById('projects-slider');
+      const card = slider.querySelector('a');
+      if (!card) return;
+
+      const cardWidth = card.offsetWidth + 24;
+      currentSlide = Math.round(slider.scrollLeft / cardWidth);
+      renderCarouselDots();
+    }
+
+    window.goToSlide = (index) => {
+      const slider = document.getElementById('projects-slider');
+      const card = slider.querySelector('a');
+      if (!card) return;
+
+      const cardWidth = card.offsetWidth + 24;
+      slider.scrollTo({ left: cardWidth * index, behavior: 'smooth' });
+      currentSlide = index;
+      renderCarouselDots();
+    };
+
+    function startAutoScroll() {
+      stopAutoScroll();
+      autoScrollInterval = setInterval(() => {
+        const slider = document.getElementById('projects-slider');
+        const maxScroll = slider.scrollWidth - slider.clientWidth;
+
+        if (slider.scrollLeft >= maxScroll - 10) {
+          slider.scrollTo({ left: 0, behavior: 'smooth' });
+          currentSlide = 0;
+          renderCarouselDots();
+        } else {
+          scrollToCard('next');
+        }
+      }, 4000);
+    }
+
+    function stopAutoScroll() {
+      if (autoScrollInterval) {
+        clearInterval(autoScrollInterval);
+        autoScrollInterval = null;
+      }
+    }
+
+    // Navigation button setup
+    document.addEventListener('DOMContentLoaded', () => {
+      const slider = document.getElementById('projects-slider');
+      const prevBtn = document.getElementById('projects-prev');
+      const nextBtn = document.getElementById('projects-next');
+
+      if (prevBtn) prevBtn.addEventListener('click', () => scrollToCard('prev'));
+      if (nextBtn) nextBtn.addEventListener('click', () => scrollToCard('next'));
+
+      if (slider) {
+        slider.addEventListener('mouseenter', stopAutoScroll);
+        slider.addEventListener('mouseleave', startAutoScroll);
+        slider.addEventListener('scroll', () => {
+          clearTimeout(slider.scrollTimeout);
+          slider.scrollTimeout = setTimeout(updateCurrentSlide, 100);
+        });
+      }
+    });
 
     window.setFilter = (id) => {
       activeFilterId = id;
+      currentSlide = 0;
       renderFilters();
       renderProjects();
+      const slider = document.getElementById('projects-slider');
+      if (slider) slider.scrollTo({ left: 0, behavior: 'smooth' });
     };
 
     // --- MAP LOGIC ---
