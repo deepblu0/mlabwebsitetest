@@ -659,10 +659,13 @@
     // Filtreler - Büyük Zorluk bazlı (projeler.html ile senkron)
     const filters = [
       { id: 'ALL', label: 'Tüm Projeler', color: 'bg-mlab-navy' },
+      { id: 1, label: 'Uygun Fiyatlı ve Yeterli Barınma', color: 'bg-blue-500' },
       { id: 2, label: 'Sürdürülebilir Hareketlilik', color: 'bg-purple-500' },
       { id: 3, label: 'Afetlere Dirençlilik', color: 'bg-red-500' },
       { id: 4, label: 'Sağlıklı Gıda ve Tarım', color: 'bg-green-500' },
       { id: 5, label: 'Sağlık ve Esenlik', color: 'bg-cyan-500' },
+      { id: 6, label: 'Eğitimli Nesiller', color: 'bg-indigo-500' },
+      { id: 7, label: 'İnsana Yakışır Gelir ve Çalışma', color: 'bg-amber-500' },
       { id: 8, label: 'Yenilik ve Teknoloji Üretimi', color: 'bg-sky-500' },
       { id: 9, label: 'Kültür, Bağlantılılık ve Kapsayıcılık', color: 'bg-pink-500' },
       { id: 10, label: 'Döngüsel Kentsel Metabolizma', color: 'bg-emerald-500' }
@@ -697,6 +700,20 @@
     function renderProjects() {
       const container = document.getElementById('projects-slider');
       const filtered = activeFilterId === 'ALL' ? projects : projects.filter(p => p.bigChallengeId == activeFilterId);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="w-full flex flex-col items-center justify-center py-12 text-center col-span-full">
+            <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
+              <i data-lucide="inbox" class="w-8 h-8 text-slate-400"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-mlab-navy mb-1" data-i18n="projects.empty.title">Henüz Proje Yok</h3>
+            <p class="text-slate-500 max-w-sm mx-auto" data-i18n="projects.empty.desc">Bu kategori altında henüz listelenen bir proje bulunmuyor.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
 
       container.innerHTML = filtered.map(p => {
         const challenge = bigChallenges[p.bigChallengeId];
