@@ -127,20 +127,24 @@
                         <span
                             class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-mlab-cyan to-mlab-purple transition-all duration-300 group-hover:w-3/4"></span>
                     </a>
+                </div>
+                <div class="hidden lg:flex items-center gap-3">
                     <a href="portal"
-                        class="ml-2 px-5 py-2.5 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white text-sm font-semibold rounded-full shadow-lg shadow-mlab-purple/25">
+                        class="px-5 py-2.5 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white text-sm font-semibold rounded-full shadow-lg shadow-mlab-purple/25 hover:shadow-xl transition-all">
                         <span data-i18n="nav.portal">Portal</span>
                     </a>
-                </div>
-                <div class="flex items-center gap-4">
                     <div class="flex items-center gap-1 bg-slate-100 rounded-full p-1">
-                        <button
-                            class="px-3 py-1.5 rounded-full bg-mlab-navy text-white text-xs font-bold shadow-sm">TR</button>
-                        <button
-                            class="px-3 py-1.5 rounded-full text-slate-500 hover:text-mlab-navy text-xs font-medium transition-colors">EN</button>
+                        <button onclick="setLang('tr')"
+                            class="lang-btn px-3 py-1.5 rounded-full bg-mlab-navy text-white text-xs font-bold shadow-sm"
+                            data-lang="tr">TR</button>
+                        <button onclick="setLang('en')"
+                            class="lang-btn px-3 py-1.5 rounded-full text-slate-500 hover:text-mlab-navy text-xs font-medium transition-colors"
+                            data-lang="en">EN</button>
                     </div>
+                </div>
+                <div class="lg:hidden flex items-center gap-4">
                     <button id="mobile-menu-btn"
-                        class="lg:hidden p-2.5 text-slate-600 hover:text-mlab-navy hover:bg-slate-100 rounded-xl transition-all">
+                        class="p-2.5 text-slate-600 hover:text-mlab-navy hover:bg-slate-100 rounded-xl transition-all">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -190,32 +194,37 @@
                 style="animation-delay: 1s;"></div>
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-mlab-orange rounded-full blur-3xl animate-float"
                 style="animation-delay: 2s;"></div>
-        </div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-4xl mx-auto text-center">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                    M-LAB
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-mlab-cyan to-mlab-orange">
-                        Kentsel İnovasyon ve İş Birliği Portalı
-                    </span>
-                </h1>
-                <p class="text-slate-300 text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed">
-                    Bu platform şehrin karmaşık sorunlarına ortak akılla çözüm üretmek için tasarlanmıştır. Bizler İzmir
-                    için ortak bir zaman kumbarası oluşturuyoruz. Amacımız bürokratik süreçleri hızlandırmak ve doğru
-                    ihtiyacı doğru yetkinlikle en kısa sürede buluşturmaktır. Burada sadece projeler değil şehrin
-                    geleceği için ayrılan değerli zamanlar yönetilir.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="portal-register"
-                        class="px-8 py-4 bg-gradient-to-r from-mlab-cyan to-mlab-teal text-white font-bold rounded-xl hover:shadow-xl hover:shadow-mlab-cyan/30 transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2">
-                        <i data-lucide="user-plus" class="w-5 h-5"></i>
-                        <span data-i18n="portal.register">Kayıt Ol</span>
-                    </a>
-                    <a href="portal-login"
-                        class="px-8 py-4 bg-white/10 text-white font-bold rounded-xl hover:bg-white/20 transition-all duration-300 backdrop-blur-sm border border-white/20 flex items-center justify-center gap-2">
-                        <i data-lucide="log-in" class="w-5 h-5"></i>
-                        <span data-i18n="portal.login">Giriş Yap</span>
-                    </a>
+            <!-- Hero Content -->
+            <div
+                class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col items-center justify-center text-center">
+                <div class="max-w-4xl mx-auto space-y-8 animate-fade-in-up">
+                    <h1 class="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight">
+                        <span class="block mb-2" data-i18n="portal.hero.title1">M-LAB</span>
+                        <span class="text-mlab-cyan" data-i18n="portal.hero.title2">Kentsel İnovasyon ve</span> <br />
+                        <span class="text-white/90" data-i18n="portal.hero.title3">İş Birliği</span>
+                        <span class="text-mlab-orange" data-i18n="portal.hero.title4">Portalı</span>
+                    </h1>
+
+                    <div class="space-y-4 max-w-2xl mx-auto text-lg text-slate-300">
+                        <p data-i18n="portal.hero.desc1">Bu platform şehrin karmaşık sorunlarına ortak akılla çözüm
+                            üretmek için tasarlanmıştır. Bizler İzmir için ortak bir zaman kumbarası oluşturuyoruz.</p>
+                        <p data-i18n="portal.hero.desc2">Amacımız bürokratik süreçleri hızlandırmak ve doğru ihtiyacı
+                            doğru yetkinlikle en kısa sürede buluşturmaktır. Burada sadece projeler değil şehrin
+                            geleceği için ayrılan değerli zamanlar yönetilir.</p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                        <a href="portal-register.html"
+                            class="px-8 py-4 bg-mlab-cyan text-mlab-navy font-bold rounded-xl hover:bg-white hover:scale-105 transition-all shadow-lg shadow-mlab-cyan/25 flex items-center gap-2">
+                            <i data-lucide="user-plus" class="w-5 h-5"></i>
+                            <span data-i18n="portal.btn.register">Kayıt Ol</span>
+                        </a>
+                        <a href="portal-login.html"
+                            class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 hover:scale-105 transition-all flex items-center gap-2">
+                            <i data-lucide="log-in" class="w-5 h-5"></i>
+                            <span data-i18n="portal.btn.login">Giriş Yap</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

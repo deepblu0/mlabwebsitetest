@@ -1023,6 +1023,22 @@ const translations = {
         en: 'Create the first call!'
     },
 
+    // Portal Landing
+    'portal.hero.title1': { tr: 'M-LAB', en: 'M-LAB' },
+    'portal.hero.title2': { tr: 'Kentsel İnovasyon ve', en: 'Urban Innovation and' },
+    'portal.hero.title3': { tr: 'İş Birliği', en: 'Collaboration' },
+    'portal.hero.title4': { tr: 'Portalı', en: 'Portal' },
+    'portal.hero.desc1': {
+        tr: 'Bu platform şehrin karmaşık sorunlarına ortak akılla çözüm üretmek için tasarlanmıştır. Bizler İzmir için ortak bir zaman kumbarası oluşturuyoruz.',
+        en: 'This platform is designed to produce solutions to the city\'s complex problems with collective wisdom. We are creating a common time bank for Izmir.'
+    },
+    'portal.hero.desc2': {
+        tr: 'Amacımız bürokratik süreçleri hızlandırmak ve doğru ihtiyacı doğru yetkinlikle en kısa sürede buluşturmaktır. Burada sadece projeler değil şehrin geleceği için ayrılan değerli zamanlar yönetilir.',
+        en: 'Our goal is to accelerate bureaucratic processes and meet the right need with the right competence as soon as possible. Here, not only projects but also valuable times allocated for the future of the city are managed.'
+    },
+    'portal.btn.register': { tr: 'Kayıt Ol', en: 'Register' },
+    'portal.btn.login': { tr: 'Giriş Yap', en: 'Login' },
+
     // Common
     'common.readMore': {
         tr: 'Devamını Oku',
