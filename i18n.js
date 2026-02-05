@@ -441,9 +441,13 @@ const translations = {
         tr: 'İzmir\'in Projeleri',
         en: 'Projects of Izmir'
     },
-    'projects.hero.desc': {
+    'projects.hero.subtitle': {
         tr: 'İzmir 2030 Kent Taahhüdü kapsamında şehri iklim nötr ve akıllı bir geleceğe taşıyan tüm çalışmaları burada bir araya getiriyoruz. Yaşam kalitesini artıran kentsel inovasyon projelerini keşfedin.',
         en: 'We bring together all efforts carrying the city to a climate-neutral and smart future within the scope of the Izmir 2030 City Commitment. Discover urban innovation projects that improve quality of life.'
+    },
+    'projects.hero.button': {
+        tr: 'Projenizi Yayınlayalım!',
+        en: 'Submit Your Project!'
     },
     'projects.search.placeholder': {
         tr: 'Proje ara...',
