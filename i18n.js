@@ -735,10 +735,102 @@ const translations = {
         tr: 'Şifre Tekrar *',
         en: 'Confirm Password *'
     },
+    'portal.register.password_placeholder': {
+        tr: 'En az 8 karakter',
+        en: 'Min 8 characters'
+    },
+    'portal.register.password_confirm_placeholder': {
+        tr: 'Şifrenizi tekrar girin',
+        en: 'Re-enter your password'
+    },
     'portal.register.kvkk_text': {
         tr: 'okudum ve kişisel verilerimin işlenmesini kabul ediyorum.',
         en: 'I have read and agree to the processing of my personal data.'
     },
+
+    // Dashboard Filters & Forms
+    'portal.filters.type_expert': { tr: 'Uzmanlık Bildirileri', en: 'Expertise Declarations' },
+    'portal.filters.type_partner': { tr: 'Ufuk Avrupa Partner Çağrıları', en: 'Horizon Europe Partner Calls' },
+
+    'portal.new_post.support_req': { tr: 'Destek Talebi', en: 'Support Request' },
+    'portal.new_post.support_desc': {
+        tr: 'İnovatif, yaşanabilir ve iklim nötr odaklı projeleriniz için ihtiyaç duyduğunuz partner, finansman veya teknik altyapı desteğini buradan duyurun.',
+        en: 'Announce your need for partners, funding, or technical infrastructure for your innovative, livable, and climate-neutral projects.'
+    },
+    'portal.new_post.expert_decl': { tr: 'Uzmanlık Bildirisi', en: 'Expertise Declaration' },
+    'portal.new_post.expert_desc': {
+        tr: 'Şehrin dönüşüm hedeflerine değer katacak kurumsal yetkinliklerinizi, akademik birikiminizi veya teknolojik çözüm önerilerinizi çözüm ağına ekleyin.',
+        en: 'Add your institutional capabilities, academic background, or technical solutions that add value to the city\'s transformation goals to the solution network.'
+    },
+    'portal.form.file_upload': { tr: 'Dosya Ekle (opsiyonel)', en: 'Add File (optional)' },
+    'portal.form.drop_zone': { tr: 'Dosya seçin veya sürükleyin', en: 'Select or drag file' },
+    'portal.form.file_hint': { tr: 'PDF, Word, Excel, Resim (max 10MB)', en: 'PDF, Word, Excel, Image (max 10MB)' },
+
+    // Expert Modal
+    'portal.expert_form.title': { tr: 'Uzman Başvuru Formu', en: 'Expert Application Form' },
+    'portal.expert_form.subtitle': { tr: 'Tüm alanları eksiksiz doldurunuz.', en: 'Please fill in all fields.' },
+    'portal.expert_form.personal_info': { tr: 'Kişisel Bilgiler', en: 'Personal Information' },
+    'portal.expert_form.contact_info': { tr: 'İletişim Bilgileri', en: 'Contact Information' },
+    'portal.expert_form.expertise_info': { tr: 'Uzmanlık Bilgileri', en: 'Expertise Information' },
+    'portal.expert_form.education_info': { tr: 'Eğitim Bilgileri', en: 'Education Information' },
+    'portal.expert_form.ethics': { tr: 'Etik Taahhütname', en: 'Code of Ethics' },
+
+    'portal.expert_form.labels.fullname': { tr: 'Ad Soyad *', en: 'Full Name *' },
+    'portal.expert_form.labels.profession': { tr: 'Meslek *', en: 'Profession *' },
+    'portal.expert_form.labels.organization': { tr: 'Çalıştığı Kurum *', en: 'Organization *' },
+    'portal.expert_form.labels.title': { tr: 'Ünvan *', en: 'Title *' },
+    'portal.expert_form.labels.email': { tr: 'E-posta Adresi *', en: 'Email Address *' },
+    'portal.expert_form.labels.phone': { tr: 'Telefon Numarası *', en: 'Phone Number *' },
+    'portal.expert_form.labels.area': { tr: 'Uzmanlık Alanı *', en: 'Area of Expertise *' },
+    'portal.expert_form.labels.details': { tr: 'Uzmanlık Detayları *', en: 'Expertise Details *' },
+    'portal.expert_form.labels.education': { tr: 'Eğitim Geçmişi *', en: 'Education History *' },
+
+    'portal.coc.read_button': { tr: 'Taahhütnameyi Oku (Zorunlu)', en: 'Read Code of Conduct (Required)' },
+    'portal.coc.accept_label': { tr: 'okudum ve kabul ediyorum.', en: 'I have read and agree.' },
+    'portal.coc.modal_title': { tr: 'Çıkar Çatışması ve Gizlilik Taahhütnamesi', en: 'Conflict of Interest and Confidentiality Agreement' },
+    'portal.coc.modal_subtitle': { tr: 'Lütfen sonuna kadar okuyunuz', en: 'Please read to the end' },
+    'portal.coc.decl': { tr: 'Etik Beyan', en: 'Ethical Declaration' },
+    'portal.coc.text_intro': { tr: 'İzmir Büyükşehir Belediyesi çalışmalarında bağımsız uzman olarak görev almak üzere başvuruda bulunuyorum. Bu kapsamda aşağıdaki hususları beyan ederim:', en: 'I am applying to serve as an independent expert in Izmir Metropolitan Municipality activities. I hereby declare the following:' },
+    'portal.coc.item1': { tr: '1. Çıkar Çatışması: Danışmanlık veya değerlendirme desteği verdiğim konularda ihale, proje veya hibe süreçlerine katılmayacağım. Yakınlarımın dahil olduğu süreçlerden çekileceğim.', en: '1. Conflict of Interest: I will not participate in tender, project, or grant processes where I provide consultancy or evaluation support. I will withdraw from processes involving my relatives.' },
+    'portal.coc.item2': { tr: '2. Gizlilik: Görevim sırasında edindiğim bilgileri gizli tutacağım ve üçüncü kişilerle paylaşmayacağım.', en: '2. Confidentiality: I will keep information obtained during my duty confidential and will not share it with third parties.' },
+    'portal.coc.item3': { tr: '3. Tarafsızlık: Değerlendirmelerimi objektif kriterlere göre yapacağım.', en: '3. Impartiality: I will make my evaluations based on objective criteria.' },
+    'portal.coc.accept_btn': { tr: 'Okudum ve Kabul Ediyorum', en: 'I Read and Accept' },
+    'portal.coc.reject_btn': { tr: 'Kabul Etmiyorum', en: 'I Do Not Accept' },
+
+    // Profile
+    'portal.profile.subtitle': { tr: 'Kurum ve iletişim bilgilerinizi güncelleyin.', en: 'Update your organization and contact information.' },
+    'portal.profile.email_fixed': { tr: 'E-posta değiştirilemez', en: 'Email cannot be changed' },
+    'portal.profile.save': { tr: 'Değişiklikleri Kaydet', en: 'Save Changes' },
+    'portal.profile.success': { tr: 'Profil başarıyla güncellendi!', en: 'Profile updated successfully!' },
+
+    // Admin Panel
+    'portal.admin.panel': { tr: 'Admin Panel', en: 'Admin Panel' },
+    'portal.admin.pending': { tr: 'Onay Bekleyenler', en: 'Pending Approval' },
+    'portal.admin.approved': { tr: 'Onaylı Üyeler', en: 'Approved Members' },
+    'portal.admin.rejected': { tr: 'Reddedilenler', en: 'Rejected' },
+    'portal.admin.experts': { tr: 'Uzman Başvuruları', en: 'Expert Applications' },
+    'portal.admin.empty': { tr: 'Bu kategoride kullanıcı bulunmuyor.', en: 'No users found in this category.' },
+    'portal.admin.user_details': { tr: 'Üyelik Detayları', en: 'Membership Details' },
+    'portal.admin.unknown': { tr: 'Bilinmiyor', en: 'Unknown' },
+    'portal.admin.municipality': { tr: 'Belediye', en: 'Municipality' },
+    'portal.admin.private': { tr: 'Özel Sektör', en: 'Private Sector' },
+    'portal.admin.sector': { tr: 'Sektör', en: 'Sector' },
+    'portal.admin.website': { tr: 'Web Sitesi', en: 'Website' },
+    'portal.admin.desc': { tr: 'Kurum Açıklaması', en: 'Organization Description' },
+    'portal.admin.contact_info': { tr: 'İletişim Bilgileri', en: 'Contact Information' },
+    'portal.admin.name': { tr: 'Ad Soyad', en: 'Full Name' },
+    'portal.admin.title': { tr: 'Unvan', en: 'Title' },
+    'portal.admin.email': { tr: 'E-posta', en: 'Email' },
+    'portal.admin.phone': { tr: 'Telefon', en: 'Phone' },
+    'portal.admin.registered': { tr: 'Kayıt', en: 'Registered' },
+    'portal.admin.approved_at': { tr: 'Onay', en: 'Approved' },
+    'portal.admin.approve_btn': { tr: 'Onayla', en: 'Approve' },
+    'portal.admin.reject_btn': { tr: 'Reddet', en: 'Reject' },
+    'portal.admin.expert_app_label': { tr: 'Uzman Başvuru', en: 'Expert Application' },
+    'portal.admin.ethics_ok': { tr: 'Etik Beyan Kabul Edildi', en: 'Ethics Accepted' },
+    'portal.admin.ethics_no': { tr: 'Etik Beyan Kabul Edilmedi', en: 'Ethics Rejected' },
+
+
     'portal.register.submit': {
         tr: 'Başvuruyu Gönder',
         en: 'Submit Application'
@@ -802,6 +894,69 @@ const translations = {
     'portal.admin.pending': {
         tr: 'Onay Bekleyenler',
         en: 'Pending Approval'
+    },
+    'portal.register.password_placeholder': {
+        tr: 'En az 8 karakter',
+        en: 'At least 8 characters'
+    },
+    'portal.register.password_confirm_placeholder': {
+        tr: 'Şifrenizi tekrar girin',
+        en: 'Re-enter your password'
+    },
+    'post.type.expert': {
+        tr: 'Uzmanlık',
+        en: 'Expertise'
+    },
+    'post.type.support': {
+        tr: 'Destek Talebi',
+        en: 'Support Request'
+    },
+    'post.type.partner': {
+        tr: 'Partner Çağrısı',
+        en: 'Partner Call'
+    },
+    'sector.barinma': { tr: 'Uygun Fiyatlı Barınma', en: 'Affordable Housing' },
+    'sector.hareketlilik': { tr: 'Sürdürülebilir Hareketlilik', en: 'Sustainable Mobility' },
+    'sector.afet': { tr: 'Afetlere Dirençlilik', en: 'Disaster Resilience' },
+    'sector.gida': { tr: 'Sağlıklı Gıda', en: 'Healthy Food' },
+    'sector.saglik': { tr: 'Sağlık ve Esenlik', en: 'Health and Wellbeing' },
+    'sector.egitim': { tr: 'Eğitimli Nesiller', en: 'Educated Generations' },
+    'sector.is': { tr: 'İnsana Yakışır İş', en: 'Decent Work' },
+    'sector.inovasyon': { tr: 'İnovasyon Üretimi', en: 'Innovation Production' },
+    'sector.kultur': { tr: 'Kültür ve Kapsayıcılık', en: 'Culture and Inclusivity' },
+    'sector.dongusal': { tr: 'Döngüsel Metabolizma', en: 'Circular Metabolism' },
+    'common.reply': { tr: 'Yanıtla', en: 'Reply' },
+    'common.author_unknown': { tr: 'Bilinmiyor', en: 'Unknown' },
+    'error.general': { tr: 'Bir hata oluştu.', en: 'An error occurred.' },
+
+    // Portal - How It Works
+    'portal.how_it_works.title': {
+        tr: '3 Adımda Platforma Katılın',
+        en: 'Join the Platform in 3 Steps'
+    },
+    'portal.step1.title': {
+        tr: 'Kayıt Olun',
+        en: 'Register'
+    },
+    'portal.step1.desc': {
+        tr: 'Kurumunuzun bilgilerini girin ve Belediye veya Özel Sektör kategorisini seçin. Form birkaç dakika içinde tamamlanır.',
+        en: 'Enter your organization details and select Municipality or Private Sector category. The form takes just a few minutes.'
+    },
+    'portal.step2.title': {
+        tr: 'Onay Bekleyin',
+        en: 'Wait for Approval'
+    },
+    'portal.step2.desc': {
+        tr: 'M-LAB ekibi başvurunuzu inceleyecek. Onay sonrası platforma tam erişim sağlarsınız. Genellikle 1-2 iş günü sürer.',
+        en: 'The M-LAB team will review your application. Once approved, you get full access. Usually takes 1-2 business days.'
+    },
+    'portal.step3.title': {
+        tr: 'Etkileşime Geçin',
+        en: 'Start Interacting'
+    },
+    'portal.step3.desc': {
+        tr: 'Destek talepleri oluşturun, uzmanlık sunumları yayınlayın ve diğer üyelerle iletişime geçin.',
+        en: 'Create support requests, publish expertise presentations, and connect with other members.'
     },
     'portal.admin.approved': {
         tr: 'Onaylı Üyeler',
@@ -910,14 +1065,13 @@ function setLang(lang) {
 function t(key) {
     const entry = translations[key];
     if (!entry) {
-        console.warn(`Missing translation for key: ${key}`);
+        // console.warn(`Missing translation for key: ${key}`);
         return key;
     }
     const lang = getCurrentLang();
     return entry[lang] || entry[DEFAULT_LANG] || key;
 }
 
-// Update language toggle button states
 // Apply translations to the page
 function applyTranslations() {
     const currentLang = getCurrentLang();
@@ -935,14 +1089,12 @@ function applyTranslations() {
         element.placeholder = t(key);
     });
 
-    // Translate meta titles (optional, if we have data-i18n-title on body or head)
+    // Translate meta titles
     const titleKey = document.body.getAttribute('data-i18n-title');
     if (titleKey) {
         document.title = t(titleKey);
     }
 }
-
-// Update language toggle button states (Managed in DOMContentLoaded)
 
 // Update language toggle button active state
 function updateLangButtons() {
@@ -959,13 +1111,24 @@ function updateLangButtons() {
     });
 }
 
+// Initialize everything
+function initTranslations() {
+    applyTranslations();
+    updateLangButtons();
+}
+
+// Expose to window for global access (fixes inline handlers and persistence issues)
+window.getCurrentLang = getCurrentLang;
+window.setLang = setLang;
+window.t = t;
+window.initTranslations = initTranslations;
+
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-    applyTranslations();
-    updateLangButtons(); // Moved here to ensure DOM is ready
+    initTranslations();
 });
 
-// Export for module usage
+// Export for module usage (if needed)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { getCurrentLang, setLang, t, translations };
 }

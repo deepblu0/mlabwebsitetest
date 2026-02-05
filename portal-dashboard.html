@@ -74,8 +74,10 @@
                     <button id="user-menu-btn" onclick="toggleUserMenu()"
                         class="flex items-center gap-3 hover:bg-white/10 px-3 py-2 rounded-xl transition-colors">
                         <div class="text-right hidden md:block">
-                            <div class="text-sm font-semibold" id="user-name">Yükleniyor...</div>
-                            <div class="text-xs text-white/70" id="user-role">Üye</div>
+                            <div class="text-sm font-semibold" id="user-name" data-i18n="common.loading">Loading...
+                            </div>
+                            <div class="text-xs text-white/70" id="user-role" data-i18n="common.loading">Loading...
+                            </div>
                         </div>
                         <div
                             class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center border-2 border-white/20 overflow-hidden">
@@ -164,12 +166,14 @@
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="radio" name="post_type" value="uzmanlik_sunumu"
                                     class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700">Uzmanlık Bildirileri</span>
+                                <span class="text-sm text-slate-700" data-i18n="portal.filters.type_expert">Uzmanlık
+                                    Bildirileri</span>
                             </label>
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="radio" name="post_type" value="partner_call"
                                     class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700">Ufuk Avrupa Partner Çağrıları</span>
+                                <span class="text-sm text-slate-700" data-i18n="portal.filters.type_partner">Ufuk Avrupa
+                                    Partner Çağrıları</span>
                             </label>
                         </div>
                     </div>
@@ -202,17 +206,17 @@
                             Zorluk</label>
                         <select id="sector-filter"
                             class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50">
-                            <option value="all">Tümü</option>
-                            <option value="barinma">Uygun Fiyatlı Barınma</option>
-                            <option value="hareketlilik">Sürdürülebilir Hareketlilik</option>
-                            <option value="afet">Afetlere Dirençlilik</option>
-                            <option value="gida">Sağlıklı Gıda</option>
-                            <option value="saglik">Sağlık ve Esenlik</option>
-                            <option value="egitim">Eğitimli Nesiller</option>
-                            <option value="is">İnsana Yakışır İş</option>
-                            <option value="inovasyon">İnovasyon Üretimi</option>
-                            <option value="kultur">Kültür ve Kapsayıcılık</option>
-                            <option value="dongusal">Döngüsel Metabolizma</option>
+                            <option value="all" data-i18n="portal.filters.all">Tümü</option>
+                            <option value="barinma" data-i18n="challenge.1">Uygun Fiyatlı Barınma</option>
+                            <option value="hareketlilik" data-i18n="challenge.2">Sürdürülebilir Hareketlilik</option>
+                            <option value="afet" data-i18n="challenge.3">Afetlere Dirençlilik</option>
+                            <option value="gida" data-i18n="challenge.4">Sağlıklı Gıda</option>
+                            <option value="saglik" data-i18n="challenge.5">Sağlık ve Esenlik</option>
+                            <option value="egitim" data-i18n="challenge.6">Eğitimli Nesiller</option>
+                            <option value="is" data-i18n="challenge.7">İnsana Yakışır İş</option>
+                            <option value="inovasyon" data-i18n="challenge.8">İnovasyon Üretimi</option>
+                            <option value="kultur" data-i18n="challenge.9">Kültür ve Kapsayıcılık</option>
+                            <option value="dongusal" data-i18n="challenge.10">Döngüsel Metabolizma</option>
                         </select>
                     </div>
 
@@ -254,7 +258,7 @@
                         class="group flex items-center justify-center gap-2 px-4 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-bold rounded-2xl shadow-lg shadow-cyan/20 hover:shadow-cyan/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300">
                         <i data-lucide="users"
                             class="w-5 h-5 text-white/90 group-hover:scale-110 transition-transform duration-300"></i>
-                        <span>Ufuk Avrupa Partner Çağrısı</span>
+                        <span data-i18n="portal.form.partner_call">Ufuk Avrupa Partner Çağrısı</span>
                     </button>
 
                     <a href="ufuk-hibeleri.html"
@@ -346,9 +350,11 @@
                                             class="w-10 h-10 rounded-full bg-gradient-to-br from-mlab-cyan to-teal-500 flex items-center justify-center shadow-lg shadow-mlab-cyan/30 shrink-0">
                                             <i data-lucide="message-square-plus" class="w-5 h-5 text-white"></i>
                                         </div>
-                                        <div class="font-semibold text-mlab-navy text-sm">Destek Talebi</div>
+                                        <div class="font-semibold text-mlab-navy text-sm"
+                                            data-i18n="portal.new_post.support_req">Destek Talebi</div>
                                     </div>
-                                    <p class="text-xs text-slate-500 leading-relaxed">
+                                    <p class="text-xs text-slate-500 leading-relaxed"
+                                        data-i18n="portal.new_post.support_desc">
                                         İnovatif, yaşanabilir ve iklim nötr odaklı projeleriniz için ihtiyaç duyduğunuz
                                         partner, finansman veya teknik altyapı desteğini buradan duyurun.
                                     </p>
@@ -364,9 +370,11 @@
                                             class="w-10 h-10 rounded-full bg-gradient-to-br from-mlab-orange to-amber-500 flex items-center justify-center shadow-lg shadow-mlab-orange/30 shrink-0">
                                             <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
                                         </div>
-                                        <div class="font-semibold text-mlab-navy text-sm">Uzmanlık Bildirisi</div>
+                                        <div class="font-semibold text-mlab-navy text-sm"
+                                            data-i18n="portal.new_post.expert_decl">Uzmanlık Bildirisi</div>
                                     </div>
-                                    <p class="text-xs text-slate-500 leading-relaxed">
+                                    <p class="text-xs text-slate-500 leading-relaxed"
+                                        data-i18n="portal.new_post.expert_desc">
                                         Şehrin dönüşüm hedeflerine değer katacak kurumsal yetkinliklerinizi, akademik
                                         birikiminizi veya teknolojik çözüm önerilerinizi çözüm ağına ekleyin.
                                     </p>
@@ -455,7 +463,7 @@
                 <button onclick="submitNewPost()" id="submit-btn"
                     class="inline-flex items-center gap-2 px-6 py-3 bg-mlab-purple text-white font-semibold rounded-xl hover:bg-mlab-navy transition-colors">
                     <i data-lucide="plus" class="w-5 h-5"></i>
-                    Yeni Çağrı
+                    <span data-i18n="portal.actions.new_call">Yeni Çağrı</span>
                 </button>
             </div>
         </div>
@@ -473,8 +481,10 @@
                         <i data-lucide="clipboard-list" class="w-5 h-5 text-white"></i>
                     </div>
                     <div>
-                        <h2 class="text-xl font-bold text-white">Uzman Başvuru Formu</h2>
-                        <p class="text-white/70 text-sm">Tüm alanları eksiksiz doldurunuz.</p>
+                        <h2 class="text-xl font-bold text-white" data-i18n="portal.expert_form.title">Uzman Başvuru
+                            Formu</h2>
+                        <p class="text-white/70 text-sm" data-i18n="portal.expert_form.subtitle">Tüm alanları eksiksiz
+                            doldurunuz.</p>
                     </div>
                 </div>
                 <button onclick="closeExpertModal()" class="text-white/70 hover:text-white transition-colors">
@@ -490,27 +500,30 @@
                         <h3 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
                             <span
                                 class="w-8 h-8 bg-mlab-cyan/10 rounded-lg flex items-center justify-center text-mlab-cyan text-sm font-bold">1</span>
-                            Kişisel Bilgiler
+                            <span data-i18n="portal.expert_form.personal_info">Kişisel Bilgiler</span>
                         </h3>
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Ad Soyad *</label>
+                                <label class="block text-sm font-medium text-slate-700 mb-2"
+                                    data-i18n="portal.expert_form.labels.fullname">Ad Soyad *</label>
                                 <input type="text" name="fullName" required
                                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Meslek *</label>
+                                <label class="block text-sm font-medium text-slate-700 mb-2"
+                                    data-i18n="portal.expert_form.labels.profession">Meslek *</label>
                                 <input type="text" name="profession" required
                                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Çalıştığı Kurum
-                                    *</label>
+                                <label class="block text-sm font-medium text-slate-700 mb-2"
+                                    data-i18n="portal.expert_form.labels.organization">Çalıştığı Kurum *</label>
                                 <input type="text" name="organization" required
                                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Ünvan *</label>
+                                <label class="block text-sm font-medium text-slate-700 mb-2"
+                                    data-i18n="portal.expert_form.labels.title">Ünvan *</label>
                                 <input type="text" name="title" required
                                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
                             </div>
@@ -522,18 +535,18 @@
                         <h3 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
                             <span
                                 class="w-8 h-8 bg-mlab-cyan/10 rounded-lg flex items-center justify-center text-mlab-cyan text-sm font-bold">2</span>
-                            İletişim Bilgileri
+                            <span data-i18n="portal.expert_form.contact_info">İletişim Bilgileri</span>
                         </h3>
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">E-posta Adresi
-                                    *</label>
+                                <label class="block text-sm font-medium text-slate-700 mb-2"
+                                    data-i18n="portal.expert_form.labels.email">E-posta Adresi *</label>
                                 <input type="email" name="email" required
                                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Telefon Numarası
-                                    *</label>
+                                <label class="block text-sm font-medium text-slate-700 mb-2"
+                                    data-i18n="portal.expert_form.labels.phone">Telefon Numarası *</label>
                                 <input type="tel" name="phone" required
                                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
                             </div>
@@ -545,18 +558,18 @@
                         <h3 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
                             <span
                                 class="w-8 h-8 bg-mlab-cyan/10 rounded-lg flex items-center justify-center text-mlab-cyan text-sm font-bold">3</span>
-                            Uzmanlık Bilgileri
+                            <span data-i18n="portal.expert_form.expertise_info">Uzmanlık Bilgileri</span>
                         </h3>
                         <div class="space-y-4">
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Uzmanlık Alanı
-                                    *</label>
+                                <label class="block text-sm font-medium text-slate-700 mb-2"
+                                    data-i18n="portal.expert_form.labels.area">Uzmanlık Alanı *</label>
                                 <input type="text" name="expertiseArea" required
                                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Uzmanlık Detayları
-                                    *</label>
+                                <label class="block text-sm font-medium text-slate-700 mb-2"
+                                    data-i18n="portal.expert_form.labels.details">Uzmanlık Detayları *</label>
                                 <textarea name="expertiseDetails" required rows="4"
                                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all resize-none"></textarea>
                             </div>
@@ -568,10 +581,11 @@
                         <h3 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
                             <span
                                 class="w-8 h-8 bg-mlab-cyan/10 rounded-lg flex items-center justify-center text-mlab-cyan text-sm font-bold">4</span>
-                            Eğitim Bilgileri
+                            <span data-i18n="portal.expert_form.education_info">Eğitim Bilgileri</span>
                         </h3>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">Eğitim Geçmişi *</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2"
+                                data-i18n="portal.expert_form.labels.education">Eğitim Geçmişi *</label>
                             <textarea name="education" required rows="3"
                                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-mlab-cyan focus:ring-2 focus:ring-mlab-cyan/20 outline-none transition-all resize-none"></textarea>
                         </div>
@@ -582,7 +596,7 @@
                         <h3 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
                             <span
                                 class="w-8 h-8 bg-mlab-purple/10 rounded-lg flex items-center justify-center text-mlab-purple text-sm font-bold">5</span>
-                            Etik Taahhütname
+                            <span data-i18n="portal.expert_form.ethics">Etik Taahhütname</span>
                         </h3>
                         <div class="flex items-start gap-3">
                             <input type="checkbox" id="coc-checkbox" name="cocAccepted"
@@ -590,13 +604,14 @@
                                 disabled>
                             <div>
                                 <label for="coc-checkbox" class="text-sm text-slate-700 cursor-pointer">
-                                    <span class="font-medium">Çıkar Çatışması ve Gizlilik Taahhütnamesini</span>
-                                    okudum ve kabul ediyorum.
+                                    <span class="font-medium" data-i18n="portal.coc.modal_title">Çıkar Çatışması ve
+                                        Gizlilik Taahhütnamesini</span>
+                                    <span data-i18n="portal.coc.accept_label">okudum ve kabul ediyorum.</span>
                                 </label>
                                 <button type="button" onclick="openCocModal()"
                                     class="block mt-2 text-sm text-mlab-purple hover:text-mlab-navy font-medium underline underline-offset-2">
                                     <i data-lucide="file-text" class="w-4 h-4 inline-block mr-1"></i>
-                                    Taahhütnameyi Oku (Zorunlu)
+                                    <span data-i18n="portal.coc.read_button">Taahhütnameyi Oku (Zorunlu)</span>
                                 </button>
                             </div>
                         </div>
@@ -607,12 +622,13 @@
             <!-- Footer -->
             <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3 shrink-0">
                 <button onclick="closeExpertModal()"
-                    class="px-5 py-2.5 text-slate-600 font-medium rounded-xl hover:bg-slate-200 transition-colors">
+                    class="px-5 py-2.5 text-slate-600 font-medium rounded-xl hover:bg-slate-200 transition-colors"
+                    data-i18n="common.cancel">
                     İptal
                 </button>
                 <button type="submit" form="expert-form" id="expert-submit-btn" disabled
                     class="px-6 py-2.5 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white font-bold rounded-xl hover:shadow-lg hover:shadow-mlab-purple/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
-                    Başvuruyu Gönder
+                    <span data-i18n="common.submit">Başvuruyu Gönder</span>
                 </button>
             </div>
         </div>
@@ -631,8 +647,10 @@
                         <i data-lucide="shield-check" class="w-5 h-5 text-white"></i>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-white">Çıkar Çatışması ve Gizlilik Taahhütnamesi</h3>
-                        <p class="text-white/70 text-sm">Lütfen sonuna kadar okuyunuz</p>
+                        <h3 class="text-lg font-bold text-white" data-i18n="portal.coc.modal_title">Çıkar Çatışması ve
+                            Gizlilik Taahhütnamesi</h3>
+                        <p class="text-white/70 text-sm" data-i18n="portal.coc.modal_subtitle">Lütfen sonuna kadar
+                            okuyunuz</p>
                     </div>
                 </div>
                 <button onclick="closeCocModal()" class="text-white/70 hover:text-white transition-colors">
@@ -643,19 +661,22 @@
             <!-- Body -->
             <div class="p-6 overflow-y-auto flex-grow">
                 <div class="prose prose-slate max-w-none text-sm">
-                    <h4 class="text-mlab-navy font-bold text-lg mb-4">Etik Beyan</h4>
-                    <p class="text-slate-600 mb-6">
+                    <h4 class="text-mlab-navy font-bold text-lg mb-4" data-i18n="portal.coc.decl">Etik Beyan</h4>
+                    <p class="text-slate-600 mb-6" data-i18n="portal.coc.text_intro">
                         İzmir Büyükşehir Belediyesi çalışmalarında bağımsız uzman olarak görev almak üzere başvuruda
                         bulunuyorum. Bu kapsamda aşağıdaki hususları beyan ederim:
                     </p>
                     <div class="space-y-4 text-slate-600">
-                        <p><strong>1. Çıkar Çatışması:</strong> Danışmanlık veya değerlendirme desteği verdiğim
+                        <p data-i18n="portal.coc.item1"><strong>1. Çıkar Çatışması:</strong> Danışmanlık veya
+                            değerlendirme desteği verdiğim
                             konularda ihale, proje veya hibe süreçlerine katılmayacağım. Yakınlarımın dahil olduğu
                             süreçlerden çekileceğim.</p>
-                        <p><strong>2. Gizlilik:</strong> Görevim sırasında edindiğim bilgileri gizli tutacağım ve
+                        <p data-i18n="portal.coc.item2"><strong>2. Gizlilik:</strong> Görevim sırasında edindiğim
+                            bilgileri gizli tutacağım ve
                             üçüncü
                             kişilerle paylaşmayacağım.</p>
-                        <p><strong>3. Tarafsızlık:</strong> Değerlendirmelerimi objektif kriterlere göre yapacağım.
+                        <p data-i18n="portal.coc.item3"><strong>3. Tarafsızlık:</strong> Değerlendirmelerimi objektif
+                            kriterlere göre yapacağım.
                         </p>
                     </div>
                     <div class="bg-slate-100 rounded-xl p-4 mt-6">
@@ -670,13 +691,14 @@
             <div class="p-6 border-t border-slate-200 bg-slate-50 rounded-b-2xl shrink-0">
                 <div class="flex flex-col sm:flex-row gap-3">
                     <button onclick="closeCocModal()" type="button"
-                        class="flex-1 py-3 px-6 border border-slate-300 text-slate-700 font-medium rounded-xl hover:bg-slate-100 transition-all">
+                        class="flex-1 py-3 px-6 border border-slate-300 text-slate-700 font-medium rounded-xl hover:bg-slate-100 transition-all"
+                        data-i18n="portal.coc.reject_btn">
                         Kabul Etmiyorum
                     </button>
                     <button onclick="acceptCoc()" type="button"
                         class="flex-1 py-3 px-6 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white font-bold rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2">
                         <i data-lucide="check" class="w-5 h-5"></i>
-                        Okudum ve Kabul Ediyorum
+                        <span data-i18n="portal.coc.accept_btn">Okudum ve Kabul Ediyorum</span>
                     </button>
                 </div>
             </div>
@@ -2173,19 +2195,21 @@
 
                 if (post.post_type === 'destek_talebi') {
                     typeColor = 'cyan';
-                    typeLabel = 'Destek Talebi';
+                    typeLabel = t('post.type.support');
                     gradientClass = 'from-mlab-cyan to-blue-500';
                 } else if (post.post_type === 'partner_call') {
                     typeColor = 'blue';
-                    typeLabel = 'Partner Çağrısı';
+                    typeLabel = t('post.type.partner');
                     gradientClass = 'from-blue-500 to-indigo-600';
+                } else {
+                    typeLabel = t('post.type.expert');
                 }
 
                 const categoryIcon = post.author?.category === 'belediye' ? 'landmark' : 'building-2';
                 const date = formatDate(post.created_at);
                 const authorDisplay = post.author?.contact_name
                     ? `${post.author.name} - ${post.author.contact_name}`
-                    : post.author?.name || 'Bilinmiyor';
+                    : post.author?.name || t('common.author_unknown');
 
                 return `
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow overflow-hidden">
@@ -2202,7 +2226,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
-                            <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200 max-w-[300px] md:max-w-[450px] truncate inline-block align-middle" title="${sectorLabels[post.sector] || post.sector}">${sectorLabels[post.sector] || post.sector}</span>
+                            <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200 max-w-[300px] md:max-w-[450px] truncate inline-block align-middle" title="${t('sector.' + post.sector) || post.sector}">${t('sector.' + post.sector) || post.sector}</span>
                             <span class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold border border-mlab-${typeColor}/10 whitespace-nowrap">${typeLabel}</span>
                         </div>
                     </div>
@@ -2218,7 +2242,7 @@
                         <button onclick="toggleReplyBox('${post.id}')"
                             class="px-4 py-2 bg-mlab-purple/10 text-mlab-purple text-sm font-semibold rounded-lg hover:bg-mlab-purple hover:text-white transition-all flex items-center gap-2">
                             <i data-lucide="message-circle" class="w-4 h-4"></i>
-                            Yanıtla
+                            ${t('common.reply')}
                         </button>
                     </div>
                 </div>

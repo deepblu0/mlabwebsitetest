@@ -234,7 +234,7 @@
                                    class="w-6 h-6 ${user.org_type === 'belediye' ? 'text-mlab-navy' : 'text-mlab-orange'}"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-mlab-navy">${user.org_name || 'Bilinmiyor'}</h3>
+                                <h3 class="font-bold text-mlab-navy">${user.org_name || (t ? t('portal.admin.unknown') : 'Bilinmiyor')}</h3>
                                 <p class="text-sm text-slate-500">${user.email}</p>
                                 <p class="text-sm text-slate-400 mt-1">
                                     ${user.contact_name || ''} ${user.contact_title ? '• ' + user.contact_title : ''}
@@ -338,7 +338,7 @@
                                 <i data-lucide="user-check" class="w-6 h-6 text-mlab-purple"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-mlab-navy">${expert.fullName || 'İsimsiz'}</h3>
+                                <h3 class="font-bold text-mlab-navy">${expert.fullName || (t ? t('portal.admin.unknown') : 'İsimsiz')}</h3>
                                 <p class="text-sm text-slate-500">${expert.profession || ''} ${expert.title ? '• ' + expert.title : ''}</p>
                                 <p class="text-sm text-slate-400 mt-1">${expert.organization || ''}</p>
                             </div>
@@ -366,24 +366,24 @@
                             <i data-lucide="user-check" class="w-8 h-8 text-mlab-purple"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-mlab-navy">${expert.fullName || 'İsimsiz'}</h3>
+                            <h3 class="text-xl font-bold text-mlab-navy">${expert.fullName || (t ? t('portal.admin.unknown') : 'İsimsiz')}</h3>
                             <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-mlab-purple/10 text-mlab-purple">
-                                Uzman Başvurusu
+                                ${t ? t('portal.admin.expert_app_label') : 'Uzman Başvurusu'}
                             </span>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">Meslek</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.profession') : 'Meslek'}</div>
                             <div class="font-medium text-slate-700">${expert.profession || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">Ünvan</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.title') : 'Ünvan'}</div>
                             <div class="font-medium text-slate-700">${expert.title || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">Kurum</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.organization') : 'Kurum'}</div>
                             <div class="font-medium text-slate-700">${expert.organization || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
@@ -393,26 +393,26 @@
                     </div>
 
                     <div class="bg-slate-50 rounded-xl p-4">
-                        <div class="text-xs text-slate-500 mb-1">Uzmanlık Detayları</div>
+                        <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.details') : 'Uzmanlık Detayları'}</div>
                         <div class="text-slate-700">${expert.expertiseDetails || '-'}</div>
                     </div>
 
                     <div class="bg-slate-50 rounded-xl p-4">
-                        <div class="text-xs text-slate-500 mb-1">Eğitim</div>
+                        <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.education') : 'Eğitim'}</div>
                         <div class="text-slate-700">${expert.education || '-'}</div>
                     </div>
 
                     <hr class="border-slate-100">
 
-                    <h4 class="font-semibold text-mlab-navy">İletişim Bilgileri</h4>
+                    <h4 class="font-semibold text-mlab-navy">${t ? t('portal.admin.contact_info') : 'İletişim Bilgileri'}</h4>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">E-posta</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.email') : 'E-posta'}</div>
                             <div class="font-medium text-slate-700">${expert.email || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">Telefon</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.phone') : 'Telefon'}</div>
                             <div class="font-medium text-slate-700">${expert.phone || '-'}</div>
                         </div>
                     </div>
@@ -474,48 +474,48 @@
                                class="w-8 h-8 ${user.org_type === 'belediye' ? 'text-mlab-navy' : 'text-mlab-orange'}"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-mlab-navy">${user.org_name || 'Bilinmiyor'}</h3>
+                            <h3 class="text-xl font-bold text-mlab-navy">${user.org_name || (t ? t('portal.admin.unknown') : 'Bilinmiyor')}</h3>
                             <span class="inline-block px-3 py-1 rounded-full text-xs font-medium ${user.org_type === 'belediye' ? 'bg-mlab-navy/10 text-mlab-navy' : 'bg-mlab-orange/10 text-mlab-orange'}">
-                                ${user.org_type === 'belediye' ? 'Belediye' : 'Özel Sektör'}
+                                ${user.org_type === 'belediye' ? (t ? t('portal.admin.municipality') : 'Belediye') : (t ? t('portal.admin.private') : 'Özel Sektör')}
                             </span>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">Sektör</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.sector') : 'Sektör'}</div>
                             <div class="font-medium text-slate-700">${sectorNames[user.sector] || user.sector || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">Web Sitesi</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.website') : 'Web Sitesi'}</div>
                             <div class="font-medium text-slate-700">${user.website ? `<a href="${user.website}" target="_blank" class="text-mlab-purple hover:underline">${user.website}</a>` : '-'}</div>
                         </div>
                     </div>
 
                     <div class="bg-slate-50 rounded-xl p-4">
-                        <div class="text-xs text-slate-500 mb-1">Kurum Açıklaması</div>
+                        <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.desc') : 'Kurum Açıklaması'}</div>
                         <div class="text-slate-700">${user.description || '-'}</div>
                     </div>
 
                     <hr class="border-slate-100">
 
-                    <h4 class="font-semibold text-mlab-navy">İletişim Bilgileri</h4>
+                    <h4 class="font-semibold text-mlab-navy">${t ? t('portal.admin.contact_info') : 'İletişim Bilgileri'}</h4>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">Ad Soyad</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.name') : 'Ad Soyad'}</div>
                             <div class="font-medium text-slate-700">${user.contact_name || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">Unvan</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.title') : 'Unvan'}</div>
                             <div class="font-medium text-slate-700">${user.contact_title || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">E-posta</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.email') : 'E-posta'}</div>
                             <div class="font-medium text-slate-700">${user.email || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">Telefon</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.phone') : 'Telefon'}</div>
                             <div class="font-medium text-slate-700">${user.phone || '-'}</div>
                         </div>
                     </div>
@@ -530,12 +530,12 @@
                             <button onclick="approveUser('${user.id}'); closeModal();"
                                 class="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition-colors">
                                 <i data-lucide="check" class="w-5 h-5"></i>
-                                Onayla
+                                ${t ? t('portal.admin.approve_btn') : 'Onayla'}
                             </button>
                             <button onclick="rejectUser('${user.id}'); closeModal();"
                                 class="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl transition-colors">
                                 <i data-lucide="x" class="w-5 h-5"></i>
-                                Reddet
+                                ${t ? t('portal.admin.reject_btn') : 'Reddet'}
                             </button>
                         </div>
                     ` : ''}

@@ -338,6 +338,7 @@
                                     <label class="block text-sm font-medium text-slate-700 mb-2"
                                         data-i18n="portal.register.password">Şifre *</label>
                                     <input type="password" name="password" required minlength="8"
+                                        data-i18n-placeholder="portal.register.password_placeholder"
                                         placeholder="En az 8 karakter"
                                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                                 </div>
@@ -345,6 +346,7 @@
                                     <label class="block text-sm font-medium text-slate-700 mb-2"
                                         data-i18n="portal.register.password_confirm">Şifre Tekrar *</label>
                                     <input type="password" name="password_confirm" required minlength="8"
+                                        data-i18n-placeholder="portal.register.password_confirm_placeholder"
                                         placeholder="Şifrenizi tekrar girin"
                                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                                 </div>
@@ -436,16 +438,21 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
                 <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
-                    <a href="yasal.html?page=privacy" class="hover:text-slate-300 transition-colors">Gizlilik
+                    <a href="yasal.html?page=privacy" class="hover:text-slate-300 transition-colors"
+                        data-i18n="footer.privacy">Gizlilik
                         Politikası</a>
                     <span class="text-slate-700">•</span>
-                    <a href="yasal.html?page=kvkk" class="hover:text-slate-300 transition-colors">KVKK</a>
+                    <a href="yasal.html?page=cookie" class="hover:text-slate-300 transition-colors"
+                        data-i18n="footer.cookie">Çerez Politikası</a>
+                    <span class="text-slate-700">•</span>
+                    <a href="yasal.html?page=kvkk" class="hover:text-slate-300 transition-colors"
+                        data-i18n="footer.kvkk">KVKK</a>
                 </div>
                 <div class="coin-flip-container">
                     <img src="label-circle.png" alt="EU Mission Label"
                         class="h-16 w-auto drop-shadow-lg coin-flip cursor-pointer">
                 </div>
-                <span class="text-xs text-slate-500">&copy; 2025 M-LAB İzmir</span>
+                <span class="text-xs text-slate-500" data-i18n="footer.copyright">&copy; 2025 M-LAB İzmir</span>
             </div>
         </div>
     </footer>

@@ -428,7 +428,8 @@
 
                 const submitBtn = e.target.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Kaydediliyor...';
+                const savingText = t ? t('common.saving') : 'Kaydediliyor...';
+                submitBtn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> ${savingText}`;
                 submitBtn.disabled = true;
 
                 const formData = {
@@ -451,7 +452,7 @@
                     Object.assign(currentUser, formData);
                     localStorage.setItem('portal_current_user', JSON.stringify(currentUser));
 
-                    showSuccessMessage('Profil başarıyla güncellendi!');
+                    showSuccessMessage(t ? t('portal.profile.success') : 'Profil başarıyla güncellendi!');
                 } catch (error) {
                     console.error('Profil güncellenirken hata:', error);
                     alert('Profil güncellenirken bir hata oluştu: ' + error.message);
