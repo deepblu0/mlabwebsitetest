@@ -175,15 +175,16 @@
             <div class="absolute bottom-10 right-10 w-96 h-96 bg-mlab-purple rounded-full blur-3xl"></div>
         </div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <h1 class="text-4xl md:text-5xl font-black text-white mb-4">İzmir'in Projeleri</h1>
-            <p class="text-slate-300 text-lg max-w-2xl mx-auto mb-8">
+            <h1 class="text-4xl md:text-5xl font-black text-white mb-4" data-i18n="projects.hero.title">İzmir'in
+                Projeleri</h1>
+            <p class="text-slate-300 text-lg max-w-2xl mx-auto mb-8" data-i18n="projects.hero.subtitle">
                 İzmir 2030 Kent Taahhüdü kapsamında şehri iklim nötr ve akıllı bir geleceğe taşıyan tüm çalışmaları
                 burada bir araya getiriyoruz. Yaşam kalitesini artıran kentsel inovasyon projelerini keşfedin.
             </p>
             <button onclick="openProjectModal()"
                 class="px-8 py-4 bg-gradient-to-r from-mlab-cyan to-blue-500 text-mlab-navy font-bold rounded-xl shadow-lg shadow-mlab-cyan/20 hover:shadow-mlab-cyan/40 hover:scale-105 transition-all duration-300 flex items-center gap-2 mx-auto">
                 <i data-lucide="upload-cloud" class="w-5 h-5"></i>
-                Projenizi Yayınlayalım!
+                <span data-i18n="projects.hero.button">Projenizi Yayınlayalım!</span>
             </button>
         </div>
     </section>
@@ -364,12 +365,75 @@
                             <div>
                                 <label for="project-desc" class="block text-sm font-bold text-mlab-navy mb-1">Açıklama
                                     Metni</label>
-                                <textarea id="project-desc" rows="3" required
-                                    class="w-full rounded-lg border-slate-300 border p-2.5 text-sm focus:ring-2 focus:ring-mlab-cyan focus:border-mlab-cyan outline-none transition-all placeholder:text-slate-400"
-                                    // Animate in setTimeout(()=> {
-                backdrop.classList.remove('opacity-0');
-                panel.classList.remove('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
-                panel.classList.add('opacity-100', 'translate-y-0', 'sm:scale-100');
+                                class="w-full rounded-lg border-slate-300 border p-2.5 text-sm focus:ring-2
+                                focus:ring-mlab-cyan focus:border-mlab-cyan outline-none transition-all
+                                placeholder:text-slate-400"
+                                placeholder="Projenizi kısaca anlatın..."></textarea>
+                            </div>
+
+                            <!-- Challenges -->
+                            <div>
+                                <label class="block text-sm font-bold text-mlab-navy mb-2">İlgili Büyük
+                                    Zorluklar</label>
+                                <div id="challenges-container"
+                                    class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-48 overflow-y-auto p-2 border border-slate-200 rounded-lg">
+                                    <!-- JS Rendered -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Checkboxes -->
+                        <div class="space-y-3 pt-4 border-t border-slate-200">
+                            <div class="flex items-start">
+                                <div class="flex h-5 items-center">
+                                    <input id="kvkk-consent" type="checkbox" required
+                                        class="h-4 w-4 rounded border-slate-300 text-mlab-cyan focus:ring-mlab-cyan">
+                                </div>
+                                <div class="ml-3 text-sm">
+                                    <label for="kvkk-consent" class="font-medium text-slate-700">
+                                        <a href="#" class="text-mlab-cyan hover:underline">KVKK Aydınlatma Metni</a>'ni
+                                        okudum ve onaylıyorum.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit"
+                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-gradient-to-r from-mlab-navy to-mlab-purple hover:from-mlab-purple hover:to-mlab-cyan focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mlab-cyan transition-all duration-300 transform hover:scale-[1.02]">
+                            Projeyi Gönder
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global Selection
+        const modal = document.getElementById('project-modal');
+        const backdrop = document.getElementById('modal-backdrop');
+        const panel = document.getElementById('modal-panel');
+        // Define challengesContainer dynamically or ensure it exists
+        // We will define it inside functions to be safe or here if DOM is ready (it's at end of body so safe)
+        const challengesContainer = document.getElementById('challenges-container');
+
+        // Global State
+        let projects = [];
+        let filters = [];
+        let bigChallenges = [];
+        let activeFilterId = 'ALL';
+
+        function openProjectModal() {
+            if (!modal) return;
+            modal.classList.remove('hidden');
+            // Animate in
+            setTimeout(() => {
+                if (backdrop) backdrop.classList.remove('opacity-0');
+                if (panel) {
+                    panel.classList.remove('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
+                    panel.classList.add('opacity-100', 'translate-y-0', 'sm:scale-100');
+                }
             }, 10);
             renderChallengeCheckboxes();
         }
@@ -440,15 +504,16 @@
                     throw new Error('Çeviri sistemi (i18n) yüklenemedi.');
                 }
 
-                // Data Aliases
-                window.projects = mlabData.projects;
-                window.filters = mlabData.filters;
-                window.bigChallenges = mlabData.challenges;
-                window.activeFilterId = 'ALL';
+                // Load Data
+                projects = mlabData.projects || [];
+                filters = mlabData.filters || [];
+                bigChallenges = mlabData.challenges || [];
+                activeFilterId = 'ALL';
 
+                // Initial Render
                 renderFilters();
                 renderProjects();
-                
+
             } catch (error) {
                 console.error('Critical Render Error:', error);
                 const container = document.getElementById('projects-grid');
@@ -468,6 +533,154 @@
                 }
             }
         });
+
+        // Helper Functions
+
+        function renderFilters() {
+            const container = document.getElementById('filter-container');
+            const currentLang = getCurrentLang();
+
+            if (!container) return;
+
+            container.innerHTML = filters.map(f => {
+                const label = typeof f.label === 'object' ? f.label[currentLang] : f.label;
+                return `
+                <button onclick="setFilter('${f.id}')"
+                    class="px-5 py-2.5 text-xs font-bold tracking-wider rounded-lg transition-all duration-300 ${activeFilterId == f.id ? `${f.color} text-white shadow-lg transform -translate-y-0.5` : `bg-white text-slate-600 hover:bg-slate-100 border border-slate-200`}">
+                    ${label}
+                </button>
+                `;
+            }).join('');
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projects-grid');
+            const emptyState = document.getElementById('empty-state');
+            const currentLang = getCurrentLang();
+
+            if (!container) return;
+
+            // Filter
+            const filtered = activeFilterId === 'ALL' ? projects : projects.filter(p => p.bigChallengeId == activeFilterId);
+
+            if (filtered.length === 0) {
+                container.classList.add('hidden');
+                if (emptyState) emptyState.classList.remove('hidden');
+                return;
+            }
+
+            container.classList.remove('hidden');
+            if (emptyState) emptyState.classList.add('hidden');
+
+            container.innerHTML = filtered.map(p => {
+                try {
+                    const challenge = bigChallenges.find(c => c.id == p.bigChallengeId);
+                    const challengeName = challenge ? (challenge.title[currentLang] || '') : '';
+                    const challengeColor = challenge ? challenge.color : 'bg-gray-500';
+
+                    const title = p.title ? p.title[currentLang] : 'Untitled';
+
+                    // Description (Added per request for "same style")
+                    const descObj = p.description || p.desc;
+                    const desc = descObj ? descObj[currentLang] : '';
+
+                    // Status
+                    let status = 'Unknown';
+                    let statusColor = 'bg-gray-100 text-gray-700';
+
+                    if (p.status) {
+                        if (typeof p.status === 'object') {
+                            status = p.status[currentLang];
+                            const isCompleted = (p.status.tr === 'Tamamlandı' || p.status.en === 'Completed');
+                            statusColor = isCompleted ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700';
+                        } else {
+                            status = p.status;
+                            statusColor = 'bg-blue-100 text-blue-700';
+                        }
+                    }
+
+                    // Time / Partners
+                    const duration = p.duration ? p.duration[currentLang] : null;
+                    const startDateObj = p.startDate;
+                    let startDate = null;
+                    if (startDateObj) {
+                        startDate = (typeof startDateObj === 'object') ? startDateObj[currentLang] : startDateObj;
+                    }
+
+                    const durationLabel = t ? t('projects.card.duration') : 'Süre';
+                    const dateLabel = t ? t('projects.card.startDate') : 'Başlangıç';
+                    const partnersLabel = t ? t('projects.card.partners') : 'Paydaşlar';
+
+                    const timeLabel = duration ? `${durationLabel}: ${duration}` : (startDate ? `${dateLabel}: ${startDate}` : 'Belirtilmemiş');
+
+                    return `
+                    <a href="proje-detay.html?id=${p.id}" class="block h-full">
+                        <div
+                            class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full group cursor-pointer border border-slate-100 hover:border-mlab-cyan/30 overflow-hidden">
+                            <div class="h-48 w-full relative overflow-hidden bg-slate-200">
+                                <img src="${p.image}"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                    onerror="this.src='https://placehold.co/800x400/e2e8f0/64748b?text=Proje'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                                <div class="absolute top-3 left-3">
+                                    <span class="px-3 py-1.5 rounded-full text-xs font-bold ${challengeColor} text-white shadow-lg">
+                                        ${challengeName}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col">
+                                <h3
+                                    class="text-lg font-extrabold text-mlab-navy mb-2 leading-tight group-hover:text-mlab-purple transition-colors line-clamp-2">
+                                    ${title}</h3>
+                                
+                                <p class="text-slate-500 text-sm mb-4 line-clamp-2 leading-relaxed">
+                                    ${desc}
+                                </p>
+
+                                <div class="space-y-3 mt-auto">
+                                    <div class="flex items-center justify-between gap-2">
+                                        <div class="flex items-center text-slate-500 text-xs font-semibold">
+                                            <i data-lucide="clock" class="w-3.5 h-3.5 mr-1 text-mlab-cyan"></i>
+                                            ${timeLabel}
+                                        </div>
+                                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${statusColor}">
+                                            ${status}
+                                        </span>
+                                    </div>
+                                    <hr class="border-slate-100" />
+                                    <div>
+                                        <div class="flex items-center text-mlab-navy font-bold text-xs mb-1">
+                                            <i data-lucide="users" class="w-3 h-3 mr-1"></i> ${partnersLabel}
+                                        </div>
+                                        <div class="text-slate-500 text-xs line-clamp-1">${p.partners || ''}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    `;
+                } catch (err) {
+                    console.error("Rendering project failed", p, err);
+                    return '';
+                }
+            }).join('');
+
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        window.setFilter = (id) => {
+            activeFilterId = id;
+            renderFilters();
+            renderProjects();
+        }
+
+        // LISTEN FOR LANGUAGE CHANGES
+        document.addEventListener('languageChanged', (e) => {
+            renderFilters();
+            renderProjects();
+            // Optional: Re-render challenges in modal
+            // renderChallengeCheckboxes(); 
+        });
     </script>
     <!-- FOOTER -->
     <footer class="bg-mlab-navy text-white mt-auto">
@@ -476,19 +689,24 @@
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
                 <!-- Links -->
                 <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
-                    <a href="yasal.html?page=privacy" class="hover:text-slate-300 transition-colors" data-i18n="footer.privacy">Gizlilik Politikası</a>
+                    <a href="yasal.html?page=privacy" class="hover:text-slate-300 transition-colors"
+                        data-i18n="footer.privacy">Gizlilik Politikası</a>
                     <span class="text-slate-700">•</span>
-                    <a href="yasal.html?page=cookie" class="hover:text-slate-300 transition-colors" data-i18n="footer.cookie">Çerez Politikası</a>
+                    <a href="yasal.html?page=cookie" class="hover:text-slate-300 transition-colors"
+                        data-i18n="footer.cookie">Çerez Politikası</a>
                     <span class="text-slate-700">•</span>
-                    <a href="yasal.html?page=kvkk" class="hover:text-slate-300 transition-colors" data-i18n="footer.kvkk">KVKK Aydınlatma Metni</a>
+                    <a href="yasal.html?page=kvkk" class="hover:text-slate-300 transition-colors"
+                        data-i18n="footer.kvkk">KVKK Aydınlatma Metni</a>
                 </div>
                 <!-- Badge -->
                 <div class="coin-flip-container">
-                    <img src="label-circle.png" alt="EU Mission Label" class="h-20 w-auto drop-shadow-lg coin-flip cursor-pointer">
+                    <img src="label-circle.png" alt="EU Mission Label"
+                        class="h-20 w-auto drop-shadow-lg coin-flip cursor-pointer">
                 </div>
                 <!-- Contact & Copyright -->
                 <div class="flex flex-col sm:flex-row items-center gap-3 text-sm text-slate-400">
-                    <a href="mailto:mlab@izq.com.tr" class="hover:text-mlab-cyan transition-colors flex items-center gap-2">
+                    <a href="mailto:mlab@izq.com.tr"
+                        class="hover:text-mlab-cyan transition-colors flex items-center gap-2">
                         <i data-lucide="mail" class="w-4 h-4"></i>
                         mlab@izq.com.tr
                     </a>
