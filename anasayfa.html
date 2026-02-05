@@ -443,7 +443,7 @@
 
     function renderFilters() {
       const container = document.getElementById('filter-container');
-      const currentLang = getLang(); // From i18n.js
+      const currentLang = getCurrentLang(); // From i18n.js
 
       container.innerHTML = filters.map(f => {
         // Handle bilingual label
@@ -460,7 +460,7 @@
     function renderProjects() {
       const container = document.getElementById('projects-slider');
       const filtered = activeFilterId === 'ALL' ? projects : projects.filter(p => p.bigChallengeId == activeFilterId);
-      const currentLang = getLang();
+      const currentLang = getCurrentLang();
 
       if (filtered.length === 0) {
         container.innerHTML = `

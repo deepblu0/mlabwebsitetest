@@ -309,7 +309,7 @@
         function renderChallenges() {
             const navContainer = document.getElementById('challenge-nav');
             const contentContainer = document.getElementById('challenge-content');
-            const currentLang = getLang(); // From i18n.js
+            const currentLang = getCurrentLang(); // From i18n.js
 
             // Render Navigation Icons
             navContainer.innerHTML = challenges.map(c => {

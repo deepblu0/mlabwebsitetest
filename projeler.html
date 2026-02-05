@@ -436,7 +436,7 @@
 
         function renderFilters() {
             const container = document.getElementById('filter-container');
-            const currentLang = getLang();
+            const currentLang = getCurrentLang();
 
             container.innerHTML = filters.map(f => {
                 const label = typeof f.label === 'object' ? f.label[currentLang] : f.label;
@@ -453,7 +453,7 @@
             const container = document.getElementById('projects-grid');
             const emptyState = document.getElementById('empty-state');
             const filtered = activeFilterId === 'ALL' ? projects : projects.filter(p => p.bigChallengeId == activeFilterId);
-            const currentLang = getLang();
+            const currentLang = getCurrentLang();
 
             if (filtered.length === 0) {
                 container.classList.add('hidden');
