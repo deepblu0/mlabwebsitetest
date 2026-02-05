@@ -310,6 +310,24 @@ const translations = {
         en: 'Circular Urban Metabolism'
     },
 
+    // Grand Challenges Hero
+    'challenges.hero.title': {
+        tr: 'Büyük Zorluklar',
+        en: 'Grand Challenges'
+    },
+    'challenges.hero.desc1': {
+        tr: 'Misyon Kent 2030 İzmir vizyonu doğrultusunda tarafından hazırlanan',
+        en: 'Prepared in line with the Mission City 2030 Izmir vision,'
+    },
+    'challenges.hero.link': {
+        tr: 'bu politika notları',
+        en: 'these policy notes'
+    },
+    'challenges.hero.desc2': {
+        tr: '; kentin karşı karşıya olduğu sistemsel sorunlara yenilikçi, sürdürülebilir ve toplum odaklı çözümler sunmayı amaçlamaktadır. İzmir’in önümüzdeki yıllarda aşması gereken 10 Büyük Zorluk, misyon odaklı bir inovasyon anlayışıyla aşağıda özetlenmiştir.',
+        en: 'aim to provide innovative, sustainable, and community-oriented solutions to the systemic problems facing the city. The 10 Grand Challenges that Izmir must overcome in the coming years are summarized below with a mission-oriented innovation approach.'
+    },
+
     // Page Titles
     'page.home': {
         tr: 'M-LAB | İzmir İklim Eylem Laboratuvarı',
