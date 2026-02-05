@@ -718,7 +718,7 @@ function t(key) {
 }
 
 // Update language toggle button states
-updateLangButtons();
+// Update language toggle button states (Managed in DOMContentLoaded)
 
 // Update language toggle button active state
 function updateLangButtons() {
@@ -738,6 +738,7 @@ function updateLangButtons() {
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
     applyTranslations();
+    updateLangButtons(); // Moved here to ensure DOM is ready
 });
 
 // Export for module usage

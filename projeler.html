@@ -543,8 +543,17 @@
         });
 
         // Initialize
-        renderFilters();
-        renderProjects();
+        // Initialize
+        try {
+            renderFilters();
+            renderProjects();
+        } catch (error) {
+            console.error('Render error:', error);
+            // Fallback: show empty state or alert
+            const container = document.getElementById('projects-grid');
+            if(container) container.innerHTML = `<div class="p-8 text-center text-red-500">Proje yüklenirken hata oluştu: ${error.message}</div>`;
+            document.getElementById('empty-state')?.classList.remove('hidden');
+        }
     </script>
 </body>
 
