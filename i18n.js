@@ -436,6 +436,56 @@ const translations = {
         en: 'Next'
     },
 
+    // Projects Page
+    'projects.hero.title': {
+        tr: 'İzmir\'in Projeleri',
+        en: 'Projects of Izmir'
+    },
+    'projects.hero.desc': {
+        tr: 'İzmir 2030 Kent Taahhüdü kapsamında şehri iklim nötr ve akıllı bir geleceğe taşıyan tüm çalışmaları burada bir araya getiriyoruz. Yaşam kalitesini artıran kentsel inovasyon projelerini keşfedin.',
+        en: 'We bring together all efforts carrying the city to a climate-neutral and smart future within the scope of the Izmir 2030 City Commitment. Discover urban innovation projects that improve quality of life.'
+    },
+    'projects.search.placeholder': {
+        tr: 'Proje ara...',
+        en: 'Search projects...'
+    },
+    'projects.filter.all': {
+        tr: 'Tüm Projeler',
+        en: 'All Projects'
+    },
+    'projects.card.duration': {
+        tr: 'Süre',
+        en: 'Duration'
+    },
+    'projects.card.status': {
+        tr: 'Durum',
+        en: 'Status'
+    },
+    'projects.card.startDate': {
+        tr: 'Başlangıç',
+        en: 'Start Date'
+    },
+    'projects.card.partners': {
+        tr: 'Ortaklar',
+        en: 'Partners'
+    },
+    'projects.empty': {
+        tr: 'Bu kategoride henüz proje bulunmamaktadır.',
+        en: 'No projects found in this category.'
+    },
+    'projects.modal.title': {
+        tr: 'Yeni Proje Gönder',
+        en: 'Submit New Project'
+    },
+    'projects.modal.desc': {
+        tr: 'Projenizi platformda yayınlamak için bilgileri doldurun.',
+        en: 'Fill in the information to publish your project on the platform.'
+    },
+    'projects.btn.publish': {
+        tr: 'Projenizi Yayınlayalım!',
+        en: 'Submit Your Project!'
+    },
+
     // Documents Page
     'documents.title': {
         tr: 'Dokümanlar',
