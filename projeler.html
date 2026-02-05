@@ -476,7 +476,7 @@
                 const startDate = p.startDate ? (typeof p.startDate === 'object' ? p.startDate[currentLang] : p.startDate) : null;
                 const status = p.status[currentLang];
                 
-                const timeLabel = duration ? `${t('projects.duration')}: ${duration}` : (startDate ? `${t('projects.startDate')}: ${startDate}` : 'Belirtilmemiş');
+                const timeLabel = duration ? `${t('projects.card.duration')}: ${duration}` : (startDate ? `${t('projects.card.startDate')}: ${startDate}` : 'Belirtilmemiş');
                 
                 const statusColor = (p.status.tr === 'Tamamlandı' || p.status.en === 'Completed') ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700';
 
@@ -517,7 +517,7 @@
                                 <!-- Partnerler -->
                                 <div>
                                     <div class="flex items-center text-mlab-navy font-bold text-xs mb-1">
-                                        <i data-lucide="users" class="w-3 h-3 mr-1"></i> ${t('projects.partners')}
+                                        <i data-lucide="users" class="w-3 h-3 mr-1"></i> ${t('projects.card.partners')}
                                     </div>
                                     <div class="text-slate-500 text-sm line-clamp-2">${p.partners}</div>
                                 </div>
