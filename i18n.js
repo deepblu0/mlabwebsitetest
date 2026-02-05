@@ -1023,6 +1023,11 @@ const translations = {
         en: 'Create the first call!'
     },
 
+    'portal.how_it_works.badge': {
+        tr: 'Nasıl Çalışır?',
+        en: 'How It Works?'
+    },
+
     // Portal Landing
     'portal.hero.title1': { tr: 'M-LAB', en: 'M-LAB' },
     'portal.hero.title2': { tr: 'Kentsel İnovasyon ve', en: 'Urban Innovation and' },
