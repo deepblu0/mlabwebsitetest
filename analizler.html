@@ -193,10 +193,12 @@
         </div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-4xl mx-auto">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6"
+                    data-i18n="analytics.hero.title">
                     Analizler
                 </h1>
-                <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+                    data-i18n="analytics.hero.desc">
                     İzmir'in interaktif harita analizlerini keşfedin. Şehrin kentsel verilerini ve
                     farklı temalarda hazırlanan detaylı mekansal çalışmaları bu alandan inceleyebilirsiniz.
                 </p>
@@ -211,12 +213,12 @@
                 <button id="tab-climate" onclick="switchAnalysis('climate')"
                     class="tab-btn active px-6 py-4 font-semibold text-sm transition-all border-b-2 border-transparent hover:bg-slate-50 flex items-center gap-2">
                     <i data-lucide="thermometer-sun" class="w-4 h-4"></i>
-                    Kentsel İklim Analizi
+                    <span data-i18n="analytics.tab.climate">Kentsel İklim Analizi</span>
                 </button>
                 <button id="tab-green" onclick="switchAnalysis('green')"
                     class="tab-btn px-6 py-4 font-semibold text-sm transition-all border-b-2 border-transparent hover:bg-slate-50 text-slate-500 flex items-center gap-2">
                     <i data-lucide="trees" class="w-4 h-4"></i>
-                    3-30-300 Analizi
+                    <span data-i18n="analytics.tab.green">3-30-300 Analizi</span>
                 </button>
             </div>
         </div>
@@ -235,15 +237,17 @@
                             <i data-lucide="thermometer" class="w-5 h-5 text-white"></i>
                         </div>
                         <div>
-                            <h2 id="map-title" class="font-bold text-mlab-navy">İzmir Kentsel İklim Haritası</h2>
-                            <p class="text-sm text-slate-500">Foursquare Studio ile hazırlanmıştır</p>
+                            <h2 id="map-title" class="font-bold text-mlab-navy" data-i18n="analytics.map.climate.title">
+                                İzmir Kentsel İklim Haritası</h2>
+                            <p class="text-sm text-slate-500" data-i18n="analytics.map.subtitle">Foursquare Studio ile
+                                hazırlanmıştır</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
                         <button onclick="toggleFullscreen()"
                             class="flex items-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-lg hover:bg-mlab-purple transition-colors">
                             <i data-lucide="maximize-2" class="w-4 h-4"></i>
-                            Tam Ekran
+                            <span data-i18n="analytics.map.fullscreen">Tam Ekran</span>
                         </button>
                     </div>
                 </div>
@@ -263,30 +267,35 @@
                 </div>
             </div>
 
-            <!-- Analysis Description Cards -->
             <div id="climate-info" class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                 <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
                     <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
                         <i data-lucide="thermometer" class="w-6 h-6 text-red-600"></i>
                     </div>
-                    <h3 class="font-bold text-mlab-navy mb-2">Sıcaklık Adaları</h3>
-                    <p class="text-slate-600 text-sm">Kentsel alanlardaki sıcaklık farklılıklarını ve ısı adalarını
+                    <h3 class="font-bold text-mlab-navy mb-2" data-i18n="analytics.card.heat_islands.title">Sıcaklık
+                        Adaları</h3>
+                    <p class="text-slate-600 text-sm" data-i18n="analytics.card.heat_islands.desc">Kentsel alanlardaki
+                        sıcaklık farklılıklarını ve ısı adalarını
                         inceleyebilirsiniz.</p>
                 </div>
                 <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
                     <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
                         <i data-lucide="sun" class="w-6 h-6 text-orange-600"></i>
                     </div>
-                    <h3 class="font-bold text-mlab-navy mb-2">Yüzey Sıcaklığı</h3>
-                    <p class="text-slate-600 text-sm">Uydu görüntüleriyle elde edilen yüzey sıcaklığı verilerini
+                    <h3 class="font-bold text-mlab-navy mb-2" data-i18n="analytics.card.surface_temp.title">Yüzey
+                        Sıcaklığı</h3>
+                    <p class="text-slate-600 text-sm" data-i18n="analytics.card.surface_temp.desc">Uydu görüntüleriyle
+                        elde edilen yüzey sıcaklığı verilerini
                         keşfedin.</p>
                 </div>
                 <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
                     <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
                         <i data-lucide="wind" class="w-6 h-6 text-blue-600"></i>
                     </div>
-                    <h3 class="font-bold text-mlab-navy mb-2">İklim Değişikliği Etkileri</h3>
-                    <p class="text-slate-600 text-sm">Kentsel iklim değişikliği etkilerini bölgesel olarak analiz edin.
+                    <h3 class="font-bold text-mlab-navy mb-2" data-i18n="analytics.card.climate_change.title">İklim
+                        Değişikliği Etkileri</h3>
+                    <p class="text-slate-600 text-sm" data-i18n="analytics.card.climate_change.desc">Kentsel iklim
+                        değişikliği etkilerini bölgesel olarak analiz edin.
                     </p>
                 </div>
             </div>
@@ -296,22 +305,27 @@
                     <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
                         <i data-lucide="tree-deciduous" class="w-6 h-6 text-green-600"></i>
                     </div>
-                    <h3 class="font-bold text-mlab-navy mb-2">3 Ağaç Kuralı</h3>
-                    <p class="text-slate-600 text-sm">Her vatandaşın penceresinden en az 3 ağaç görebilmesi hedefi.</p>
+                    <h3 class="font-bold text-mlab-navy mb-2" data-i18n="analytics.card.3_tree.title">3 Ağaç Kuralı</h3>
+                    <p class="text-slate-600 text-sm" data-i18n="analytics.card.3_tree.desc">Her vatandaşın
+                        penceresinden en az 3 ağaç görebilmesi hedefi.</p>
                 </div>
                 <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
                     <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-4">
                         <i data-lucide="trees" class="w-6 h-6 text-emerald-600"></i>
                     </div>
-                    <h3 class="font-bold text-mlab-navy mb-2">%30 Ağaç Örtüsü</h3>
-                    <p class="text-slate-600 text-sm">Her mahallede minimum %30 ağaç örtüsü hedefi analizi.</p>
+                    <h3 class="font-bold text-mlab-navy mb-2" data-i18n="analytics.card.30_tree.title">%30 Ağaç Örtüsü
+                    </h3>
+                    <p class="text-slate-600 text-sm" data-i18n="analytics.card.30_tree.desc">Her mahallede minimum %30
+                        ağaç örtüsü hedefi analizi.</p>
                 </div>
                 <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
                     <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mb-4">
                         <i data-lucide="footprints" class="w-6 h-6 text-teal-600"></i>
                     </div>
-                    <h3 class="font-bold text-mlab-navy mb-2">300 Metre Mesafe</h3>
-                    <p class="text-slate-600 text-sm">Her vatandaşın 300 metre mesafede yeşil alana erişimi.</p>
+                    <h3 class="font-bold text-mlab-navy mb-2" data-i18n="analytics.card.300_distance.title">300 Metre
+                        Mesafe</h3>
+                    <p class="text-slate-600 text-sm" data-i18n="analytics.card.300_distance.desc">Her vatandaşın 300
+                        metre mesafede yeşil alana erişimi.</p>
                 </div>
             </div>
         </div>
@@ -393,7 +407,8 @@
                 greenInfo.classList.add('hidden');
                 mapIcon.className = 'w-10 h-10 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center';
                 mapIcon.innerHTML = '<i data-lucide="thermometer" class="w-5 h-5 text-white"></i>';
-                mapTitle.textContent = 'İzmir Kentsel İklim Haritası';
+                mapTitle.textContent = t('analytics.map.climate.title');
+                mapTitle.setAttribute('data-i18n', 'analytics.map.climate.title');
             } else {
                 climateMap.classList.add('hidden');
                 greenMap.classList.remove('hidden');
@@ -401,7 +416,8 @@
                 greenInfo.classList.remove('hidden');
                 mapIcon.className = 'w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center';
                 mapIcon.innerHTML = '<i data-lucide="trees" class="w-5 h-5 text-white"></i>';
-                mapTitle.textContent = 'İzmir 3-30-300 Analizi';
+                mapTitle.textContent = t('analytics.map.green.title');
+                mapTitle.setAttribute('data-i18n', 'analytics.map.green.title');
             }
 
             lucide.createIcons();

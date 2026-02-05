@@ -162,8 +162,9 @@
             <div class="absolute bottom-10 right-10 w-96 h-96 bg-mlab-purple rounded-full blur-3xl"></div>
         </div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <h1 class="text-4xl md:text-5xl font-black text-white mb-4">Doküman Arşivi</h1>
-            <p class="text-slate-300 text-lg max-w-2xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-black text-white mb-4" data-i18n="documents.hero.title">Doküman Arşivi
+            </h1>
+            <p class="text-slate-300 text-lg max-w-2xl mx-auto" data-i18n="documents.hero.desc">
                 İzmir Büyükşehir Belediyesi ve Avrupa Komisyonu'na ait resmi dokümanlar, raporlar ve sunumlar.
             </p>
         </div>
@@ -183,8 +184,9 @@
                 <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <i data-lucide="file-x" class="w-10 h-10 text-slate-400"></i>
                 </div>
-                <h3 class="text-xl font-bold text-slate-700 mb-2">Doküman Bulunamadı</h3>
-                <p class="text-slate-500">Henüz doküman eklenmemiştir.</p>
+                <h3 class="text-xl font-bold text-slate-700 mb-2" data-i18n="documents.empty.title">Doküman Bulunamadı
+                </h3>
+                <p class="text-slate-500" data-i18n="documents.empty.desc">Henüz doküman eklenmemiştir.</p>
             </div>
         </div>
     </section>
@@ -230,80 +232,80 @@
 
         // Documents data
         // thumbnail: PDF adı + "-cover.png" olarak Docs-Cover klasöründe
-        const documents = [
-            {
-                id: 1,
+        const documents = [];
+        {
+            id: 1,
                 title: "İklim Şehir Sözleşmesi",
-                description: "İzmir'in iklim nötr şehirler misyonuna katılım sözleşmesi ve taahhütleri.",
-                pages: 113,
-                size: "2.6 MB",
-                thumbnail: "Docs-Cover/IKLIM-SEHIR-SOZLESMESI-cover.png",
-                url: "Docs/IKLIM-SEHIR-SOZLESMESI.pdf"
-            },
-            {
-                id: 2,
+                    description: "İzmir'in iklim nötr şehirler misyonuna katılım sözleşmesi ve taahhütleri.",
+                        pages: 113,
+                            size: "2.6 MB",
+                                thumbnail: "Docs-Cover/IKLIM-SEHIR-SOZLESMESI-cover.png",
+                                    url: "Docs/IKLIM-SEHIR-SOZLESMESI.pdf"
+        },
+        {
+            id: 2,
                 title: "SECAP - Sürdürülebilir Enerji ve İklim Eylem Planı",
-                description: "İzmir Büyükşehir Belediyesi Sürdürülebilir Enerji ve İklim Eylem Planı dokümanı.",
-                pages: 200,
-                size: "20.2 MB",
-                thumbnail: "Docs-Cover/SECAP-cover.png",
-                url: "Docs/SECAP.pdf"
-            },
-            {
-                id: 3,
+                    description: "İzmir Büyükşehir Belediyesi Sürdürülebilir Enerji ve İklim Eylem Planı dokümanı.",
+                        pages: 200,
+                            size: "20.2 MB",
+                                thumbnail: "Docs-Cover/SECAP-cover.png",
+                                    url: "Docs/SECAP.pdf"
+        },
+        {
+            id: 3,
                 title: "3+30+300 İklim Hedefleri",
-                description: "İzmir'in kısa, orta ve uzun vadeli iklim hedeflerini içeren strateji dokümanı.",
-                pages: 20,
-                size: "16.5 MB",
-                thumbnail: "Docs-Cover/3+30+300-cover.png",
-                url: "Docs/3+30+300.pdf"
-            },
-            {
-                id: 4,
+                    description: "İzmir'in kısa, orta ve uzun vadeli iklim hedeflerini içeren strateji dokümanı.",
+                        pages: 20,
+                            size: "16.5 MB",
+                                thumbnail: "Docs-Cover/3+30+300-cover.png",
+                                    url: "Docs/3+30+300.pdf"
+        },
+        {
+            id: 4,
                 title: "Enerji Verimliliği Çalıştayı",
-                description: "İzmir enerji verimliliği çalıştayı sonuç raporu ve öneriler.",
-                pages: 93,
-                size: "12.2 MB",
-                thumbnail: "Docs-Cover/ENERJI-VERIMLILIGI-CALISTAYI-cover.png",
-                url: "Docs/ENERJI-VERIMLILIGI-CALISTAYI.pdf"
-            },
-            {
-                id: 5,
+                    description: "İzmir enerji verimliliği çalıştayı sonuç raporu ve öneriler.",
+                        pages: 93,
+                            size: "12.2 MB",
+                                thumbnail: "Docs-Cover/ENERJI-VERIMLILIGI-CALISTAYI-cover.png",
+                                    url: "Docs/ENERJI-VERIMLILIGI-CALISTAYI.pdf"
+        },
+        {
+            id: 5,
                 title: "Kentsel İklim Analizi Raporu",
-                description: "İzmir kentsel ısı adası ve iklim analizi araştırma raporu.",
-                pages: 30,
-                size: "4.7 MB",
-                thumbnail: "Docs-Cover/KENTSEL-IKLIMI-ANALIZI-RAPORU-cover.png",
-                url: "Docs/KENTSEL-IKLIMI-ANALIZI-RAPORU.pdf"
-            },
-            {
-                id: 6,
+                    description: "İzmir kentsel ısı adası ve iklim analizi araştırma raporu.",
+                        pages: 30,
+                            size: "4.7 MB",
+                                thumbnail: "Docs-Cover/KENTSEL-IKLIMI-ANALIZI-RAPORU-cover.png",
+                                    url: "Docs/KENTSEL-IKLIMI-ANALIZI-RAPORU.pdf"
+        },
+        {
+            id: 6,
                 title: "İzmir’de Orman Yangını Riskinin Mekânsal Analizi",
-                description: "İzmir genelindeki orman yangını risklerinin mekânsal dağılımı ve analiz raporu.",
-                pages: 39,
-                size: "13.1 MB",
-                thumbnail: "Docs-Cover/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI-COVER.png",
-                url: "Docs/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI.pdf"
-            },
-            {
-                id: 7,
+                    description: "İzmir genelindeki orman yangını risklerinin mekânsal dağılımı ve analiz raporu.",
+                        pages: 39,
+                            size: "13.1 MB",
+                                thumbnail: "Docs-Cover/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI-COVER.png",
+                                    url: "Docs/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI.pdf"
+        },
+        {
+            id: 7,
                 title: "İzmir'de İklim Değişikliğinin Etkileri",
-                description: "İklim değişikliğinin İzmir özelindeki çevresel ve kentsel etkilerinin değerlendirilmesi.",
-                pages: 20,
-                size: "6.3 MB",
-                thumbnail: "Docs-Cover/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI-COVER.png",
-                url: "Docs/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI.pdf"
-            },
-            {
-                id: 8,
+                    description: "İklim değişikliğinin İzmir özelindeki çevresel ve kentsel etkilerinin değerlendirilmesi.",
+                        pages: 20,
+                            size: "6.3 MB",
+                                thumbnail: "Docs-Cover/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI-COVER.png",
+                                    url: "Docs/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI.pdf"
+        },
+        {
+            id: 8,
                 title: "İzmir Kentsel Politika Notları",
-                description: "İzmir'in kentsel gelişim ve sürdürülebilirlik politikalarına dair stratejik notlar.",
-                pages: 26,
-                size: "7.8 MB",
-                thumbnail: "Docs-Cover/Kentsel_Politika_Notlari_Cover.png",
-                url: "Docs/Izmir_Kentsel_Politika_Notlari.pdf"
-            }
-        ];
+                    description: "İzmir'in kentsel gelişim ve sürdürülebilirlik politikalarına dair stratejik notlar.",
+                        pages: 26,
+                            size: "7.8 MB",
+                                thumbnail: "Docs-Cover/Kentsel_Politika_Notlari_Cover.png",
+                                    url: "Docs/Izmir_Kentsel_Politika_Notlari.pdf"
+        }
+        /* documents array is empty now */
 
         function renderDocuments() {
             const grid = document.getElementById('documents-grid');

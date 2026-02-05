@@ -1101,7 +1101,52 @@ const translations = {
         tr: 'M-LAB İzmir ve koordinatör kuruluş İzmir Planlama Ajansı olarak veri sorumlusu sıfatıyla kişisel verilerinizi 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında işlemekteyiz.',
         en: 'As M-LAB Izmir and the coordinator organization Izmir Planning Agency, we process your personal data as a data controller within the scope of the Law on Protection of Personal Data No. 6698.'
     },
+    'contact.kvkk.intro': {
+        tr: 'M-LAB İzmir ve koordinatör kuruluş İzmir Planlama Ajansı olarak veri sorumlusu sıfatıyla kişisel verilerinizi 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında işlemekteyiz.',
+        en: 'As M-LAB Izmir and the coordinator organization Izmir Planning Agency, we process your personal data as a data controller within the scope of the Law on Protection of Personal Data No. 6698.'
+    },
     'contact.kvkk.close': { tr: 'Anladım, Kapat', en: 'Understood, Close' },
+
+    // Analytics Page
+    'analytics.hero.title': { tr: 'Analizler', en: 'Analytics' },
+    'analytics.hero.desc': {
+        tr: 'İzmir\'in interaktif harita analizlerini keşfedin. Şehrin kentsel verilerini ve farklı temalarda hazırlanan detaylı mekansal çalışmaları bu alandan inceleyebilirsiniz.',
+        en: 'Explore interactive map analyses of Izmir. You can examine the city\'s urban data and detailed spatial studies prepared in different themes from this area.'
+    },
+    'analytics.tab.climate': { tr: 'Kentsel İklim Analizi', en: 'Urban Climate Analysis' },
+    'analytics.tab.green': { tr: '3-30-300 Analizi', en: '3-30-300 Analysis' },
+
+    'analytics.map.climate.title': { tr: 'İzmir Kentsel İklim Haritası', en: 'Izmir Urban Climate Map' },
+    'analytics.map.green.title': { tr: 'İzmir 3-30-300 Analizi', en: 'Izmir 3-30-300 Analysis' },
+    'analytics.map.subtitle': { tr: 'Foursquare Studio ile hazırlanmıştır', en: 'Prepared with Foursquare Studio' },
+    'analytics.map.fullscreen': { tr: 'Tam Ekran', en: 'Fullscreen' },
+
+    'analytics.card.heat_islands.title': { tr: 'Sıcaklık Adaları', en: 'Heat Islands' },
+    'analytics.card.heat_islands.desc': { tr: 'Kentsel alanlardaki sıcaklık farklılıklarını ve ısı adalarını inceleyebilirsiniz.', en: 'You can examine temperature differences and heat islands in urban areas.' },
+
+    'analytics.card.surface_temp.title': { tr: 'Yüzey Sıcaklığı', en: 'Surface Temperature' },
+    'analytics.card.surface_temp.desc': { tr: 'Uydu görüntüleriyle elde edilen yüzey sıcaklığı verilerini keşfedin.', en: 'Explore surface temperature data obtained from satellite imagery.' },
+
+    'analytics.card.climate_change.title': { tr: 'İklim Değişikliği Etkileri', en: 'Climate Change Effects' },
+    'analytics.card.climate_change.desc': { tr: 'Kentsel iklim değişikliği etkilerini bölgesel olarak analiz edin.', en: 'Analyze urban climate change effects regionally.' },
+
+    'analytics.card.3_tree.title': { tr: '3 Ağaç Kuralı', en: '3 Trees Rule' },
+    'analytics.card.3_tree.desc': { tr: 'Her vatandaşın penceresinden en az 3 ağaç görebilmesi hedefi.', en: 'The goal of every citizen being able to see at least 3 trees from their window.' },
+
+    'analytics.card.30_tree.title': { tr: '%30 Ağaç Örtüsü', en: '30% Tree Canopy' },
+    'analytics.card.30_tree.desc': { tr: 'Her mahallede minimum %30 ağaç örtüsü hedefi analizi.', en: 'Analysis of the minimum 30% tree canopy goal in every neighborhood.' },
+
+    'analytics.card.300_distance.title': { tr: '300 Metre Mesafe', en: '300 Meters Distance' },
+    'analytics.card.300_distance.desc': { tr: 'Her vatandaşın 300 metre mesafede yeşil alana erişimi.', en: 'Every citizen having access to a green space within 300 meters.' },
+
+    // Documents Page
+    'documents.hero.title': { tr: 'Doküman Arşivi', en: 'Document Archive' },
+    'documents.hero.desc': {
+        tr: 'İzmir Büyükşehir Belediyesi ve Avrupa Komisyonu\'na ait resmi dokümanlar, raporlar ve sunumlar.',
+        en: 'Official documents, reports, and presentations belonging to Izmir Metropolitan Municipality and the European Commission.'
+    },
+    'documents.empty.title': { tr: 'Doküman Bulunamadı', en: 'No Documents Found' },
+    'documents.empty.desc': { tr: 'Henüz doküman eklenmemiştir.', en: 'No documents have been added yet.' },
 
     // Common
     'common.readMore': {
