@@ -223,13 +223,87 @@
         }
     </style>
 
+    <section class="py-8 md:py-12 bg-white relative">
+        <!-- Background Decor -->
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent">
+        </div>
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-mlab-cyan/5 rounded-full blur-3xl pointer-events-none">
+        </div>
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+            <!-- Icon Navigation Grid (Responsive: Scroll on mobile, Grid on Laptop) -->
+            <div class="relative group/nav mb-8 md:mb-12">
+                <!-- Fade Edges (Visible only on scrollable small screens) -->
+                <div
+                    class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none lg:hidden">
+                </div>
+                <div
+                    class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none lg:hidden">
+                </div>
+
+                <div class="flex overflow-x-auto lg:grid lg:grid-cols-10 pb-4 pt-2 gap-2 lg:gap-3 px-4 lg:px-0 no-scrollbar items-stretch snap-x snap-mandatory scroll-smooth"
+                    id="challenge-nav">
+                    <!-- Icons rendered by JS -->
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="w-full">
+                <div
+                    class="bg-white rounded-[2.5rem] shadow-2xl shadow-slate-200/50 border border-slate-100 p-8 md:p-16 relative overflow-hidden backdrop-blur-sm">
+
+                    <div id="challenge-content" class="relative z-10">
+                        <!-- Content rendered by JS -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-mlab-navy text-white">
+        <div class="h-1 w-full bg-gradient-to-r from-mlab-cyan via-mlab-purple to-mlab-cyan"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+                <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
+                    <a href="yasal.html?page=privacy" class="hover:text-slate-300 transition-colors">Gizlilik
+                        Politikası</a>
+                    <span class="text-slate-700">•</span>
+                    <a href="yasal.html?page=cookie" class="hover:text-slate-300 transition-colors">Çerez Politikası</a>
+                    <span class="text-slate-700">•</span>
+                    <a href="yasal.html?page=kvkk" class="hover:text-slate-300 transition-colors">KVKK Aydınlatma
+                        Metni</a>
+                </div>
+                <div class="coin-flip-container">
+                    <img src="label-circle.png" alt="EU Mission Label"
+                        class="h-20 w-auto drop-shadow-lg coin-flip cursor-pointer">
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-3 text-sm text-slate-400">
+                    <a href="mailto:mlab@izq.com.tr"
+                        class="hover:text-mlab-cyan transition-colors flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        mlab@izq.com.tr
+                    </a>
+                    <span class="hidden sm:inline text-slate-700">|</span>
+                    <span class="text-xs text-slate-500">&copy; 2025 M-LAB İzmir</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Challenge Data Configuration
-        // Initialize Lucide Icons
         lucide.createIcons();
 
-        // --- DATA IMPORT ---
-        const { challenges } = mlabData;
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+            document.getElementById('mobile-menu')?.classList.toggle('hidden');
+        });
+
+        // Data Aliases
+        const challenges = mlabData.challenges;
         let activeChallengeId = 1;
 
         function renderChallenges() {
@@ -337,94 +411,6 @@
         // LISTEN FOR LANGUAGE CHANGES
         document.addEventListener('languageChanged', (e) => {
             renderChallenges();
-        });
-
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
-            document.getElementById('mobile-menu')?.classList.toggle('hidden');
-        });
-
-        // Init Challenges
-        renderChallenges();
-    </script>
-
-    <section class="py-8 md:py-12 bg-white relative">
-        <!-- Background Decor -->
-        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent">
-        </div>
-        <div
-            class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-mlab-cyan/5 rounded-full blur-3xl pointer-events-none">
-        </div>
-
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-
-            <!-- Icon Navigation Grid (Responsive: Scroll on mobile, Grid on Laptop) -->
-            <div class="relative group/nav mb-8 md:mb-12">
-                <!-- Fade Edges (Visible only on scrollable small screens) -->
-                <div
-                    class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none lg:hidden">
-                </div>
-                <div
-                    class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none lg:hidden">
-                </div>
-
-                <div class="flex overflow-x-auto lg:grid lg:grid-cols-10 pb-4 pt-2 gap-2 lg:gap-3 px-4 lg:px-0 no-scrollbar items-stretch snap-x snap-mandatory scroll-smooth"
-                    id="challenge-nav">
-                    <!-- Icons rendered by JS -->
-                </div>
-            </div>
-
-            <!-- Content Area -->
-            <div class="w-full">
-                <div
-                    class="bg-white rounded-[2.5rem] shadow-2xl shadow-slate-200/50 border border-slate-100 p-8 md:p-16 relative overflow-hidden backdrop-blur-sm">
-
-                    <div id="challenge-content" class="relative z-10">
-                        <!-- Content rendered by JS -->
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-mlab-navy text-white">
-        <div class="h-1 w-full bg-gradient-to-r from-mlab-cyan via-mlab-purple to-mlab-cyan"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
-                <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
-                    <a href="yasal.html?page=privacy" class="hover:text-slate-300 transition-colors">Gizlilik
-                        Politikası</a>
-                    <span class="text-slate-700">•</span>
-                    <a href="yasal.html?page=cookie" class="hover:text-slate-300 transition-colors">Çerez Politikası</a>
-                    <span class="text-slate-700">•</span>
-                    <a href="yasal.html?page=kvkk" class="hover:text-slate-300 transition-colors">KVKK Aydınlatma
-                        Metni</a>
-                </div>
-                <div class="coin-flip-container">
-                    <img src="label-circle.png" alt="EU Mission Label"
-                        class="h-20 w-auto drop-shadow-lg coin-flip cursor-pointer">
-                </div>
-                <div class="flex flex-col sm:flex-row items-center gap-3 text-sm text-slate-400">
-                    <a href="mailto:mlab@izq.com.tr"
-                        class="hover:text-mlab-cyan transition-colors flex items-center gap-2">
-                        <i data-lucide="mail" class="w-4 h-4"></i>
-                        mlab@izq.com.tr
-                    </a>
-                    <span class="hidden sm:inline text-slate-700">|</span>
-                    <span class="text-xs text-slate-500">&copy; 2025 M-LAB İzmir</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        lucide.createIcons();
-
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
-            document.getElementById('mobile-menu')?.classList.toggle('hidden');
         });
 
         // Init Challenges

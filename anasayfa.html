@@ -419,11 +419,16 @@
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
+    // Data Aliases
+    const projects = mlabData.projects;
+    const mapPins = mlabData.mapPins;
+    const partners = mlabData.partners;
+
     lucide.createIcons();
 
     // --- DATA IMPORT ---
     // Using centralized data from mlab-data.js
-    const { challenges, projects, filters, mapPins, partners } = mlabData;
+    const { challenges, filters } = mlabData;
 
     // Convert challenges array to object for easy lookup by ID if needed (or stick to array)
     // bigChallenges object for O(1) access
