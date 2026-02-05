@@ -57,6 +57,14 @@ const translations = {
         tr: 'İKLİM NÖTR VE AKILLI ŞEHİRLER MİSYONU',
         en: 'CLIMATE NEUTRAL AND SMART CITIES MISSION'
     },
+    'mission.hero.title': {
+        tr: 'Şehirler Misyonu',
+        en: 'Cities Mission'
+    },
+    'mission.hero.subtitle': {
+        tr: 'Avrupa Birliği\'nin en iddialı kentsel dönüşüm girişimi hakkında bilgi edinin.',
+        en: 'Learn about the European Union\'s most ambitious urban transformation initiative.'
+    },
     'mission.title1': {
         tr: 'Küresel Sorunlara Somut Çözümler:',
         en: 'Concrete Solutions to Global Problems:'
@@ -72,6 +80,122 @@ const translations = {
     'mission.description2': {
         tr: 'Bu küresel seferberlik beş temel alana odaklanır. Temel hedef bilimsel çalışmaları raporlardan çıkarıp vatandaşların günlük yaşamını iyileştiren somut kamu politikalarına ve uygulamalara dönüştürmektir.',
         en: 'This global mobilization focuses on five key areas. The main goal is to translate scientific studies from reports into concrete public policies and practices that improve citizens\' daily lives.'
+    },
+    'mission.description3': {
+        tr: 'Misyon yaklaşımı sadece araştırma ve inovasyonu değil aynı zamanda yeni yönetişim modellerini ve yatırım araçlarını da kapsar.',
+        en: 'The mission approach covers not only research and innovation but also governance models and investment tools.'
+    },
+    'mission.description4': {
+        tr: 'Temel hedef bilimsel çalışmaları raporlardan çıkarıp vatandaşların günlük yaşamını iyileştiren somut kamu politikalarına ve uygulamalara dönüştürmektir.',
+        en: 'The main goal is to translate scientific studies from reports into concrete public policies and practices that improve citizens\' daily lives.'
+    },
+    'mission.section2.title1': {
+        tr: 'İklim Nötr ve Akıllı',
+        en: 'Climate Neutral and Smart'
+    },
+    'mission.section2.title2': {
+        tr: 'Şehirler Misyonu',
+        en: 'Cities Mission'
+    },
+    'mission.section2.p1': {
+        tr: 'Dünya nüfusunun çoğunluğuna ev sahipliği yapan şehirler küresel karbon emisyonlarının ve enerji tüketiminin ana kaynağıdır. Avrupa Komisyonu bu gerçekten hareketle İklim Nötr ve Akıllı Şehirler Misyonunu hayata geçirmiştir.',
+        en: 'Cities, home to the majority of the world\'s population, are the main source of global carbon emissions and energy consumption. Based on this fact, the European Commission launched the Climate Neutral and Smart Cities Mission.'
+    },
+    'mission.section2.p2': {
+        tr: 'Bu misyon 2030 yılına kadar 112 Avrupa kentini iklim nötr hale getirerek dönüştürmeyi ve 2050 yılına kadar tüm şehirlere rehberlik edecek birer inovasyon merkezi yaratmayı hedefler. Misyon klasik hibe programlarının ötesine geçerek şehirlerin finansal ve yasal engellerini aşmasını sağlayan yeni bir sistem sunar.',
+        en: 'This mission aims to transform 112 European cities into climate-neutral ones by 2030. The mission goes beyond classic grant programs.'
+    },
+    'mission.section2.p3': {
+        tr: 'İzmir bu iddialı hedefin Türkiye\'deki öncüsü olarak sadece kendi geleceğini değil Avrupa\'nın yeşil mutabakat vizyonunu da şekillendiren lider kentler arasında yerini almıştır.',
+        en: 'As the pioneer of this ambitious goal in Turkey, Izmir has taken its place among the leading cities shaping Europe\'s green deal vision.'
+    },
+    'mission.section2.p4': {
+        tr: 'NetZeroCities platformu desteğiyle yürütülen süreçte kentimiz vatandaşlar ve yatırımcılar ile yerel otoriteleri ortak bir amaç etrafında buluşturarak sürdürülebilir bir gelecek inşa etmektedir.',
+        en: 'Supported by the NetZeroCities platform, our city brings together citizens, investors, and local authorities to build a sustainable future.'
+    },
+    'mission.section3.title1': {
+        tr: 'Avrupa\'nın Öncü 112 Kenti',
+        en: 'Among Europe\'s Leading'
+    },
+    'mission.section3.title2': {
+        tr: 'Arasında İzmir',
+        en: '112 Cities: Izmir'
+    },
+    'mission.section3.p1': {
+        tr: 'İzmir Avrupa Komisyonu tarafından titizlikle yürütülen değerlendirme süreci sonunda 377 başvuru arasından seçilerek 112 Misyon Şehri arasına girmiştir. Türkiye\'den seçilen iki kentten biri olan İzmir bu süreçte sadece bir katılımcı olarak kalmamış aynı zamanda küresel bir başarıya imza atmıştır.',
+        en: 'Izmir was selected among 112 Mission Cities out of 377 applications. Being one of the two cities selected from Turkey, Izmir achieved global success.'
+    },
+    'mission.section3.p2': {
+        tr: 'Kentimiz İklim Şehri Sözleşmesi sürecini başarıyla tamamlayarak Avrupa Birliği üyesi ülkeler dışında Misyon Etiketi almaya hak kazanan ilk şehir olma unvanını kazanmıştır. Bu tarihi başarı İzmir\'in teknik kapasitesinin ve kararlılığının Avrupa standartlarında tescil edildiğinin en somut kanıtıdır.',
+        en: 'Our city became the first city outside the EU to receive the Mission Label by successfully completing the Climate City Contract process.'
+    },
+    'mission.section3.p3': {
+        tr: 'İzmir bu lider konumuyla hem ulusal ölçekte hem de Avrupa genelinde diğer şehirlere ilham veren bir rol model olmayı sürdürmektedir.',
+        en: 'With this leading position, Izmir continues to be a role model inspiring other cities.'
+    },
+    'mission.state.cities.num': {
+        tr: '112',
+        en: '112'
+    },
+    'mission.stat.cities.label': {
+        tr: 'Seçilen Şehir',
+        en: 'Selected Cities'
+    },
+    'mission.stat.applicants.num': {
+        tr: '377',
+        en: '377'
+    },
+    'mission.stat.applicants.label': {
+        tr: 'Başvuru',
+        en: 'Applications'
+    },
+    'mission.badge.date': {
+        tr: 'Haziran 2025',
+        en: 'June 2025'
+    },
+    'mission.badge.label': {
+        tr: 'Kent Taahhüdü İmzalandı',
+        en: 'City Commitment Signed'
+    },
+    'mission.section4.title1': {
+        tr: 'İmzalar İzmir 2030',
+        en: 'Signatures Signed for'
+    },
+    'mission.section4.title2': {
+        tr: 'Kent Taahhüdü için atıldı',
+        en: 'Izmir 2030 City Commitment'
+    },
+    'mission.section4.p1': {
+        tr: 'Başkanımız Dr. Cemil Tugay liderliğinde Haziran 2025 tarihinde imzalanan İzmir 2030 Kent Taahhüdü şehrin tüm dinamiklerini ortak bir eylem planında birleştirmiştir.',
+        en: 'The Izmir 2030 City Commitment, signed in June 2025 under the leadership of Mayor Dr. Cemil Tugay, united the city\'s dynamics.'
+    },
+    'mission.section4.p2': {
+        tr: 'İzmir Ekonomik Kalkınma Koordinasyon Kurulu üyelerinin imzalarıyla resmileşen bu taahhüt iklim nötr hedefinin sadece belediyenin değil sanayiden üniversiteye tüm kentin ortak sorumluluğu olduğunu belgeler.',
+        en: 'This commitment documents that the climate neutral goal is the common responsibility of the entire city.'
+    },
+    'mission.section4.p3': {
+        tr: 'Bu kapsamda İzQ İnovasyon Merkezi bünyesinde faaliyete geçen Misyon Eylem Laboratuvarı İZPA koordinasyonunda yürütülmektedir.',
+        en: 'The Mission Action Lab, operating within the İzQ Innovation Center, is coordinated by İZPA.'
+    },
+    'mission.section4.p4': {
+        tr: 'İzmir bu taahhüt ile kağıt üzerindeki planları sahada somut yatırımlara dönüştürerek katılımcı ve şeffaf bir yönetişim modeliyle 2030 hedefine emin adımlarla yürümektedir.',
+        en: 'Izmir transforms plans into concrete investments with a participatory governance model.'
+    },
+    'mission.cta.title': {
+        tr: 'Daha Fazla Bilgi Edinin',
+        en: 'Learn More'
+    },
+    'mission.cta.subtitle': {
+        tr: 'İzmir\'in iklim eylem planını ve devam eden projelerimizi keşfedin.',
+        en: 'Discover Izmir\'s climate action plan and ongoing projects.'
+    },
+    'mission.cta.btn1': {
+        tr: 'Dokümanları İncele',
+        en: 'Review Documents'
+    },
+    'mission.cta.btn2': {
+        tr: 'Projeleri Keşfet',
+        en: 'Explore Projects'
     },
     'mission.cta': {
         tr: 'Şehirler Misyonu Hakkında',
