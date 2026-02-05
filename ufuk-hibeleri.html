@@ -375,20 +375,36 @@
 
     // Check if newCalls contains just the 'no new calls' message
     const noNewCallsMessage = 'Bu hafta yeni açılan çağrı bulunmamaktadır.';
-    const hasRealNewCalls = horizonData.newCalls.length > 0 &&
+
+    // Safely check for data
+    const hasData = typeof horizonData !== 'undefined';
+    const hasRealNewCalls = hasData && horizonData.newCalls.length > 0 &&
       !(horizonData.newCalls.length === 1 && horizonData.newCalls[0].name === noNewCallsMessage);
 
     // Initialize
     function init() {
-      document.getElementById('last-updated').textContent = `${t('grants.lastUpdated')}: ${formatDate(horizonData.lastUpdated)}`;
+      if (!hasData) return;
+
+      // Update Last Updated text
+      const lastUpdatedText = t('grants.lastUpdated');
+      const dateText = formatDate(horizonData.lastUpdated);
+      const lastUpdatedEl = document.getElementById('last-updated');
+      if (lastUpdatedEl) {
+        lastUpdatedEl.textContent = `${lastUpdatedText}: ${dateText}`;
+      }
+
+      // Update Counts
       document.getElementById('count-new').textContent = hasRealNewCalls ? horizonData.newCalls.length : 0;
       document.getElementById('count-mission').textContent = horizonData.missionCalls.length;
       document.getElementById('count-all').textContent = horizonData.allCalls.length;
-      switchTab('new');
+
+      // Render initial table
+      renderTable();
     }
 
     // Tab switching
     function switchTab(tab) {
+      if (currentTab === tab) return;
       currentTab = tab;
       currentPage = 1; // Reset to first page when switching tabs
 
@@ -399,8 +415,10 @@
       });
 
       const activeTab = document.getElementById(`tab-${tab}`);
-      activeTab.classList.remove('text-slate-500', 'border-transparent');
-      activeTab.classList.add('text-mlab-navy', 'border-mlab-cyan');
+      if (activeTab) {
+        activeTab.classList.remove('text-slate-500', 'border-transparent');
+        activeTab.classList.add('text-mlab-navy', 'border-mlab-cyan');
+      }
 
       renderTable();
     }
@@ -420,19 +438,27 @@
     // Format date
     function formatDate(dateStr) {
       if (!dateStr || dateStr === 'NaT') return '-';
-      const date = new Date(dateStr.split(' ')[0]);
-      if (isNaN(date)) return dateStr;
+      // Handle potential "DD.MM.YYYY" or ISO formats if needed, but assuming input is parseable
+      // Trying to parse standard formats
+      let date = new Date(dateStr);
+      if (isNaN(date.getTime())) {
+        // Try parsing DD.MM.YYYY if that's the source format
+        const parts = dateStr.split('.');
+        if (parts.length === 3) {
+          date = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+        }
+      }
+
+      if (isNaN(date.getTime())) return dateStr;
+
       const locale = getCurrentLang() === 'tr' ? 'tr-TR' : 'en-US';
       return date.toLocaleDateString(locale, { day: '2-digit', month: '2-digit', year: 'numeric' });
     }
 
-    // Generate EU portal link from call code
-    function getCallLink(code) {
-      return `https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-search;callCode=${encodeURIComponent(code)}`;
-    }
-
     // Render table
     function renderTable() {
+      if (!hasData) return;
+
       let data;
       if (currentTab === 'new') {
         data = [...horizonData.newCalls];
@@ -448,8 +474,17 @@
         let valB = b[sortColumn] || '';
 
         if (sortColumn.includes('Date')) {
-          valA = new Date(valA.split(' ')[0]) || 0;
-          valB = new Date(valB.split(' ')[0]) || 0;
+          // Helper to get time value
+          const getTime = (v) => {
+            let d = new Date(v);
+            if (isNaN(d.getTime())) {
+              const parts = v.split('.');
+              if (parts.length === 3) d = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+            }
+            return d.getTime() || 0;
+          };
+          valA = getTime(valA);
+          valB = getTime(valB);
         } else {
           valA = valA.toString().toLowerCase();
           valB = valB.toString().toLowerCase();
@@ -470,7 +505,7 @@
             <div class="w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-4">
               <i data-lucide="info" class="w-8 h-8 text-amber-500"></i>
             </div>
-            <p class="text-slate-600 text-lg font-medium">${t('grants.noNew') || noNewCallsMessage}</p>
+            <p class="text-slate-600 text-lg font-medium">${t('grants.noNew')}</p>
           </div>
         `;
         emptyState.classList.add('hidden');
@@ -539,11 +574,17 @@
       // Update info text
       const startItem = (currentPage - 1) * itemsPerPage + 1;
       const endItem = Math.min(currentPage * itemsPerPage, totalItems);
-      info.textContent = `${startItem}-${endItem} / ${totalItems} ${t('grants.callsShowing') || 'çağrı gösteriliyor'}`;
+      info.textContent = `${startItem}-${endItem} / ${totalItems} ${t('grants.callsShowing')}`;
 
       // Update prev/next buttons
       prevBtn.disabled = currentPage === 1;
       nextBtn.disabled = currentPage === totalPages;
+      // Also update text inside buttons for re-renders
+      const prevSpan = prevBtn.querySelector('span');
+      if (prevSpan) prevSpan.textContent = t('grants.prev');
+
+      const nextSpan = nextBtn.querySelector('span');
+      if (nextSpan) nextSpan.textContent = t('grants.next');
 
       // Generate page numbers (show max 5 pages around current)
       let pages = [];
@@ -597,14 +638,26 @@
 
     // LISTEN FOR LANGUAGE CHANGES
     document.addEventListener('languageChanged', (e) => {
-      init(); // Re-render everything including format dates
+      // Since i18n.js reloads the page, this might not be reached, 
+      // but if we change to dynamic update later, this is good.
+      // Re-render table to update dynamic texts
+      renderTable();
     });
 
-    // Set last updated
-    if (horizonData.lastUpdated) {
-      const lastUpdatedText = t('grants.lastUpdated');
-      document.getElementById('last-updated').textContent = `${lastUpdatedText}: ${horizonData.lastUpdated}`;
-    }
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      init();
+      // Also ensure the correct tab is highlighted
+      const activeTabBtn = document.getElementById(`tab-${currentTab}`);
+      if (activeTabBtn) {
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+          btn.classList.remove('text-mlab-navy', 'border-mlab-cyan');
+          btn.classList.add('text-slate-500', 'border-transparent');
+        });
+        activeTabBtn.classList.remove('text-slate-500', 'border-transparent');
+        activeTabBtn.classList.add('text-mlab-navy', 'border-mlab-cyan');
+      }
+    });
   </script>
   <!-- FOOTER -->
   <footer class="bg-mlab-navy text-white mt-auto">
