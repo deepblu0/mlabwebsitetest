@@ -718,6 +718,30 @@ function t(key) {
 }
 
 // Update language toggle button states
+// Apply translations to the page
+function applyTranslations() {
+    const currentLang = getCurrentLang();
+    document.documentElement.lang = currentLang;
+
+    // Translate text content
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        element.textContent = t(key);
+    });
+
+    // Translate placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
+        element.placeholder = t(key);
+    });
+
+    // Translate meta titles (optional, if we have data-i18n-title on body or head)
+    const titleKey = document.body.getAttribute('data-i18n-title');
+    if (titleKey) {
+        document.title = t(titleKey);
+    }
+}
+
 // Update language toggle button states (Managed in DOMContentLoaded)
 
 // Update language toggle button active state

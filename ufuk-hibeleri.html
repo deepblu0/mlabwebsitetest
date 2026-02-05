@@ -600,8 +600,11 @@
       init(); // Re-render everything including format dates
     });
 
-    // Run on load
-    init();
+    // Set last updated
+    if (horizonData.lastUpdated) {
+      const lastUpdatedText = t('grants.lastUpdated');
+      document.getElementById('last-updated').textContent = `${lastUpdatedText}: ${horizonData.lastUpdated}`;
+    }
   </script>
 </body>
 
