@@ -216,6 +216,80 @@ const translations = {
         en: 'Contact | M-LAB'
     },
 
+    // Horizon Grants Page
+    'grants.hero.title': {
+        tr: 'Avrupa Ufuk Hibeleri',
+        en: 'Horizon Europe Grants'
+    },
+    'grants.hero.subtitle': {
+        tr: 'Avrupa Birliği Horizon Europe programı kapsamındaki açık çağrıları takip edin.',
+        en: 'Follow open calls under the European Union Horizon Europe program.'
+    },
+    'grants.hero.portalBtn': {
+        tr: 'Portal\'da Proje Paydaşları Bul!',
+        en: 'Find Project Partners on Portal!'
+    },
+    'grants.lastUpdated': {
+        tr: 'Son Güncelleme',
+        en: 'Last Updated'
+    },
+    'grants.tabs.new': {
+        tr: 'Yeni Yayınlanan Çağrılar',
+        en: 'Newly Published Calls'
+    },
+    'grants.tabs.mission': {
+        tr: 'Tüm Misyon Çağrıları',
+        en: 'All Mission Calls'
+    },
+    'grants.tabs.all': {
+        tr: 'Tüm Açık Çağrılar',
+        en: 'All Open Calls'
+    },
+    'grants.download': {
+        tr: 'Excel İndir',
+        en: 'Download Excel'
+    },
+    'grants.table.name': {
+        tr: 'Çağrı Adı',
+        en: 'Call Name'
+    },
+    'grants.table.code': {
+        tr: 'Çağrı Kodu',
+        en: 'Call Code'
+    },
+    'grants.table.open': {
+        tr: 'Açılış',
+        en: 'Opening'
+    },
+    'grants.table.close': {
+        tr: 'Kapanış',
+        en: 'Closing'
+    },
+    'grants.table.budget': {
+        tr: 'Bütçe',
+        en: 'Budget'
+    },
+    'grants.empty': {
+        tr: 'Gösterilecek çağrı bulunmuyor.',
+        en: 'No calls to display.'
+    },
+    'grants.noNew': {
+        tr: 'Bu hafta yeni açılan çağrı bulunmamaktadır.',
+        en: 'There are no new calls opened this week.'
+    },
+    'grants.callsShowing': {
+        tr: 'çağrı gösteriliyor',
+        en: 'calls showing'
+    },
+    'grants.prev': {
+        tr: 'Önceki',
+        en: 'Previous'
+    },
+    'grants.next': {
+        tr: 'Sonraki',
+        en: 'Next'
+    },
+
     // Documents Page
     'documents.title': {
         tr: 'Dokümanlar',
@@ -643,29 +717,8 @@ function t(key) {
     return entry[lang] || entry[DEFAULT_LANG] || key;
 }
 
-// Apply translations to all elements with data-i18n attribute
-function applyTranslations() {
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.dataset.i18n;
-        const translated = t(key);
-
-        // Check if it's an input placeholder
-        if (el.hasAttribute('placeholder')) {
-            el.placeholder = translated;
-        } else {
-            el.textContent = translated;
-        }
-    });
-
-    // Update page title if data-i18n-title exists on body
-    const titleKey = document.body.dataset.i18nTitle;
-    if (titleKey) {
-        document.title = t(titleKey);
-    }
-
-    // Update language toggle button states
-    updateLangButtons();
-}
+// Update language toggle button states
+updateLangButtons();
 
 // Update language toggle button active state
 function updateLangButtons() {

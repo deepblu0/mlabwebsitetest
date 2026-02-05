@@ -23,7 +23,10 @@
             }
         }
     </script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest"></script> <!-- Data Store -->
+    <script src="mlab-data.js"></script>
+
+    <!-- i18n -->
     <script src="i18n.js"></script>
     <style>
         .coin-flip-container {
@@ -222,118 +225,23 @@
 
     <script>
         // Challenge Data Configuration
-        const challenges = [
-            {
-                id: 1,
-                title: "Uygun Fiyatlı ve Yeterli Barınma",
-                icon: "buyukzorluklar/header_icon_page_6.png",
-                desc: "Herkes için makul, uygun fiyatlı, sürdürülebilir ve güvenli konutlar sağlamak temel bir haktır. Gelişen toplumlar yaratmak; doğal afetler ve iklim değişikliği risklerini azaltan, dayanıklı evlerin ve yerleşimlerin inşasını veya var olanların güçlendirilmesini gerektirir.",
-                zorluk: "Barınma hakkının hem sosyal hem de mekânsal adalet açısından kırılma noktasında olması. Konut arzının piyasa koşullarına endekslenmesi sonucu konutun bir 'yatırım aracı'na dönüşmesi, düşük gelirli grupların ve kırılgan hanelerin güvenli barınma olanaklarının kısıtlanması.",
-                amac: "Barınmayı bir meta değil, bir insan hakkı olarak ele alan; herkes için erişilebilir, nitelikli ve sürdürülebilir konut üretimini mümkün kılacak bütüncül bir sistem kurmak. Sosyal konut politikalarını, kamu-özel işbirliklerini ve kooperatifçilik gibi topluluk temelli modelleri güçlendirmek.",
-                fayda: "Kısa vadede barınma krizinden etkilenen grupların yaşam koşullarında iyileşme ve konut adaletsizliğine yönelik farkındalık sağlanacaktır. Uzun vadede ise mekânsal adaletin sağlandığı, ayrışmanın azaldığı, iklime dayanıklı ve sosyal konut alanında örnek modeller geliştiren bir kent yapısı oluşacaktır.",
-                paydaslar: "Yerel yönetimlerin imar ve planlama birimleri, üniversiteler, konut kooperatifleri, mahalle dernekleri, şehir plancıları, mimarlar ve yeşil bina teknolojisi geliştiren özel sektör temsilcileri."
-            },
-            {
-                id: 2,
-                title: "Sürdürülebilir Hareketlilik",
-                icon: "buyukzorluklar/header_icon_page_8.png",
-                desc: "Hareketlilik, kentsel akış içerisinde yerleri ve insanları birbirine bağlayarak sosyal katılımı destekleyen temel haklardan biridir. Çeşitli hareketlilik biçimlerine dayalı entegre ulaşım sistemleri, 'İklim Nötr ve Akıllı Şehirler' misyonuyla uyumlu uygulandığında sosyal entegrasyonu ve kapsayıcılığı sağlar.",
-                zorluk: "Ulaşım altyapısının hem çevresel sürdürülebilirliği hem de sosyal kapsayıcılığı destekleyecek bütünleşik bir yapıya kavuşamaması. Toplu taşımaya erişimdeki eşitsizlikler, yaya ve bisiklet altyapısının eksikliği ve karbon emisyonlarını artıran özel araç bağımlılığı.",
-                amac: "Kent içinde erişimi ve hareketliliği yalnızca hız ve verimlilik üzerinden değil; insan hakları, toplumsal adalet ve ekolojik sınırlar çerçevesinde yeniden tanımlamak. Toplu taşıma, yaya ve bisiklet odaklı ulaşımı yaygınlaştırarak düşük karbonlu ve insan odaklı bir sistem kurmak.",
-                fayda: "Kısa vadede trafik yoğunluğu ve özel araç bağımlılığı azalacak, hava kalitesi iyileşecektir. Uzun vadede ise düşük karbonlu, çevre dostu bir ulaşım modeliyle iklim hedeflerine yaklaşılacak; otomobillere kapalı alanlar ve düşük emisyon bölgeleriyle kentin fiziksel ve duygusal bağları güçlenecektir.",
-                paydaslar: "Ulaşım ve çevre daire başkanlıkları, üniversiteler, mobilite teknolojisi firmaları, engelli ve çevre hakları odaklı STK’lar, ulaşım kooperatifleri."
-            },
-            {
-                id: 3,
-                title: "Afetlere Dirençlilik",
-                icon: "buyukzorluklar/header_icon_page_10.png",
-                desc: "Afet direnci, bir afetin yaratabileceği olumsuz etkileri önleyebilme ve etkilere karşı koyabilme kabiliyetini ifade eder. Dirençli bir kent yaratmak; afet risk azaltımının planlamaya entegrasyonunu, kurumların kapasitelerinin güçlendirilmesini ve acil durumlarda herkes için korumanın sağlanmasını gerektirir.",
-                zorluk: "İzmir’in yüksek doğal afet riski taşıyan coğrafyası ve iklim krizinin artan etkileri (aşırı sıcaklar, sel, kuraklık). Fiziksel altyapının, sosyal dokunun ve kurumsal hazırlık düzeyinin bu çoklu risklere karşı yetersiz kalması ve plansız yapılaşmanın riskleri artırması.",
-                amac: "İzmir’i afetlere ve iklim krizine karşı önleyici, dayanıklı ve kapsayıcı bir yaklaşımla yeniden tasarlamak. Doğa tabanlı çözümleri yaygınlaştırmak, erken uyarı sistemlerini geliştirmek ve ilçeler arası entegrasyonu sağlayan koordinasyon planlarını hayata geçirmek.",
-                fayda: "Kısa vadede veri odaklı risk haritaları ve erken uyarı sistemleriyle can ve mal kayıpları azalacaktır. Uzun vadede su yönetimi, enerji ve gıda sistemleri iklime uyumlu hâle gelecek; dirençlilik sadece teknik bir hedef değil, ortak bir yaşam kültürü olacaktır.",
-                paydaslar: "AFAD, İZSU, İklim Değişikliği ve Sıfır Atık Dairesi, üniversitelerin mühendislik bölümleri, çevre hareketleri, mahalle örgütleri ve sigorta sektörü."
-            },
-            {
-                id: 4,
-                title: "Sağlıklı Gıda ve Tarım",
-                icon: "buyukzorluklar/header_icon_page_12.png",
-                desc: "Sağlıklı bir yaşam için günlük temel ihtiyaç olan gıdaya tüm insanların yeterli, uygun fiyatlı, güvenli ve besleyici bir şekilde erişiminin sağlanması temel bir haktır. Bu durum, toplumların ve ekosistemlerin sağlığını 'Tek Sağlık' çerçevesinde koruyan yenileyici bir tarım sistemini zorunlu kılar.",
-                zorluk: "Küçük üreticilerin ekonomik sürdürülebilirlik sorunları, iklim değişikliği kaynaklı verim kayıpları ve su krizi. Gıdaya erişim eşitsizliklerinin özellikle dar gelirli gruplar üzerindeki baskısı ve tarımda doğa dostu yöntemlerin yeterince yaygınlaşamaması.",
-                amac: "İzmir’in kır-kent ilişkilerini yeniden tanımlayan, yerel üretimi destekleyen, doğayla uyumlu ve dayanışmacı bir gıda sistemi inşa etmek. Kısa tedarik zincirleri, agroekolojik üretim ve kentsel tarım uygulamalarıyla sağlıklı gıdaya erişimi güvence altına almak.",
-                fayda: "Kısa vadede üreticilerin doğa dostu yöntemlere geçişiyle gıda güvenliği artacak, kooperatifler aracılığıyla yeni erişim kanalları oluşacaktır. Uzun vadede İzmir, kendi kendine yeten, krizlere dayanıklı bir gıda sistemine kavuşacak; gıda israfı azalırken döngüsel bir metabolizma kurulacaktır.",
-                paydaslar: "Yerel üreticiler, tarımsal kalkınma kooperatifleri, Ziraat Odaları, gıda mühendisleri, gıda toplulukları ve tüketici kooperatifleri."
-            },
-            {
-                id: 5,
-                title: "Sağlık ve Esenlik",
-                icon: "buyukzorluklar/header_icon_page_14.png",
-                desc: "Proaktif esenlik, iyi olma hâlini gösteren reaktif sağlık ve bütüncül bir sağlık durumuna yol açan faaliyetlerin, seçimlerin ve yaşam tarzlarının aktif olarak takip edilmesini tanımlayan bir kavramdır. Sağlık ve esenlik, fiziksel aktiviteden iş-yaşam dengesine kadar çok boyutlu bir yaklaşımı gerektirir.",
-                zorluk: "Sosyo-ekonomik eşitsizliklerin (gelir, cinsiyet, mekân) sağlık hizmetlerine erişimde yarattığı engeller. Kent yaşamına bağlı stres, yalnızlık ve artan psikososyal risklerin bireylerin bütüncül sağlığını tehdit etmesi.",
-                amac: "Sağlığı yalnızca hastalığın tedavisi olarak görmeyen; bedensel, ruhsal ve sosyal iyi olma hâlini kapsayan bütüncül bir sistemi inşa etmek. Koruyucu sağlık hizmetlerini, topluluk temelli bakım modellerini ve kentsel yaşamın esenliği destekleyen unsurlarını (yeşil alanlar, temiz hava) güçlendirmek.",
-                fayda: "Kısa vadede dezavantajlı bölgelerde sağlık hizmetlerine erişim artacak, toplum ruh sağlığına yönelik farkındalık yükselecektir. Uzun vadede İzmir; güven, aidiyet ve dayanışma ağlarının güçlü olduğu, sağlıklı ve eşitlikçi bir 'esenlik kenti'ne dönüşecektir.",
-                paydaslar: "Sağlık ve sosyal hizmetler birimleri, Aile Sağlığı Merkezleri, psikologlar, halk sağlığı uzmanları, kadın ve gençlik örgütleri."
-            },
-            {
-                id: 6,
-                title: "Eğitimli Nesiller",
-                icon: "buyukzorluklar/header_icon_page_16.png",
-                desc: "Eğitim, her bireyin topluma katılma ve yaşamı boyunca fırsatları değerlendirme becerisinin temelini oluşturur. Hızla değişen koşulların üstesinden gelmek için yaşam boyu öğrenmeye erişim hakkı; istihdam edilebilirliği artırır, dijital dönüşüme uyumu sağlar ve toplumsal iyi olma hâlini destekler.",
-                zorluk: "Eğitime erişim ve kalitenin mahalleler ve gelir grupları arasında keskin farklılıklar göstermesi. Dijital uçurum, mesleki rehberlik yetersizliği ve gençlerin değişen iş dünyasının gerektirdiği yetkinliklere ulaşmada yaşadığı zorluklar.",
-                amac: "Her yaştan bireyin gelişimini destekleyen, dijital ve yaratıcı becerileri teşvik eden, fırsat eşitliğine dayalı bir eğitim ekosistemi oluşturmak. Erken çocukluk eğitiminden yaşam boyu öğrenmeye kadar kapsayıcı ve erişilebilir mekanizmalar kurmak.",
-                fayda: "Kısa vadede okul öncesi eğitime erişim artacak, gençlere yönelik mentorluk ve beceri geliştirme hizmetleri yaygınlaşacaktır. Uzun vadede veriye dayalı, üretken ve bilgi ekonomisine entegre olmuş bir toplum yapısı ile İzmir’in kentsel dirençliliği artacaktır.",
-                paydaslar: "Belediyeler, üniversiteler, meslek yüksekokulları, eğitim odaklı STK’lar, gönüllü yapılar ve yerel girişimcilik destek kuruluşları."
-            },
-            {
-                id: 7,
-                title: "İnsana Yakışır Gelir ve Çalışma",
-                icon: "buyukzorluklar/header_icon_page_18.png",
-                desc: "Herkes için insana yakışır yeterli gelir ve çalışma koşullarının sağlanması; hane halklarının ihtiyaçlarını karşılamalarını sağlayan, fiziksel ve zihinsel sağlıklarını destekleyen temel bir haktır. Bu hak, zarar görmekten korunmayı, topluluk olmayı ve gelişim fırsatlarını içerir.",
-                zorluk: "Gelir eşitsizliği, güvencesiz ve kayıt dışı çalışma koşulları. Özellikle gençler, kadınlar ve dezavantajlı grupların işgücü piyasasında karşılaştığı engeller ve nitelikli işgücünün beyin göçüyle kaybı.",
-                amac: "İstihdamın sadece niceliksel değil niteliksel boyutuna da odaklanarak; onurlu, güvenli ve adil çalışma koşullarını yaygınlaştırmak. Yeşil ve dijital dönüşümle uyumlu yeni iş alanlarını teşvik etmek, girişimcilik ve sosyal ekonomiyi desteklemek.",
-                fayda: "Kısa vadede gençlere yönelik istihdam destekleri ve alternatif gelir modelleriyle güvencesizlik azalacaktır. Uzun vadede İzmir, emek yoğun sektörlerden bilgi yoğun ve yüksek katma değerli bir ekonomik yapıya geçiş yapacaktır.",
-                paydaslar: "Meslek odaları (EBSO, İZTO), sendikalar, gençlik STK’ları, kadın kooperatifleri, teknoloji merkezleri ve sosyal girişimler."
-            },
-            {
-                id: 8,
-                title: "Yenilik ve Teknoloji Üretimi",
-                icon: "buyukzorluklar/header_icon_page_20.png",
-                desc: "Yenilik ve teknoloji, çevresel güçlerin üzerinde kontrol sahibi olmaktan üretimin organize edilme biçimine kadar birçok unsuru kapsar. Kimseyi geride bırakmayan bir ekonomi; verimlilik artışını adil bölüşüm ve sürdürülebilirlik ile birleştiren, tüketen değil üreten bir yapıya sahip olmalıdır.",
-                zorluk: "Ar-Ge yatırımlarının yetersizliği ve dağınıklığı, üniversite-sanayi işbirliklerinin zayıflığı. Ekosistemin bütünlüğünü tehdit eden beyin göçü ve yüksek teknolojiye dayalı üretimin ticarileşmesindeki yapısal eksiklikler.",
-                amac: "İzmir’in yerel potansiyeline dayanan, araştırma ve sanayi arasında köprü kuran, işbirliğine dayalı bir inovasyon sistemi inşa etmek. Yüksek katma değerli, yeşil ve dijital teknolojileri önceleyen, gençlerin hayallerini kentte gerçekleştirebileceği bir ortam yaratmak.",
-                fayda: "Kısa vadede kuluçka merkezleri ve teknoloji transfer ofisleri güçlenecek, girişimcilerin fona erişimi kolaylaşacaktır. Uzun vadede İzmir; yazılım, biyoteknoloji ve ileri tarım teknolojilerinde uzmanlaşan, küresel ölçekte rekabetçi bir teknoloji kentine dönüşecektir.",
-                paydaslar: "Teknoparklar, üniversiteler, İZKA, girişimcilik merkezleri, İzmir Yüksek Teknoloji Enstitüsü ve yatırımcı ağları."
-            },
-            {
-                id: 9,
-                title: "Kültür, Bağlantılılık ve Kapsayıcılık",
-                icon: "buyukzorluklar/header_icon_page_22.png",
-                desc: "Kültürün toplum ve vatandaşların iyi olma hâli üzerindeki etkisi dikkate alındığında; eşitlik ve kapsayıcılık ilkesine dayalı olarak kültürel yaşama erişimin tüm çeşitliliği kucaklayacak şekilde sağlanması büyük öneme sahiptir. Kültür, sosyal uyumun ve kentsel dayanıklılığın temel bileşenidir.",
-                zorluk: "Kültürel faaliyetlerin kent merkezinde yoğunlaşması sonucu oluşan mekânsal eşitsizlikler. Farklı sosyo-kültürel grupların kendilerini ifade alanlarının sınırlılığı ve kent belleğinin sürdürülebilir bir kültür politikasıyla desteklenme ihtiyacı.",
-                amac: "Kültürel yaşamı kentin tamamına yaymak, çok dilli ve kapsayıcı bir kültürel ortam inşa etmek. Yaratıcı alanlarla kültürel hafızayı birbirine bağlayan, toplumsal dayanışma odaklı bir ekosistem geliştirmek.",
-                fayda: "Kısa vadede kültürel faaliyetler çeşitlenecek ve merkezin dışına yayılacaktır. Uzun vadede İzmir, kültürel mirası çağdaş yaratıcı alanlarla birleştiren, kültür diplomasisinde örnek gösterilen ve aidiyet duygusunun güçlendiği bir kent olacaktır.",
-                paydaslar: "Kültür-sanat STK’ları, sanatçılar, kolektifler, göçmen toplulukları, üniversiteler ve kültür-sanat eğitimi veren kurumlar."
-            },
-            {
-                id: 10,
-                title: "Döngüsel Kentsel Metabolizma",
-                icon: "buyukzorluklar/header_icon_page_24.png",
-                desc: "Şehirler; sera gazı emisyonlarının, üretilen atık miktarının ve kirletici kaynakların büyük bir kısmından sorumludur. Döngüsel kentsel metabolizma; şehri bir organizma gibi ele alarak su, enerji ve atık akışlarını 'İklim Nötr' hedefi doğrultusunda optimize etmeyi gerektirir.",
-                zorluk: "Plansız kentleşme ve kaynakların verimsiz kullanımı sonucu ekolojik kapasitenin zorlanması. Atık yönetiminde ayrıştırma ve geri kazanım eksikliği, enerji verimliliğinin düşüklüğü ve fosil yakıta dayalı sistemlerin karbon ayak izini büyütmesi.",
-                amac: "Doğal kaynak kullanımını optimize eden, atıkları kaynağında dönüştüren ve 'atık üretmeyen' bütüncül bir metabolizma modeli geliştirmek. Sektörel sınırları aşarak su, enerji ve gıda sistemleri arasında döngüsel geri besleme mekanizmaları kurmak.",
-                fayda: "Kısa vadede pilot bölgelerde döngüsel uygulamalarla kaynak verimliliği artacak, atık yönetimi iyileşecektir. Uzun vadede İzmir; ekolojik ayak izini küçülten, yeşil iş alanları yaratan ve iklim krizine karşı dirençli bir yaşam ortamı sunan döngüsel bir kent olacaktır.",
-                paydaslar: "Altyapı ve çevre birimleri, çevre mühendisleri, özel sektör (inşaat, enerji), kooperatifler, üniversiteler ve sosyal girişimciler."
-            }
-        ];
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
+        // --- DATA IMPORT ---
+        const { challenges } = mlabData;
         let activeChallengeId = 1;
 
         function renderChallenges() {
             const navContainer = document.getElementById('challenge-nav');
             const contentContainer = document.getElementById('challenge-content');
+            const currentLang = getLang(); // From i18n.js
 
             // Render Navigation Icons
             navContainer.innerHTML = challenges.map(c => {
                 const isActive = c.id === activeChallengeId;
+                const title = c.title[currentLang];
+
                 return `
                 <button onclick="setActiveChallenge(${c.id})" 
                     class="group relative flex flex-col items-center justify-between gap-1 transition-all duration-300 flex-shrink-0 w-28 md:w-32 lg:w-auto snap-start pt-1 pb-0 h-full">
@@ -343,7 +251,7 @@
                         ${isActive
                         ? 'bg-white shadow-xl shadow-mlab-purple/15 scale-100 border border-slate-200'
                         : 'bg-slate-50 border border-slate-200 group-hover:border-slate-300 group-hover:bg-white'}">
-                        <img src="${c.icon}" alt="${c.title}" 
+                        <img src="${c.icon}" alt="${title}" 
                             class="w-full h-full object-contain p-0.5 scale-110 transition-all duration-500 
                             ${isActive ? 'filter-mlab-purple' : 'filter-mlab-navy opacity-85 group-hover:opacity-100 group-hover:scale-125'}">
                     </div>
@@ -351,7 +259,7 @@
                     <!-- Title -->
                     <span class="text-[10px] md:text-[10px] lg:text-[11px] font-bold text-center leading-tight transition-all duration-300 w-full px-0.5 flex-grow flex items-center justify-center
                         ${isActive ? 'text-mlab-purple' : 'text-slate-500 group-hover:text-mlab-navy'}">
-                        ${c.title}
+                        ${title}
                     </span>
                     
                 </button>
@@ -360,55 +268,84 @@
 
             // Render Content
             const activeData = challenges.find(c => c.id === activeChallengeId);
+
+            // Bilingual Content Access
+            const title = activeData.title[currentLang];
+            const desc = activeData.desc[currentLang];
+            const zorluk = activeData.zorluk[currentLang];
+            const amac = activeData.amac[currentLang];
+            const fayda = activeData.fayda[currentLang];
+            const paydaslar = activeData.paydaslar[currentLang];
+
+            // Header Translations
+            const headers = {
+                zorluk: { tr: 'Zorluk', en: 'Challenge' },
+                amac: { tr: 'Amaç', en: 'Goal' },
+                fayda: { tr: 'Fayda', en: 'Benefit' },
+                paydaslar: { tr: 'Paydaşlar', en: 'Stakeholders' }
+            };
+
             contentContainer.innerHTML = `
                 <div class="animate-fadeIn">
                     <div class="mb-10">
-                        <h2 class="text-3xl md:text-4xl font-black text-mlab-navy mb-4 leading-tight">${activeData.title}</h2>
-                        <p class="text-lg md:text-xl text-slate-500 font-light leading-relaxed max-w-4xl">${activeData.desc}</p>
+                        <h2 class="text-3xl md:text-4xl font-black text-mlab-navy mb-4 leading-tight">${title}</h2>
+                        <p class="text-lg md:text-xl text-slate-500 font-light leading-relaxed max-w-4xl">${desc}</p>
                     </div>
                     
                     <div class="flex flex-col gap-8">
                         <div>
                             <h3 class="text-lg font-bold text-mlab-navy mb-2 flex items-center gap-2">
                                 <span class="w-1.5 h-1.5 rounded-full bg-mlab-navy"></span>
-                                Zorluk
+                                ${headers.zorluk[currentLang]}
                             </h3>
-                            <p class="text-slate-600 leading-relaxed text-base">${activeData.zorluk}</p>
+                            <p class="text-slate-600 leading-relaxed text-base">${zorluk}</p>
                         </div>
                         
                         <div>
                             <h3 class="text-lg font-bold text-mlab-navy mb-2 flex items-center gap-2">
                                 <span class="w-1.5 h-1.5 rounded-full bg-mlab-cyan"></span>
-                                Amaç
+                                ${headers.amac[currentLang]}
                             </h3>
-                            <p class="text-slate-600 leading-relaxed text-base">${activeData.amac}</p>
+                            <p class="text-slate-600 leading-relaxed text-base">${amac}</p>
                         </div>
 
                         <div>
                             <h3 class="text-lg font-bold text-mlab-navy mb-2 flex items-center gap-2">
                                 <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-                                Fayda
+                                ${headers.fayda[currentLang]}
                             </h3>
-                            <p class="text-slate-600 leading-relaxed text-base">${activeData.fayda}</p>
+                            <p class="text-slate-600 leading-relaxed text-base">${fayda}</p>
                         </div>
 
                         <div>
                             <h3 class="text-lg font-bold text-mlab-navy mb-2 flex items-center gap-2">
                                 <span class="w-1.5 h-1.5 rounded-full bg-mlab-purple"></span>
-                                Paydaşlar
+                                ${headers.paydaslar[currentLang]}
                             </h3>
-                            <p class="text-slate-600 leading-relaxed text-base">${activeData.paydaslar}</p>
+                            <p class="text-slate-600 leading-relaxed text-base">${paydaslar}</p>
                         </div>
                     </div>
                 </div>
             `;
-            // Remove lucide icons as they are not used in this layout
         }
 
         function setActiveChallenge(id) {
             activeChallengeId = id;
             renderChallenges();
         }
+
+        // LISTEN FOR LANGUAGE CHANGES
+        document.addEventListener('languageChanged', (e) => {
+            renderChallenges();
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+            document.getElementById('mobile-menu')?.classList.toggle('hidden');
+        });
+
+        // Init Challenges
+        renderChallenges();
     </script>
 
     <section class="py-8 md:py-12 bg-white relative">
