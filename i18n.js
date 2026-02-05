@@ -1044,6 +1044,65 @@ const translations = {
     'portal.btn.register': { tr: 'Kayıt Ol', en: 'Register' },
     'portal.btn.login': { tr: 'Giriş Yap', en: 'Login' },
 
+    // Contact Page
+    'contact.hero.title': { tr: 'Bize Ulaşın', en: 'Contact Us' },
+    'contact.hero.desc': {
+        tr: 'Sorularınız, önerileriniz veya işbirliği talepleriniz için bizimle iletişime geçin.',
+        en: 'Contact us for your questions, suggestions, or collaboration requests.'
+    },
+    'contact.form.title': { tr: 'Mesaj Gönderin', en: 'Send a Message' },
+    'contact.form.subtitle': { tr: 'Size en kısa sürede dönüş yapacağız.', en: 'We will get back to you as soon as possible.' },
+    'contact.form.name': { tr: 'Adınız Soyadınız', en: 'Full Name' },
+    'contact.form.email': { tr: 'E-posta Adresiniz', en: 'Email Address' },
+    'contact.form.subject': { tr: 'Konu', en: 'Subject' },
+    'contact.form.message': { tr: 'Mesajınız', en: 'Your Message' },
+
+    'contact.form.select.default': { tr: 'Konu seçiniz...', en: 'Select a subject...' },
+    'contact.form.select.general': { tr: 'Genel Bilgi', en: 'General Information' },
+    'contact.form.select.collab': { tr: 'İşbirliği Teklifi', en: 'Collaboration Proposal' },
+    'contact.form.select.project': { tr: 'Proje Başvurusu', en: 'Project Application' },
+    'contact.form.select.other': { tr: 'Diğer', en: 'Other' },
+
+    'contact.form.consent.text': { tr: 'Kişisel verilerimin', en: 'I agree to the processing of my personal data for the purposes specified in the' },
+    'contact.form.consent.link': { tr: 'KVKK Aydınlatma Metni', en: 'KVKK Clarification Text' },
+    'contact.form.consent.suffix': { tr: "'nde belirtilen amaçlarla işlenmesini kabul ediyorum.", en: '.' },
+
+    'contact.form.submit': { tr: 'Mesajı Gönder', en: 'Send Message' },
+    'contact.form.success': { tr: 'Mesajınız gönderildi! En kısa sürede size dönüş yapacağız.', en: 'Your message has been sent! We will get back to you as soon as possible.' },
+
+    // KVKK Modal
+    'contact.kvkk.title': { tr: 'KVKK Aydınlatma Metni', en: 'PDPL Clarification Text' },
+    'contact.kvkk.header1': { tr: '1. İşlenen Kişisel Verileriniz', en: '1. Processed Personal Data' },
+    'contact.kvkk.text1': {
+        tr: 'Web sitemizde yer alan iletişim formu aracılığıyla tarafımıza ilettiğiniz adınız ve soyadınız ile e-posta adresiniz ve mesaj içeriğinde belirttiğiniz diğer bilgileriniz işlenmektedir.',
+        en: 'Your name, surname, email address, and other information provided in the message content transmitted to us via the contact form on our website are processed.'
+    },
+    'contact.kvkk.header2': { tr: '2. Verilerin İşlenme Amacı', en: '2. Purpose of Processing Data' },
+    'contact.kvkk.text2': {
+        tr: 'Toplanan kişisel verileriniz tarafımıza ilettiğiniz talep veya önerilerin değerlendirilmesi ve konuyla ilgili size geri dönüş sağlanması ile iletişim süreçlerinin yönetilmesi amacıyla işlenmektedir.',
+        en: 'Your collected personal data is processed for the purpose of evaluating the requests or suggestions you submit to us, providing feedback to you on the subject, and managing communication processes.'
+    },
+    'contact.kvkk.header3': { tr: '3. Veri Toplamanın Yöntemi ve Hukuki Sebebi', en: '3. Method and Legal Reason for Data Collection' },
+    'contact.kvkk.text3': {
+        tr: 'Kişisel verileriniz web sitemizdeki iletişim formunun tarafınızca doldurulması suretiyle elektronik ortamda otomatik yollarla elde edilmektedir.',
+        en: 'Your personal data is obtained electronically by automatic means through the filling of the contact form on our website by you.'
+    },
+    'contact.kvkk.header4': { tr: '4. Verilerin Aktarılması', en: '4. Transfer of Data' },
+    'contact.kvkk.text4': {
+        tr: 'İletişim formu aracılığıyla toplanan verileriniz üçüncü kişilerle paylaşılmamaktadır. Ancak yasal bir zorunluluk doğması halinde yetkili kamu kurum ve kuruluşları ile paylaşılabilir.',
+        en: 'Your data collected via the contact form is not shared with third parties. However, it may be shared with authorized public institutions and organizations if a legal obligation arises.'
+    },
+    'contact.kvkk.header5': { tr: '5. İlgili Kişinin Hakları', en: '5. Rights of the Data Subject' },
+    'contact.kvkk.text5': {
+        tr: 'Veri sahibi olarak Kanunun 11. maddesi uyarınca verilerinizin işlenip işlenmediğini öğrenme ve yanlış işlenmişse düzeltilmesini talep etme haklarına sahipsiniz.',
+        en: 'As a data subject, you have the right to learn whether your data is processed and to request correction if processed incorrectly in accordance with Article 11 of the Law.'
+    },
+    'contact.kvkk.intro': {
+        tr: 'M-LAB İzmir ve koordinatör kuruluş İzmir Planlama Ajansı olarak veri sorumlusu sıfatıyla kişisel verilerinizi 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında işlemekteyiz.',
+        en: 'As M-LAB Izmir and the coordinator organization Izmir Planning Agency, we process your personal data as a data controller within the scope of the Law on Protection of Personal Data No. 6698.'
+    },
+    'contact.kvkk.close': { tr: 'Anladım, Kapat', en: 'Understood, Close' },
+
     // Common
     'common.readMore': {
         tr: 'Devamını Oku',
