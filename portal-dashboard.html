@@ -1482,7 +1482,7 @@
             </div>
 
             <!-- Comments (compact style) -->
-            <div id="comments-${post.id}" class="px-6 pb-6 space-y-0">
+            <div id="comments-${post.id}" class="px-6 space-y-0">
                 <!-- Comments will be loaded here -->
             </div>
         </div>
@@ -1525,7 +1525,9 @@
 
                 if (comments.length === 0) {
                     container.innerHTML = '';
+                    container.classList.remove('pb-6');
                 } else {
+                    container.classList.add('pb-6');
                     container.innerHTML = comments.map(comment => {
                         let dateStr = '';
                         if (comment.created_at) {
