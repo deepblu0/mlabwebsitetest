@@ -1164,6 +1164,9 @@ const translations = {
     'home.projects.title': { tr: 'Projeler & Çözümler', en: 'Projects & Solutions' },
     'home.projects.viewAll': { tr: 'Tüm Projeleri Gör', en: 'View All Projects' },
 
+    'projects.empty.title': { tr: 'Henüz Proje Yok', en: 'No Projects Yet' },
+    'projects.empty.desc': { tr: 'Bu kategori altında henüz listelenen bir proje bulunmuyor.', en: 'There are no projects listed under this category yet.' },
+
     'home.map.badge': { tr: 'ETKİLEŞİM HARİTASI', en: 'INTERACTION MAP' },
     'home.map.title': { tr: 'Projelerin Coğrafi Dağılımı', en: 'Geographical Distribution of Projects' },
     'home.map.details.placeholder': { tr: 'Harita üzerindeki noktalara gelerek<br />proje detaylarını görüntüleyebilirsiniz.', en: 'You can view project details by hovering over the points on the map.' },
