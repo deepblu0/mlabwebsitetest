@@ -745,7 +745,7 @@ const translations = {
     },
     'portal.register.kvkk_text': {
         tr: 'okudum ve kişisel verilerimin işlenmesini kabul ediyorum.',
-        en: 'I have read and agree to the processing of my personal data.'
+        en: ' I have read and agree to the processing of my personal data.'
     },
 
     // Dashboard Filters & Forms
