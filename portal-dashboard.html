@@ -1153,9 +1153,14 @@
             // Update user role display
             const roleEl = document.getElementById('user-role');
             if (roleEl) {
-                if (isAdmin) roleEl.textContent = 'Yönetici';
-                else if (currentUser.org_type) roleEl.textContent = currentUser.org_type === 'belediye' ? 'Belediye' : 'Özel Sektör';
-                else roleEl.textContent = 'Üye';
+                if (isAdmin) roleEl.textContent = i18n.t('portal.role.admin');
+                else if (currentUser.org_type) roleEl.textContent = currentUser.org_type === 'belediye' ? i18n.t('portal.role.municipality') : i18n.t('portal.role.private');
+                else roleEl.textContent = i18n.t('portal.role.member');
+
+                // Add data-i18n attribute for dynamic language switching
+                if (isAdmin) roleEl.setAttribute('data-i18n', 'portal.role.admin');
+                else if (currentUser.org_type) roleEl.setAttribute('data-i18n', currentUser.org_type === 'belediye' ? 'portal.role.municipality' : 'portal.role.private');
+                else roleEl.setAttribute('data-i18n', 'portal.role.member');
             }
             lucide.createIcons();
             return true;

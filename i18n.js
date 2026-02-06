@@ -899,6 +899,10 @@ const translations = {
         tr: 'En az 8 karakter',
         en: 'At least 8 characters'
     },
+    'portal.role.admin': { tr: 'Yönetici', en: 'Admin' },
+    'portal.role.municipality': { tr: 'Belediye', en: 'Municipality' },
+    'portal.role.private': { tr: 'Özel Sektör', en: 'Private Sector' },
+    'portal.role.member': { tr: 'Üye', en: 'Member' },
     'portal.register.password_confirm_placeholder': {
         tr: 'Şifrenizi tekrar girin',
         en: 'Re-enter your password'
