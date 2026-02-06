@@ -1064,7 +1064,7 @@ const translations = {
     'contact.form.select.other': { tr: 'Diğer', en: 'Other' },
 
     'contact.form.consent.text': { tr: 'Kişisel verilerimin', en: 'I agree to the processing of my personal data for the purposes specified in the' },
-    'contact.form.consent.link': { tr: 'KVKK Aydınlatma Metni', en: 'KVKK Clarification Text' },
+    'contact.form.consent.link': { tr: 'KVKK Aydınlatma Metni', en: 'PDPL Clarification Text' },
     'contact.form.consent.suffix': { tr: "'nde belirtilen amaçlarla işlenmesini kabul ediyorum.", en: '.' },
 
     'contact.form.submit': { tr: 'Mesajı Gönder', en: 'Send Message' },
