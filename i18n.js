@@ -1148,6 +1148,29 @@ const translations = {
     'documents.empty.title': { tr: 'Doküman Bulunamadı', en: 'No Documents Found' },
     'documents.empty.desc': { tr: 'Henüz doküman eklenmemiştir.', en: 'No documents have been added yet.' },
 
+    // Homepage
+    'home.mission.badge': { tr: 'İKLİM NÖTR VE AKILLI ŞEHİRLER MİSYONU', en: 'CLIMATE NEUTRAL AND SMART CITIES MISSION' },
+    'home.mission.title': { tr: 'Küresel Sorunlara Somut Çözümler:<br> <span class="text-mlab-teal">AB Misyonları</span>', en: 'Concrete Solutions to Global Problems:<br> <span class="text-mlab-teal">EU Missions</span>' },
+    'home.mission.desc1': {
+        tr: 'AB Misyonları Ufuk Avrupa programı kapsamında toplumun ve gezegenin karşı karşıya olduğu en kritik zorluklara 2030 yılına kadar somut çözümler üretmek amacıyla başlatılmıştır.',
+        en: 'EU Missions were launched under the Horizon Europe program to provide concrete solutions to the most critical challenges facing society and the planet by 2030.'
+    },
+    'home.mission.desc2': {
+        tr: 'Bu küresel seferberlik beş temel alana odaklanır. Temel hedef bilimsel çalışmaları raporlardan çıkarıp vatandaşların günlük yaşamını iyileştiren somut kamu politikalarına ve uygulamalara dönüştürmektir.',
+        en: 'This global mobilization focuses on five key areas. The main goal is to take scientific studies out of reports and transform them into concrete public policies and practices that improve the daily lives of citizens.'
+    },
+    'home.mission.btn': { tr: 'Şehirler Misyonu Hakkında', en: 'About Cities Mission' },
+
+    'home.projects.title': { tr: 'Projeler & Çözümler', en: 'Projects & Solutions' },
+    'home.projects.viewAll': { tr: 'Tüm Projeleri Gör', en: 'View All Projects' },
+
+    'home.map.badge': { tr: 'ETKİLEŞİM HARİTASI', en: 'INTERACTION MAP' },
+    'home.map.title': { tr: 'Projelerin Coğrafi Dağılımı', en: 'Geographical Distribution of Projects' },
+    'home.map.details.placeholder': { tr: 'Harita üzerindeki noktalara gelerek<br />proje detaylarını görüntüleyebilirsiniz.', en: 'You can view project details by hovering over the points on the map.' },
+    'home.map.details.view': { tr: 'Detayları İncele', en: 'View Details' },
+
+    'home.partners.title': { tr: 'Paydaşlarımız', en: 'Our Stakeholders' },
+
     // Common
     'common.readMore': {
         tr: 'Devamını Oku',

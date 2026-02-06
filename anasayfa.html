@@ -251,25 +251,27 @@
           <!-- Sol: Metin -->
           <div>
             <span
-              class="inline-block py-1 px-3 rounded-full bg-mlab-cyan/10 text-mlab-teal text-xs font-bold tracking-wider uppercase mb-4">
+              class="inline-block py-1 px-3 rounded-full bg-mlab-cyan/10 text-mlab-teal text-xs font-bold tracking-wider uppercase mb-4"
+              data-i18n="home.mission.badge">
               İKLİM NÖTR VE AKILLI ŞEHİRLER MİSYONU
             </span>
-            <h2 class="text-3xl md:text-4xl font-bold text-mlab-navy mb-6 leading-tight">
+            <h2 class="text-3xl md:text-4xl font-bold text-mlab-navy mb-6 leading-tight" data-i18n="home.mission.title">
               Küresel Sorunlara Somut Çözümler:<br>
               <span class="text-mlab-teal">AB Misyonları</span>
             </h2>
-            <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            <p class="text-slate-600 text-lg leading-relaxed mb-6" data-i18n="home.mission.desc1">
               AB Misyonları Ufuk Avrupa programı kapsamında toplumun ve gezegenin karşı karşıya olduğu
               en kritik zorluklara 2030 yılına kadar somut çözümler üretmek amacıyla başlatılmıştır.
             </p>
-            <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            <p class="text-slate-600 text-lg leading-relaxed mb-6" data-i18n="home.mission.desc2">
               Bu küresel seferberlik beş temel alana odaklanır. Temel hedef bilimsel çalışmaları raporlardan
               çıkarıp vatandaşların günlük yaşamını iyileştiren somut kamu politikalarına ve uygulamalara
               dönüştürmektir.
             </p>
             <a href="sehirler-misyonu"
               class="inline-flex items-center gap-2 px-6 py-3 bg-mlab-navy text-white font-semibold rounded-xl hover:bg-mlab-dark transition-colors">
-              Şehirler Misyonu Hakkında <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              <span data-i18n="home.mission.btn">Şehirler Misyonu Hakkında</span> <i data-lucide="arrow-right"
+                class="w-4 h-4"></i>
             </a>
           </div>
           <!-- Sağ: Görsel -->
@@ -285,10 +287,12 @@
   <section id="projects" class="py-20 bg-slate-50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-        <h2 class="text-3xl font-bold text-mlab-navy mb-4 md:mb-0">Projeler & Çözümler</h2>
+        <h2 class="text-3xl font-bold text-mlab-navy mb-4 md:mb-0" data-i18n="home.projects.title">Projeler & Çözümler
+        </h2>
         <a href="projeler"
           class="inline-flex items-center gap-2 px-5 py-2.5 bg-mlab-navy text-white font-semibold rounded-xl hover:bg-mlab-dark transition-colors">
-          Tüm Projeleri Gör <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          <span data-i18n="home.projects.viewAll">Tüm Projeleri Gör</span> <i data-lucide="arrow-right"
+            class="w-4 h-4"></i>
         </a>
       </div>
 
@@ -330,10 +334,11 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <span
-          class="inline-block py-1 px-3 rounded-full bg-mlab-orange/10 text-mlab-orange text-xs font-bold tracking-wider uppercase mb-4">
+          class="inline-block py-1 px-3 rounded-full bg-mlab-orange/10 text-mlab-orange text-xs font-bold tracking-wider uppercase mb-4"
+          data-i18n="home.map.badge">
           ETKİLEŞİM HARİTASI
         </span>
-        <h2 class="text-3xl font-bold text-mlab-navy">Projelerin Coğrafi Dağılımı</h2>
+        <h2 class="text-3xl font-bold text-mlab-navy" data-i18n="home.map.title">Projelerin Coğrafi Dağılımı</h2>
       </div>
 
       <div class="flex flex-col lg:flex-row gap-8 items-stretch h-[600px]">
@@ -365,7 +370,7 @@
   <!-- PARTNERS -->
   <section class="bg-slate-50 py-20 relative group">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
-      <h2 class="text-3xl font-bold text-mlab-navy">Paydaşlarımız</h2>
+      <h2 class="text-3xl font-bold text-mlab-navy" data-i18n="home.partners.title">Paydaşlarımız</h2>
     </div>
 
     <div class="relative container mx-auto px-4 sm:px-6 lg:px-8">
@@ -674,7 +679,7 @@
             <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-2">
               <i data-lucide="map-pin" class="w-8 h-8 text-slate-300"></i>
             </div>
-            <p class="text-slate-400 text-sm font-medium">Harita üzerindeki noktalara gelerek<br />proje detaylarını görüntüleyebilirsiniz.</p>
+            <p class="text-slate-400 text-sm font-medium" data-i18n="home.map.details.placeholder">Harita üzerindeki noktalara gelerek<br />proje detaylarını görüntüleyebilirsiniz.</p>
           </div>`;
       } else {
         const pin = mapPins.find(p => p.id === activePinId);
@@ -685,7 +690,7 @@
             <h3 class="text-xl font-bold text-mlab-navy leading-tight">${pin.title}</h3>
             <p class="text-slate-500 text-sm leading-relaxed">${pin.desc}</p>
             <a href="proje-detay.html?id=${pin.id}" class="text-mlab-cyan text-sm font-bold hover:underline mt-2 flex items-center gap-1">
-              Detayları İncele <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              <span data-i18n="home.map.details.view">Detayları İncele</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
           </div>`;
       }
