@@ -48,6 +48,7 @@
             transform: rotateY(360deg);
         }
     </style>
+    <script src="i18n.js"></script>
 </head>
 
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
@@ -85,123 +86,169 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-mlab-navy text-white mt-auto">
-        <div class="h-1 w-full bg-gradient-to-r from-mlab-cyan via-mlab-purple to-mlab-cyan"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
-                <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
-                    <a href="yasal.html?page=privacy" class="hover:text-slate-300 transition-colors">Gizlilik
-                        Politikası</a>
-                    <span class="text-slate-700">•</span>
-                    <a href="yasal.html?page=cookie" class="hover:text-slate-300 transition-colors">Çerez Politikası</a>
-                    <span class="text-slate-700">•</span>
-                    <a href="yasal.html?page=kvkk" class="hover:text-slate-300 transition-colors">KVKK Aydınlatma
-                        Metni</a>
-                </div>
-                <div class="coin-flip-container">
-                    <img src="label-circle.png" alt="EU Mission Label"
-                        class="h-20 w-auto drop-shadow-lg coin-flip cursor-pointer">
-                </div>
-                <div class="flex flex-col sm:flex-row items-center gap-3 text-sm text-slate-400">
-                    <a href="mailto:mlab@izq.com.tr"
-                        class="hover:text-mlab-cyan transition-colors flex items-center gap-2">
-                        <i data-lucide="mail" class="w-4 h-4"></i>
-                        mlab@izq.com.tr
-                    </a>
-                    <span class="hidden sm:inline text-slate-700">|</span>
-                    <span class="text-xs text-slate-500">&copy; 2025 M-LAB İzmir</span>
-                </div>
-            </div>
-        </div>
-    </footer>
+
 
     <script>
         lucide.createIcons();
 
+        // Initialize translations
+        document.addEventListener('DOMContentLoaded', () => {
+            window.initTranslations();
+            renderLegalContent();
+        });
+
         const pages = {
             privacy: {
-                title: "Gizlilik Politikası",
-                content: `
-                    <p class="mb-4">M-LAB İzmir olarak web sitemizi ziyaret eden kullanıcıların mahremiyetine saygı duyuyor ve verilerinizin güvenliğini önemsiyoruz. Bu Gizlilik Politikası web sitemiz üzerinden toplanan bilgilerin nasıl kullanıldığını ve korunduğunu açıklar.</p>
-                    
-                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">1. Genel Yaklaşım</h3>
-                    <p class="mb-4">İklim Nötr ve Akıllı Şehirler Misyonu kapsamında yürüttüğümüz faaliyetlerde şeffaflık ve güven esastır. Web sitemiz üzerinden elde edilen kişisel veriler sadece belirtilen amaçlar doğrultusunda kullanılır ve izniniz veya yasal bir zorunluluk olmaksızın üçüncü taraflarla paylaşılmaz.</p>
-                    
-                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">2. Veri Güvenliği</h3>
-                    <p class="mb-4">Kişisel verilerinizin kaybolmasını veya yetkisiz erişime uğramasını ve değiştirilmesini önlemek amacıyla gerekli teknik ve idari tedbirleri almaktayız. Verileriniz güvenli sunucularda saklanmakta ve sadece yetkili personelin erişimine açık tutulmaktadır.</p>
-                    
-                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">3. Diğer Sitelere Bağlantılar</h3>
-                    <p class="mb-4">Web sitemiz Avrupa Birliği kurumları veya proje ortaklarımızın web sitelerine bağlantılar içerebilir. M-LAB İzmir bu harici sitelerin gizlilik uygulamalarından veya içeriklerinden sorumlu değildir.</p>
-                    
-                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">4. Politika Güncellemeleri</h3>
-                    <p class="mb-4">Bu Gizlilik Politikası yasal düzenlemelere veya hizmetlerimizdeki değişikliklere bağlı olarak güncellenebilir. Değişiklikler bu sayfada yayınlandığı tarihte yürürlüğe girer.</p>
-                `
+                tr: {
+                    title: "Gizlilik Politikası",
+                    content: `
+                        <p class="mb-4">M-LAB İzmir olarak web sitemizi ziyaret eden kullanıcıların mahremiyetine saygı duyuyor ve verilerinizin güvenliğini önemsiyoruz. Bu Gizlilik Politikası web sitemiz üzerinden toplanan bilgilerin nasıl kullanıldığını ve korunduğunu açıklar.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">1. Genel Yaklaşım</h3>
+                        <p class="mb-4">İklim Nötr ve Akıllı Şehirler Misyonu kapsamında yürüttüğümüz faaliyetlerde şeffaflık ve güven esastır. Web sitemiz üzerinden elde edilen kişisel veriler sadece belirtilen amaçlar doğrultusunda kullanılır ve izniniz veya yasal bir zorunluluk olmaksızın üçüncü taraflarla paylaşılmaz.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">2. Veri Güvenliği</h3>
+                        <p class="mb-4">Kişisel verilerinizin kaybolmasını veya yetkisiz erişime uğramasını ve değiştirilmesini önlemek amacıyla gerekli teknik ve idari tedbirleri almaktayız. Verileriniz güvenli sunucularda saklanmakta ve sadece yetkili personelin erişimine açık tutulmaktadır.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">3. Diğer Sitelere Bağlantılar</h3>
+                        <p class="mb-4">Web sitemiz Avrupa Birliği kurumları veya proje ortaklarımızın web sitelerine bağlantılar içerebilir. M-LAB İzmir bu harici sitelerin gizlilik uygulamalarından veya içeriklerinden sorumlu değildir.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">4. Politika Güncellemeleri</h3>
+                        <p class="mb-4">Bu Gizlilik Politikası yasal düzenlemelere veya hizmetlerimizdeki değişikliklere bağlı olarak güncellenebilir. Değişiklikler bu sayfada yayınlandığı tarihte yürürlüğe girer.</p>
+                    `
+                },
+                en: {
+                    title: "Privacy Policy",
+                    content: `
+                        <p class="mb-4">As M-LAB Izmir, we respect the privacy of users visiting our website and care about the security of your data. This Privacy Policy explains how information collected through our website is used and protected.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">1. General Approach</h3>
+                        <p class="mb-4">Transparency and trust are essential in the activities we carry out within the scope of the Climate Neutral and Smart Cities Mission. Personal data obtained through our website is used only for the specified purposes and is not shared with third parties without your permission or a legal obligation.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">2. Data Security</h3>
+                        <p class="mb-4">We take the necessary technical and administrative measures to prevent the loss, unauthorized access, or alteration of your personal data. Your data is stored on secure servers and is kept open only to authorized personnel.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">3. Links to Other Sites</h3>
+                        <p class="mb-4">Our website may contain links to the websites of European Union institutions or our project partners. M-LAB Izmir is not responsible for the privacy practices or content of these external sites.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">4. Policy Updates</h3>
+                        <p class="mb-4">This Privacy Policy may be updated depending on legal regulations or changes in our services. Changes take effect on the date they are published on this page.</p>
+                    `
+                }
             },
             cookie: {
-                title: "Çerez Politikası",
-                content: `
-                    <p class="mb-4">M-LAB İzmir web sitesinde kullanıcı deneyimini iyileştirmek ve sitenin verimli çalışmasını sağlamak amacıyla çerezler kullanılmaktadır.</p>
-                    
-                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">1. Çerez Nedir?</h3>
-                    <p class="mb-4">Çerezler web sitemizi ziyaret ettiğinizde tarayıcınız aracılığıyla bilgisayarınıza veya mobil cihazınıza kaydedilen küçük metin dosyalarıdır. Bu dosyalar sitenin sizin tercihlerinizi hatırlamasına ve daha iyi bir hizmet sunmasına yardımcı olur.</p>
-                    
-                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">2. Kullandığımız Çerez Türleri</h3>
-                    <p class="mb-4">Web sitemizde kullanılan çerezler şunlardır:</p>
-                    <ul class="list-disc pl-5 space-y-2 mb-4">
-                        <li><strong>Zorunlu Çerezler:</strong> Web sitesinin teknik olarak çalışması ve güvenliği için gerekli olan çerezlerdir. Bu çerezler olmadan site özellikleri kullanılamaz.</li>
-                        <li><strong>İşlevsellik Çerezleri:</strong> Dil tercihi gibi site üzerindeki seçimlerinizi hatırlayarak size daha kişiselleştirilmiş bir deneyim sunmamızı sağlar.</li>
-                        <li><strong>Performans ve Analiz Çerezleri:</strong> Ziyaretçi sayıları ve trafik kaynaklarını takip ederek web sitemizin performansını ölçmemize ve iyileştirmemize yardımcı olan anonim veriler toplar.</li>
-                    </ul>
-                    
-                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">3. Çerezlerin Yönetimi</h3>
-                    <p class="mb-4">Tarayıcı ayarlarınızı değiştirerek çerez tercihlerinizi yönetebilir veya silebilirsiniz. Ancak zorunlu çerezlerin silinmesi durumunda web sitemizin bazı fonksiyonlarının düzgün çalışmayabileceğini hatırlatmak isteriz.</p>
-                `
+                tr: {
+                    title: "Çerez Politikası",
+                    content: `
+                        <p class="mb-4">M-LAB İzmir web sitesinde kullanıcı deneyimini iyileştirmek ve sitenin verimli çalışmasını sağlamak amacıyla çerezler kullanılmaktadır.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">1. Çerez Nedir?</h3>
+                        <p class="mb-4">Çerezler web sitemizi ziyaret ettiğinizde tarayıcınız aracılığıyla bilgisayarınıza veya mobil cihazınıza kaydedilen küçük metin dosyalarıdır. Bu dosyalar sitenin sizin tercihlerinizi hatırlamasına ve daha iyi bir hizmet sunmasına yardımcı olur.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">2. Kullandığımız Çerez Türleri</h3>
+                        <p class="mb-4">Web sitemizde kullanılan çerezler şunlardır:</p>
+                        <ul class="list-disc pl-5 space-y-2 mb-4">
+                            <li><strong>Zorunlu Çerezler:</strong> Web sitesinin teknik olarak çalışması ve güvenliği için gerekli olan çerezlerdir. Bu çerezler olmadan site özellikleri kullanılamaz.</li>
+                            <li><strong>İşlevsellik Çerezleri:</strong> Dil tercihi gibi site üzerindeki seçimlerinizi hatırlayarak size daha kişiselleştirilmiş bir deneyim sunmamızı sağlar.</li>
+                            <li><strong>Performans ve Analiz Çerezleri:</strong> Ziyaretçi sayıları ve trafik kaynaklarını takip ederek web sitemizin performansını ölçmemize ve iyileştirmemize yardımcı olan anonim veriler toplar.</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">3. Çerezlerin Yönetimi</h3>
+                        <p class="mb-4">Tarayıcı ayarlarınızı değiştirerek çerez tercihlerinizi yönetebilir veya silebilirsiniz. Ancak zorunlu çerezlerin silinmesi durumunda web sitemizin bazı fonksiyonlarının düzgün çalışmayabileceğini hatırlatmak isteriz.</p>
+                    `
+                },
+                en: {
+                    title: "Cookie Policy",
+                    content: `
+                        <p class="mb-4">Cookies are used on the M-LAB Izmir website to improve user experience and ensure the efficient operation of the site.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">1. What is a Cookie?</h3>
+                        <p class="mb-4">Cookies are small text files saved to your computer or mobile device via your browser when you visit our website. These files help the site remember your preferences and provide a better service.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">2. Types of Cookies We Use</h3>
+                        <p class="mb-4">The cookies used on our website are as follows:</p>
+                        <ul class="list-disc pl-5 space-y-2 mb-4">
+                            <li><strong>Necessary Cookies:</strong> These are cookies required for the technical operation and security of the website. Without these cookies, site features cannot be used.</li>
+                            <li><strong>Functionality Cookies:</strong> They allow us to provide you with a more personalized experience by remembering your choices on the site, such as language preference.</li>
+                            <li><strong>Performance and Analysis Cookies:</strong> They collect anonymous data that helps us measure and improve the performance of our website by tracking visitor numbers and traffic sources.</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">3. Management of Cookies</h3>
+                        <p class="mb-4">You can manage or delete your cookie preferences by changing your browser settings. However, we would like to remind you that if necessary cookies are deleted, some functions of our website may not work properly.</p>
+                    `
+                }
             },
             kvkk: {
-                title: "KVKK Aydınlatma Metni",
-                content: `
-                    <p class="mb-4">M-LAB İzmir ve koordinatör kuruluş İzmir Planlama Ajansı olarak veri sorumlusu sıfatıyla kişisel verilerinizi 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında aşağıda belirtilen usul ve esaslara uygun olarak işlemekteyiz.</p>
-                    
-                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">1. İşlenen Kişisel Verileriniz</h3>
-                    <p class="mb-4">Web sitemizde yer alan iletişim formu aracılığıyla tarafımıza ilettiğiniz adınız ve soyadınız ile e-posta adresiniz ve mesaj içeriğinde belirttiğiniz diğer bilgileriniz işlenmektedir.</p>
-                    
-                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">2. Verilerin İşlenme Amacı</h3>
-                    <p class="mb-4">Toplanan kişisel verileriniz tarafımıza ilettiğiniz talep veya önerilerin değerlendirilmesi ve konuyla ilgili size geri dönüş sağlanması ile iletişim süreçlerinin yönetilmesi amacıyla işlenmektedir. Bu veriler ayrıca yetkili kişi veya kurumlarla olan yasal yükümlülüklerin yerine getirilmesi amacıyla da kullanılabilir.</p>
-                    
-                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">3. Veri Toplamanın Yöntemi ve Hukuki Sebebi</h3>
-                    <p class="mb-4">Kişisel verileriniz web sitemizdeki iletişim formunun tarafınızca doldurulması suretiyle elektronik ortamda otomatik yollarla elde edilmektedir. Bu işlem Kanunun 5. maddesinde belirtilen ilgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması hukuki sebebine dayanmaktadır.</p>
-                    
-                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">4. Verilerin Aktarılması</h3>
-                    <p class="mb-4">İletişim formu aracılığıyla toplanan verileriniz üçüncü kişilerle paylaşılmamaktadır. Ancak yasal bir zorunluluk doğması halinde yetkili kamu kurum ve kuruluşları ile paylaşılabilir.</p>
-                    
-                    <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">5. İlgili Kişinin Hakları</h3>
-                    <p class="mb-4">Veri sahibi olarak Kanunun 11. maddesi uyarınca verilerinizin işlenip işlenmediğini öğrenme ve yanlış işlenmişse düzeltilmesini talep etme ile verilerinizin silinmesini isteme haklarına sahipsiniz. Bu haklarınızı kullanmak için iletişim kanallarımız üzerinden tarafımıza başvurabilirsiniz.</p>
-                `
+                tr: {
+                    title: "KVKK Aydınlatma Metni",
+                    content: `
+                        <p class="mb-4">M-LAB İzmir ve koordinatör kuruluş İzmir Planlama Ajansı olarak veri sorumlusu sıfatıyla kişisel verilerinizi 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında aşağıda belirtilen usul ve esaslara uygun olarak işlemekteyiz.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">1. İşlenen Kişisel Verileriniz</h3>
+                        <p class="mb-4">Web sitemizde yer alan iletişim formu aracılığıyla tarafımıza ilettiğiniz adınız ve soyadınız ile e-posta adresiniz ve mesaj içeriğinde belirttiğiniz diğer bilgileriniz işlenmektedir.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">2. Verilerin İşlenme Amacı</h3>
+                        <p class="mb-4">Toplanan kişisel verileriniz tarafımıza ilettiğiniz talep veya önerilerin değerlendirilmesi ve konuyla ilgili size geri dönüş sağlanması ile iletişim süreçlerinin yönetilmesi amacıyla işlenmektedir. Bu veriler ayrıca yetkili kişi veya kurumlarla olan yasal yükümlülüklerin yerine getirilmesi amacıyla da kullanılabilir.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">3. Veri Toplamanın Yöntemi ve Hukuki Sebebi</h3>
+                        <p class="mb-4">Kişisel verileriniz web sitemizdeki iletişim formunun tarafınızca doldurulması suretiyle elektronik ortamda otomatik yollarla elde edilmektedir. Bu işlem Kanunun 5. maddesinde belirtilen ilgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması hukuki sebebine dayanmaktadır.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">4. Verilerin Aktarılması</h3>
+                        <p class="mb-4">İletişim formu aracılığıyla toplanan verileriniz üçüncü kişilerle paylaşılmamaktadır. Ancak yasal bir zorunluluk doğması halinde yetkili kamu kurum ve kuruluşları ile paylaşılabilir.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">5. İlgili Kişinin Hakları</h3>
+                        <p class="mb-4">Veri sahibi olarak Kanunun 11. maddesi uyarınca verilerinizin işlenip işlenmediğini öğrenme ve yanlış işlenmişse düzeltilmesini talep etme ile verilerinizin silinmesini isteme haklarına sahipsiniz. Bu haklarınızı kullanmak için iletişim kanallarımız üzerinden tarafımıza başvurabilirsiniz.</p>
+                    `
+                },
+                en: {
+                    title: "PDPL Clarification Text",
+                    content: `
+                        <p class="mb-4">As M-LAB Izmir and the coordinator organization Izmir Planning Agency, we process your personal data as a data controller within the scope of the Personal Data Protection Law No. 6698, in accordance with the procedures and principles specified below.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">1. Your Processed Personal Data</h3>
+                        <p class="mb-4">Your name, surname, email address, and other information provided in the message content transmitted to us via the contact form on our website are processed.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">2. Purpose of Processing Data</h3>
+                        <p class="mb-4">Your collected personal data is processed for the purpose of evaluating the requests or suggestions you submit to us, providing feedback to you on the subject, and managing communication processes. This data may also be used to fulfill legal obligations with authorized persons or institutions.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">3. Method and Legal Reason for Data Collection</h3>
+                        <p class="mb-4">Your personal data is obtained electronically by automatic means through the filling of the contact form on our website by you. This process is based on the legal reason that data processing is mandatory for the legitimate interests of the data controller, provided that it does not harm the fundamental rights and freedoms of the data subject, as specified in Article 5 of the Law.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">4. Transfer of Data</h3>
+                        <p class="mb-4">Your data collected via the contact form is not shared with third parties. However, it may be shared with authorized public institutions and organizations if a legal obligation arises.</p>
+                        
+                        <h3 class="text-lg font-bold text-mlab-navy mt-6 mb-3">5. Rights of the Data Subject</h3>
+                        <p class="mb-4">As a data subject, you have the right to learn whether your data is processed, to request correction if processed incorrectly, and to request deletion of your data in accordance with Article 11 of the Law. You can apply to us via our communication channels to exercise these rights.</p>
+                    `
+                }
             }
         };
 
-        // Parse URL Params
-        const urlParams = new URLSearchParams(window.location.search);
-        const pageId = urlParams.get('page') || 'privacy';
+        function renderLegalContent() {
+            // Parse URL Params
+            const urlParams = new URLSearchParams(window.location.search);
+            const pageId = urlParams.get('page') || 'privacy';
+            const lang = window.getCurrentLang ? window.getCurrentLang() : 'tr';
 
-        const page = pages[pageId];
-        const container = document.getElementById('legal-content');
+            const pageData = pages[pageId];
+            const container = document.getElementById('legal-content');
 
-        if (page) {
-            container.innerHTML = `
-                <h1 class="text-3xl md:text-4xl font-black text-mlab-navy mb-8 border-b border-slate-100 pb-6">${page.title}</h1>
-                <div class="prose prose-slate max-w-none text-slate-600 leading-relaxed">
-                    ${page.content}
-                </div>
-            `;
-        } else {
-            container.innerHTML = `
-                <div class="text-center py-20">
-                    <h2 class="text-2xl font-bold text-slate-400">Sayfa bulunamadı.</h2>
-                    <a href="/" class="text-mlab-cyan hover:underline mt-4 inline-block">Ana Sayfaya Dön</a>
-                </div>
-            `;
+            if (pageData) {
+                const content = pageData[lang] || pageData['tr'];
+                container.innerHTML = `
+                    <h1 class="text-3xl md:text-4xl font-black text-mlab-navy mb-8 border-b border-slate-100 pb-6">${content.title}</h1>
+                    <div class="prose prose-slate max-w-none text-slate-600 leading-relaxed">
+                        ${content.content}
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="text-center py-20">
+                        <h2 class="text-2xl font-bold text-slate-400" data-i18n="common.notFound">Sayfa bulunamadı.</h2>
+                        <a href="/" class="text-mlab-cyan hover:underline mt-4 inline-block" data-i18n="common.backHome">Ana Sayfaya Dön</a>
+                    </div>
+                `;
+            }
         }
     </script>
     <!-- FOOTER -->

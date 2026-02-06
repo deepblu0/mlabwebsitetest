@@ -321,11 +321,11 @@ const translations = {
     },
     'challenges.hero.link': {
         tr: 'bu politika notları',
-        en: 'these policy notes'
+        en: 'Urban Policy Notes'
     },
     'challenges.hero.desc2': {
         tr: '; kentin karşı karşıya olduğu sistemsel sorunlara yenilikçi, sürdürülebilir ve toplum odaklı çözümler sunmayı amaçlamaktadır. İzmir’in önümüzdeki yıllarda aşması gereken 10 Büyük Zorluk, misyon odaklı bir inovasyon anlayışıyla aşağıda özetlenmiştir.',
-        en: 'aim to provide innovative, sustainable, and community-oriented solutions to the systemic problems facing the city. The 10 Grand Challenges that Izmir must overcome in the coming years are summarized below with a mission-oriented innovation approach.'
+        en: ' aim to provide innovative, sustainable, and community-oriented solutions to the systemic problems facing the city. The 10 Grand Challenges that Izmir must overcome in the coming years are summarized below with a mission-oriented innovation approach.'
     },
 
     // Page Titles
@@ -1198,7 +1198,21 @@ const translations = {
     'common.search': {
         tr: 'Ara',
         en: 'Search'
-    }
+    },
+    'common.notFound': {
+        tr: 'Sayfa Bulunamadı',
+        en: 'Page Not Found'
+    },
+    'common.backHome': {
+        tr: 'Ana Sayfaya Dön',
+        en: 'Back to Home'
+    },
+
+    // Footer
+    'footer.privacy': { tr: 'Gizlilik Politikası', en: 'Privacy Policy' },
+    'footer.cookie': { tr: 'Çerez Politikası', en: 'Cookie Policy' },
+    'footer.kvkk': { tr: 'KVKK Aydınlatma Metni', en: 'PDPL Clarification Text' },
+    'footer.copyright': { tr: '© 2025 M-LAB İzmir', en: '© 2025 M-LAB Izmir' },
 };
 
 // Get current language from localStorage
