@@ -227,98 +227,26 @@
         </div>
     </footer>
 
+    <script src="mlab-data.js"></script>
+    <script src="i18n.js"></script>
     <script>
         lucide.createIcons();
 
-        // Documents data
-        // thumbnail: PDF adı + "-cover.png" olarak Docs-Cover klasöründe
-        const allDocuments = [
-            {
-                id: 1,
-                title: "İklim Şehir Sözleşmesi",
-                description: "İzmir'in iklim nötr şehirler misyonuna katılım sözleşmesi ve taahhütleri.",
-                pages: 113,
-                size: "2.6 MB",
-                thumbnail: "Docs-Cover/IKLIM-SEHIR-SOZLESMESI-cover.png",
-                url: "Docs/IKLIM-SEHIR-SOZLESMESI.pdf"
-            },
-            {
-                id: 2,
-                title: "SECAP - Sürdürülebilir Enerji ve İklim Eylem Planı",
-                description: "İzmir Büyükşehir Belediyesi Sürdürülebilir Enerji ve İklim Eylem Planı dokümanı.",
-                pages: 200,
-                size: "20.2 MB",
-                thumbnail: "Docs-Cover/SECAP-cover.png",
-                url: "Docs/SECAP.pdf"
-            },
-            {
-                id: 3,
-                title: "3+30+300 İklim Hedefleri",
-                description: "İzmir'in kısa, orta ve uzun vadeli iklim hedeflerini içeren strateji dokümanı.",
-                pages: 20,
-                size: "16.5 MB",
-                thumbnail: "Docs-Cover/3+30+300-cover.png",
-                url: "Docs/3+30+300.pdf"
-            },
-            {
-                id: 4,
-                title: "Enerji Verimliliği Çalıştayı",
-                description: "İzmir enerji verimliliği çalıştayı sonuç raporu ve öneriler.",
-                pages: 93,
-                size: "12.2 MB",
-                thumbnail: "Docs-Cover/ENERJI-VERIMLILIGI-CALISTAYI-cover.png",
-                url: "Docs/ENERJI-VERIMLILIGI-CALISTAYI.pdf"
-            },
-            {
-                id: 5,
-                title: "Kentsel İklim Analizi Raporu",
-                description: "İzmir kentsel ısı adası ve iklim analizi araştırma raporu.",
-                pages: 30,
-                size: "4.7 MB",
-                thumbnail: "Docs-Cover/KENTSEL-IKLIMI-ANALIZI-RAPORU-cover.png",
-                url: "Docs/KENTSEL-IKLIMI-ANALIZI-RAPORU.pdf"
-            },
-            {
-                id: 6,
-                title: "İzmir’de Orman Yangını Riskinin Mekânsal Analizi",
-                description: "İzmir genelindeki orman yangını risklerinin mekânsal dağılımı ve analiz raporu.",
-                pages: 39,
-                size: "13.1 MB",
-                thumbnail: "Docs-Cover/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI-COVER.png",
-                url: "Docs/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI.pdf"
-            },
-            {
-                id: 7,
-                title: "İzmir'de İklim Değişikliğinin Etkileri",
-                description: "İklim değişikliğinin İzmir özelindeki çevresel ve kentsel etkilerinin değerlendirilmesi.",
-                pages: 20,
-                size: "6.3 MB",
-                thumbnail: "Docs-Cover/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI-COVER.png",
-                url: "Docs/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI.pdf"
-            },
-            {
-                id: 8,
-                title: "İzmir Kentsel Politika Notları",
-                description: "İzmir'in kentsel gelişim ve sürdürülebilirlik politikalarına dair stratejik notlar.",
-                pages: 26,
-                size: "7.8 MB",
-                thumbnail: "Docs-Cover/Kentsel_Politika_Notlari_Cover.png",
-                url: "Docs/Izmir_Kentsel_Politika_Notlari.pdf"
-            }
-        ];
-
-        // Documents to show based on language
-        const documents = [];
+        function getCurrentLang() {
+            if (typeof getLang === 'function') return getLang();
+            return localStorage.getItem('mlab_lang') || 'tr';
+        }
 
         function renderDocuments() {
             const grid = document.getElementById('documents-grid');
             const emptyState = document.getElementById('empty-state');
 
-            // Only show documents if language is Turkish
-            const currentLang = getCurrentLang();
-            const docsToShow = currentLang === 'tr' ? allDocuments : [];
+            if (!grid || !emptyState || typeof mlabData === 'undefined') return;
 
-            if (docsToShow.length === 0) {
+            const lang = getCurrentLang();
+            const allDocuments = mlabData.documents || [];
+
+            if (allDocuments.length === 0) {
                 grid.classList.add('hidden');
                 emptyState.classList.remove('hidden');
                 return;
@@ -327,11 +255,21 @@
             grid.classList.remove('hidden');
             emptyState.classList.add('hidden');
 
-            grid.innerHTML = docsToShow.map(doc => `
+            const labels = {
+                page: lang === 'en' ? 'page' : 'sayfa',
+                open: lang === 'en' ? 'Open' : 'Aç',
+                download: lang === 'en' ? 'Download' : 'İndir'
+            };
+
+            grid.innerHTML = allDocuments.map(doc => {
+                const title = doc.title[lang] || doc.title['tr'];
+                const description = doc.description[lang] || doc.description['tr'];
+
+                return `
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
                     <!-- PDF Thumbnail -->
                     <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
-                        <img src="${doc.thumbnail}" alt="${doc.title}" 
+                        <img src="${doc.thumbnail}" alt="${title}" 
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                              onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -344,15 +282,15 @@
                     <div class="flex-1 p-5 flex flex-col justify-between">
                         <div>
                             <h3 class="text-base sm:text-lg font-bold text-mlab-navy mb-2 group-hover:text-mlab-purple transition-colors line-clamp-2">
-                                ${doc.title}
+                                ${title}
                             </h3>
                             <p class="text-slate-500 text-sm mb-3 line-clamp-2">
-                                ${doc.description}
+                                ${description}
                             </p>
                             <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400">
                                 <span class="flex items-center gap-1">
                                     <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
-                                    ${doc.pages} sayfa
+                                    ${doc.pages} ${labels.page}
                                 </span>
                                 <span class="flex items-center gap-1">
                                     <i data-lucide="hard-drive" class="w-3.5 h-3.5"></i>
@@ -366,17 +304,17 @@
                             <a href="${doc.url}" target="_blank" 
                                class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700 transition-all text-xs sm:text-sm font-medium">
                                 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                                Aç
+                                ${labels.open}
                             </a>
                             <a href="${doc.url}" download 
                                class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white rounded-lg hover:shadow-lg transition-all text-xs sm:text-sm font-medium">
                                 <i data-lucide="download" class="w-3.5 h-3.5"></i>
-                                İndir
+                                ${labels.download}
                             </a>
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
 
             lucide.createIcons();
         }
@@ -387,7 +325,15 @@
         });
 
         // Initial render
-        renderDocuments();
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDocuments();
+            if (typeof translatePage === 'function') translatePage();
+        });
+
+        document.addEventListener('languageChanged', () => {
+            renderDocuments();
+            if (typeof translatePage === 'function') translatePage();
+        });
     </script>
 </body>
 

@@ -337,7 +337,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "İzmir Büyükşehir Belediyesi, Karşıyaka Belediyesi",
             bigChallengeId: 3,
-            image: "https://picsum.photos/seed/su-tutma/800/400"
+            image: "images/projects/water-retention.jpeg"
         },
         {
             id: 2,
@@ -351,7 +351,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "Utrecht Üniversitesi Tıp Merkezi, Ege Üniversitesi, İZBB",
             bigChallengeId: 5,
-            image: "https://picsum.photos/seed/cities-heart/800/400"
+            image: "images/projects/cities-heart.jpg"
         },
         {
             id: 3,
@@ -365,7 +365,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "TIS PT, İZBB",
             bigChallengeId: 2,
-            image: "https://picsum.photos/seed/shift2sustain/800/400"
+            image: "images/projects/shift2sustain.webp"
         },
         {
             id: 4,
@@ -379,7 +379,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "İZBB, Harkov (Kharkiv) Belediyesi",
             bigChallengeId: 10,
-            image: "https://picsum.photos/seed/sun4ukraine/800/400"
+            image: "images/projects/sun4ukraine.webp"
         },
         {
             id: 5,
@@ -393,7 +393,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "PROMEA, İZBB",
             bigChallengeId: 3,
-            image: "https://picsum.photos/seed/nbs4med/800/400"
+            image: "images/projects/nbs4med.png"
         },
         {
             id: 6,
@@ -435,7 +435,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "İZBB, Mavişehir Su Ürünleri Koop., İZSU",
             bigChallengeId: 10,
-            image: "https://picsum.photos/seed/biyomucadele/800/400"
+            image: "images/projects/biocontrol.png"
         },
         {
             id: 9,
@@ -463,7 +463,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "İZBB, Bölgesel Ajanslar",
             bigChallengeId: 3,
-            image: "https://picsum.photos/seed/criz-ers/800/400"
+            image: "images/projects/criz-ers.png"
         },
         {
             id: 20,
@@ -491,7 +491,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "Yuva Derneği, UNDP, HUDOTO, İZBB",
             bigChallengeId: 9,
-            image: "https://picsum.photos/seed/iklim-meclisi/800/400"
+            image: "images/projects/climate-assembly.png"
         },
         {
             id: 12,
@@ -547,7 +547,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "Girit Bölgesi, IUCN, İZBB",
             bigChallengeId: 9,
-            image: "https://picsum.photos/seed/d4n/800/400"
+            image: "images/projects/d4n.png"
         },
         {
             id: 16,
@@ -561,7 +561,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "Norveç Bilim ve Teknoloji Üni., İZBB, İYTE",
             bigChallengeId: 10,
-            image: "https://picsum.photos/seed/re-value/800/400"
+            image: "images/projects/re-value.png"
         },
         {
             id: 17,
@@ -575,7 +575,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "Athena Ulusal Teknik Üni., İZBB, İzdoğa",
             bigChallengeId: 3,
-            image: "https://picsum.photos/seed/cardimed/800/400"
+            image: "images/projects/cardimed.png"
         },
         {
             id: 18,
@@ -589,7 +589,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "İZBB, ICLEI, Zurich Vakfı",
             bigChallengeId: 3,
-            image: "https://picsum.photos/seed/iklim-dayniklilik/800/400"
+            image: "images/projects/climate-resilience.jpg"
         },
         {
             id: 19,
@@ -603,7 +603,7 @@ const mlabData = {
             status: { tr: "Tamamlandı", en: "Completed" },
             partners: "İZBB, Ege Üni., İYTE, CARTIF",
             bigChallengeId: 10,
-            image: "https://picsum.photos/seed/urban-greenup/800/400"
+            image: "images/projects/urban-greenup.webp"
         }
     ],
 
@@ -644,5 +644,105 @@ const mlabData = {
         'basifed.png', 'ebso.png', 'egiad.png', 'eib.png', 'ensia.png',
         'esiad.png', 'itb.png', 'izbb.png', 'izikad.png', 'izka.png',
         'izpa.png', 'izq.png', 'izto.png', 'tmmob.png', 'valilik.png'
+    ],
+
+    // --- DOCUMENTS ---
+    documents: [
+        {
+            id: 1,
+            title: { tr: "İklim Şehir Sözleşmesi", en: "Climate City Contract" },
+            description: {
+                tr: "İzmir'in iklim nötr şehirler misyonuna katılım sözleşmesi ve taahhütleri.",
+                en: "Izmir's participation contract and commitments for the climate neutral cities mission."
+            },
+            pages: 113,
+            size: "2.6 MB",
+            thumbnail: "Docs-Cover/IKLIM-SEHIR-SOZLESMESI-cover.png",
+            url: "Docs/IKLIM-SEHIR-SOZLESMESI.pdf"
+        },
+        {
+            id: 2,
+            title: { tr: "SECAP - Sürdürülebilir Enerji ve İklim Eylem Planı", en: "SECAP - Sustainable Energy and Climate Action Plan" },
+            description: {
+                tr: "İzmir Büyükşehir Belediyesi Sürdürülebilir Enerji ve İklim Eylem Planı dokümanı.",
+                en: "Izmir Metropolitan Municipality Sustainable Energy and Climate Action Plan document."
+            },
+            pages: 200,
+            size: "20.2 MB",
+            thumbnail: "Docs-Cover/SECAP-cover.png",
+            url: "Docs/SECAP.pdf"
+        },
+        {
+            id: 3,
+            title: { tr: "3+30+300 İklim Hedefleri", en: "3+30+300 Climate Goals" },
+            description: {
+                tr: "İzmir'in kısa, orta ve uzun vadeli iklim hedeflerini içeren strateji dokümanı.",
+                en: "Strategy document containing Izmir's short, medium, and long-term climate goals."
+            },
+            pages: 20,
+            size: "16.5 MB",
+            thumbnail: "Docs-Cover/3+30+300-cover.png",
+            url: "Docs/3+30+300.pdf"
+        },
+        {
+            id: 4,
+            title: { tr: "Enerji Verimliliği Çalıştayı", en: "Energy Efficiency Workshop" },
+            description: {
+                tr: "İzmir enerji verimliliği çalıştayı sonuç raporu ve öneriler.",
+                en: "Izmir energy efficiency workshop final report and recommendations."
+            },
+            pages: 93,
+            size: "12.2 MB",
+            thumbnail: "Docs-Cover/ENERJI-VERIMLILIGI-CALISTAYI-cover.png",
+            url: "Docs/ENERJI-VERIMLILIGI-CALISTAYI.pdf"
+        },
+        {
+            id: 5,
+            title: { tr: "Kentsel İklim Analizi Raporu", en: "Urban Climate Analysis Report" },
+            description: {
+                tr: "İzmir kentsel ısı adası ve iklim analizi araştırma raporu.",
+                en: "Izmir urban heat island and climate analysis research report."
+            },
+            pages: 30,
+            size: "4.7 MB",
+            thumbnail: "Docs-Cover/KENTSEL-IKLIMI-ANALIZI-RAPORU-cover.png",
+            url: "Docs/KENTSEL-IKLIMI-ANALIZI-RAPORU.pdf"
+        },
+        {
+            id: 6,
+            title: { tr: "İzmir’de Orman Yangını Riskinin Mekânsal Analizi", en: "Spatial Analysis of Forest Fire Risk in Izmir" },
+            description: {
+                tr: "İzmir genelindeki orman yangını risklerinin mekânsal dağılımı ve analiz raporu.",
+                en: "Spatial distribution and analysis report of forest fire risks throughout Izmir."
+            },
+            pages: 39,
+            size: "13.1 MB",
+            thumbnail: "Docs-Cover/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI-COVER.png",
+            url: "Docs/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI.pdf"
+        },
+        {
+            id: 7,
+            title: { tr: "İzmir'de İklim Değişikliğinin Etkileri", en: "Effects of Climate Change in Izmir" },
+            description: {
+                tr: "İklim değişikliğinin İzmir özelindeki çevresel ve kentsel etkilerinin değerlendirilmesi.",
+                en: "Evaluation of the environmental and urban effects of climate change specific to Izmir."
+            },
+            pages: 20,
+            size: "6.3 MB",
+            thumbnail: "Docs-Cover/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI-COVER.png",
+            url: "Docs/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI.pdf"
+        },
+        {
+            id: 8,
+            title: { tr: "İzmir Kentsel Politika Notları", en: "Izmir Urban Policy Notes" },
+            description: {
+                tr: "İzmir'in kentsel gelişim ve sürdürülebilirlik politikalarına dair stratejik notlar.",
+                en: "Strategic notes on Izmir's urban development and sustainability policies."
+            },
+            pages: 26,
+            size: "7.8 MB",
+            thumbnail: "Docs-Cover/Kentsel_Politika_Notlari_Cover.png",
+            url: "Docs/Izmir_Kentsel_Politika_Notlari.pdf"
+        }
     ]
 };

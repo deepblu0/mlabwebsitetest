@@ -1170,6 +1170,15 @@ const translations = {
 
     'projects.empty.title': { tr: 'Henüz Proje Yok', en: 'No Projects Yet' },
     'projects.empty.desc': { tr: 'Bu kategori altında henüz listelenen bir proje bulunmuyor.', en: 'There are no projects listed under this category yet.' },
+    'projects.backToProjects': { tr: 'Projelere Dön', en: 'Back to Projects' },
+    'projects.notFound': { tr: 'Proje Bulunamadı', en: 'Project Not Found' },
+    'projects.label.duration': { tr: 'Proje Süresi', en: 'Project Duration' },
+    'projects.label.startDate': { tr: 'Başlangıç Tarihi', en: 'Start Date' },
+    'projects.label.status': { tr: 'Durum', en: 'Status' },
+    'projects.label.partners': { tr: 'Paydaşlar', en: 'Partners' },
+    'projects.label.about': { tr: 'Proje Hakkında', en: 'About Project' },
+    'projects.label.challenge': { tr: 'Büyük Zorluk', en: 'Grand Challenge' },
+    'projects.label.undefined': { tr: 'Belirtilmemiş', en: 'Undefined' },
 
     'home.map.badge': { tr: 'ETKİLEŞİM HARİTASI', en: 'INTERACTION MAP' },
     'home.map.title': { tr: 'Projelerin Coğrafi Dağılımı', en: 'Geographical Distribution of Projects' },
@@ -1217,6 +1226,19 @@ const translations = {
     'footer.cookie': { tr: 'Çerez Politikası', en: 'Cookie Policy' },
     'footer.kvkk': { tr: 'KVKK Aydınlatma Metni', en: 'PDPL Clarification Text' },
     'footer.copyright': { tr: '© 2025 M-LAB İzmir', en: '© 2025 M-LAB Izmir' },
+
+    // Portal Modals (Post Detail, User Profile, Partner)
+    'portal.post_detail.title': { tr: 'Post Detayı', en: 'Post Details' },
+    'portal.user_profile.title': { tr: 'Üye Profili', en: 'Member Profile' },
+
+    'portal.partner.modal_title': { tr: 'Partner Arayışı Oluştur', en: 'Create Partner Search' },
+    'portal.partner.post_title': { tr: 'Başlık', en: 'Title' },
+    'portal.partner.post_title_placeholder': { tr: 'Partner arayışınız için kısa bir başlık...', en: 'Short title for your partner search...' },
+    'portal.partner.horizon_call': { tr: 'İlgili Ufuk Avrupa Çağrısı', en: 'Related Horizon Europe Call' },
+    'portal.partner.horizon_list_hint': { tr: '(Listeden seçin veya arayın)', en: '(Select from list or search)' },
+    'portal.partner.call_search_placeholder': { tr: 'Çağrı kodu veya adı yazın...', en: 'Type call code or name...' },
+    'portal.partner.area_label': { tr: 'Hangi çalışma alanlarında partner arıyorsunuz?', en: 'In which areas are you looking for a partner?' },
+    'portal.partner.area_placeholder': { tr: 'Aradığınız partnerin özellikleri, çalışma alanı ve beklentileriniz...', en: 'Characteristics of the partner, working area and expectations...' },
 };
 
 // Get current language from localStorage

@@ -706,149 +706,7 @@
     </main>
 
 
-    <!-- NEW POST MODAL -->
-    <div id="new-post-modal" class="fixed inset-0 z-50 hidden">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeNewPostModal()"></div>
-        <div
-            class="absolute inset-4 md:inset-10 lg:inset-y-10 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-2xl lg:w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
-            <!-- Header -->
-            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
-                <h2 class="text-xl font-bold text-mlab-navy">Yeni Çağrıda Bulun</h2>
-                <button onclick="closeNewPostModal()" class="p-2 hover:bg-slate-200 rounded-full transition-colors">
-                    <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
-                </button>
-            </div>
-
-            <!-- Body -->
-            <div class="flex-grow overflow-y-auto p-6">
-                <form id="new-post-form" class="space-y-5">
-                    <!-- Post Type -->
-                    <div>
-                        <label class="block text-sm font-semibold text-mlab-navy mb-3">Çağrı Türü *</label>
-                        <div class="grid grid-cols-2 gap-4">
-                            <label class="relative cursor-pointer">
-                                <input type="radio" name="post_type" value="destek_talebi" class="peer sr-only"
-                                    required>
-                                <div
-                                    class="p-4 rounded-xl border-2 border-slate-200 peer-checked:border-mlab-cyan peer-checked:bg-mlab-cyan/5 transition-all hover:border-slate-300 h-full flex flex-col">
-                                    <div class="flex items-center gap-3 mb-2">
-                                        <div
-                                            class="w-10 h-10 rounded-full bg-gradient-to-br from-mlab-cyan to-teal-500 flex items-center justify-center shadow-lg shadow-mlab-cyan/30 shrink-0">
-                                            <i data-lucide="message-square-plus" class="w-5 h-5 text-white"></i>
-                                        </div>
-                                        <div class="font-semibold text-mlab-navy text-sm">Destek Talebi</div>
-                                    </div>
-                                    <p class="text-xs text-slate-500 leading-relaxed">
-                                        İnovatif, yaşanabilir ve iklim nötr odaklı projeleriniz için ihtiyaç duyduğunuz
-                                        partner, finansman veya teknik altyapı
-                                        desteğini buradan duyurun.
-                                    </p>
-                                </div>
-                            </label>
-                            <label class="relative cursor-pointer">
-                                <input type="radio" name="post_type" value="uzmanlik_sunumu" class="peer sr-only"
-                                    required>
-                                <div
-                                    class="p-4 rounded-xl border-2 border-slate-200 peer-checked:border-mlab-orange peer-checked:bg-mlab-orange/5 transition-all hover:border-slate-300 h-full flex flex-col">
-                                    <div class="flex items-center gap-3 mb-2">
-                                        <div
-                                            class="w-10 h-10 rounded-full bg-gradient-to-br from-mlab-orange to-amber-500 flex items-center justify-center shadow-lg shadow-mlab-orange/30 shrink-0">
-                                            <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
-                                        </div>
-                                        <div class="font-semibold text-mlab-navy text-sm">Uzmanlık Bildirisi</div>
-                                    </div>
-                                    <p class="text-xs text-slate-500 leading-relaxed">
-                                        Şehrin dönüşüm hedeflerine değer katacak kurumsal yetkinliklerinizi, akademik
-                                        birikiminizi veya teknolojik çözüm
-                                        önerilerinizi çözüm ağına ekleyin.
-                                    </p>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Title -->
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-2">Başlık *</label>
-                        <input type="text" name="title" required
-                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
-                    </div>
-
-                    <!-- Büyük Zorluk -->
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-2">Büyük Zorluk *</label>
-                        <select name="sector" required
-                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
-                            <option value="">Seçiniz...</option>
-                            <option value="barinma">Uygun Fiyatlı Barınma</option>
-                            <option value="hareketlilik">Sürdürülebilir Hareketlilik</option>
-                            <option value="afet">Afetlere Dirençlilik</option>
-                            <option value="gida">Sağlıklı Gıda</option>
-                            <option value="saglik">Sağlık ve Esenlik</option>
-                            <option value="egitim">Eğitimli Nesiller</option>
-                            <option value="is">İnsana Yakışır İş</option>
-                            <option value="inovasyon">İnovasyon Üretimi</option>
-                            <option value="kultur">Kültür ve Kapsayıcılık</option>
-                            <option value="dongusal">Döngüsel Metabolizma</option>
-                        </select>
-                    </div>
-
-                    <!-- Description -->
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-2">Açıklama *</label>
-                        <textarea name="description" rows="4" required
-                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none"></textarea>
-                    </div>
-
-                    <!-- File Upload -->
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-2">
-                            <i data-lucide="paperclip" class="w-4 h-4 inline mr-1"></i>
-                            Dosya Ekle (opsiyonel)
-                        </label>
-                        <div id="file-drop-zone"
-                            class="border-2 border-dashed border-slate-300 rounded-xl p-4 text-center hover:border-mlab-purple transition-colors cursor-pointer bg-slate-50">
-                            <input type="file" id="post-file" name="file"
-                                accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif" class="hidden"
-                                onchange="handleFileSelect(event)">
-                            <label for="post-file" class="cursor-pointer">
-                                <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto text-slate-400 mb-2"></i>
-                                <p class="text-sm text-slate-600">Dosya seçin veya sürükleyin</p>
-                                <p class="text-xs text-slate-400 mt-1">PDF, Word, Excel, Resim (max 10MB)</p>
-                            </label>
-                        </div>
-                        <div id="selected-file-display" class="mt-2 hidden">
-                            <div
-                                class="flex items-center justify-between bg-white border border-slate-200 rounded-lg px-3 py-2">
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="file" id="selected-file-icon" class="w-4 h-4 text-mlab-purple"></i>
-                                    <span id="selected-file-name"
-                                        class="text-sm text-slate-700 truncate max-w-[200px]"></span>
-                                    <span id="selected-file-size" class="text-xs text-slate-400"></span>
-                                </div>
-                                <button type="button" onclick="removeSelectedFile()"
-                                    class="p-1 hover:bg-red-50 rounded text-red-500">
-                                    <i data-lucide="x" class="w-4 h-4"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Footer -->
-            <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
-                <button onclick="closeNewPostModal()"
-                    class="px-5 py-2.5 text-slate-600 font-medium rounded-xl hover:bg-slate-200 transition-colors">
-                    İptal
-                </button>
-                <button onclick="submitNewPost()"
-                    class="px-5 py-2.5 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white font-semibold rounded-xl hover:shadow-lg transition-all">
-                    Yayınla
-                </button>
-            </div>
-        </div>
-    </div>
+    <!-- Duplicate New Post Modal Removed -->
 
     <!-- POST DETAIL MODAL -->
     <div id="post-detail-modal" class="fixed inset-0 z-50 hidden">
@@ -856,7 +714,8 @@
         <div
             class="absolute inset-4 md:inset-10 lg:inset-y-10 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-2xl lg:w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
             <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
-                <h2 id="detail-title" class="text-xl font-bold text-mlab-navy">Post Detayı</h2>
+                <h2 id="detail-title" class="text-xl font-bold text-mlab-navy" data-i18n="portal.post_detail.title">Post
+                    Detayı</h2>
                 <button onclick="closePostDetailModal()" class="p-2 hover:bg-slate-200 rounded-full transition-colors">
                     <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
                 </button>
@@ -876,7 +735,7 @@
                 class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-gradient-to-r from-mlab-navy to-mlab-purple">
                 <h2 class="text-lg font-bold text-white flex items-center gap-2">
                     <i data-lucide="user-circle" class="w-5 h-5"></i>
-                    Üye Profili
+                    <span data-i18n="portal.user_profile.title">Üye Profili</span>
                 </h2>
                 <button onclick="closeUserProfileModal()" class="p-2 hover:bg-white/20 rounded-full transition-colors">
                     <i data-lucide="x" class="w-5 h-5 text-white"></i>
@@ -904,7 +763,7 @@
                         class="px-6 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 border-b border-white/10 flex items-center justify-between">
                         <h3 class="text-xl font-bold text-white flex items-center gap-2">
                             <i data-lucide="users" class="w-6 h-6 text-white/90"></i>
-                            Partner Arayışı Oluştur
+                            <span data-i18n="portal.partner.modal_title">Partner Arayışı Oluştur</span>
                         </h3>
                         <button onclick="closePartnerModal()"
                             class="text-white/70 hover:text-white transition-colors p-1 hover:bg-white/10 rounded-lg">
@@ -919,21 +778,25 @@
 
                             <!-- Post Title -->
                             <div class="space-y-1">
-                                <label class="text-sm font-medium text-slate-700">Başlık</label>
+                                <label class="text-sm font-medium text-slate-700"
+                                    data-i18n="portal.partner.post_title">Başlık</label>
                                 <input type="text" name="postTitle" required
                                     placeholder="Partner arayışınız için kısa bir başlık..."
+                                    data-i18n-placeholder="portal.partner.post_title_placeholder"
                                     class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all font-semibold">
                             </div>
 
                             <!-- Horizon Call Selection -->
                             <div class="space-y-1 relative group">
                                 <label class="text-sm font-medium text-slate-700 flex items-center gap-2">
-                                    İlgili Ufuk Avrupa Çağrısı
-                                    <span class="text-xs text-slate-400 font-normal">(Listeden seçin veya arayın)</span>
+                                    <span data-i18n="portal.partner.horizon_call">İlgili Ufuk Avrupa Çağrısı</span>
+                                    <span class="text-xs text-slate-400 font-normal"
+                                        data-i18n="portal.partner.horizon_list_hint">(Listeden seçin veya arayın)</span>
                                 </label>
                                 <div class="relative">
                                     <input type="text" id="horizon-call-search" name="horizon_call"
                                         placeholder="Çağrı kodu veya adı yazın..." required autocomplete="off"
+                                        data-i18n-placeholder="portal.partner.call_search_placeholder"
                                         oninput="filterHorizonCalls(this.value)"
                                         onfocus="filterHorizonCalls(this.value)"
                                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 pl-10 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all">
@@ -952,10 +815,12 @@
 
                             <!-- Partner Area Description -->
                             <div class="space-y-1">
-                                <label class="text-sm font-medium text-slate-700">Hangi çalışma alanlarında partner
+                                <label class="text-sm font-medium text-slate-700"
+                                    data-i18n="portal.partner.area_label">Hangi çalışma alanlarında partner
                                     arıyorsunuz?</label>
                                 <textarea name="partnerArea" rows="4" required
                                     placeholder="Aradığınız partnerin özellikleri, çalışma alanı ve beklentileriniz..."
+                                    data-i18n-placeholder="portal.partner.area_placeholder"
                                     class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all resize-none"></textarea>
                             </div>
 
@@ -966,13 +831,14 @@
                     <div
                         class="bg-slate-50 px-6 py-4 flex items-center justify-end gap-3 rounded-b-2xl border-t border-slate-200">
                         <button onclick="closePartnerModal()"
-                            class="px-5 py-2.5 text-slate-600 font-medium hover:bg-slate-200 rounded-xl transition-colors">
+                            class="px-5 py-2.5 text-slate-600 font-medium hover:bg-slate-200 rounded-xl transition-colors"
+                            data-i18n="common.cancel">
                             İptal
                         </button>
                         <button onclick="submitPartnerCall()" id="partner-submit-btn"
                             class="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold rounded-xl shadow-lg shadow-cyan/20 hover:shadow-cyan/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
                             <i data-lucide="send" class="w-5 h-5"></i>
-                            Yayınla
+                            <span data-i18n="portal.form.publish">Yayınla</span>
                         </button>
                     </div>
                 </div>
@@ -2322,12 +2188,15 @@
             dropdown.classList.remove('hidden');
             dropdown.innerHTML = ''; // Clear current
 
+            const lang = window.getCurrentLang();
             const lowerQuery = query.toLowerCase();
+
             // Filter
-            const matches = cachedHorizonCalls.filter(call =>
-                call.code.toLowerCase().includes(lowerQuery) ||
-                call.name.toLowerCase().includes(lowerQuery)
-            ).slice(0, 50); // Limit rendered items for performance
+            const matches = cachedHorizonCalls.filter(call => {
+                const name = (typeof call.name === 'object') ? (call.name[lang] || call.name['en'] || call.name['tr']) : call.name;
+                return call.code.toLowerCase().includes(lowerQuery) ||
+                    name.toLowerCase().includes(lowerQuery);
+            }).slice(0, 50); // Limit rendered items for performance
 
             if (matches.length === 0) {
                 dropdown.innerHTML = '<div class="p-3 text-sm text-slate-500 text-center italic">Sonuç bulunamadı.</div>';
@@ -2335,14 +2204,15 @@
             }
 
             matches.forEach(call => {
+                const name = (typeof call.name === 'object') ? (call.name[lang] || call.name['en'] || call.name['tr']) : call.name;
                 const div = document.createElement('div');
                 div.className = 'px-4 py-3 hover:bg-slate-50 cursor-pointer border-b border-slate-50 last:border-0 transition-colors text-left';
                 div.innerHTML = `
                     <div class="font-bold text-mlab-navy text-xs mb-0.5 whitespace-nowrap overflow-hidden text-ellipsis">${call.code}</div>
-                    <div class="text-sm text-slate-700 leading-snug line-clamp-2">${call.name}</div>
+                    <div class="text-sm text-slate-700 leading-snug line-clamp-2">${name}</div>
                 `;
                 div.onclick = () => {
-                    document.getElementById('horizon-call-search').value = `${call.code} - ${call.name}`;
+                    document.getElementById('horizon-call-search').value = `${call.code} - ${name}`;
                     dropdown.classList.add('hidden');
                 };
                 dropdown.appendChild(div);
