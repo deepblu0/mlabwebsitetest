@@ -45,11 +45,11 @@ const translations = {
     // Hero Section
     'hero.title': {
         tr: 'İKLİM NÖTR BİR İZMİR İÇİN',
-        en: 'FOR A CLIMATE NEUTRAL IZMIR'
+        en: 'TAKE ACTION'
     },
     'hero.subtitle': {
         tr: 'HAREKETE GEÇ',
-        en: 'TAKE ACTION'
+        en: 'FOR A <br> CLIMATE NEUTRAL IZMIR'
     },
 
     // Mission Section

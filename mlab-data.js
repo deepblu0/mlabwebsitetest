@@ -327,10 +327,10 @@ const mlabData = {
     projects: [
         {
             id: 1,
-            title: { tr: "İzmir'de Su Tutma Peyzajlarının Geliştirilmesi Projesi", en: "Development of Water Retention Landscapes in Izmir" },
+            title: { tr: "İzmir’de Su Tutma Peyzajlarının Geliştirilmesi Projesi", en: "Development of Water Retention Landscapes in Izmir" },
             description: {
-                tr: "İzmir'deki kentsel çevrenin sürdürülebilirliğini ve dirençliliğini artırmak amacıyla, su yönetimi kapasitesini güçlendirerek, iklim değişikliğine uyum sağlamasını ve biyoçeşitliliğin desteklenmesini sağlamaktır.",
-                en: "Aiming to increase the sustainability and resilience of the urban environment in Izmir by strengthening water management capacity, ensuring adaptation to climate change, and supporting biodiversity."
+                tr: "İzmir’deki kentsel çevrenin sürdürülebilirliğini ve dirençliliğini artırmak amacıyla, su yönetimi kapasitesini güçlendirerek, iklim değişikliğine uyum sağlamasını ve biyoçeşitliliğin desteklenmesini sağlamaktır. Proje, Bostanlı'da bir Su Tutma Parkı inşasını, Sadi Hoşses Parkı'nda \"sünger kaplamalar\" gibi geçirgen yüzeylerin uygulanmasını kapsamaktadır.",
+                en: "Aiming to increase the sustainability and resilience of the urban environment in Izmir by strengthening water management capacity, ensuring adaptation to climate change, and supporting biodiversity. The project includes the construction of a Water Retention Park in Bostanlı and the application of permeable surfaces such as \"sponge coatings\" in Sadi Hoşses Park."
             },
             duration: { tr: "24 Ay", en: "24 Months" },
             startDate: null,
@@ -341,127 +341,127 @@ const mlabData = {
         },
         {
             id: 2,
-            title: { tr: "CITIES@HEART - Kardiyovasküler Sağlık için Şehir Stratejileri", en: "CITIES@HEART - City Strategies for Cardiovascular Health" },
+            title: { tr: "Avrupa’da Kardiyovasküler Sağlığın İyileştirilmesi için Şehir Temelli Stratejiler (CITIES@HEART) Projesi", en: "CITIES@HEART - City Strategies for Cardiovascular Health" },
             description: {
-                tr: "Proje, kent ölçeğinde kardiyovasküler hastalıkların (KVH) farkındalık, erken tanı, önleme ve yönetimine odaklanmaktadır.",
-                en: "The project focuses on awareness, early diagnosis, prevention, and management of cardiovascular diseases (CVD) at the urban scale."
+                tr: "Proje, kent ölçeğinde kardiyovasküler hastalıkların (KVH) farkındalık, erken tanı, önleme ve yönetimine odaklanmaktadır. Özellikle obezite, yüksek tansiyon ve diyabet gibi kalp hastalıklarına yol açan risk faktörlerine odaklanan proje, bu hastalıkların erken teşhis ve tedavisi için yeni yöntemler geliştirmektedir. İzmir, proje ortağı olan Ege Üniversitesi ile birlikte yerel sağlık eşitsizliklerinin haritalanması, toplumsal ihtiyaçların tespiti ve uygulanacak stratejilerin kent dinamiklerine uyarlanması süreçlerinde katkı sunmaktadır.",
+                en: "The project focuses on awareness, early diagnosis, prevention, and management of cardiovascular diseases (CVD) at the urban scale. Focusing particularly on risk factors leading to heart diseases such as obesity, high blood pressure, and diabetes, the project develops new methods for early diagnosis and treatment of these diseases. Izmir contributes to the processes of mapping local health inequalities, identifying social needs, and adapting strategies to urban dynamics together with project partner Ege University."
             },
             duration: { tr: "60 Ay", en: "60 Months" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "Utrecht Üniversitesi Tıp Merkezi, Ege Üniversitesi, İZBB",
+            partners: "UTRECHT ÜNİVERSİTESİ TIP MERKEZİ, Ege Üniversitesi, İzmir Büyükşehir Belediyesi",
             bigChallengeId: 5,
             image: "images/projects/cities-heart.jpg"
         },
         {
             id: 3,
-            title: { tr: "SHIFT2SUSTAIN - Mobilitede Sürdürülebilirlik", en: "SHIFT2SUSTAIN - Sustainability in Mobility" },
+            title: { tr: "Mobilitede Sürdürülebilirlik Yönünde Davranış Değişikliği Sağlamak (SHIFT2SUSTAIN)", en: "SHIFT2SUSTAIN - Sustainability in Mobility" },
             description: {
-                tr: "Proje, dört ana hedef çerçevesinde kentsel hareketlilik sorunlarına çözüm üretmeyi amaçlamaktadır.",
-                en: "The project aims to generate solutions to urban mobility problems within the framework of four main objectives."
+                tr: "Proje, dört ana hedef çerçevesinde kentsel hareketlilik sorunlarına çözüm üretmeyi amaçlamaktadır. Davranış değişikliklerini teşvik etmek amacıyla, oyunlaştırma, farkındalık kampanyaları ve araçtan şebekeye (V2G) çözümler gibi yenilikçi yaklaşımları içeren pilot projeler uygulanacaktır. Belediyemiz, “Hareketlilik Yönetimi Önlemleri\" çerçevesinde trafik sıkışıklığına karşı ücretlendirme, park et-devam et sistemleri, otopark yönetimi ve kargo bisikletleri uygulamalarına odaklanacaktır.",
+                en: "The project aims to generate solutions to urban mobility problems within the framework of four main objectives. Pilot projects including innovative approaches such as gamification, awareness campaigns, and vehicle-to-grid (V2G) solutions will be implemented to encourage behavioral changes. Our municipality will focus on congestion pricing, park-and-ride systems, parking management, and cargo bike applications within the framework of \"Mobility Management Measures\"."
             },
             duration: { tr: "36 Ay", en: "36 Months" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "TIS PT, İZBB",
+            partners: "TIS PT-Ulaşım, İnovasyon ve Sistemler Danışmanlık Şirketi, İzmir Büyükşehir Belediyesi",
             bigChallengeId: 2,
             image: "images/projects/shift2sustain.webp"
         },
         {
             id: 4,
-            title: { tr: "SUN4Ukraine - Ukrayna için Sürdürülebilir Kentsel Net Sıfır Ağı", en: "SUN4Ukraine - Sustainable Urban Net Zero Network for Ukraine" },
+            title: { tr: "SUN4Ukraine – The Sustainable Urban Net Zero Network for Ukraine", en: "SUN4Ukraine – The Sustainable Urban Net Zero Network for Ukraine" },
             description: {
-                tr: "Program, Ukrayna kentlerinin iklim nötr hedefler doğrultusunda yeniden yapılanma süreçlerine destek olmayı amaçlamaktadır.",
-                en: "The program aims to support the reconstruction processes of Ukrainian cities in line with climate-neutral goals."
+                tr: "Program, Ukrayna kentlerinin iklim nötr hedefler doğrultusunda yeniden yapılanma süreçlerine destek olmayı amaçlamaktadır. İzmir Büyükşehir Belediyesi, ekonomik profili ve enerji konusundaki deneyim benzerliği nedeniyle Ukrayna'nın Harkov (Kharkiv) kenti ile eşleştirilmiştir. Bu çerçevede Harkov kenti ile iklim nötr konularında toplantılar, çalışma ziyaretleri ve etkinlik katılımları planlanmaktadır.",
+                en: "The program aims to support the reconstruction processes of Ukrainian cities in line with climate-neutral goals. Izmir Metropolitan Municipality has been paired with Kharkiv, Ukraine, due to similarities in economic profile and energy experience. In this context, meetings, study visits, and event participations on climate-neutral topics are planned with the city of Kharkiv."
             },
             duration: { tr: "18 Ay", en: "18 Months" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "İZBB, Harkov (Kharkiv) Belediyesi",
+            partners: "İzmir Büyükşehir Belediyesi, Harkov (Kharkiv) Belediyesi",
             bigChallengeId: 10,
             image: "images/projects/sun4ukraine.webp"
         },
         {
             id: 5,
-            title: { tr: "NBS4MED - Doğa Temelli Çözümler Projesi", en: "NBS4MED - Nature Based Solutions Project" },
+            title: { tr: "İklime Dirençli Akdeniz Kentleri için Doğa Temelli Çözümler Projesi - NBS4MED", en: "NBS4MED - Nature Based Solutions Project" },
             description: {
-                tr: "Proje, Akdeniz bölgesinde iklim değişikliğine uyumu güçlendirmek amacıyla doğa esaslı çözümler yoluyla risk azaltmayı hedeflemektedir.",
-                en: "The project aims to reduce risk through nature-based solutions to strengthen adaptation to climate change in the Mediterranean region."
+                tr: "Proje, Akdeniz bölgesinde iklim değişikliğine uyumu güçlendirmek amacıyla doğa esaslı çözümler yoluyla risk azaltma, afet direncini artırma ve ortak metodolojik çerçeveler geliştirmeyi hedeflemektedir. Pilot çalışma kapsamında Yeşilyurt Mustafa Necati Kültür Merkezi’nin terası iklime dayanıklı, permakültür prensipleriyle tasarlanmış, yerel bitki türleri, yağmur suyu hasadı ve kompost teknolojileriyle desteklenmiş bir “yeşil çatıya” dönüştürülecektir.",
+                en: "The project aims to reduce risk, increase disaster resilience, and develop common methodological frameworks through nature-based solutions to strengthen adaptation to climate change in the Mediterranean region. Within the scope of the pilot study, the terrace of Yeşilyurt Mustafa Necati Cultural Center will be transformed into a \"green roof\" designed with climate-resilient permaculture principles, supported by local plant species, rainwater harvesting, and compost technologies."
             },
             duration: { tr: "36 Ay", en: "36 Months" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "PROMEA, İZBB",
+            partners: "Hellenik Araştırma ve Geliştirme Metodolojilerini Destekleme Derneği (PROMEA), İzmir Büyükşehir Belediyesi",
             bigChallengeId: 3,
             image: "images/projects/nbs4med.png"
         },
         {
             id: 6,
-            title: { tr: "RESWATER - Geleneksel Olmayan Su Kaynakları", en: "RESWATER - Non-Conventional Water Resources" },
+            title: { tr: "Dirençli Kentsel Su Yönetimi İçin Geleneksel Olmayan Su Kaynakları (RESWATER)", en: "RESWATER - Non-Conventional Water Resources" },
             description: {
-                tr: "Kentsel kıyı havzalarında artan su talebinin doğal tatlı su kaynaklarına bağımlılığı artırmadan karşılanması amaçlanmaktadır.",
-                en: "Aiming to meet increasing water demand in urban coastal basins without increasing dependency on natural freshwater resources."
+                tr: "Proje, kentsel kıyı havzalarında artan su talebinin doğal tatlı su kaynaklarına bağımlılığı artırmadan karşılanması amacıyla konvansiyonel olmayan su kaynaklarının araştırılmasını ve pilot uygulamalarla test edilmesini hedeflemektedir. İzmir’de pilot uygulama belediye hizmet binasında yürütülecek; bir gri su arıtma ve yağmur suyu hasadı sistemi geliştirilecektir.",
+                en: "The project aims to research non-conventional water resources and test them with pilot applications in order to meet the increasing water demand in urban coastal basins without increasing dependency on natural freshwater resources. A pilot application in Izmir will be carried out in the municipal service building; a grey water treatment and rainwater harvesting system will be developed."
             },
             duration: { tr: "36 Ay", en: "36 Months" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "Malta Enerji ve Su Ajansı, İZBB",
+            partners: "Malta Enerji ve Su Ajansı, İzmir Büyükşehir Belediyesi, Su Araştırmaları ve Teknolojileri Merkezi, Cagliari Üniversitesi, Mısır Su Kaynakları ve Sulama Bakanlığı",
             bigChallengeId: 10,
             image: "https://picsum.photos/seed/reswater/800/400"
         },
         {
             id: 7,
-            title: { tr: "CLI-MET - İklim Gündeminin Uygulanması", en: "CLI-MET - Implementation of Climate Agenda" },
+            title: { tr: "İklim Gündeminin Büyükşehirlerde Uygulanması (CLI-MET) Projesi", en: "CLI-MET - Implementation of Climate Agenda" },
             description: {
-                tr: "Avrupa metropol bölgelerinde iklim değişikliğiyle mücadeleye yönelik stratejik farkındalığı artırmayı hedefleyen kapasite geliştirme girişimidir.",
-                en: "A capacity-building initiative aiming to increase strategic awareness for combating climate change in European metropolitan regions."
+                tr: "Proje, Avrupa metropol bölgelerinde iklim değişikliğiyle mücadeleye yönelik stratejik farkındalığı artırmayı ve belediyelerin iklim gündemindeki rolünü güçlendirmeyi hedefleyen bütüncül bir kapasite geliştirme girişimidir. İzmir Büyükşehir Belediyesi, ilk paydaş çalıştayına ev sahipliği yaparak yerel paydaşların, akademisyenlerin ve uzmanların katılımıyla sürecin kapsayıcı bir şekilde yürütülmesine katkı sunacaktır.",
+                en: "The project is a holistic capacity-building initiative aimed at raising strategic awareness for combating climate change in European metropolitan regions and strengthening the role of municipalities in the climate agenda. Izmir Metropolitan Municipality will contribute to the inclusive execution of the process by hosting the first stakeholder workshop with the participation of local stakeholders, academics, and experts."
             },
             duration: { tr: "36 Ay", en: "36 Months" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "Palermo Üniversitesi, İZBB, Dortmund Teknik Üni.",
+            partners: "Palermo Üniversitesi, İzmir Büyükşehir Belediyesi, Dortmund Teknik Üniversitesi, Madrid Teknik Üniversitesi, Milano Büyükşehir Belediyesi, METREX",
             bigChallengeId: 3,
             image: "https://picsum.photos/seed/cli-met/800/400"
         },
         {
             id: 8,
-            title: { tr: "Biyomücadele Yoluyla Kirliliğin Azaltılması", en: "Pollution Reduction via Biocontrol" },
+            title: { tr: "İzmir Körfezi'nde Denizel Ekosistemlerin Geliştirilmesi Kapsamında Biyomücadele Yoluyla Kirliliğin Azaltılması", en: "Pollution Reduction via Biocontrol" },
             description: {
-                tr: "İzmir Körfezi'nde su kirliliğini azaltmaya yönelik ekolojik temelli, sürdürülebilir bir model geliştirmek hedeflenmektedir.",
-                en: "Aiming to develop an ecological-based, sustainable model to reduce water pollution in Izmir Bay."
+                tr: "İzmir Körfezi’nde su kirliliğini azaltmaya yönelik olarak ekolojik temelli, sürdürülebilir ve bütüncül bir model geliştirerek, deniz ekosisteminin restorasyonuna katkı sağlamak hedeflenmektedir. Fitoremediasyon yöntemi kullanılarak biyolojik mücadele yapılacak, makroalg türünün rejeneratif hasadı ile ekonomiye kazandırılması sağlanacaktır.",
+                en: "Aiming to contribute to the restoration of the marine ecosystem by developing an ecological-based, sustainable, and holistic model to reduce water pollution in Izmir Bay. Biological control will be carried out using the phytoremediation method, and economic gain will be achieved through the regenerative harvest of macroalgae species."
             },
             duration: { tr: "18 Ay", en: "18 Months" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "İZBB, Mavişehir Su Ürünleri Koop., İZSU",
+            partners: "İzmir Büyükşehir Belediyesi, Mavişehir Su Ürünleri Kooperatifi, İZSU",
             bigChallengeId: 10,
             image: "images/projects/biocontrol.png"
         },
         {
             id: 9,
-            title: { tr: "GCC-Synergy - Dijital Çözümler Projesi", en: "GCC-Synergy - Digital Solutions Project" },
+            title: { tr: "İzmir Küresel İklim Topluluğu (KİT) Yoluyla Elektrikte Dekarbonizasyon için Dijital Çözümler Projesi (GCC-Synergy)", en: "GCC-Synergy - Digital Solutions Project" },
             description: {
-                tr: "Karbon emisyonlarının önemli bir kısmını oluşturan binalar ve tesislerdeki elektrik tüketimi sorununu ele almaktadır.",
-                en: "Addressing the issue of electricity consumption in buildings and facilities, which constitute a significant part of carbon emissions."
+                tr: "Proje, karbon emisyonlarının önemli bir kısmını oluşturan binalar, tesisler ve altyapıdaki kritik elektrik tüketimi sorununu ele almaktadır. KİT-SİNERJİ (GCC-SYNERGY) dijital platformunun geliştirilmesiyle, gerçek zamanın izleme, analiz ve eyleme dönüştürülebilir bilgiler sağlanarak elektrik tüketiminin yönetiminde devrim yaratmak hedeflenmektedir.",
+                en: "The project addresses the critical issue of electricity consumption in buildings, facilities, and infrastructure, which constitute a significant portion of carbon emissions. By developing the KIT-SYNERGY (GCC-SYNERGY) digital platform, it aims to revolutionize the management of electricity consumption by providing real-time monitoring, analysis, and actionable insights."
             },
             duration: { tr: "24 Ay", en: "24 Months" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "İZBB, Ege Üniversitesi, İZENERJİ",
+            partners: "İzmir Büyükşehir Belediyesi, Ege Üniversitesi, İZENERJİ A.Ş., GDZ Elektrik Dağıtım A.Ş, ENSİA, Ege Orman Vakfı",
             bigChallengeId: 8,
             image: "https://picsum.photos/seed/gcc-synergy/800/400"
         },
         {
             id: 10,
-            title: { tr: "CRIZ-ERS - Dirençlilik Stratejileri", en: "CRIZ-ERS - Resilience Strategies" },
+            title: { tr: "İklime Hazır İzmir: Dirençlilik Stratejilerinin Geliştirilmesi Projesi (CRIZ-ERS)", en: "CRIZ-ERS - Resilience Strategies" },
             description: {
-                tr: "İklim değişikliğinin İzmir kentinde oluşturduğu etkileri analiz etmeyi ve kırılgan bölgeleri belirlemeyi amaçlamaktadır.",
-                en: "Aiming to analyze the effects of climate change in Izmir and identify vulnerable regions."
+                tr: "Proje, iklim değişikliğinin İzmir kentinde oluşturduğu etkileri kent ve Konak ilçe ölçeğinde analiz etmeyi ve kırılganlık düzeyi yüksek bölgeleri belirlemeyi amaçlayan kapsamlı bir risk değerlendirme ve uyum çalışmasıdır. CLIMAAX aracı ve sağlanan teknik destekle birlikte mevcut iklim riskleri mahalle ölçeğinde incelenecek ve iklim uyum önerileri oluşturulacaktır.",
+                en: "The project is a comprehensive risk assessment and adaptation study aimed at analyzing the effects of climate change in the city of Izmir at the city and Konak district scale and identifying highly vulnerable regions. With the CLIMAAX tool and the technical support provided, existing climate risks will be examined at the neighborhood scale and climate adaptation recommendations will be generated."
             },
             duration: { tr: "22 Ay", en: "22 Months" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "İZBB, Bölgesel Ajanslar",
+            partners: "İzmir Büyükşehir Belediyesi, Bölgesel ve Ulusal Sivil Koruma Ajansları, KOBİ'ler",
             bigChallengeId: 3,
             image: "images/projects/criz-ers.png"
         },
@@ -481,15 +481,15 @@ const mlabData = {
         },
         {
             id: 11,
-            title: { tr: "İzmir İklim İçin Yurttaş Meclisi", en: "Izmir Citizens' Assembly for Climate" },
+            title: { tr: "İzmir İklim İçin Yurttaş Meclisi Projesi", en: "Izmir Citizens' Assembly for Climate" },
             description: {
-                tr: "İzmir'de iklim değişikliğine karşı toplumsal direnç geliştirmek için \"İklim Meclisi\" modelinin uygulanmasını hedeflemektedir.",
-                en: "Aiming to implement the \"Climate Assembly\" model to develop social resilience against climate change in Izmir."
+                tr: "Proje, İzmir’de iklim değişikliğinin etkilerine karşı toplumsal direnç geliştirmek ve yerel halkın karar alma süreçlerinde doğrudan söz sahibi olmasını sağlamak amacıyla “İklim Meclisi” modelinin uygulanmasını hedeflemektedir. Kura yöntemiyle seçilen yurttaşlar, iklim risklerini tartışarak İzmir’in Sürdürülebilir Enerji ve İklim Eylem Planı (SECAP) ve 2030 Karbon Nötr İzmir hedefleriyle uyumlu politika önerileri geliştirecektir.",
+                en: "The project aims to implement the \"Climate Assembly\" model in order to develop social resilience against the effects of climate change in Izmir and to ensure that the local people have a direct say in decision-making processes. Citizens selected by lot will discuss climate risks and develop policy recommendations compatible with Izmir's Sustainable Energy and Climate Action Plan (SECAP) and 2030 Carbon Neutral Izmir goals."
             },
             duration: { tr: "15 Ay", en: "15 Months" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "Yuva Derneği, UNDP, HUDOTO, İZBB",
+            partners: "Yuva Derneği, UNDP, HUDOTO vakfı, İzmir Büyükşehir Belediyesi",
             bigChallengeId: 9,
             image: "images/projects/climate-assembly.png"
         },
@@ -497,27 +497,27 @@ const mlabData = {
             id: 12,
             title: { tr: "Territoires cultivés (Cultivated Territories)", en: "Territoires cultivés (Cultivated Territories)" },
             description: {
-                tr: "Bölgenin ekolojik dönüşümünü, kentsel planlamayı ve kültürel politikaları birleştiren projeler geliştirmeyi amaçlamaktadır.",
-                en: "Aiming to develop projects combining the ecological transformation of the region, urban planning, and cultural policies."
+                tr: "Proje, bölgenin ekolojik dönüşümünü, kentsel planlamayı ve kültürel politikaları birleştiren projeler yoluyla kültürü kalkınmalarının itici gücü haline getiren Akdeniz metropollerinden oluşan bir ağ kurmayı amaçlamaktadır. İzmir Büyükşehir Belediyesi, İzmir Kültür Sempozyumu düzenleyecek ve ortak Akdeniz Kültür ve Yaratıcılık Kentleri Manifestosu’nu hazırlayacaktır.",
+                en: "The project aims to establish a network of Mediterranean metropolises that make culture a driving force for development through projects combining ecological transformation of the region, urban planning, and cultural policies. Izmir Metropolitan Municipality will organize the Izmir Culture Symposium and prepare the joint Mediterranean Culture and Creativity Cities Manifesto."
             },
             duration: { tr: "24 Ay", en: "24 Months" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "AVITEM, Vitrolles, Nice, İZBB",
+            partners: "AVITEM, Vitrolles Şehri Belediyesi, Korsika Yerel Yönetimi, Nice Şehri Belediyesi, Nice Condé Sanat Okulu, İzmir Büyükşehir Belediyesi",
             bigChallengeId: 9,
             image: "https://picsum.photos/seed/cultivated/800/400"
         },
         {
             id: 13,
-            title: { tr: "INHERIT - Kültürel Miras için Çözümler", en: "INHERIT - Solutions for Cultural Heritage" },
+            title: { tr: "INHERIT-Sürdürülebilir, Kapsayıcı, Kaynak Verimli ve Dirençli Kültürel Miras için Yeni Nesil Çözümler", en: "INHERIT - Solutions for Cultural Heritage" },
             description: {
-                tr: "Kültürel miras çözümlerine yönelik IoT, Yapay Zeka ve veri analitiği eşliğinde sistematik bir metodoloji oluşturmaktır.",
-                en: "To create a systematic methodology for cultural heritage solutions accompanied by IoT, AI, and data analytics."
+                tr: "Projenin amacı, sürdürülebilir, kapsayıcı ve verimli kültürel miras çözümlerine yönelik olarak IoT, Yapay Zeka ve veri analitiği eşliğinde sistematik bir metodoloji oluşturmaktır. İzmir’de Ahmet Piriştina Kent Arşivi Binası gösterim alanı olarak kullanılacak; binanın kamusal işlevi artırılacak, yenilenebilir enerji çözümleri uygulanacak ve mimari özellikleri korunarak renovasyon yapılacaktır.",
+                en: "The aim of the project is to create a systematic methodology accompanied by IoT, Artificial Intelligence, and data analytics for sustainable, inclusive, and efficient cultural heritage solutions. In Izmir, Ahmet Piriştina City Archive Building will be used as a demonstration area; the public function of the building will be increased, renewable energy solutions will be applied, and renovation will be done while preserving its architectural features."
             },
             duration: null,
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "Singularlogic, İZBB",
+            partners: "Singularlogic Anonymi Etaireia Pliroforiakon Sysel, İzmir Büyükşehir Belediyesi",
             bigChallengeId: 9,
             image: "https://picsum.photos/seed/inherit/800/400"
         },
@@ -525,83 +525,83 @@ const mlabData = {
             id: 14,
             title: { tr: "Cool Noons", en: "Cool Noons" },
             description: {
-                tr: "Akdeniz şehirlerinde yenilikçi çözümleri test etmek, turizmde iklim değişikliği riskleriyle mücadele etmek amaçlanmaktadır.",
-                en: "Aiming to test innovative solutions in Mediterranean cities and combat climate change risks in tourism."
+                tr: "Akdeniz şehirlerinde doğa temelli çözümler de dahil olmak üzere yenilikçi çözümleri test etmek, kentsel turizm sektöründe sürdürülebilirliği engelleyen iklim değişikliği riskleriyle mücadele etmek ve Akdeniz şehirlerinin rekabet gücünü artırmak amaçlanmaktadır. İBB projede son kullanıcı, danışman veya gözlemci olarak yer almaktadır.",
+                en: "The aim is to test innovative solutions, including nature-based solutions, in Mediterranean cities, to combat climate change risks hindering sustainability in the urban tourism sector, and to increase the competitiveness of Mediterranean cities. Izmir Metropolitan Municipality is involved in the project as an end-user, consultant, or observer."
             },
             duration: null,
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "AVITEM, Marsilya, Bolonya, İZBB",
+            partners: "AVITEM, Marsilya Belediyesi, Coimbra Üniversitesi, Bolonya Belediyesi, Imola Faenza Turizm Şirketi, Dubrovnik Kalkınma Ajansı, Budva Belediyesi, Rebus, İzmir Büyükşehir Belediyesi",
             bigChallengeId: 3,
-            image: "https://picsum.photos/seed/cool-noons/800/400"
+            image: "images/projects/cool-noons.jpg"
         },
         {
             id: 15,
-            title: { tr: "DIALOGUE4NATURE (D4N)", en: "DIALOGUE4NATURE (D4N)" },
+            title: { tr: "DIALOGUE4NATURE Projesi (D4N)", en: "DIALOGUE4NATURE Projesi (D4N)" },
             description: {
-                tr: "Akdeniz havzasında yönetişimin güçlendirilmesi ve çözüm üretme kapasitesinin artırılması hedeflenmektedir.",
-                en: "Aiming to strengthen governance and increase solution-generation capacity in the Mediterranean basin."
+                tr: "Bölgedeki kurumlar arasında kalıcı ve etkili diyalog mekanizmaları kurarak Akdeniz havzasında yönetişimin güçlendirilmesi, ortak sorunlara yönelik çözüm üretme kapasitesinin artırılması hedeflenmektedir. Proje, karar vericiler, yerel yönetimler, uzmanlar ve sivil toplum arasında iş birliğini güçlendirerek kurumların yönetişim kapasitelerini geliştirmeyi amaçlamaktadır.",
+                en: "It is aimed to strengthen governance in the Mediterranean basin and to increase the capacity to produce solutions to common problems by establishing permanent and effective dialogue mechanisms between institutions in the region. The project aims to improve the governance capacities of institutions by strengthening cooperation between decision-makers, local governments, experts, and civil society."
             },
             duration: { tr: "7 Yıl", en: "7 Years" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "Girit Bölgesi, IUCN, İZBB",
+            partners: "Girit Bölgesi, IUCN Akdeniz İşbirliği Merkezi, Plan Bleu, Sardinya Bölgesi, MedCities Ağı, Hırvatistan Deniz Enstitüsü, Karadağ Ekoloji ve Şehir Planlama Bakanlığı, İzmir Büyükşehir Belediyesi",
             bigChallengeId: 9,
             image: "images/projects/d4n.png"
         },
         {
             id: 16,
-            title: { tr: "Re-Value Projesi", en: "Re-Value Project" },
+            title: { tr: "Re-Value (Avrupa Kıyı Şehirlerinde Kentsel Kalite ve İklim Tarafsızlığına Yeniden Değer Vermek) Projesi", en: "Re-Value Project" },
             description: {
-                tr: "Sürdürülebilir miras ve turizm yönetimi ile kentsel gelişim için iklim nötr yatırım yapılmasına katkıda bulunmak amaçlanmaktadır.",
-                en: "Aiming to contribute to climate-neutral investment for sustainable heritage, tourism management, and urban development."
+                tr: "İzmir ve diğer ortak kentlerde, sürdürülebilir miras ve turizm yönetimi ile kentsel gelişim için iklim nötr yatırım yapılmasına katkıda bulunmak ve kıyı bölgelerinde pilot uygulamalar için yol haritaları hazırlamak amaçlanmaktadır. İzmir, vatandaşların denizle etkileşimini güçlendirecek bütünsel tasarım stratejileri geliştirecek ve kentsel sel riskinin azaltılması için sünger bölge konseptini deneyecektir.",
+                en: "It is aimed to contribute to making climate-neutral investments for sustainable heritage and tourism management and urban development in Izmir and other partner cities, and to prepare roadmaps for pilot applications in coastal regions. Izmir will develop holistic design strategies that will strengthen citizens' interaction with the sea and test the sponge zone concept to reduce urban flood risk."
             },
             duration: { tr: "48 Ay", en: "48 Months" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "Norveç Bilim ve Teknoloji Üni., İZBB, İYTE",
+            partners: "Norveç Bilim ve Teknoloji Üniversitesi, İzmir Büyükşehir Belediyesi, İzmir Yüksek Teknoloji Enstitüsü",
             bigChallengeId: 10,
             image: "images/projects/re-value.png"
         },
         {
             id: 17,
-            title: { tr: "CARDIMED", en: "CARDIMED" },
+            title: { tr: "CARDIMED (Akdeniz Bölgesinde İklim Değişikliğine Uyum ve Direnç Gösterilmesi Projesi)", en: "CARDIMED" },
             description: {
-                tr: "Akdeniz bölgesinde iklim değişikliğinin etkilerine karşı dayanıklılığın artırılmasını amaçlamaktadır.",
-                en: "Aiming to increase resilience against the effects of climate change in the Mediterranean region."
+                tr: "Proje, Akdeniz biyocoğrafik bölgesinde iklim değişikliğinin etkilerine karşı dayanıklılığın artırılmasını ve doğa temelli çözümler değer zincirinin desteklenmesini amaçlamaktadır. İzmir Büyükşehir Belediyesi, Gediz Deltası’nda arazi ve biyolojik çeşitliliğin restorasyonu ile iklim değişikliğine karşı korunmasına yönelik doğa temelli çözümleri içeren bir model geliştirmektedir.",
+                en: "The project aims to increase resilience to the effects of climate change in the Mediterranean biogeographical region and to support the nature-based solutions value chain. Izmir Metropolitan Municipality is developing a model containing nature-based solutions for the restoration of land and biodiversity in the Gediz Delta and its protection against climate change."
             },
             duration: { tr: "54 Ay", en: "54 Months" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "Athena Ulusal Teknik Üni., İZBB, İzdoğa",
+            partners: "Athena Ulusal Teknik Üniversitesi, İzmir Büyükşehir Belediyesi, İzdoğa A.Ş., İzmir Yüksek Teknoloji Enstitüsü, Doğa Derneği, İZSU",
             bigChallengeId: 3,
             image: "images/projects/cardimed.png"
         },
         {
             id: 18,
-            title: { tr: "Toplumlar İçin İklim Dayanıklılığı", en: "Climate Resilience for Communities" },
+            title: { tr: "Toplumlar İçin İklim Dayanıklılığı Projesi", en: "Climate Resilience for Communities" },
             description: {
-                tr: "Mahalle ölçeğinde iklim risklerini belirlemeyi ve toplumun en az düzeyde etkilenmesini sağlayacak çözümler geliştirmeyi amaçlamaktadır.",
-                en: "Aiming to identify climate risks at the neighborhood scale and develop solutions to minimize community impact."
+                tr: "Proje, mahalle ölçeğinde iklim krizinin yarattığı etkileri analiz etmeyi, iklim risklerini belirlemeyi ve toplumun iklim kaynaklı tehlikelerden en az düzeyde etkilenmesini sağlayacak çözümler geliştirmeyi amaçlamaktadır. Konak ilçesindeki Agora ve Kadifekale bölgelerinde sel ve sıcak hava dalgası risklerine karşı mahalle bazlı dayanıklılık çalışmaları ve \"beraber yaratma\" yöntemiyle çözüm önerileri uygulanmaktadır.",
+                en: "The project aims to analyze the effects of the climate crisis at the neighborhood scale, identify climate risks, and develop solutions to ensure that the community is minimally affected by climate-induced hazards. Neighborhood-based resilience studies against flood and heat wave risks and solution proposals with the \"co-creation\" method are implemented in Agora and Kadifekale regions in Konak district."
             },
             duration: { tr: "3 Yıl", en: "3 Years" },
             startDate: null,
             status: { tr: "Devam Ediyor", en: "In Progress" },
-            partners: "İZBB, ICLEI, Zurich Vakfı",
+            partners: "İzmir Büyükşehir Belediyesi, ICLEI, Z Zurich Vakfı, Zurich Sigorta",
             bigChallengeId: 3,
             image: "images/projects/climate-resilience.jpg"
         },
         {
             id: 19,
-            title: { tr: "URBAN GreenUP", en: "URBAN GreenUP" },
+            title: { tr: "URBAN GreenUP: Doğa Esaslı Çözümlerle Şehirlerin Yeniden Doğallaştırılması Projesi", en: "URBAN GreenUP" },
             description: {
-                tr: "Kentlerin iklim değişikliğine uyum sağlaması için \"Doğa Esaslı Çözümler\" (NBS) geliştirmeyi hedeflemiştir.",
-                en: "Aimed to develop \"Nature Based Solutions\" (NBS) for cities to adapt to climate change."
+                tr: "Avrupa Birliği'nin Ufuk 2020 programı tarafından finanse edilen bu proje, kentlerin iklim değişikliğine uyum sağlaması ve sürdürülebilirliğinin artırılması için \"Doğa Esaslı Çözümler\" (NBS) geliştirmeyi hedeflemiştir. Uygulama kapsamında Peynircioğlu Deresi'nin ekolojik restorasyonu, kent içi yeşil koridorların oluşturulması, akıllı toprak (biyokömür) üretimi, geçirimli yüzeyler ve biyofiltreler gibi yenilikçi yöntemler Karşıyaka ve Çiğli pilot bölgelerinde başarıyla hayata geçirilmiştir.",
+                en: "Financed by the European Union's Horizon 2020 program, this project aimed to develop \"Nature Based Solutions\" (NBS) for cities to adapt to climate change and increase their sustainability. Within the scope of the application, innovative methods such as ecological restoration of Peynircioğlu Stream, creation of urban green corridors, smart soil (biochar) production, permeable surfaces, and biofilters were successfully implemented in Karşıyaka and Çiğli pilot regions."
             },
             duration: null,
             startDate: { tr: "1 Haziran 2017", en: "1 June 2017" },
             status: { tr: "Tamamlandı", en: "Completed" },
-            partners: "İZBB, Ege Üni., İYTE, CARTIF",
+            partners: "İzmir Büyükşehir Belediyesi, Ege Üniversitesi, İzmir Yüksek Teknoloji Enstitüsü (İYTE), CARTIF (Proje Koordinatörü)",
             bigChallengeId: 10,
             image: "images/projects/urban-greenup.webp"
         }
