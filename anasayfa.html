@@ -759,24 +759,49 @@
       prevBtn.addEventListener('click', () => slider.scrollBy({ left: -300, behavior: 'smooth' }));
       nextBtn.addEventListener('click', () => slider.scrollBy({ left: 300, behavior: 'smooth' }));
 
-      let autoScroll = setInterval(() => {
-        if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
-          slider.scrollTo({ left: 0, behavior: 'auto' });
-        } else {
-          slider.scrollBy({ left: 1, behavior: 'auto' });
-        }
-      }, 40);
+      let animationId;
+      let scrollAccumulator = 0;
+      const speed = 0.5; // pixels per frame (approx 30px/sec at 60fps)
 
-      slider.parentElement.addEventListener('mouseenter', () => clearInterval(autoScroll));
-      slider.parentElement.addEventListener('mouseleave', () => {
-        autoScroll = setInterval(() => {
-          if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
-            slider.scrollTo({ left: 0, behavior: 'auto' });
-          } else {
-            slider.scrollBy({ left: 1, behavior: 'auto' });
-          }
-        }, 40);
-      });
+      function step() {
+        scrollAccumulator += speed;
+
+        // Move only when we have a full pixel to prevent sub-pixel jitter
+        if (scrollAccumulator >= 1) {
+          const move = Math.floor(scrollAccumulator);
+          slider.scrollLeft += move;
+          scrollAccumulator -= move;
+        }
+
+        // Seamless infinite scroll reset
+        // Since we triplicated the content, valid range is [0, scrollWidth * 2/3]
+        // We reset when we pass the first 1/3rd (approx single set width)
+        if (slider.scrollLeft >= slider.scrollWidth / 3) {
+          slider.scrollLeft = 0;
+        }
+
+        animationId = requestAnimationFrame(step);
+      }
+
+      function startAutoScroll() {
+        if (!animationId) {
+          animationId = requestAnimationFrame(step);
+        }
+      }
+
+      function stopAutoScroll() {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+          animationId = null;
+        }
+      }
+
+      // Start initial scroll
+      startAutoScroll();
+
+      // Pause on hover
+      slider.parentElement.addEventListener('mouseenter', stopAutoScroll);
+      slider.parentElement.addEventListener('mouseleave', startAutoScroll);
     }
 
     // INITIALIZATION
