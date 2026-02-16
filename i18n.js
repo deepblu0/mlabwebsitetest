@@ -624,24 +624,32 @@ const translations = {
         en: 'New Call'
     },
     'portal.actions.expert_pool': {
-        tr: 'Uzman Havuzuna Katıl!',
-        en: 'Join Expert Pool!'
+        tr: 'Mentör Ağına Katıl!',
+        en: 'Join Mentor Network!'
     },
     'portal.actions.partner_search': {
         tr: 'Partner Ara',
         en: 'Search Partner'
     },
     'portal.expert.are_you': {
-        tr: 'Uzman mısınız?',
-        en: 'Are you an expert?'
+        tr: 'Mentör müsünüz?',
+        en: 'Are you a mentor?'
     },
     'portal.expert.join_network': {
-        tr: 'Çözüm ağımıza katılın',
-        en: 'Join our solution network'
+        tr: 'Mentör ağımıza katılın',
+        en: 'Join our mentor network'
     },
     'portal.expert.include_me': {
-        tr: 'Beni Uzman Havuzuna Dahil Et!',
-        en: 'Include Me in Expert Pool!'
+        tr: 'Mentör Ağına Katıl!',
+        en: 'Join Mentor Network!'
+    },
+    'portal.mentor.info_title': {
+        tr: 'Kayıt Bilgileriniz Kullanılacak',
+        en: 'Your Registration Information Will Be Used'
+    },
+    'portal.mentor.info_text': {
+        tr: 'Portal kayıt esnasında verdiğiniz bilgiler (ad, soyad, e-posta, telefon, kurum, ünvan) otomatik olarak kullanılacaktır. Başvurunuzu tamamlamak için sadece etik taahhütnameyi okumanız ve onaylamanız yeterlidir.',
+        en: 'The information you provided during portal registration (name, email, phone, organization, title) will be used automatically. You only need to read and accept the code of ethics to complete your application.'
     },
     'portal.login.title': {
         tr: 'Portal\'a Giriş',
@@ -767,8 +775,8 @@ const translations = {
     'portal.form.file_hint': { tr: 'PDF, Word, Excel, Resim (max 10MB)', en: 'PDF, Word, Excel, Image (max 10MB)' },
 
     // Expert Modal
-    'portal.expert_form.title': { tr: 'Uzman Başvuru Formu', en: 'Expert Application Form' },
-    'portal.expert_form.subtitle': { tr: 'Tüm alanları eksiksiz doldurunuz.', en: 'Please fill in all fields.' },
+    'portal.expert_form.title': { tr: 'Mentör Ağı Başvurusu', en: 'Mentor Network Application' },
+    'portal.expert_form.subtitle': { tr: 'Kayıt bilgileriniz kullanılacaktır. Etik taahhütnameyi okuyup onaylayın.', en: 'Your registration information will be used. Read and accept the code of ethics.' },
     'portal.expert_form.personal_info': { tr: 'Kişisel Bilgiler', en: 'Personal Information' },
     'portal.expert_form.contact_info': { tr: 'İletişim Bilgileri', en: 'Contact Information' },
     'portal.expert_form.expertise_info': { tr: 'Uzmanlık Bilgileri', en: 'Expertise Information' },
@@ -790,7 +798,7 @@ const translations = {
     'portal.coc.modal_title': { tr: 'Çıkar Çatışması ve Gizlilik Taahhütnamesi', en: 'Conflict of Interest and Confidentiality Agreement' },
     'portal.coc.modal_subtitle': { tr: 'Lütfen sonuna kadar okuyunuz', en: 'Please read to the end' },
     'portal.coc.decl': { tr: 'Etik Beyan', en: 'Ethical Declaration' },
-    'portal.coc.text_intro': { tr: 'İzmir Büyükşehir Belediyesi çalışmalarında bağımsız uzman olarak görev almak üzere başvuruda bulunuyorum. Bu kapsamda aşağıdaki hususları beyan ederim:', en: 'I am applying to serve as an independent expert in Izmir Metropolitan Municipality activities. I hereby declare the following:' },
+    'portal.coc.text_intro': { tr: 'İzmir Büyükşehir Belediyesi Mentör Ağına katılmak için başvuruda bulunuyorum. Bu kapsamda aşağıdaki hususları beyan ederim:', en: 'I am applying to join the Izmir Metropolitan Municipality Mentor Network. I hereby declare the following:' },
     'portal.coc.item1': { tr: '1. Çıkar Çatışması: Danışmanlık veya değerlendirme desteği verdiğim konularda ihale, proje veya hibe süreçlerine katılmayacağım. Yakınlarımın dahil olduğu süreçlerden çekileceğim.', en: '1. Conflict of Interest: I will not participate in tender, project, or grant processes where I provide consultancy or evaluation support. I will withdraw from processes involving my relatives.' },
     'portal.coc.item2': { tr: '2. Gizlilik: Görevim sırasında edindiğim bilgileri gizli tutacağım ve üçüncü kişilerle paylaşmayacağım.', en: '2. Confidentiality: I will keep information obtained during my duty confidential and will not share it with third parties.' },
     'portal.coc.item3': { tr: '3. Tarafsızlık: Değerlendirmelerimi objektif kriterlere göre yapacağım.', en: '3. Impartiality: I will make my evaluations based on objective criteria.' },
