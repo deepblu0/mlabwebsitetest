@@ -471,18 +471,18 @@
     <div id="expert-modal" class="fixed inset-0 z-50 hidden">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeExpertModal()"></div>
         <div
-            class="absolute inset-4 md:inset-10 lg:inset-y-10 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-3xl lg:w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
+            class="absolute inset-4 md:inset-10 lg:inset-y-10 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-2xl lg:w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
             <!-- Header -->
             <div class="bg-gradient-to-r from-mlab-navy to-mlab-purple p-6 flex items-center justify-between shrink-0">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
-                        <i data-lucide="clipboard-list" class="w-5 h-5 text-white"></i>
+                        <i data-lucide="shield-check" class="w-5 h-5 text-white"></i>
                     </div>
                     <div>
-                        <h2 class="text-xl font-bold text-white" data-i18n="portal.expert_form.title">Uzman Başvuru
-                            Formu</h2>
-                        <p class="text-white/70 text-sm" data-i18n="portal.expert_form.subtitle">Tüm alanları eksiksiz
-                            doldurunuz.</p>
+                        <h2 class="text-xl font-bold text-white" data-i18n="portal.expert_form.title">Mentör Ağı
+                            Başvurusu</h2>
+                        <p class="text-white/70 text-sm" data-i18n="portal.expert_form.subtitle">Etik taahhütnameyi
+                            okuyup onaylayın.</p>
                     </div>
                 </div>
                 <button onclick="closeExpertModal()" class="text-white/70 hover:text-white transition-colors">
@@ -492,47 +492,42 @@
 
             <!-- Body -->
             <div class="flex-grow overflow-y-auto p-6 md:p-8">
-                <!-- Info Message -->
-                <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
-                    <div class="flex gap-3">
-                        <i data-lucide="info" class="w-5 h-5 text-blue-600 shrink-0 mt-0.5"></i>
-                        <div class="text-sm text-slate-700">
-                            <p class="font-medium text-blue-900 mb-1" data-i18n="portal.mentor.info_title">Kayıt
-                                Bilgileriniz Kullanılacak</p>
-                            <p data-i18n="portal.mentor.info_text">Portal kayıt esnasında verdiğiniz bilgiler (ad,
-                                soyad, e-posta, telefon, kurum, ünvan) otomatik olarak kullanılacaktır. Başvurunuzu
-                                tamamlamak için sadece etik taahhütnameyi okumanız ve onaylamanız yeterlidir.</p>
+                <form id="expert-form" class="flex flex-col h-full">
+                    <!-- Etik Taahhütname İçeriği -->
+                    <div class="prose prose-slate max-w-none text-sm">
+                        <h4 class="text-mlab-navy font-bold text-lg mb-4 flex items-center gap-2">
+                            <i data-lucide="file-text" class="w-5 h-5 text-mlab-purple"></i>
+                            <span data-i18n="portal.coc.modal_title">Çıkar Çatışması ve Gizlilik Taahhütnamesi</span>
+                        </h4>
+                        <p class="text-slate-600 mb-6" data-i18n="portal.coc.text_intro">
+                            İzmir Büyükşehir Belediyesi Mentör Ağına katılmak için başvuruda bulunuyorum. Bu kapsamda
+                            aşağıdaki hususları beyan ederim:
+                        </p>
+                        <div class="space-y-4 text-slate-600">
+                            <p data-i18n="portal.coc.item1"><strong>1. Çıkar Çatışması:</strong> Danışmanlık veya
+                                değerlendirme desteği verdiğim
+                                konularda ihale, proje veya hibe süreçlerine katılmayacağım. Yakınlarımın dahil olduğu
+                                süreçlerden çekileceğim.</p>
+                            <p data-i18n="portal.coc.item2"><strong>2. Gizlilik:</strong> Görevim sırasında edindiğim
+                                bilgileri gizli tutacağım ve üçüncü kişilerle paylaşmayacağım.</p>
+                            <p data-i18n="portal.coc.item3"><strong>3. Tarafsızlık:</strong> Değerlendirmelerimi
+                                objektif
+                                kriterlere göre yapacağım.
+                            </p>
                         </div>
                     </div>
-                </div>
 
-                <form id="expert-form" class="space-y-6">
-                    <!-- Etik Taahhüt -->
-                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
-                        <h3 class="text-lg font-bold text-mlab-navy mb-4 flex items-center gap-2">
-                            <span
-                                class="w-8 h-8 bg-mlab-purple/10 rounded-lg flex items-center justify-center text-mlab-purple text-sm font-bold">
-                                <i data-lucide="shield-check" class="w-4 h-4"></i>
-                            </span>
-                            <span data-i18n="portal.expert_form.ethics">Etik Taahhütname</span>
-                        </h3>
-                        <div class="flex items-start gap-3">
+                    <!-- Onay Checkbox - En Altta -->
+                    <div class="mt-6 pt-5 border-t border-slate-200">
+                        <label for="coc-checkbox" class="flex items-center gap-3 cursor-pointer select-none group">
                             <input type="checkbox" id="coc-checkbox" name="cocAccepted"
-                                class="mt-1.5 w-5 h-5 rounded border-slate-300 text-mlab-purple focus:ring-mlab-purple cursor-pointer"
-                                disabled>
-                            <div>
-                                <label for="coc-checkbox" class="text-sm text-slate-700 cursor-pointer">
-                                    <span class="font-medium" data-i18n="portal.coc.modal_title">Çıkar Çatışması ve
-                                        Gizlilik Taahhütnamesini</span>
-                                    <span data-i18n="portal.coc.accept_label">okudum ve kabul ediyorum.</span>
-                                </label>
-                                <button type="button" onclick="openCocModal()"
-                                    class="block mt-2 text-sm text-mlab-purple hover:text-mlab-navy font-medium underline underline-offset-2">
-                                    <i data-lucide="file-text" class="w-4 h-4 inline-block mr-1"></i>
-                                    <span data-i18n="portal.coc.read_button">Taahhütnameyi Oku (Zorunlu)</span>
-                                </button>
-                            </div>
-                        </div>
+                                class="w-5 h-5 rounded border-slate-300 text-mlab-purple focus:ring-mlab-purple cursor-pointer shrink-0">
+                            <span class="text-sm text-slate-700 group-hover:text-slate-900 transition-colors">
+                                <span class="font-semibold" data-i18n="portal.coc.modal_title">Çıkar Çatışması ve
+                                    Gizlilik Taahhütnamesini</span>
+                                <span data-i18n="portal.coc.accept_label">okudum ve kabul ediyorum.</span>
+                            </span>
+                        </label>
                     </div>
                 </form>
             </div>
@@ -552,77 +547,6 @@
         </div>
     </div>
 
-    <!-- CODE OF CONDUCT MODAL -->
-    <div id="coc-modal" class="fixed inset-0 z-[60] hidden">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeCocModal()"></div>
-        <div
-            class="absolute inset-x-4 top-1/2 -translate-y-1/2 md:max-w-2xl md:mx-auto bg-white rounded-2xl shadow-2xl max-h-[90vh] flex flex-col">
-            <!-- Header -->
-            <div
-                class="bg-gradient-to-r from-mlab-navy to-mlab-purple p-6 rounded-t-2xl flex items-center justify-between shrink-0">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-                        <i data-lucide="shield-check" class="w-5 h-5 text-white"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white" data-i18n="portal.coc.modal_title">Çıkar Çatışması ve
-                            Gizlilik Taahhütnamesi</h3>
-                        <p class="text-white/70 text-sm" data-i18n="portal.coc.modal_subtitle">Lütfen sonuna kadar
-                            okuyunuz</p>
-                    </div>
-                </div>
-                <button onclick="closeCocModal()" class="text-white/70 hover:text-white transition-colors">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-            </div>
-
-            <!-- Body -->
-            <div class="p-6 overflow-y-auto flex-grow">
-                <div class="prose prose-slate max-w-none text-sm">
-                    <h4 class="text-mlab-navy font-bold text-lg mb-4" data-i18n="portal.coc.decl">Etik Beyan</h4>
-                    <p class="text-slate-600 mb-6" data-i18n="portal.coc.text_intro">
-                        İzmir Büyükşehir Belediyesi çalışmalarında bağımsız uzman olarak görev almak üzere başvuruda
-                        bulunuyorum. Bu kapsamda aşağıdaki hususları beyan ederim:
-                    </p>
-                    <div class="space-y-4 text-slate-600">
-                        <p data-i18n="portal.coc.item1"><strong>1. Çıkar Çatışması:</strong> Danışmanlık veya
-                            değerlendirme desteği verdiğim
-                            konularda ihale, proje veya hibe süreçlerine katılmayacağım. Yakınlarımın dahil olduğu
-                            süreçlerden çekileceğim.</p>
-                        <p data-i18n="portal.coc.item2"><strong>2. Gizlilik:</strong> Görevim sırasında edindiğim
-                            bilgileri gizli tutacağım ve
-                            üçüncü
-                            kişilerle paylaşmayacağım.</p>
-                        <p data-i18n="portal.coc.item3"><strong>3. Tarafsızlık:</strong> Değerlendirmelerimi objektif
-                            kriterlere göre yapacağım.
-                        </p>
-                    </div>
-                    <div class="bg-slate-100 rounded-xl p-4 mt-6">
-                        <p class="text-slate-600 text-sm">
-                            Bu formu göndererek yukarıdaki beyanları kabul etmiş sayılırım.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <div class="p-6 border-t border-slate-200 bg-slate-50 rounded-b-2xl shrink-0">
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <button onclick="closeCocModal()" type="button"
-                        class="flex-1 py-3 px-6 border border-slate-300 text-slate-700 font-medium rounded-xl hover:bg-slate-100 transition-all"
-                        data-i18n="portal.coc.reject_btn">
-                        Kabul Etmiyorum
-                    </button>
-                    <button onclick="acceptCoc()" type="button"
-                        class="flex-1 py-3 px-6 bg-gradient-to-r from-mlab-navy to-mlab-purple text-white font-bold rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2">
-                        <i data-lucide="check" class="w-5 h-5"></i>
-                        <span data-i18n="portal.coc.accept_btn">Okudum ve Kabul Ediyorum</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
     </main>
 
 
@@ -1837,24 +1761,6 @@
             document.body.style.overflow = '';
         }
 
-        function openCocModal() {
-            document.getElementById('coc-modal').classList.remove('hidden');
-        }
-
-        function closeCocModal() {
-            document.getElementById('coc-modal').classList.add('hidden');
-        }
-
-        function acceptCoc() {
-            const cocCheckbox = document.getElementById('coc-checkbox');
-            const submitBtn = document.getElementById('expert-submit-btn');
-
-            cocCheckbox.disabled = false;
-            cocCheckbox.checked = true;
-            submitBtn.disabled = false;
-            closeCocModal();
-        }
-
         document.getElementById('coc-checkbox').addEventListener('change', (e) => {
             document.getElementById('expert-submit-btn').disabled = !e.target.checked;
         });
@@ -1901,7 +1807,6 @@
                 alert('Başvurunuz başarıyla alındı! Değerlendirme sonucunda sizinle iletişime geçilecektir.');
                 this.reset();
                 document.getElementById('coc-checkbox').checked = false;
-                document.getElementById('coc-checkbox').disabled = true;
                 closeExpertModal();
 
             } catch (error) {
