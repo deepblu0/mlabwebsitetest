@@ -224,9 +224,21 @@
         const logoSizes = {
             'eib.png': 'max-h-24',
             'izka.png': 'max-h-24',
-            'tmmob.png': 'max-h-20',
+            'tmmob.png': 'h-12', // Increased from max-h-20 (which was constrained by aspect ratio) to fixed height
             'izpa.png': 'max-h-20',
-            'İEKKK.png': 'max-h-20'
+            'İEKKK.png': 'max-h-20',
+            'İZVAK.png': 'h-20', // Increased height
+            'ENSİA.png': 'max-h-12', // Slightly reduced to align with others
+            'ESİAD.png': 'max-h-20',
+            'İzmir Gazeteciler Cemiyeti.png': 'h-20', // Increased
+            'İAOSB.png': 'max-h-20',
+            'İzmir Musevi Cemaati Vakfı.png': 'max-h-20',
+            'SKAL.png': 'max-h-20',
+            'DEU.png': 'h-20',
+            'DTO.png': 'max-h-20',
+            'EGİFED.png': 'max-h-20',
+            'basifed.png': 'max-h-10', // Wide logo, limit height
+            'ebso.png': 'h-16'
         };
 
         const logoLinks = {
@@ -249,11 +261,11 @@
             'DTO.png': 'https://www.dto.org.tr/',
             'EGİFED.png': 'http://www.egifed.org.tr/',
             'İAOSB.png': 'https://www.iaosb.org.tr/',
-            'İEKKK.png': '#',
+            'İEKKK.png': '#', // No link
             'İZVAK.png': 'https://izmirvakfi.org/',
             'İzmir Gazeteciler Cemiyeti.png': 'https://igc.org.tr/',
-            'İzmir Musevi Cemaati Vakfı.png': '#',
-            'SKAL.png': '#'
+            'İzmir Musevi Cemaati Vakfı.png': '#', // No link
+            'SKAL.png': '#' // No link
         };
 
         // Top tier: Valilik, İzBB, İEKKK, İZPA (ordered)
@@ -283,17 +295,22 @@
         ];
 
         function renderLogoCard(logo) {
-            const sizeClass = logoSizes[logo] || 'max-h-16';
+            const sizeClass = logoSizes[logo] || 'max-h-16'; // Default height
             const link = logoLinks[logo] || '#';
             const name = logo.split('.')[0].toUpperCase();
 
+            const isClickable = link !== '#' && link !== '';
+            const Wrapper = isClickable ? 'a' : 'div';
+            const linkAttrs = isClickable
+                ? `href="${link}" target="_blank" rel="noopener noreferrer" class="group bg-white rounded-2xl border border-slate-200 hover:border-mlab-cyan/50 hover:shadow-xl transition-all duration-300 p-8 flex items-center justify-center cursor-pointer"`
+                : `class="group bg-white rounded-2xl border border-slate-200 p-8 flex items-center justify-center cursor-default"`;
+
             return `
-                <a href="${link}" target="_blank" rel="noopener noreferrer" 
-                   class="group bg-white rounded-2xl border border-slate-200 hover:border-mlab-cyan/50 hover:shadow-xl transition-all duration-300 p-8 flex items-center justify-center">
+                <${Wrapper} ${linkAttrs}>
                     <img src="stakeholdericons/${logo}" 
                          alt="${name}" 
                          class="${sizeClass} w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100">
-                </a>
+                </${Wrapper}>
             `;
         }
 
