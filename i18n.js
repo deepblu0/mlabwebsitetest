@@ -17,6 +17,10 @@ const translations = {
         tr: 'Büyük Zorluklar',
         en: 'Grand Challenges'
     },
+    'nav.stakeholders': {
+        tr: 'Kent Paydaşları',
+        en: 'City Stakeholders'
+    },
     'nav.grants': {
         tr: 'Ufuk Hibeleri',
         en: 'Horizon Grants'
@@ -40,6 +44,24 @@ const translations = {
     'nav.portal': {
         tr: 'Portal',
         en: 'Portal'
+    },
+
+    // Stakeholders Page
+    'stakeholders.hero.title': {
+        tr: 'Kent Paydaşları',
+        en: 'City Stakeholders'
+    },
+    'stakeholders.hero.desc': {
+        tr: 'M-LAB İzmir\'in kent paydaşları',
+        en: 'M-LAB Izmir\'s city stakeholders'
+    },
+    'stakeholders.strategic.title': {
+        tr: 'Stratejik Paydaşlar',
+        en: 'Strategic Stakeholders'
+    },
+    'stakeholders.partners.title': {
+        tr: 'Diğer Paydaşlar',
+        en: 'Other Stakeholders'
     },
 
     // Hero Section
