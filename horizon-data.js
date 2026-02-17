@@ -1,5 +1,5 @@
 const horizonData = {
-  "lastUpdated": "17.02.2026",
+  "lastUpdated": "16.02.2026",
   "newCalls": [
     {
       "name": "MSCA Doctoral Networks 2027",
