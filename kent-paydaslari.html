@@ -165,14 +165,14 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Top Tier: Strategic Partners -->
             <div class="mb-12">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="top-tier-logos">
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-6" id="top-tier-logos">
                     <!-- JS will inject logos here -->
                 </div>
             </div>
 
             <!-- Bottom Tier: Other Partners -->
             <div>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="bottom-tier-logos">
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-6" id="bottom-tier-logos">
                     <!-- JS will inject logos here -->
                 </div>
             </div>
@@ -222,23 +222,13 @@
 
         // Logo configuration from anasayfa.html
         const logoSizes = {
-            'eib.png': 'max-h-24',
-            'izka.png': 'max-h-24',
-            'tmmob.png': 'h-16', // Increased from h-12
-            'izpa.png': 'max-h-20',
+            'eib.png': 'max-h-[7.2rem]',
+            'izka.png': 'max-h-[6.5rem]',
+            'tmmob.png': 'max-h-20',
+            'izpa.png': 'max-h-[6.25rem]',
             'İEKKK.png': 'max-h-20',
-            'İZVAK.png': 'h-20',
-            'ENSİA.png': 'h-14', // Increased from max-h-12
-            'ESİAD.png': 'max-h-20',
-            'İzmir Gazeteciler Cemiyeti.png': 'h-20',
-            'İAOSB.png': 'max-h-20',
-            'İzmir Musevi Cemaati Vakfı.png': 'max-h-20',
-            'SKAL.png': 'max-h-20',
-            'DEU.png': 'h-20',
-            'DTO.png': 'max-h-20',
-            'EGİFED.png': 'max-h-20',
-            'basifed.png': 'h-14', // Increased from max-h-10
-            'ebso.png': 'h-16'
+            'İZVAK.png': 'max-h-[6.5rem]',
+            'izq.png': 'max-h-[4.7rem]'
         };
 
         const logoLinks = {
@@ -261,15 +251,16 @@
             'DTO.png': 'https://www.dto.org.tr/',
             'EGİFED.png': 'http://www.egifed.org.tr/',
             'İAOSB.png': 'https://www.iaosb.org.tr/',
-            'İEKKK.png': '#', // No link
+            'İEKKK.png': '#',
             'İZVAK.png': 'https://izmirvakfi.org/',
             'İzmir Gazeteciler Cemiyeti.png': 'https://igc.org.tr/',
-            'İzmir Musevi Cemaati Vakfı.png': '#', // No link
-            'SKAL.png': '#' // No link
+            'İzmir Musevi Cemaati Vakfı.png': '#',
+            'SKAL.png': '#',
+            'izq.png': 'https://izq.com.tr'
         };
 
         // Top tier: Valilik, İzBB, İEKKK, İZPA (ordered)
-        const topTier = ['valilik.png', 'İZBB.png', 'İEKKK.png', 'izpa.png'];
+        const topTier = ['valilik.png', 'İZBB.png', 'İEKKK.png', 'izpa.png', 'izq.png'];
 
         // Bottom tier: All others alphabetically
         const bottomTier = [
@@ -295,15 +286,15 @@
         ];
 
         function renderLogoCard(logo) {
-            const sizeClass = logoSizes[logo] || 'max-h-16'; // Default height
+            const sizeClass = logoSizes[logo] || 'max-h-20';
             const link = logoLinks[logo] || '#';
             const name = logo.split('.')[0].toUpperCase();
 
             const isClickable = link !== '#' && link !== '';
             const Wrapper = isClickable ? 'a' : 'div';
             const linkAttrs = isClickable
-                ? `href="${link}" target="_blank" rel="noopener noreferrer" class="group bg-white rounded-2xl border border-slate-200 hover:border-mlab-cyan/50 hover:shadow-xl transition-all duration-300 p-8 flex items-center justify-center cursor-pointer"`
-                : `class="group bg-white rounded-2xl border border-slate-200 p-8 flex items-center justify-center cursor-default"`;
+                ? `href="${link}" target="_blank" rel="noopener noreferrer" class="group bg-white rounded-2xl border border-slate-200 hover:border-mlab-cyan/50 hover:shadow-xl transition-all duration-300 h-32 flex items-center justify-center p-2 relative overflow-hidden"`
+                : `class="group bg-white rounded-2xl border border-slate-200 h-32 flex items-center justify-center p-2 relative overflow-hidden cursor-default"`;
 
             return `
                 <${Wrapper} ${linkAttrs}>
