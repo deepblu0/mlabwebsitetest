@@ -233,7 +233,8 @@
             'eib.png': 'max-h-24',
             'izka.png': 'max-h-24',
             'tmmob.png': 'max-h-20',
-            'izpa.png': 'max-h-20'
+            'izpa.png': 'max-h-20',
+            'İEKKK.png': 'max-h-20'
         };
 
         const logoLinks = {
@@ -241,24 +242,53 @@
             'ebso.png': 'https://ebso.org.tr',
             'egiad.png': 'https://egiad.org.tr',
             'eib.png': 'https://eib.org.tr',
-            'ensia.png': 'https://ensia.org.tr',
-            'esiad.png': 'https://esiad.org.tr',
+            'ENSİA.png': 'https://ensia.org.tr',
+            'ESİAD.png': 'https://esiad.org.tr',
             'itb.png': 'https://itb.org.tr',
             'izbb.png': 'https://www.izmir.bel.tr/',
             'izikad.png': 'https://izikad.org',
             'izka.png': 'https://izka.org.tr',
             'izpa.png': 'https://planizm.com/tr',
-            'izq.png': 'https://izq.com.tr/',
             'izto.png': 'https://izto.org.tr/tr',
             'tmmob.png': 'http://www.tmmobizmir.org/',
-            'valilik.png': 'https://izmir.gov.tr'
+            'valilik.png': 'https://izmir.gov.tr',
+            // Generic placeholders for new added logos until links are provided/found
+            'DEU.png': 'https://www.deu.edu.tr/',
+            'DTO.png': 'https://www.dto.org.tr/',
+            'EGİFED.png': 'http://www.egifed.org.tr/',
+            'İAOSB.png': 'https://www.iaosb.org.tr/',
+            'İEKKK.png': '#',
+            'İZVAK.png': 'https://izmirvakfi.org/',
+            'İzmir Gazeteciler Cemiyeti.png': 'https://igc.org.tr/',
+            'İzmir Musevi Cemaati Vakfı.png': '#',
+            'SKAL.png': '#'
         };
 
-        // Top tier: İzmir BB, Valilik, İZPA, İZQ (4 logos)
-        const topTier = ['izbb.png', 'valilik.png', 'izpa.png', 'izq.png'];
+        // Top tier: Valilik, İzBB, İEKKK, İZPA (ordered)
+        const topTier = ['valilik.png', 'izbb.png', 'İEKKK.png', 'izpa.png'];
 
-        // Bottom tier: All others alphabetically (11 logos)
-        const bottomTier = ['basifed.png', 'ebso.png', 'egiad.png', 'eib.png', 'ensia.png', 'esiad.png', 'itb.png', 'izikad.png', 'izka.png', 'izto.png', 'tmmob.png'];
+        // Bottom tier: All others alphabetically
+        const bottomTier = [
+            'basifed.png',
+            'DEU.png',
+            'DTO.png',
+            'ebso.png',
+            'egiad.png',
+            'EGİFED.png',
+            'eib.png',
+            'ENSİA.png',
+            'ESİAD.png',
+            'itb.png',
+            'İAOSB.png',
+            'izikad.png',
+            'izka.png',
+            'izto.png',
+            'İZVAK.png',
+            'İzmir Gazeteciler Cemiyeti.png',
+            'İzmir Musevi Cemaati Vakfı.png',
+            'SKAL.png',
+            'tmmob.png'
+        ];
 
         function renderLogoCard(logo) {
             const sizeClass = logoSizes[logo] || 'max-h-16';
