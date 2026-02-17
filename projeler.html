@@ -344,10 +344,9 @@
                             <div>
                                 <label for="project-desc" class="block text-sm font-bold text-mlab-navy mb-1">Açıklama
                                     Metni</label>
-                                class="w-full rounded-lg border-slate-300 border p-2.5 text-sm focus:ring-2
-                                focus:ring-mlab-cyan focus:border-mlab-cyan outline-none transition-all
-                                placeholder:text-slate-400"
-                                placeholder="Projenizi kısaca anlatın..."></textarea>
+                                <textarea id="project-desc" required
+                                    class="w-full rounded-lg border-slate-300 border p-2.5 text-sm focus:ring-2 focus:ring-mlab-cyan focus:border-mlab-cyan outline-none transition-all placeholder:text-slate-400"
+                                    placeholder="Projenizi kısaca anlatın..."></textarea>
                             </div>
 
                             <!-- Challenges -->
@@ -430,7 +429,12 @@
         }
 
         function renderChallengeCheckboxes() {
-            challengesContainer.innerHTML = Object.values(bigChallenges).map(c => `
+            // Ensure language is current
+            const currentLang = typeof getCurrentLang === 'function' ? getCurrentLang() : 'tr';
+
+            challengesContainer.innerHTML = Object.values(bigChallenges).map(c => {
+                const title = c.title ? c.title[currentLang] : c.name; // Fallback to name if title missing
+                return `
     <div class="flex items-start">
         <div class="flex h-5 items-center">
             <input id="challenge-${c.id}" name="challenges" value="${c.id}" type="checkbox"
@@ -438,10 +442,10 @@
         </div>
         <div class="ml-3 text-sm">
             <label for="challenge-${c.id}"
-                class="font-medium text-slate-700 cursor-pointer select-none">${c.name}</label>
+                class="font-medium text-slate-700 cursor-pointer select-none">${title}</label>
         </div>
     </div>
-    `).join('');
+    `}).join('');
         }
 
         function submitProject(e) {
@@ -657,8 +661,8 @@
         document.addEventListener('languageChanged', (e) => {
             renderFilters();
             renderProjects();
-            // Optional: Re-render challenges in modal
-            // renderChallengeCheckboxes(); 
+            // Re-render challenges in modal
+            renderChallengeCheckboxes();
         });
     </script>
     <!-- FOOTER -->
