@@ -45,6 +45,21 @@
             transform: rotateY(360deg);
         }
     </style>
+    <style>
+        /* Coin flip animation for badge */
+        .coin-flip-container {
+            perspective: 1000px;
+        }
+
+        .coin-flip {
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .coin-flip:hover {
+            transform: rotateY(360deg);
+        }
+    </style>
 </head>
 
 <body class="bg-white text-slate-800 antialiased" data-i18n-title="page.mission">
@@ -426,13 +441,7 @@
                 </div>
                 <!-- Contact & Copyright -->
                 <div class="flex flex-col sm:flex-row items-center gap-3 text-sm text-slate-400">
-                    <a href="mailto:mlab@izq.com.tr"
-                        class="hover:text-mlab-cyan transition-colors flex items-center gap-2">
-                        <i data-lucide="mail" class="w-4 h-4"></i>
-                        mlab@izq.com.tr
-                    </a>
-                    <span class="hidden sm:inline text-slate-700">|</span>
-                    <span class="text-xs text-slate-500" data-i18n="footer.copyright">&copy; 2025 M-LAB İzmir</span>
+                    <span class="text-xs text-slate-500" data-i18n="footer.copyright">&copy; 2026 M-LAB İzmir</span>
                 </div>
             </div>
         </div>
