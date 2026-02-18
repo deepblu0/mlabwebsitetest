@@ -380,6 +380,9 @@
         </div>
     </div>
 
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
+
     <script>
         // Global Selection
         const modal = document.getElementById('project-modal');
@@ -441,33 +444,52 @@
     `}).join('');
         }
 
-        function submitProject(e) {
+        async function submitProject(e) {
             e.preventDefault();
 
-            const formData = {
-                id: Date.now(),
-                contactName: document.getElementById('contact-name').value,
-                contactTitle: document.getElementById('contact-title').value,
-                contactOrg: document.getElementById('contact-org').value,
-                contactEmail: document.getElementById('contact-email').value,
-                title: document.getElementById('project-name').value,
-                desc: document.getElementById('project-desc').value,
-                startDate: document.getElementById('project-date').value,
-                status: document.getElementById('project-status').value,
-                partners: document.getElementById('project-partners').value,
-                challenges: Array.from(document.querySelectorAll('input[name="challenges"]:checked')).map(cb => cb.value),
-                kvkkConsent: document.getElementById('kvkk-consent').checked,
-                submittedAt: new Date().toISOString()
-            };
+            const submitBtn = document.querySelector('#project-form button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Gönderiliyor...';
+            lucide.createIcons();
 
-            console.log('Project Submitted:', formData);
+            try {
+                // Initialize Firebase if not ready
+                if (!window.firebaseDb) {
+                    await window.initializeFirebase();
+                }
 
-            const existing = JSON.parse(localStorage.getItem('portal_pending_projects') || '[]');
-            existing.push(formData);
-            localStorage.setItem('portal_pending_projects', JSON.stringify(existing));
+                const { db, collection, addDoc, serverTimestamp } = window.firebaseDb;
 
-            alert('Projeniz başarıyla gönderildi! Yönetici onayı sonrası yayınlanacaktır.');
-            closeProjectModal();
+                const formData = {
+                    contactName: document.getElementById('contact-name').value,
+                    contactTitle: document.getElementById('contact-title').value,
+                    contactOrg: document.getElementById('contact-org').value,
+                    contactEmail: document.getElementById('contact-email').value,
+                    title: document.getElementById('project-name').value,
+                    desc: document.getElementById('project-desc').value,
+                    startDate: document.getElementById('project-date').value,
+                    status: document.getElementById('project-status').value,
+                    partners: document.getElementById('project-partners').value,
+                    challenges: Array.from(document.querySelectorAll('input[name="challenges"]:checked')).map(cb => cb.value),
+                    kvkkConsent: document.getElementById('kvkk-consent').checked,
+                    submittedAt: serverTimestamp(),
+                    status: 'pending' // Default status for admin review
+                };
+
+                await addDoc(collection(db, 'project_suggestions'), formData);
+
+                alert('Projeniz başarıyla gönderildi ve değerlendirmeye alındı!');
+                closeProjectModal();
+                document.getElementById('project-form').reset();
+            } catch (error) {
+                console.error('Error adding project suggestion: ', error);
+                alert('Bir hata oluştu: ' + error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                lucide.createIcons();
+            }
         }
 
         // Initialize

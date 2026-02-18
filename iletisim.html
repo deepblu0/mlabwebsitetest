@@ -200,18 +200,18 @@
                         <p class="text-slate-500 mb-8" data-i18n="contact.form.subtitle">Size en kısa sürede dönüş
                             yapacağız.</p>
 
-                        <form class="space-y-6" onsubmit="event.preventDefault(); alert(t('contact.form.success'));">
+                        <form id="contact-form" class="space-y-6" onsubmit="submitContact(event)">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 mb-2"
                                         data-i18n="contact.form.name">Adınız Soyadınız</label>
-                                    <input type="text" required
+                                    <input type="text" id="contact-name" required
                                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 mb-2"
                                         data-i18n="contact.form.email">E-posta Adresiniz</label>
-                                    <input type="email" required
+                                    <input type="email" id="contact-email" required
                                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                                 </div>
                             </div>
@@ -219,7 +219,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-2"
                                     data-i18n="contact.form.subject">Konu</label>
-                                <select
+                                <select id="contact-subject"
                                     class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
                                     <option value="" data-i18n="contact.form.select.default">Konu seçiniz...</option>
                                     <option value="genel" data-i18n="contact.form.select.general">Genel Bilgi</option>
@@ -234,7 +234,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-2"
                                     data-i18n="contact.form.message">Mesajınız</label>
-                                <textarea rows="5" required
+                                <textarea id="contact-message" rows="5" required
                                     class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none"></textarea>
                             </div>
 
@@ -373,6 +373,48 @@
 
     <script>
         lucide.createIcons();
+
+        async function submitContact(e) {
+            e.preventDefault();
+
+            const submitBtn = document.querySelector('#contact-form button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Gönderiliyor...';
+            lucide.createIcons();
+
+            try {
+                // Initialize Firebase if not ready
+                if (!window.firebaseDb) {
+                    await window.initializeFirebase();
+                }
+
+                const { db, collection, addDoc, serverTimestamp } = window.firebaseDb;
+
+                const formData = {
+                    name: document.getElementById('contact-name').value,
+                    email: document.getElementById('contact-email').value,
+                    subject: document.getElementById('contact-subject').value,
+                    message: document.getElementById('contact-message').value,
+                    kvkkConsent: document.getElementById('kvkk-consent').checked,
+                    submittedAt: serverTimestamp(),
+                    read: false
+                };
+
+                await addDoc(collection(db, 'contact_messages'), formData);
+
+                alert(typeof t !== 'undefined' ? t('contact.form.success') : 'Mesajınız başarıyla gönderildi ve bize ulaştı!');
+                document.getElementById('contact-form').reset();
+
+            } catch (error) {
+                console.error('Error sending message: ', error);
+                alert('Bir hata oluştu: ' + error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                lucide.createIcons();
+            }
+        }
         document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
             document.getElementById('mobile-menu')?.classList.toggle('hidden');
         });

@@ -53,8 +53,20 @@ service cloud.firestore {
       allow update, delete: if isAdmin();
     }
     
-     // PROJECT APPLICATIONS (Proje Başvuruları)
-    match /project_applications/{projectId} {
+    // PROJECT SUGGESTIONS (Proje Başvuruları)
+    match /project_suggestions/{projectId} {
+       // Okuma: Sadece Adminler
+       allow read: if isAdmin();
+       
+       // Oluşturma: Herkes
+       allow create: if true;
+       
+       // Güncelleme/Silme: Sadece Adminler
+       allow update, delete: if isAdmin();
+    }
+
+    // CONTACT MESSAGES (İletişim Mesajları)
+    match /contact_messages/{messageId} {
        // Okuma: Sadece Adminler
        allow read: if isAdmin();
        
