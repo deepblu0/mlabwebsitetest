@@ -13,9 +13,7 @@ const firebaseConfig = {
 
 // Admin e-posta adresleri (bu adreslere sahip kullanıcılar admin paneline erişebilir)
 const ADMIN_EMAILS = [
-    'berkay.yilmaz.edu@gmail.com',
-    'admin@izmir.bel.tr',
-    'mlab@izmir.bel.tr'
+    'berkay.yilmaz.edu@gmail.com'
 ];
 
 // Firebase başlatma ve dışa aktarma

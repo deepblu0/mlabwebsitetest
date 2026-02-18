@@ -266,9 +266,9 @@
                         src="https://studio.foursquare.com/map/public/3a1facbc-8ece-424f-b7fa-d0421723cf63/embed"
                         frameborder="0" allowfullscreen class="w-full" style="min-height: 600px;">
                     </iframe>
-                    <!-- 3-30-300 Analysis Map (Hidden by default) -->
+                    <!-- 3-30-300 Analysis Map (Hidden by default) - Lazy Loaded -->
                     <iframe id="green-map" width="100%" height="700px"
-                        src="https://studio.foursquare.com/map/public/88e9c5a1-fef7-4576-b5d4-057df53d39f4/embed"
+                        data-src="https://studio.foursquare.com/map/public/88e9c5a1-fef7-4576-b5d4-057df53d39f4/embed"
                         frameborder="0" allowfullscreen class="w-full hidden" style="min-height: 600px;">
                     </iframe>
                 </div>
@@ -380,6 +380,30 @@
         // Current active analysis
         let currentAnalysis = 'climate';
 
+        // Lazy Loading Logic for Green Map
+        let greenMapLoaded = false;
+        function loadGreenMap() {
+            const greenMap = document.getElementById('green-map');
+            if (!greenMapLoaded && greenMap.getAttribute('data-src')) {
+                greenMap.src = greenMap.getAttribute('data-src');
+                greenMap.removeAttribute('data-src'); // Clean up
+                greenMapLoaded = true;
+                console.log('3-30-300 Map loading started...');
+            }
+        }
+
+        // Strategy 1: Load after first map finishes (hybrid approach)
+        const climateIframe = document.getElementById('climate-map');
+        if (climateIframe) {
+            climateIframe.onload = () => {
+                // Wait a bit to let the main map settle, then load the second one
+                setTimeout(loadGreenMap, 2000);
+            };
+        }
+
+        // Strategy 2: Fallback timeout (in case onload hangs or fires too early)
+        setTimeout(loadGreenMap, 7000);
+
         // Mobile menu toggle
         document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
             document.getElementById('mobile-menu')?.classList.toggle('hidden');
@@ -417,6 +441,7 @@
                 mapTitle.textContent = t('analytics.map.climate.title');
                 mapTitle.setAttribute('data-i18n', 'analytics.map.climate.title');
             } else {
+                loadGreenMap(); // Force load if user clicks tab before auto-load
                 climateMap.classList.add('hidden');
                 greenMap.classList.remove('hidden');
                 climateInfo.classList.add('hidden');

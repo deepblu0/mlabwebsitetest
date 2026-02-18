@@ -45,6 +45,13 @@
 
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col" data-i18n-title="portal.admin.title">
 
+    <!-- Loading Overlay (Security) -->
+    <div id="auth-loading-overlay" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-mlab-navy mb-4"></div>
+        <h2 class="text-xl font-bold text-mlab-navy">Güvenlik Kontrolü</h2>
+        <p class="text-slate-500 mt-2">Yetkileriniz doğrulanıyor...</p>
+    </div>
+
     <!-- Header -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,6 +111,12 @@
                 <span data-i18n="portal.admin.experts">Uzman Başvuruları</span>
                 <span id="experts-count" class="ml-2 bg-slate-100 px-2 py-0.5 rounded-full text-xs">0</span>
             </button>
+            <button onclick="switchTab('projects')" id="tab-projects"
+                class="tab-btn px-6 py-3 rounded-lg font-semibold text-sm transition-all text-slate-600 hover:bg-slate-100">
+                <i data-lucide="briefcase" class="w-4 h-4 inline mr-2"></i>
+                <span data-i18n="portal.admin.projects">Proje Başvuruları</span>
+                <span id="projects-count" class="ml-2 bg-slate-100 px-2 py-0.5 rounded-full text-xs">0</span>
+            </button>
         </div>
 
         <!-- Users List -->
@@ -148,27 +161,62 @@
         let currentTab = 'pending';
         let allUsers = [];
         let expertApplications = [];
+        let projectApplications = [];
         let currentUser = null;
 
-        // Check admin access
+        // XSS Prevention Helper
+        function escapeHtml(text) {
+            if (!text) return '';
+            return String(text)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Check admin access (SECURE VERSION)
         async function checkAdminAccess() {
-            currentUser = JSON.parse(localStorage.getItem('portal_current_user'));
-
-            if (!currentUser) {
-                window.location.href = 'portal-login.html';
-                return false;
+            // Firebase initialized değilse bekle
+            if (!window.firebaseAuth) {
+                const ready = await window.firebaseHelpers.initializeFirebase();
+                if (!ready) {
+                    alert("Firebase bağlantı hatası!");
+                    window.location.href = 'portal-login.html';
+                    return false;
+                }
             }
 
-            // Check if user is admin
-            const isAdmin = window.ADMIN_EMAILS?.includes(currentUser.email?.toLowerCase()) || currentUser.isAdmin;
+            // Auth durumunu dinle
+            window.firebaseAuth.onAuthStateChanged(window.firebaseAuth.auth, (user) => {
+                if (user) {
+                    // Kullanıcı var, admin mi kontrol et
+                    const email = user.email ? user.email.toLowerCase() : '';
+                    const isAdmin = window.ADMIN_EMAILS.includes(email);
 
-            if (!isAdmin) {
-                alert('Bu sayfaya erişim yetkiniz yok.');
-                window.location.href = 'portal-dashboard.html';
-                return false;
-            }
+                    if (isAdmin) {
+                        // Admin onayı başarılı -> Paneli aç
+                        document.getElementById('admin-email').textContent = email;
+                        document.getElementById('auth-loading-overlay').classList.add('hidden');
 
-            document.getElementById('admin-email').textContent = currentUser.email;
+                        // Kullanıcı bilgisini güncelle (opsiyonel, diğer fonksiyonlar için)
+                        currentUser = { email: email, isAdmin: true, uid: user.uid };
+
+                        // Verileri yükle
+                        loadUsers();
+                        loadExpertApplications();
+                        loadProjectApplications();
+                    } else {
+                        // Giriş yapmış ama admin değil
+                        alert("Bu panele erişim yetkiniz yok!");
+                        window.location.href = 'portal-dashboard.html';
+                    }
+                } else {
+                    // Hiç giriş yapmamış
+                    window.location.href = 'portal-login.html';
+                }
+            });
+
             return true;
         }
 
@@ -215,6 +263,7 @@
             document.getElementById('approved-count').textContent = allUsers.filter(u => u.status === 'approved').length;
             document.getElementById('rejected-count').textContent = allUsers.filter(u => u.status === 'rejected').length;
             document.getElementById('experts-count').textContent = expertApplications.length;
+            document.getElementById('projects-count').textContent = projectApplications.length;
 
             if (filteredUsers.length === 0) {
                 container.innerHTML = '';
@@ -226,7 +275,7 @@
             emptyState.classList.add('hidden');
 
             container.innerHTML = filteredUsers.map(user => `
-                <div class="p-6 hover:bg-slate-50 transition-colors cursor-pointer" onclick="showUserDetail('${user.id}')">
+                <div class="p-6 hover:bg-slate-50 transition-colors cursor-pointer" onclick="showUserDetail('${escapeHtml(user.id)}')">
                     <div class="flex items-start justify-between">
                         <div class="flex items-start gap-4">
                             <div class="w-12 h-12 rounded-xl ${user.org_type === 'belediye' ? 'bg-mlab-navy/10' : 'bg-mlab-orange/10'} flex items-center justify-center">
@@ -234,10 +283,10 @@
                                    class="w-6 h-6 ${user.org_type === 'belediye' ? 'text-mlab-navy' : 'text-mlab-orange'}"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-mlab-navy">${user.org_name || (t ? t('portal.admin.unknown') : 'Bilinmiyor')}</h3>
-                                <p class="text-sm text-slate-500">${user.email}</p>
+                                <h3 class="font-bold text-mlab-navy">${escapeHtml(user.org_name) || (t ? t('portal.admin.unknown') : 'Bilinmiyor')}</h3>
+                                <p class="text-sm text-slate-500">${escapeHtml(user.email)}</p>
                                 <p class="text-sm text-slate-400 mt-1">
-                                    ${user.contact_name || ''} ${user.contact_title ? '• ' + user.contact_title : ''}
+                                    ${escapeHtml(user.contact_name) || ''} ${user.contact_title ? '• ' + escapeHtml(user.contact_title) : ''}
                                 </p>
                             </div>
                         </div>
@@ -292,9 +341,140 @@
 
             if (tab === 'experts') {
                 renderExpertApplications();
+            } else if (tab === 'projects') {
+                renderProjectApplications();
             } else {
                 renderUsers();
             }
+        }
+
+
+
+        // Load project applications
+        async function loadProjectApplications() {
+            try {
+                // Currently only from localStorage
+                projectApplications = JSON.parse(localStorage.getItem('portal_pending_projects') || '[]');
+                document.getElementById('projects-count').textContent = projectApplications.length;
+            } catch (error) {
+                console.error('Proje başvuruları yüklenirken hata:', error);
+            }
+        }
+
+        // Render project applications
+        function renderProjectApplications() {
+            const container = document.getElementById('users-container');
+            const emptyState = document.getElementById('empty-state');
+
+            if (projectApplications.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                lucide.createIcons();
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            container.innerHTML = projectApplications.map(project => `
+                <div class="p-6 hover:bg-slate-50 transition-colors cursor-pointer" onclick="showProjectDetail(${project.id})">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-mlab-cyan/10 flex items-center justify-center">
+                                <i data-lucide="briefcase" class="w-6 h-6 text-mlab-cyan"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-mlab-navy">${escapeHtml(project.title) || (t ? t('portal.admin.unknown') : 'İsimsiz')}</h3>
+                                <p class="text-sm text-slate-500">${escapeHtml(project.contactName) || ''}</p>
+                                <p class="text-sm text-slate-400 mt-1">${escapeHtml(project.contactOrg) || ''}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs text-slate-400">
+                                ${formatDate(project.submittedAt)}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // Show project detail
+        function showProjectDetail(projectId) {
+            const project = projectApplications.find(p => p.id === projectId || p.id === parseInt(projectId));
+            if (!project) return;
+
+            const content = `
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-2xl bg-mlab-cyan/10 flex items-center justify-center">
+                            <i data-lucide="briefcase" class="w-8 h-8 text-mlab-cyan"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-mlab-navy">${escapeHtml(project.title) || (t ? t('portal.admin.unknown') : 'İsimsiz')}</h3>
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-mlab-cyan/10 text-mlab-cyan">
+                                ${t ? t('portal.admin.projects') : 'Proje Başvurusu'}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-4">
+                        <div class="text-xs text-slate-500 mb-1">${t ? t('portal.project.desc') : 'Açıklama'}</div>
+                        <div class="text-slate-700">${escapeHtml(project.desc) || '-'}</div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-50 rounded-xl p-4">
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.projects.status') : 'Durum'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(project.status) || '-'}</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-4">
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.projects.startDate') : 'Başlangıç'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(project.startDate) || '-'}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-slate-50 rounded-xl p-4">
+                         <div class="text-xs text-slate-500 mb-1">${t ? t('portal.project.partners') : 'Ortaklar'}</div>
+                         <div class="text-slate-700">${escapeHtml(project.partners) || '-'}</div>
+                    </div>
+
+                    <hr class="border-slate-100">
+
+                    <h4 class="font-semibold text-mlab-navy">${t ? t('portal.project.contact') : 'İletişim Bilgileri'}</h4>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-50 rounded-xl p-4">
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.name') : 'Ad Soyad'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(project.contactName) || '-'}</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-4">
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.title') : 'Unvan'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(project.contactTitle) || '-'}</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-4">
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.email') : 'E-posta'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(project.contactEmail) || '-'}</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-4">
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.organization') : 'Kurum'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(project.contactOrg) || '-'}</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-xs text-slate-400 pt-4 border-t border-slate-100">
+                        <span>Başvuru: ${formatDate(project.submittedAt)}</span>
+                        <span class="px-2 py-1 rounded-full ${project.kvkkConsent ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
+                            ${project.kvkkConsent ? (t ? t('portal.project.kvkk') + ': Evet' : 'KVKK Onayı: Evet') : (t ? t('portal.project.kvkk') + ': Hayır' : 'KVKK Onayı: Hayır')}
+                        </span>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('modal-content').innerHTML = content;
+            document.getElementById('user-modal').classList.remove('hidden');
+            lucide.createIcons();
         }
 
         // Load expert applications
@@ -338,9 +518,9 @@
                                 <i data-lucide="user-check" class="w-6 h-6 text-mlab-purple"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-mlab-navy">${expert.fullName || (t ? t('portal.admin.unknown') : 'İsimsiz')}</h3>
-                                <p class="text-sm text-slate-500">${expert.profession || ''} ${expert.title ? '• ' + expert.title : ''}</p>
-                                <p class="text-sm text-slate-400 mt-1">${expert.organization || ''}</p>
+                                <h3 class="font-bold text-mlab-navy">${escapeHtml(expert.fullName) || (t ? t('portal.admin.unknown') : 'İsimsiz')}</h3>
+                                <p class="text-sm text-slate-500">${escapeHtml(expert.profession) || ''} ${expert.title ? '• ' + escapeHtml(expert.title) : ''}</p>
+                                <p class="text-sm text-slate-400 mt-1">${escapeHtml(expert.organization) || ''}</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-3">
@@ -366,7 +546,7 @@
                             <i data-lucide="user-check" class="w-8 h-8 text-mlab-purple"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-mlab-navy">${expert.fullName || (t ? t('portal.admin.unknown') : 'İsimsiz')}</h3>
+                            <h3 class="text-xl font-bold text-mlab-navy">${escapeHtml(expert.fullName) || (t ? t('portal.admin.unknown') : 'İsimsiz')}</h3>
                             <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-mlab-purple/10 text-mlab-purple">
                                 ${t ? t('portal.admin.expert_app_label') : 'Uzman Başvurusu'}
                             </span>
@@ -376,30 +556,30 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.profession') : 'Meslek'}</div>
-                            <div class="font-medium text-slate-700">${expert.profession || '-'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(expert.profession) || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.title') : 'Ünvan'}</div>
-                            <div class="font-medium text-slate-700">${expert.title || '-'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(expert.title) || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.organization') : 'Kurum'}</div>
-                            <div class="font-medium text-slate-700">${expert.organization || '-'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(expert.organization) || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">Uzmanlık Alanı</div>
-                            <div class="font-medium text-slate-700">${expert.expertiseArea || '-'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(expert.expertiseArea) || '-'}</div>
                         </div>
                     </div>
 
                     <div class="bg-slate-50 rounded-xl p-4">
                         <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.details') : 'Uzmanlık Detayları'}</div>
-                        <div class="text-slate-700">${expert.expertiseDetails || '-'}</div>
+                        <div class="text-slate-700">${escapeHtml(expert.expertiseDetails) || '-'}</div>
                     </div>
 
                     <div class="bg-slate-50 rounded-xl p-4">
                         <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.education') : 'Eğitim'}</div>
-                        <div class="text-slate-700">${expert.education || '-'}</div>
+                        <div class="text-slate-700">${escapeHtml(expert.education) || '-'}</div>
                     </div>
 
                     <hr class="border-slate-100">
@@ -409,11 +589,11 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.email') : 'E-posta'}</div>
-                            <div class="font-medium text-slate-700">${expert.email || '-'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(expert.email) || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.phone') : 'Telefon'}</div>
-                            <div class="font-medium text-slate-700">${expert.phone || '-'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(expert.phone) || '-'}</div>
                         </div>
                     </div>
 
@@ -474,7 +654,7 @@
                                class="w-8 h-8 ${user.org_type === 'belediye' ? 'text-mlab-navy' : 'text-mlab-orange'}"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-mlab-navy">${user.org_name || (t ? t('portal.admin.unknown') : 'Bilinmiyor')}</h3>
+                            <h3 class="text-xl font-bold text-mlab-navy">${escapeHtml(user.org_name) || (t ? t('portal.admin.unknown') : 'Bilinmiyor')}</h3>
                             <span class="inline-block px-3 py-1 rounded-full text-xs font-medium ${user.org_type === 'belediye' ? 'bg-mlab-navy/10 text-mlab-navy' : 'bg-mlab-orange/10 text-mlab-orange'}">
                                 ${user.org_type === 'belediye' ? (t ? t('portal.admin.municipality') : 'Belediye') : (t ? t('portal.admin.private') : 'Özel Sektör')}
                             </span>
@@ -484,17 +664,17 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.sector') : 'Sektör'}</div>
-                            <div class="font-medium text-slate-700">${sectorNames[user.sector] || user.sector || '-'}</div>
+                            <div class="font-medium text-slate-700">${sectorNames[user.sector] || escapeHtml(user.sector) || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.website') : 'Web Sitesi'}</div>
-                            <div class="font-medium text-slate-700">${user.website ? `<a href="${user.website}" target="_blank" class="text-mlab-purple hover:underline">${user.website}</a>` : '-'}</div>
+                            <div class="font-medium text-slate-700">${user.website ? `<a href="${escapeHtml(user.website)}" target="_blank" class="text-mlab-purple hover:underline">${escapeHtml(user.website)}</a>` : '-'}</div>
                         </div>
                     </div>
 
                     <div class="bg-slate-50 rounded-xl p-4">
                         <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.desc') : 'Kurum Açıklaması'}</div>
-                        <div class="text-slate-700">${user.description || '-'}</div>
+                        <div class="text-slate-700">${escapeHtml(user.description) || '-'}</div>
                     </div>
 
                     <hr class="border-slate-100">
@@ -504,19 +684,19 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.name') : 'Ad Soyad'}</div>
-                            <div class="font-medium text-slate-700">${user.contact_name || '-'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(user.contact_name) || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.title') : 'Unvan'}</div>
-                            <div class="font-medium text-slate-700">${user.contact_title || '-'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(user.contact_title) || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.email') : 'E-posta'}</div>
-                            <div class="font-medium text-slate-700">${user.email || '-'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(user.email) || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.phone') : 'Telefon'}</div>
-                            <div class="font-medium text-slate-700">${user.phone || '-'}</div>
+                            <div class="font-medium text-slate-700">${escapeHtml(user.phone) || '-'}</div>
                         </div>
                     </div>
 
@@ -680,6 +860,7 @@
             if (hasAccess) {
                 await loadUsers();
                 await loadExpertApplications();
+                await loadProjectApplications();
             }
         }
 

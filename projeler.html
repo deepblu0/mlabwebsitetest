@@ -462,9 +462,9 @@
 
             console.log('Project Submitted:', formData);
 
-            const existing = JSON.parse(localStorage.getItem('pendingProjects') || '[]');
+            const existing = JSON.parse(localStorage.getItem('portal_pending_projects') || '[]');
             existing.push(formData);
-            localStorage.setItem('pendingProjects', JSON.stringify(existing));
+            localStorage.setItem('portal_pending_projects', JSON.stringify(existing));
 
             alert('Projeniz başarıyla gönderildi! Yönetici onayı sonrası yayınlanacaktır.');
             closeProjectModal();

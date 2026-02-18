@@ -1150,6 +1150,20 @@ const translations = {
     'analytics.tab.climate': { tr: 'Kentsel İklim Analizi', en: 'Urban Climate Analysis' },
     'analytics.tab.green': { tr: '3-30-300 Analizi', en: '3-30-300 Analysis' },
 
+    // Admin Panel Projects
+    'portal.admin.projects': { tr: 'Proje Başvuruları', en: 'Project Applications' },
+    'portal.admin.project_details': { tr: 'Proje Detayları', en: 'Project Details' },
+    'portal.project.name': { tr: 'Proje Adı', en: 'Project Name' },
+    'portal.project.owner': { tr: 'Proje Sahibi', en: 'Project Owner' },
+    'portal.project.date': { tr: 'Başvuru Tarihi', en: 'Submission Date' },
+    'portal.project.desc': { tr: 'Açıklama', en: 'Description' },
+    'portal.project.contact': { tr: 'İletişim Bilgileri', en: 'Contact Information' },
+    'portal.project.challenges': { tr: 'İlgili Zorluklar', en: 'Related Challenges' },
+    'portal.project.kvkk': { tr: 'KVKK Onayı', en: 'GDPR Consent' },
+    'portal.project.partners': { tr: 'Ortaklar', en: 'Partners' },
+    'portal.admin.approve': { tr: 'Onayla', en: 'Approve' },
+    'portal.admin.reject': { tr: 'Reddet', en: 'Reject' },
+
     'analytics.map.climate.title': { tr: 'İzmir Kentsel İklim Haritası', en: 'Izmir Urban Climate Map' },
     'analytics.map.green.title': { tr: 'İzmir 3-30-300 Analizi', en: 'Izmir 3-30-300 Analysis' },
     'analytics.map.subtitle': { tr: 'Foursquare Studio ile hazırlanmıştır', en: 'Prepared with Foursquare Studio' },
