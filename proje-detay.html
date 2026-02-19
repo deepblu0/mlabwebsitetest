@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proje Detayları - M-LAB</title>
-  <link rel="canonical" href="https://m-lab.izmir.bel.tr/proje-detay">
+    <link rel="canonical" href="https://m-lab.izmir.bel.tr/proje-detay">
     <meta name="description"
         content="İzmir'in sürdürülebilir kentsel dönüşüm projelerini keşfedin. M-LAB İzmir projeleri detayları ve hedefleri.">
     <link rel="icon" type="image/jpeg" href="mlab-favicon.jpg">
@@ -132,11 +132,7 @@
     <script>
         lucide.createIcons();
 
-    // Mobile Menu Toggle
-    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
-    });
+        // Mobile Menu Toggle handled by inline onclick on button
 
 
         function renderProjectDetail() {
@@ -266,7 +262,7 @@
         // Listen for language changes dispatched by i18n.js (if any, or just rely on reload)
         // Since i18n.js reloads the page on language change, we just need to render on load.
     </script>
-  <script src="cookie-consent.js"></script>
+    <script src="cookie-consent.js"></script>
 </body>
 
 </html>

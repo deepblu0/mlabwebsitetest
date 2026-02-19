@@ -416,12 +416,7 @@
             document.getElementById('bottom-tier-logos').innerHTML = bottomTier.map(renderLogoCard).join('');
         }
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        }
+        // Mobile menu toggle handled by inline onclick on button
 
         // Initialize
         renderStakeholders();
