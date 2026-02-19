@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dokümanlar | M-LAB</title>
-  <link rel="canonical" href="https://m-lab.izmir.bel.tr/dokumanlar">
-    <meta name="description" content="M-LAB İzmir tarafından hazırlanan raporlara, politika belgelerine, stratejik dokümanlara ve yayınlara erişin.">
+    <link rel="canonical" href="https://m-lab.izmir.bel.tr/dokumanlar">
+    <meta name="description"
+        content="M-LAB İzmir tarafından hazırlanan raporlara, politika belgelerine, stratejik dokümanlara ve yayınlara erişin.">
     <link rel="icon" type="image/jpeg" href="mlab-favicon.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -139,9 +140,11 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn"
-                    class="lg:hidden p-2.5 text-slate-600 hover:text-mlab-navy hover:bg-slate-100 rounded-xl transition-all">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
+                <button id="mobile-menu-btn" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+                    class="lg:hidden p-2.5 text-slate-600 hover:text-mlab-navy hover:bg-slate-100 rounded-xl transition-all cursor-pointer"
+                    style="touch-action: manipulation; -webkit-tap-highlight-color: transparent; min-width: 44px; min-height: 44px;"
+                    aria-label="Menü">
+                    <i data-lucide="menu" class="w-6 h-6 pointer-events-none"></i>
                 </button>
             </div>
         </div>
@@ -212,308 +215,450 @@
 
             <!-- Documents Grid -->
             <div id="documents-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
-                <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
-                    <img src="Docs-Cover/IKLIM-SEHIR-SOZLESMESI-cover.png" alt="─░klim ┼Şehir S├Âzle┼şmesi" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                         onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
-                        PDF
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
+                    <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
+                        <img src="Docs-Cover/IKLIM-SEHIR-SOZLESMESI-cover.png" alt="─░klim ┼Şehir S├Âzle┼şmesi"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        <div
+                            class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
+                            PDF
+                        </div>
+                    </div>
+                    <div class="flex-1 p-5 sm:p-6 flex flex-col">
+                        <div class="flex items-start justify-between gap-4 mb-2">
+                            <h3
+                                class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
+                                ─░klim ┼Şehir S├Âzle┼şmesi
+                            </h3>
+                            <span
+                                class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
+                                2.6 MB
+                            </span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-4 line-clamp-2">
+                            ─░zmir'in iklim n├Âtr ┼şehirler misyonuna kat─▒l─▒m s├Âzle┼şmesi ve taahh├╝tleri.
+                        </p>
+                        <div class="mt-auto flex items-center gap-3">
+                            <a href="Docs/IKLIM-SEHIR-SOZLESMESI.pdf" target="_blank"
+                                class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" x2="12" y1="15" y2="3" />
+                                </svg>
+                                ─░ndir
+                            </a>
+                            <a href="Docs/IKLIM-SEHIR-SOZLESMESI.pdf" target="_blank"
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
+                                title="A├ğ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-4 h-4">
+                                    <path d="M15 3h6v6" />
+                                    <path d="M10 14 21 3" />
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="flex-1 p-5 sm:p-6 flex flex-col">
-                    <div class="flex items-start justify-between gap-4 mb-2">
-                        <h3 class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
-                            ─░klim ┼Şehir S├Âzle┼şmesi
-                        </h3>
-                        <span class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
-                            2.6 MB
-                        </span>
-                    </div>
-                    <p class="text-slate-500 text-sm mb-4 line-clamp-2">
-                        ─░zmir'in iklim n├Âtr ┼şehirler misyonuna kat─▒l─▒m s├Âzle┼şmesi ve taahh├╝tleri.
-                    </p>
-                    <div class="mt-auto flex items-center gap-3">
-                        <a href="Docs/IKLIM-SEHIR-SOZLESMESI.pdf" target="_blank" 
-                           class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                            ─░ndir
-                        </a>
-                        <a href="Docs/IKLIM-SEHIR-SOZLESMESI.pdf" target="_blank"
-                           class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
-                           title="A├ğ">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        
 
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
-                <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
-                    <img src="Docs-Cover/SECAP-cover.png" alt="SECAP - S├╝rd├╝r├╝lebilir Enerji ve ─░klim Eylem Plan─▒" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                         onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
-                        PDF
-                    </div>
-                </div>
-                <div class="flex-1 p-5 sm:p-6 flex flex-col">
-                    <div class="flex items-start justify-between gap-4 mb-2">
-                        <h3 class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
-                            SECAP - S├╝rd├╝r├╝lebilir Enerji ve ─░klim Eylem Plan─▒
-                        </h3>
-                        <span class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
-                            20.2 MB
-                        </span>
-                    </div>
-                    <p class="text-slate-500 text-sm mb-4 line-clamp-2">
-                        ─░zmir B├╝y├╝k┼şehir Belediyesi S├╝rd├╝r├╝lebilir Enerji ve ─░klim Eylem Plan─▒ dok├╝man─▒.
-                    </p>
-                    <div class="mt-auto flex items-center gap-3">
-                        <a href="Docs/SECAP.pdf" target="_blank" 
-                           class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                            ─░ndir
-                        </a>
-                        <a href="Docs/SECAP.pdf" target="_blank"
-                           class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
-                           title="A├ğ">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        
 
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
-                <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
-                    <img src="Docs-Cover/3+30+300-cover.png" alt="3+30+300 ─░klim Hedefleri" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                         onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
-                        PDF
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
+                    <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
+                        <img src="Docs-Cover/SECAP-cover.png"
+                            alt="SECAP - S├╝rd├╝r├╝lebilir Enerji ve ─░klim Eylem Plan─▒"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        <div
+                            class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
+                            PDF
+                        </div>
+                    </div>
+                    <div class="flex-1 p-5 sm:p-6 flex flex-col">
+                        <div class="flex items-start justify-between gap-4 mb-2">
+                            <h3
+                                class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
+                                SECAP - S├╝rd├╝r├╝lebilir Enerji ve ─░klim Eylem Plan─▒
+                            </h3>
+                            <span
+                                class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
+                                20.2 MB
+                            </span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-4 line-clamp-2">
+                            ─░zmir B├╝y├╝k┼şehir Belediyesi S├╝rd├╝r├╝lebilir Enerji ve ─░klim Eylem Plan─▒ dok├╝man─▒.
+                        </p>
+                        <div class="mt-auto flex items-center gap-3">
+                            <a href="Docs/SECAP.pdf" target="_blank"
+                                class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" x2="12" y1="15" y2="3" />
+                                </svg>
+                                ─░ndir
+                            </a>
+                            <a href="Docs/SECAP.pdf" target="_blank"
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
+                                title="A├ğ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-4 h-4">
+                                    <path d="M15 3h6v6" />
+                                    <path d="M10 14 21 3" />
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="flex-1 p-5 sm:p-6 flex flex-col">
-                    <div class="flex items-start justify-between gap-4 mb-2">
-                        <h3 class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
-                            3+30+300 ─░klim Hedefleri
-                        </h3>
-                        <span class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
-                            16.5 MB
-                        </span>
-                    </div>
-                    <p class="text-slate-500 text-sm mb-4 line-clamp-2">
-                        ─░zmir'in k─▒sa, orta ve uzun vadeli iklim hedeflerini i├ğeren strateji dok├╝man─▒.
-                    </p>
-                    <div class="mt-auto flex items-center gap-3">
-                        <a href="Docs/3+30+300.pdf" target="_blank" 
-                           class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                            ─░ndir
-                        </a>
-                        <a href="Docs/3+30+300.pdf" target="_blank"
-                           class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
-                           title="A├ğ">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        
 
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
-                <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
-                    <img src="Docs-Cover/ENERJI-VERIMLILIGI-CALISTAYI-cover.png" alt="Enerji Verimlili─şi ├çal─▒┼ştay─▒" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                         onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
-                        PDF
-                    </div>
-                </div>
-                <div class="flex-1 p-5 sm:p-6 flex flex-col">
-                    <div class="flex items-start justify-between gap-4 mb-2">
-                        <h3 class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
-                            Enerji Verimlili─şi ├çal─▒┼ştay─▒
-                        </h3>
-                        <span class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
-                            12.2 MB
-                        </span>
-                    </div>
-                    <p class="text-slate-500 text-sm mb-4 line-clamp-2">
-                        ─░zmir enerji verimlili─şi ├ğal─▒┼ştay─▒ sonu├ğ raporu ve ├Âneriler.
-                    </p>
-                    <div class="mt-auto flex items-center gap-3">
-                        <a href="Docs/ENERJI-VERIMLILIGI-CALISTAYI.pdf" target="_blank" 
-                           class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                            ─░ndir
-                        </a>
-                        <a href="Docs/ENERJI-VERIMLILIGI-CALISTAYI.pdf" target="_blank"
-                           class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
-                           title="A├ğ">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        
 
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
-                <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
-                    <img src="Docs-Cover/KENTSEL-IKLIMI-ANALIZI-RAPORU-cover.png" alt="Kentsel ─░klim Analizi Raporu" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                         onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
-                        PDF
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
+                    <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
+                        <img src="Docs-Cover/3+30+300-cover.png" alt="3+30+300 ─░klim Hedefleri"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        <div
+                            class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
+                            PDF
+                        </div>
+                    </div>
+                    <div class="flex-1 p-5 sm:p-6 flex flex-col">
+                        <div class="flex items-start justify-between gap-4 mb-2">
+                            <h3
+                                class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
+                                3+30+300 ─░klim Hedefleri
+                            </h3>
+                            <span
+                                class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
+                                16.5 MB
+                            </span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-4 line-clamp-2">
+                            ─░zmir'in k─▒sa, orta ve uzun vadeli iklim hedeflerini i├ğeren strateji dok├╝man─▒.
+                        </p>
+                        <div class="mt-auto flex items-center gap-3">
+                            <a href="Docs/3+30+300.pdf" target="_blank"
+                                class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" x2="12" y1="15" y2="3" />
+                                </svg>
+                                ─░ndir
+                            </a>
+                            <a href="Docs/3+30+300.pdf" target="_blank"
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
+                                title="A├ğ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-4 h-4">
+                                    <path d="M15 3h6v6" />
+                                    <path d="M10 14 21 3" />
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="flex-1 p-5 sm:p-6 flex flex-col">
-                    <div class="flex items-start justify-between gap-4 mb-2">
-                        <h3 class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
-                            Kentsel ─░klim Analizi Raporu
-                        </h3>
-                        <span class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
-                            4.7 MB
-                        </span>
-                    </div>
-                    <p class="text-slate-500 text-sm mb-4 line-clamp-2">
-                        ─░zmir kentsel ─▒s─▒ adas─▒ ve iklim analizi ara┼şt─▒rma raporu.
-                    </p>
-                    <div class="mt-auto flex items-center gap-3">
-                        <a href="Docs/KENTSEL-IKLIMI-ANALIZI-RAPORU.pdf" target="_blank" 
-                           class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                            ─░ndir
-                        </a>
-                        <a href="Docs/KENTSEL-IKLIMI-ANALIZI-RAPORU.pdf" target="_blank"
-                           class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
-                           title="A├ğ">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        
 
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
-                <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
-                    <img src="Docs-Cover/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI-COVER.png" alt="─░zmirÔÇÖde Orman Yang─▒n─▒ Riskinin Mek├ónsal Analizi" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                         onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
-                        PDF
-                    </div>
-                </div>
-                <div class="flex-1 p-5 sm:p-6 flex flex-col">
-                    <div class="flex items-start justify-between gap-4 mb-2">
-                        <h3 class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
-                            ─░zmirÔÇÖde Orman Yang─▒n─▒ Riskinin Mek├ónsal Analizi
-                        </h3>
-                        <span class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
-                            13.1 MB
-                        </span>
-                    </div>
-                    <p class="text-slate-500 text-sm mb-4 line-clamp-2">
-                        ─░zmir genelindeki orman yang─▒n─▒ risklerinin mek├ónsal da─ş─▒l─▒m─▒ ve analiz raporu.
-                    </p>
-                    <div class="mt-auto flex items-center gap-3">
-                        <a href="Docs/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI.pdf" target="_blank" 
-                           class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                            ─░ndir
-                        </a>
-                        <a href="Docs/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI.pdf" target="_blank"
-                           class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
-                           title="A├ğ">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        
 
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
-                <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
-                    <img src="Docs-Cover/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI-COVER.png" alt="─░zmir'de ─░klim De─şi┼şikli─şinin Etkileri" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                         onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
-                        PDF
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
+                    <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
+                        <img src="Docs-Cover/ENERJI-VERIMLILIGI-CALISTAYI-cover.png"
+                            alt="Enerji Verimlili─şi ├çal─▒┼ştay─▒"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        <div
+                            class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
+                            PDF
+                        </div>
+                    </div>
+                    <div class="flex-1 p-5 sm:p-6 flex flex-col">
+                        <div class="flex items-start justify-between gap-4 mb-2">
+                            <h3
+                                class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
+                                Enerji Verimlili─şi ├çal─▒┼ştay─▒
+                            </h3>
+                            <span
+                                class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
+                                12.2 MB
+                            </span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-4 line-clamp-2">
+                            ─░zmir enerji verimlili─şi ├ğal─▒┼ştay─▒ sonu├ğ raporu ve ├Âneriler.
+                        </p>
+                        <div class="mt-auto flex items-center gap-3">
+                            <a href="Docs/ENERJI-VERIMLILIGI-CALISTAYI.pdf" target="_blank"
+                                class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" x2="12" y1="15" y2="3" />
+                                </svg>
+                                ─░ndir
+                            </a>
+                            <a href="Docs/ENERJI-VERIMLILIGI-CALISTAYI.pdf" target="_blank"
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
+                                title="A├ğ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-4 h-4">
+                                    <path d="M15 3h6v6" />
+                                    <path d="M10 14 21 3" />
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="flex-1 p-5 sm:p-6 flex flex-col">
-                    <div class="flex items-start justify-between gap-4 mb-2">
-                        <h3 class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
-                            ─░zmir'de ─░klim De─şi┼şikli─şinin Etkileri
-                        </h3>
-                        <span class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
-                            6.3 MB
-                        </span>
-                    </div>
-                    <p class="text-slate-500 text-sm mb-4 line-clamp-2">
-                        ─░klim de─şi┼şikli─şinin ─░zmir ├Âzelindeki ├ğevresel ve kentsel etkilerinin de─şerlendirilmesi.
-                    </p>
-                    <div class="mt-auto flex items-center gap-3">
-                        <a href="Docs/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI.pdf" target="_blank" 
-                           class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                            ─░ndir
-                        </a>
-                        <a href="Docs/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI.pdf" target="_blank"
-                           class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
-                           title="A├ğ">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        
 
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
-                <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
-                    <img src="Docs-Cover/Kentsel_Politika_Notlari_Cover.png" alt="─░zmir Kentsel Politika Notlar─▒" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                         onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
-                        PDF
+
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
+                    <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
+                        <img src="Docs-Cover/KENTSEL-IKLIMI-ANALIZI-RAPORU-cover.png"
+                            alt="Kentsel ─░klim Analizi Raporu"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        <div
+                            class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
+                            PDF
+                        </div>
+                    </div>
+                    <div class="flex-1 p-5 sm:p-6 flex flex-col">
+                        <div class="flex items-start justify-between gap-4 mb-2">
+                            <h3
+                                class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
+                                Kentsel ─░klim Analizi Raporu
+                            </h3>
+                            <span
+                                class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
+                                4.7 MB
+                            </span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-4 line-clamp-2">
+                            ─░zmir kentsel ─▒s─▒ adas─▒ ve iklim analizi ara┼şt─▒rma raporu.
+                        </p>
+                        <div class="mt-auto flex items-center gap-3">
+                            <a href="Docs/KENTSEL-IKLIMI-ANALIZI-RAPORU.pdf" target="_blank"
+                                class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" x2="12" y1="15" y2="3" />
+                                </svg>
+                                ─░ndir
+                            </a>
+                            <a href="Docs/KENTSEL-IKLIMI-ANALIZI-RAPORU.pdf" target="_blank"
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
+                                title="A├ğ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-4 h-4">
+                                    <path d="M15 3h6v6" />
+                                    <path d="M10 14 21 3" />
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="flex-1 p-5 sm:p-6 flex flex-col">
-                    <div class="flex items-start justify-between gap-4 mb-2">
-                        <h3 class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
-                            ─░zmir Kentsel Politika Notlar─▒
-                        </h3>
-                        <span class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
-                            7.8 MB
-                        </span>
+
+
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
+                    <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
+                        <img src="Docs-Cover/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI-COVER.png"
+                            alt="─░zmirÔÇÖde Orman Yang─▒n─▒ Riskinin Mek├ónsal Analizi"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        <div
+                            class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
+                            PDF
+                        </div>
                     </div>
-                    <p class="text-slate-500 text-sm mb-4 line-clamp-2">
-                        ─░zmir'in kentsel geli┼şim ve s├╝rd├╝r├╝lebilirlik politikalar─▒na dair stratejik notlar.
-                    </p>
-                    <div class="mt-auto flex items-center gap-3">
-                        <a href="Docs/Izmir_Kentsel_Politika_Notlari.pdf" target="_blank" 
-                           class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                            ─░ndir
-                        </a>
-                        <a href="Docs/Izmir_Kentsel_Politika_Notlari.pdf" target="_blank"
-                           class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
-                           title="A├ğ">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-                        </a>
+                    <div class="flex-1 p-5 sm:p-6 flex flex-col">
+                        <div class="flex items-start justify-between gap-4 mb-2">
+                            <h3
+                                class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
+                                ─░zmirÔÇÖde Orman Yang─▒n─▒ Riskinin Mek├ónsal Analizi
+                            </h3>
+                            <span
+                                class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
+                                13.1 MB
+                            </span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-4 line-clamp-2">
+                            ─░zmir genelindeki orman yang─▒n─▒ risklerinin mek├ónsal da─ş─▒l─▒m─▒ ve analiz raporu.
+                        </p>
+                        <div class="mt-auto flex items-center gap-3">
+                            <a href="Docs/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI.pdf" target="_blank"
+                                class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" x2="12" y1="15" y2="3" />
+                                </svg>
+                                ─░ndir
+                            </a>
+                            <a href="Docs/IZMIRDE-ORMAN-YANGINI-RISKININ-MEKANSAL-ANALIZI.pdf" target="_blank"
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
+                                title="A├ğ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-4 h-4">
+                                    <path d="M15 3h6v6" />
+                                    <path d="M10 14 21 3" />
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
+                    <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
+                        <img src="Docs-Cover/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI-COVER.png"
+                            alt="─░zmir'de ─░klim De─şi┼şikli─şinin Etkileri"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        <div
+                            class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
+                            PDF
+                        </div>
+                    </div>
+                    <div class="flex-1 p-5 sm:p-6 flex flex-col">
+                        <div class="flex items-start justify-between gap-4 mb-2">
+                            <h3
+                                class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
+                                ─░zmir'de ─░klim De─şi┼şikli─şinin Etkileri
+                            </h3>
+                            <span
+                                class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
+                                6.3 MB
+                            </span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-4 line-clamp-2">
+                            ─░klim de─şi┼şikli─şinin ─░zmir ├Âzelindeki ├ğevresel ve kentsel etkilerinin
+                            de─şerlendirilmesi.
+                        </p>
+                        <div class="mt-auto flex items-center gap-3">
+                            <a href="Docs/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI.pdf" target="_blank"
+                                class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" x2="12" y1="15" y2="3" />
+                                </svg>
+                                ─░ndir
+                            </a>
+                            <a href="Docs/IZMIRDE-IKLIM-DEGISIKLIGININ-ETKILERI.pdf" target="_blank"
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
+                                title="A├ğ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-4 h-4">
+                                    <path d="M15 3h6v6" />
+                                    <path d="M10 14 21 3" />
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300 overflow-hidden group flex">
+                    <div class="w-32 sm:w-40 flex-shrink-0 bg-slate-100 relative overflow-hidden">
+                        <img src="Docs-Cover/Kentsel_Politika_Notlari_Cover.png" alt="─░zmir Kentsel Politika Notlar─▒"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            onerror="this.src='https://placehold.co/200x280/e2e8f0/64748b?text=PDF'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        <div
+                            class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-xs font-medium text-slate-600">
+                            PDF
+                        </div>
+                    </div>
+                    <div class="flex-1 p-5 sm:p-6 flex flex-col">
+                        <div class="flex items-start justify-between gap-4 mb-2">
+                            <h3
+                                class="text-lg font-bold text-slate-800 leading-tight group-hover:text-mlab-navy transition-colors">
+                                ─░zmir Kentsel Politika Notlar─▒
+                            </h3>
+                            <span
+                                class="flex-shrink-0 text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded-md">
+                                7.8 MB
+                            </span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-4 line-clamp-2">
+                            ─░zmir'in kentsel geli┼şim ve s├╝rd├╝r├╝lebilirlik politikalar─▒na dair stratejik notlar.
+                        </p>
+                        <div class="mt-auto flex items-center gap-3">
+                            <a href="Docs/Izmir_Kentsel_Politika_Notlari.pdf" target="_blank"
+                                class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-blue hover:shadow-md hover:shadow-mlab-blue/20 transition-all group/btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" x2="12" y1="15" y2="3" />
+                                </svg>
+                                ─░ndir
+                            </a>
+                            <a href="Docs/Izmir_Kentsel_Politika_Notlari.pdf" target="_blank"
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-500 hover:text-mlab-navy hover:bg-slate-50 transition-all"
+                                title="A├ğ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-4 h-4">
+                                    <path d="M15 3h6v6" />
+                                    <path d="M10 14 21 3" />
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Empty State -->
@@ -667,7 +812,7 @@
             if (typeof translatePage === 'function') translatePage();
         });
     </script>
-  <script src="cookie-consent.js"></script>
+    <script src="cookie-consent.js"></script>
 </body>
 
 </html>

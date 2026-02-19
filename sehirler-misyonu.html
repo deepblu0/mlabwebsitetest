@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Şehirler Misyonu | M-LAB</title>
-  <link rel="canonical" href="https://m-lab.izmir.bel.tr/sehirler-misyonu">
-    <meta name="description" content="Avrupa Birliği İklim Nötr ve Akıllı Şehirler Misyonu kapsamında İzmir'in öncü rolü, hedefleri ve eylem planı.">
+    <link rel="canonical" href="https://m-lab.izmir.bel.tr/sehirler-misyonu">
+    <meta name="description"
+        content="Avrupa Birliği İklim Nötr ve Akıllı Şehirler Misyonu kapsamında İzmir'in öncü rolü, hedefleri ve eylem planı.">
     <link rel="icon" type="image/jpeg" href="mlab-favicon.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,13 +66,15 @@
     </style>
 
     <meta property="og:title" content="Şehirler Misyonu - M-LAB İzmir">
-    <meta property="og:description" content="Avrupa Birliği İklim Nötr ve Akıllı Şehirler Misyonu kapsamında İzmir'in öncü rolü.">
+    <meta property="og:description"
+        content="Avrupa Birliği İklim Nötr ve Akıllı Şehirler Misyonu kapsamında İzmir'in öncü rolü.">
     <meta property="og:image" content="https://m-lab.izmir.bel.tr/mlab-logo.png">
     <meta property="og:url" content="https://m-lab.izmir.bel.tr/sehirler-misyonu">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Şehirler Misyonu - M-LAB İzmir">
-    <meta name="twitter:description" content="Avrupa Birliği İklim Nötr ve Akıllı Şehirler Misyonu kapsamında İzmir'in öncü rolü.">
+    <meta name="twitter:description"
+        content="Avrupa Birliği İklim Nötr ve Akıllı Şehirler Misyonu kapsamında İzmir'in öncü rolü.">
     <meta name="twitter:image" content="https://m-lab.izmir.bel.tr/mlab-logo.png">
 </head>
 
@@ -147,9 +150,11 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn"
-                    class="lg:hidden p-2.5 text-slate-600 hover:text-mlab-navy hover:bg-slate-100 rounded-xl transition-all">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
+                <button id="mobile-menu-btn" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+                    class="lg:hidden p-2.5 text-slate-600 hover:text-mlab-navy hover:bg-slate-100 rounded-xl transition-all cursor-pointer"
+                    style="touch-action: manipulation; -webkit-tap-highlight-color: transparent; min-width: 44px; min-height: 44px;"
+                    aria-label="Menü">
+                    <i data-lucide="menu" class="w-6 h-6 pointer-events-none"></i>
                 </button>
             </div>
         </div>
@@ -468,7 +473,7 @@
             document.getElementById('mobile-menu')?.classList.toggle('hidden');
         });
     </script>
-  <script src="cookie-consent.js"></script>
+    <script src="cookie-consent.js"></script>
 </body>
 
 </html>
