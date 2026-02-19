@@ -604,6 +604,20 @@ const mlabData = {
             partners: "İzmir Büyükşehir Belediyesi, Ege Üniversitesi, İzmir Yüksek Teknoloji Enstitüsü (İYTE), CARTIF (Proje Koordinatörü)",
             bigChallengeId: 10,
             image: "images/projects/urban-greenup.webp"
+        },
+        {
+            id: 21,
+            title: { tr: "Dönüşüme Evde Başla", en: "Start the Transformation at Home" },
+            description: {
+                tr: "İzmir Büyükşehir Belediyesi bünyesindeki İklim Değişikliği ve Sıfır Atık Dairesi Başkanlığı ile İzdoğa A.Ş. ortaklığında hayata geçirilen Dönüşüme Evde Başla projesi, sürdürülebilir bir şehir vizyonu doğrultusunda ambalaj atıklarının kaynağında ayrıştırılmasını hedeflemektedir. Bu proje ile evsel ambalaj atıkları doğrudan hanelerden toplanarak modern tesislerde geri dönüştürülmekte, böylece hem doğal kaynaklar korunmakta hem de döngüsel ekonomiye katma değer sağlanmaktadır.",
+                en: "Implemented in partnership with Izmir Metropolitan Municipality Department of Climate Change and Zero Waste and İzdoğa A.Ş., the Start the Transformation at Home project aims to separate packaging waste at the source in line with a sustainable city vision. With this project, domestic packaging waste is collected directly from households and recycled in modern facilities, thus conserving natural resources and adding value to the circular economy."
+            },
+            duration: null,
+            startDate: { tr: "7 Mart 2025", en: "7 March 2025" },
+            status: { tr: "Devam Ediyor", en: "In Progress" },
+            partners: "İzmir Büyükşehir Belediyesi, İzdoğa A.Ş.",
+            bigChallengeId: 10,
+            image: "proje-img/donusume-evde-basla.png"
         }
     ],
 
