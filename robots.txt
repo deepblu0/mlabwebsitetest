@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /portal-admin*
+Disallow: /portal-dashboard*
+Disallow: /portal-profile*
+Disallow: /sandbox*
+Disallow: /preview*
+
+Sitemap: https://m-lab.izmir.bel.tr/sitemap.xml

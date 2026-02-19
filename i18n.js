@@ -338,7 +338,7 @@ const translations = {
         en: 'Grand Challenges'
     },
     'challenges.hero.desc1': {
-        tr: 'Misyon Kent 2030 İzmir vizyonu doğrultusunda tarafından hazırlanan',
+        tr: 'Misyon Kent 2030 İzmir vizyonu doğrultusunda hazırlanan',
         en: 'Prepared in line with the Mission City 2030 Izmir vision,'
     },
     'challenges.hero.link': {
