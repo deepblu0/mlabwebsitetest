@@ -45,6 +45,39 @@
         .coin-flip:hover {
             transform: rotateY(360deg);
         }
+
+        /* Mobile filter panel */
+        @media (max-width: 1023px) {
+            .mobile-filter-panel {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+                opacity: 0;
+            }
+
+            .mobile-filter-panel.open {
+                max-height: 600px;
+                opacity: 1;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-filter-panel {
+                max-height: none !important;
+                opacity: 1 !important;
+                overflow: visible !important;
+            }
+        }
+
+        /* Mobile action buttons scroll */
+        .action-scroll {
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .action-scroll::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 
@@ -125,20 +158,30 @@
     <div class="h-16"></div>
 
     <!-- MAIN CONTENT -->
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-8">
 
 
         <!-- Filters & Content -->
-        <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex flex-col lg:flex-row gap-4 lg:gap-8">
 
             <!-- Sidebar Filters -->
-            <aside class="lg:w-64 flex-shrink-0">
-                <!-- Alignment Spacer (Desktop Only) - Matches the height of the placeholder in the feed -->
-                <!-- Alignment Spacer (Desktop Only) - Matches the height of the buttons row -->
-                <!-- Alignment Spacer (Desktop Only) - Matches the height of the buttons row -->
+            <aside class="lg:w-64 flex-shrink-0 order-2 lg:order-1">
+                <!-- Alignment Spacer (Desktop Only) -->
                 <div class="mb-6 h-[56px] hidden lg:block" aria-hidden="true"></div>
 
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sticky top-24">
+                <!-- Mobile Filter Toggle -->
+                <button id="mobile-filter-toggle" onclick="toggleMobileFilters()"
+                    class="lg:hidden w-full flex items-center justify-between px-4 py-3 bg-white rounded-xl shadow-sm border border-slate-200 text-sm font-medium text-mlab-navy mb-3">
+                    <span class="flex items-center gap-2">
+                        <i data-lucide="filter" class="w-4 h-4"></i>
+                        <span data-i18n="portal.filters.title">Filtreler</span>
+                    </span>
+                    <i data-lucide="chevron-down" id="filter-chevron"
+                        class="w-4 h-4 transition-transform duration-300"></i>
+                </button>
+
+                <div
+                    class="mobile-filter-panel bg-white rounded-2xl shadow-sm border border-slate-200 p-5 lg:sticky lg:top-24">
                     <h3 class="font-semibold text-mlab-navy mb-4 flex items-center gap-2"
                         data-i18n="portal.filters.title">
                         <i data-lucide="filter" class="w-4 h-4"></i>
@@ -235,36 +278,38 @@
             </aside>
 
             <!-- Feed Section -->
-            <div class="flex-1 min-w-0">
+            <div class="flex-1 min-w-0 order-1 lg:order-2">
 
                 <!-- Quick Action Buttons -->
-                <div class="mb-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div
+                    class="mb-4 lg:mb-6 flex lg:grid lg:grid-cols-4 gap-3 lg:gap-4 overflow-x-auto action-scroll pb-2 lg:pb-0">
                     <button onclick="openNewPostModal()"
-                        class="group flex items-center justify-center gap-2 px-4 py-4 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-sm font-bold rounded-2xl shadow-lg shadow-mlab-purple/20 hover:shadow-mlab-purple/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300">
+                        class="group flex items-center justify-center gap-2 px-4 py-3 lg:py-4 bg-gradient-to-r from-mlab-purple to-mlab-navy text-white text-xs lg:text-sm font-bold rounded-xl lg:rounded-2xl shadow-lg shadow-mlab-purple/20 hover:shadow-mlab-purple/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300 min-w-[140px] lg:min-w-0 flex-shrink-0">
                         <i data-lucide="plus"
-                            class="w-5 h-5 group-hover:rotate-90 transition-transform duration-300"></i>
-                        <span data-i18n="portal.actions.new_call">Yeni Çağrı</span>
+                            class="w-4 h-4 lg:w-5 lg:h-5 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span data-i18n="portal.actions.new_call" class="whitespace-nowrap">Yeni Çağrı</span>
                     </button>
 
                     <button onclick="openExpertModal()"
-                        class="group flex items-center justify-center gap-2 px-4 py-4 bg-gradient-to-r from-mlab-orange to-red-500 text-white text-sm font-bold rounded-2xl shadow-lg shadow-mlab-orange/20 hover:shadow-mlab-orange/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300">
+                        class="group flex items-center justify-center gap-2 px-4 py-3 lg:py-4 bg-gradient-to-r from-mlab-orange to-red-500 text-white text-xs lg:text-sm font-bold rounded-xl lg:rounded-2xl shadow-lg shadow-mlab-orange/20 hover:shadow-mlab-orange/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300 min-w-[160px] lg:min-w-0 flex-shrink-0">
                         <i data-lucide="clipboard-list"
-                            class="w-5 h-5 group-hover:scale-110 transition-transform duration-300"></i>
-                        <span data-i18n="portal.actions.expert_pool">Uzman Havuzuna Katıl!</span>
+                            class="w-4 h-4 lg:w-5 lg:h-5 group-hover:scale-110 transition-transform duration-300"></i>
+                        <span data-i18n="portal.actions.expert_pool" class="whitespace-nowrap">Mentör Ağına
+                            Katıl!</span>
                     </button>
 
                     <button onclick="openPartnerModal()"
-                        class="group flex items-center justify-center gap-2 px-4 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-bold rounded-2xl shadow-lg shadow-cyan/20 hover:shadow-cyan/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300">
+                        class="group flex items-center justify-center gap-2 px-4 py-3 lg:py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs lg:text-sm font-bold rounded-xl lg:rounded-2xl shadow-lg shadow-cyan/20 hover:shadow-cyan/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300 min-w-[160px] lg:min-w-0 flex-shrink-0">
                         <i data-lucide="users"
-                            class="w-5 h-5 text-white/90 group-hover:scale-110 transition-transform duration-300"></i>
-                        <span data-i18n="portal.form.partner_call">Ufuk Avrupa Partner Çağrısı</span>
+                            class="w-4 h-4 lg:w-5 lg:h-5 text-white/90 group-hover:scale-110 transition-transform duration-300"></i>
+                        <span data-i18n="portal.form.partner_call" class="whitespace-nowrap">Partner Çağrısı</span>
                     </button>
 
                     <a href="ufuk-hibeleri.html"
-                        class="group flex items-center justify-center gap-2 px-4 py-4 bg-gradient-to-r from-blue-700 to-indigo-900 text-white text-sm font-bold rounded-2xl shadow-lg shadow-blue/20 hover:shadow-blue/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300">
+                        class="group flex items-center justify-center gap-2 px-4 py-3 lg:py-4 bg-gradient-to-r from-blue-700 to-indigo-900 text-white text-xs lg:text-sm font-bold rounded-xl lg:rounded-2xl shadow-lg shadow-blue/20 hover:shadow-blue/40 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300 min-w-[160px] lg:min-w-0 flex-shrink-0">
                         <i data-lucide="euro"
-                            class="w-5 h-5 text-white/90 group-hover:rotate-12 transition-transform duration-300"></i>
-                        <span>Ufuk Avrupa Çağrıları</span>
+                            class="w-4 h-4 lg:w-5 lg:h-5 text-white/90 group-hover:rotate-12 transition-transform duration-300"></i>
+                        <span class="whitespace-nowrap">Ufuk Çağrıları</span>
                     </a>
                 </div>
 
@@ -2095,6 +2140,18 @@
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalBtnText;
                 lucide.createIcons();
+            }
+        }
+
+        // Mobile Filter Toggle
+        function toggleMobileFilters() {
+            const panel = document.querySelector('.mobile-filter-panel');
+            const chevron = document.getElementById('filter-chevron');
+            if (panel) {
+                panel.classList.toggle('open');
+                if (chevron) {
+                    chevron.style.transform = panel.classList.contains('open') ? 'rotate(180deg)' : '';
+                }
             }
         }
 
