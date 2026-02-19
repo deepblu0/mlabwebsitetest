@@ -226,6 +226,13 @@
     <script>
         lucide.createIcons();
 
+    // Mobile Menu Toggle
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    });
+
+
         function switchTab(tabId) {
             // Hide all sections
             document.querySelectorAll('.legal-section').forEach(el => el.classList.remove('active'));

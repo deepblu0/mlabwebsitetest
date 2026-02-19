@@ -132,6 +132,13 @@
     <script>
         lucide.createIcons();
 
+    // Mobile Menu Toggle
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    });
+
+
         function renderProjectDetail() {
             const lang = window.getCurrentLang();
             const urlParams = new URLSearchParams(window.location.search);

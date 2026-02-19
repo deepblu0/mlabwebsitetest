@@ -1235,6 +1235,13 @@
             submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Gönderiliyor...';
             lucide.createIcons();
 
+    // Mobile Menu Toggle
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    });
+
+
             try {
                 // Initialize Firebase if not ready
                 if (!window.firebaseDb) {
