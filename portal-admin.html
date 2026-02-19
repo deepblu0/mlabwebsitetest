@@ -182,7 +182,9 @@
                 .replace(/'/g, "&#039;");
         }
 
-        // Check admin access (SECURE VERSION - TRY-READ PATTERN)
+        // Check admin access using ADMIN_EMAILS list
+        // NOT: Gerçek veri güvenliği Firestore kuralları ile sağlanır.
+        // Bu kontrol sadece UI erişimi içindir.
         async function checkAdminAccess() {
             // Firebase initialized değilse bekle
             if (!window.firebaseAuth) {
@@ -197,34 +199,18 @@
             // Auth durumunu dinle
             window.firebaseAuth.onAuthStateChanged(window.firebaseAuth.auth, async (user) => {
                 if (user) {
-                    document.getElementById('auth-loading-overlay').classList.remove('hidden');
+                    const email = user.email?.toLowerCase();
+                    const isAdmin = window.ADMIN_EMAILS?.includes(email);
 
-                    try {
-                        // Admin olup olmadığını anlamak için "contact_messages" koleksiyonundan 1 belge okumayı dene.
-                        // Firestore kurallarına göre sadece adminler okuyabilir.
-                        const { db, collection, getDocs, query, limit } = window.firebaseDb;
-
-                        // Bu sorgu sadece yetki kontrolü içindir, veri için değil.
-                        // Eğer yetki yoksa burası HATA fırlatır.
-                        await getDocs(query(collection(db, 'contact_messages'), limit(1)));
-
-                        // Hata almadıysak admindir.
-                        const email = user.email;
+                    if (isAdmin) {
                         document.getElementById('admin-email').textContent = email;
                         document.getElementById('auth-loading-overlay').classList.add('hidden');
-
                         currentUser = { email: email, isAdmin: true, uid: user.uid };
-
-                        // Şimdi tüm gerçek verileri yükle
                         loadData();
-
-                    } catch (error) {
-                        console.error("Admin yetki kontrolü başarısız:", error);
-                        // Permission denied hatası buraya düşer
-                        alert("Bu panele erişim yetkiniz yok! (Yetersiz İzin)");
+                    } else {
+                        alert("Bu panele erişim yetkiniz yok!");
                         window.location.href = 'portal-dashboard.html';
                     }
-
                 } else {
                     // Hiç giriş yapmamış
                     window.location.href = 'portal-login.html';
