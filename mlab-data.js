@@ -521,7 +521,7 @@ const mlabData = {
             description: {
                 tr: `<p class="mb-4">Projenin amacı, bölgenin ekolojik dönüşümünü, kentsel planlamayı ve kültürel politikaları birleştiren projeler yoluyla kültürü kalkınmalarının itici gücü haline getiren Akdeniz metropollerinden oluşan bir ağ kurmaktır.</p>
 <p class="mb-4">Proje kapsamında 5 Ana Tema üzerinde çalışmalar yürütülecektir; 1) Yerelden Akdeniz'e bölgeleri birbirine bağlayan kültür, 2) Kültürün merkezinde yaşam, 3) Küresel ısınmayla mücadelede bir dirençlilik eylemi olarak kültür, 4) İstihdam edilebilirliğin itici gücü olarak kültür ve 5) Sektör dayanıklılığının garantisi olarak çok paydaşlı kültürel yönetişim.</p>
-<p class="mb-4">İBB’nin Rolü, proje kapsamında gerçekleşecek tüm faaliyetlere katılmak, Fransa’nın üç şehrindeki yuvarlak masa toplantılarına iştirak etmek ve AVITEM ile beraber beş ana tema kapsamında kitapçıkların hazırlanmasına katkı sunmaktır.</p>
+<p class="mb-4">İzmir Büyükşehir Belediyesi'nin Rolü, proje kapsamında gerçekleşecek tüm faaliyetlere katılmak, Fransa’nın üç şehrindeki yuvarlak masa toplantılarına iştirak etmek ve AVITEM ile beraber beş ana tema kapsamında kitapçıkların hazırlanmasına katkı sunmaktır.</p>
 <p class="mb-4">Ayrıca, Nice Condé Sanat Okulu ile birlikte proje ilk örnek çalışmalarına katkıda bulunulması, İzmir’de İzmir Kültür Sempozyumu düzenlenmesi, AVITEM'in katkılarıyla ortak Akdeniz Kültür ve Yaratıcılık Kentleri Manifestosu’nun hazırlanarak imzalanması ve ilan edilmesi planlanmaktadır.</p>`,
                 en: "The project aims to establish a network of Mediterranean metropolises that make culture a driving force for development through projects combining ecological transformation of the region, urban planning, and cultural policies. Izmir Metropolitan Municipality will organize the Izmir Culture Symposium and prepare the joint Mediterranean Culture and Creativity Cities Manifesto."
             },
@@ -554,7 +554,7 @@ const mlabData = {
             title: { tr: "Cool Noons", en: "Cool Noons" },
             description: {
                 tr: `<p class="mb-4">Projenin amacı, Akdeniz şehirlerinde doğa temelli çözümler de dahil olmak üzere yenilikçi çözümleri test etmek; Kentsel turizm sektöründe sürdürülebilirliği engelleyen iklim değişikliğinin neden olduğu risklerle mücadele ederek Akdeniz şehirlerinin rekabet gücünü artırmak; Aşırı turistik baskı risklerine karşı kentsel alanların direncini artırmak ve turizm sektörüne bağlı alanlarda yaşam kalitesini iyileştirmek ile paydaşları, profesyonelleri ve vatandaşları dahil etmektir.</p>
-<p class="mb-4">İBB, projede son kullanıcı, danışman veya gözlemcilik rolleri üstlenecek ve oluşturulacak kurumsal diyaloglara aktif olarak katılım sağlayacaktır.</p>`,
+<p class="mb-4">İzmir Büyükşehir Belediyesi, projede son kullanıcı, danışman veya gözlemcilik rolleri üstlenecek ve oluşturulacak kurumsal diyaloglara aktif olarak katılım sağlayacaktır.</p>`,
                 en: "The aim is to test innovative solutions, including nature-based solutions, in Mediterranean cities, to combat climate change risks hindering sustainability in the urban tourism sector, and to increase the competitiveness of Mediterranean cities. Izmir Metropolitan Municipality is involved in the project as an end-user, consultant, or observer."
             },
             duration: null,
