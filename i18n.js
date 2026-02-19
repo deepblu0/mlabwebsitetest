@@ -352,7 +352,7 @@ const translations = {
 
     // Page Titles
     'page.home': {
-        tr: 'M-LAB | İzmir İklim Eylem Laboratuvarı',
+        tr: 'M-LAB | İzmir Misyon Kent Eylem Laboratuvarı',
         en: 'M-LAB | Izmir Mission City Action Lab'
     },
     'page.projects': {
