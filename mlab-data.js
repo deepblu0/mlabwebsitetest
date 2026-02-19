@@ -477,7 +477,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "İzmir Valiliği, İZTO, EBSO, İTB",
             bigChallengeId: 4,
-            image: "https://picsum.photos/seed/dikili-sera/800/400"
+            image: "proje-img/dikili-tdiosb.jpg"
         },
         {
             id: 11,
