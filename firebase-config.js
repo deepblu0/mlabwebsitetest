@@ -11,8 +11,10 @@ const firebaseConfig = {
     measurementId: "G-8H1YB9R85D"
 };
 
-// Admin yetkisi artık Firestore kuralları ve "Try-Read" yöntemi ile kontrol ediliyor.
-// E-posta listesi sunucu tarafında (firestore.rules) saklanmaktadır.
+// Admin e-posta listesi (Firestore rules ile aynı olmalı)
+window.ADMIN_EMAILS = [
+    'berkay.yilmaz.edu@gmail.com'
+];
 
 // Firebase başlatma ve dışa aktarma
 let app, auth, db;
