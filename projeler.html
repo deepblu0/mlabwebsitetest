@@ -1590,7 +1590,7 @@
             try {
                 // Initialize Firebase if not ready
                 if (!window.firebaseDb) {
-                    await window.initializeFirebase();
+                    await window.firebaseHelpers.initializeFirebase();
                 }
 
                 const { db, collection, addDoc, serverTimestamp } = window.firebaseDb;

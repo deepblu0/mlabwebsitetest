@@ -224,7 +224,7 @@
             try {
                 // Initialize Firebase if not ready (checkAdminAccess zaten yapmış olmalı ama garanti olsun)
                 if (!window.firebaseDb) {
-                    await window.initializeFirebase();
+                    await window.firebaseHelpers.initializeFirebase();
                 }
 
                 const { db, collection, getDocs, query, orderBy } = window.firebaseDb;
@@ -781,7 +781,7 @@
         async function approveUser(userId) {
             try {
                 // Firebase initialized check (should be ready but good to check)
-                if (!window.firebaseDb) await window.initializeFirebase();
+                if (!window.firebaseDb) await window.firebaseHelpers.initializeFirebase();
 
                 const { db, doc, updateDoc, getDoc, serverTimestamp } = window.firebaseDb;
 
@@ -841,7 +841,7 @@
 
             try {
                 // Firebase initialized check
-                if (!window.firebaseDb) await window.initializeFirebase();
+                if (!window.firebaseDb) await window.firebaseHelpers.initializeFirebase();
 
                 const { db, doc, updateDoc, serverTimestamp } = window.firebaseDb;
 
