@@ -609,7 +609,45 @@ const mlabData = {
             id: 21,
             title: { tr: "Dönüşüme Evde Başla", en: "Start the Transformation at Home" },
             description: {
-                tr: "İzmir Büyükşehir Belediyesi bünyesindeki İklim Değişikliği ve Sıfır Atık Dairesi Başkanlığı ile İzdoğa A.Ş. ortaklığında hayata geçirilen Dönüşüme Evde Başla projesi, sürdürülebilir bir şehir vizyonu doğrultusunda ambalaj atıklarının kaynağında ayrıştırılmasını hedeflemektedir. Bu proje ile evsel ambalaj atıkları doğrudan hanelerden toplanarak modern tesislerde geri dönüştürülmekte, böylece hem doğal kaynaklar korunmakta hem de döngüsel ekonomiye katma değer sağlanmaktadır.",
+                tr: `
+<p class="mb-4">İzmir Büyükşehir Belediyesi bünyesindeki İklim Değişikliği ve Sıfır Atık Dairesi Başkanlığı ile İzdoğa A.Ş. ortaklığında hayata geçirilen <strong>Dönüşüme Evde Başla</strong> projesi, sürdürülebilir bir şehir vizyonu doğrultusunda ambalaj atıklarının kaynağında ayrıştırılmasını hedeflemektedir. Bu proje ile evsel ambalaj atıkları doğrudan hanelerden toplanarak modern tesislerde geri dönüştürülmekte, böylece hem doğal kaynaklar korunmakta hem de döngüsel ekonomiye katma değer sağlanmaktadır.</p>
+
+<h3 class="text-xl font-bold text-mlab-navy mt-6 mb-3">Operasyonel Kapsam ve Uygulama Alanları</h3>
+<p class="mb-4">Pilot uygulama olarak 6 ilçe ve 8 mahallede başlatılan proje, kısa sürede genişleyerek güncel durumda 8 ilçedeki 27 stratejik mahallede faaliyetlerini sürdürmektedir. Uygulama kapsamında yer alan bölgeler şunlardır:</p>
+<ul class="list-disc pl-5 mb-4 space-y-1">
+    <li><strong>Karabağlar:</strong> Üçkuyular, Fahrettin Altay, Basın Sitesi</li>
+    <li><strong>Bayraklı:</strong> R. Şevket İnce, Körfez, Tepekule, 75. Yıl, Manavkuyu</li>
+    <li><strong>Konak:</strong> Kültür, Alsancak</li>
+    <li><strong>Menderes:</strong> Hürriyet</li>
+    <li><strong>Bornova:</strong> İnönü, Kazımdirik, Atatürk, Evka 3, Ergene, Evka 4, Erzene</li>
+    <li><strong>Narlıdere:</strong> Sahil Evleri, Yenikale</li>
+    <li><strong>Buca:</strong> Yiğitler</li>
+    <li><strong>Karşıyaka:</strong> Mavişehir, Atakent, Mustafa Kemal, Yalı, Bostanlı, Bahçelievler</li>
+</ul>
+
+<h3 class="text-xl font-bold text-mlab-navy mt-6 mb-3">Dijital Atık Yönetimi: Vatandaş Uygulaması</h3>
+<p class="mb-2">Sürecin şeffaf ve izlenebilir yönetilmesi adına geliştirilen mobil uygulama üzerinden vatandaşlar şu adımlarla sisteme dahil olmaktadır:</p>
+<ul class="list-disc pl-5 mb-4 space-y-1">
+    <li><strong>Erişim:</strong> iOS ve Android marketler üzerinden uygulama temin edilir.</li>
+    <li><strong>Kayıt:</strong> Google hesabı veya telefon numarası ile kurumsal doğrulama sağlanır.</li>
+    <li><strong>Lokasyon Tanımlama:</strong> Profil sekmesinden hane adresi sisteme kaydedilir.</li>
+    <li><strong>İletişim ve Destek:</strong> Talep ve şikayet mekanizması ile teknik destek sağlanırken, sıkça sorulan sorular bölümüyle kullanıcılar bilgilendirilir.</li>
+</ul>
+
+<h3 class="text-xl font-bold text-mlab-navy mt-6 mb-3">Atık Toplama ve Geri Kazanım Metodolojisi</h3>
+<p class="mb-2">Proje, teknolojik altyapı ile desteklenen sistematik bir toplama modeline dayanmaktadır:</p>
+<ul class="list-disc pl-5 mb-4 space-y-1">
+    <li><strong>Akıllı Poşet Sistemi:</strong> Hanelere QR kod tanımlı özel atık poşetleri dağıtılır. Bu kodlar, atığın kaynağını dijital ortamda kayıt altına almaktadır.</li>
+    <li><strong>Periyodik Toplama:</strong> Saha ekipleri haftalık rutinlerle dolan poşetleri teslim alırken yerine yeni poşet bırakmaktadır.</li>
+    <li><strong>Kalite Kontrol ve Bildirim:</strong> Toplanan atıklar ayrıştırma merkezinde optik ve dijital denetimden geçirilir. Uygun olmayan içerikler tespit edilerek kullanıcıya geri bildirim sağlanır.</li>
+    <li><strong>Endüstriyel Dönüşüm:</strong> Kağıt, karton, plastik, metal ve cam atıklar türlerine göre sınıflandırılarak hammadde olarak sanayiye geri kazandırılır.</li>
+</ul>
+
+<h3 class="text-xl font-bold text-mlab-navy mt-6 mb-3">Ayrıştırma Kriterleri</h3>
+<p class="mb-4">Sürecin verimliliği için sadece geri dönüştürülebilir ambalaj atıklarının (kağıt, karton, metal, cam, plastik) sisteme dahil edilmesi gerekmektedir. Kontaminasyona neden olan ve geri dönüşümü mümkün olmayan hijyen ürünleri, kirli kağıtlar ve kompozit malzemelerin poşetlere dahil edilmemesi operasyonel verimlilik açısından kritiktir.</p>
+
+<h3 class="text-xl font-bold text-mlab-navy mt-6 mb-3">Vizyon ve Toplumsal Fayda</h3>
+<p class="mb-4">Dönüşüme Evde Başla projesi, İzmir’in iklim nötr ve dirençli şehir olma hedeflerine hizmet ederken, atık toplayıcılarının çalışma koşullarını iyileştirmeyi ve şehirdeki karbon ayak izini minimize etmeyi amaçlamaktadır. Katılımcı her hane, İzmir’in geleceğine yatırımı ve doğa ile uyumlu bir kentsel yaşamı desteklemektedir.</p>`,
                 en: "Implemented in partnership with Izmir Metropolitan Municipality Department of Climate Change and Zero Waste and İzdoğa A.Ş., the Start the Transformation at Home project aims to separate packaging waste at the source in line with a sustainable city vision. With this project, domestic packaging waste is collected directly from households and recycled in modern facilities, thus conserving natural resources and adding value to the circular economy."
             },
             duration: null,

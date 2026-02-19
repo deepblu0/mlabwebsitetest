@@ -181,11 +181,13 @@
                                 <div class="md:col-span-2 space-y-8">
                                     <div>
                                         <h2 class="text-2xl font-bold text-mlab-navy mb-4">${t('projects.label.about')}</h2>
-                                        <p class="text-slate-600 leading-relaxed text-lg">
+                                        <div class="text-slate-600 leading-relaxed text-lg space-y-4">
                                             ${description}
-                                        </p>
+                                        </div>
                                     </div>
-                                    
+                                </div>
+
+                                <div class="space-y-6">
                                     <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                                         <h3 class="font-bold text-mlab-navy mb-4 flex items-center gap-2">
                                             <i data-lucide="target" class="w-5 h-5 text-mlab-cyan"></i> ${t('projects.label.challenge')}
@@ -194,9 +196,7 @@
                                             <span class="px-4 py-2 rounded-full text-sm font-semibold ${challengeColor} text-white shadow-md">${challengeName}</span>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="space-y-6">
                                     <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
                                         <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">${timeLabel}</div>
                                         <div class="text-mlab-navy font-semibold flex items-center gap-2">
