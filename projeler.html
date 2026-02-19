@@ -595,7 +595,9 @@
 
                     // Description (Added per request for "same style")
                     const descObj = p.description || p.desc;
-                    const desc = descObj ? descObj[currentLang] : '';
+                    let rawDesc = descObj ? descObj[currentLang] : '';
+                    // Strip HTML tags for the card preview to ensure line-clamp works and layout doesn't break
+                    const desc = rawDesc.replace(/<[^>]*>/g, '');
 
                     // Status
                     let status = 'Unknown';
