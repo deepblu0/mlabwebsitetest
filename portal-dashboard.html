@@ -1142,43 +1142,42 @@
                 return `
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow overflow-hidden">
             <!-- Post Header: Author, Date & Tags -->
-            <div class="px-6 py-4 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br ${gradientClass} flex items-center justify-center shadow-md cursor-pointer" onclick="showUserProfile('${post.author_id || post.id}', ${JSON.stringify(post.author).replace(/"/g, '&quot;')})">
+            <div class="px-4 sm:px-6 py-4 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br ${gradientClass} flex items-center justify-center shadow-md cursor-pointer flex-shrink-0" onclick="showUserProfile('${post.author_id || post.id}', ${JSON.stringify(post.author).replace(/"/g, '&quot;')})">
                             <i data-lucide="${categoryIcon}" class="w-5 h-5 text-white"></i>
                         </div>
-                        <div>
-                            <div class="font-semibold text-mlab-navy text-sm cursor-pointer hover:text-mlab-purple transition-colors" onclick="showUserProfile('${post.author_id || post.id}', ${JSON.stringify(post.author).replace(/"/g, '&quot;')})">${authorDisplay}</div>
+                        <div class="min-w-0">
+                            <div class="font-semibold text-mlab-navy text-sm cursor-pointer hover:text-mlab-purple transition-colors truncate" onclick="showUserProfile('${post.author_id || post.id}', ${JSON.stringify(post.author).replace(/"/g, '&quot;')})">${authorDisplay}</div>
                             <div class="text-xs text-slate-400">${date}</div>
                         </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200 max-w-[300px] md:max-w-[450px] truncate inline-block align-middle" title="${sectorLabels[post.sector] || post.sector}">${sectorLabels[post.sector] || post.sector}</span>
-                        <span class="px-3 py-1 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold border border-mlab-${typeColor}/10 whitespace-nowrap">${typeLabel}</span>
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200 max-w-[140px] sm:max-w-[300px] truncate inline-block" title="${sectorLabels[post.sector] || post.sector}">${sectorLabels[post.sector] || post.sector}</span>
+                        <span class="px-2 py-0.5 rounded-full bg-mlab-${typeColor}/10 text-mlab-${typeColor} text-xs font-semibold border border-mlab-${typeColor}/10 whitespace-nowrap">${typeLabel}</span>
                     </div>
                 </div>
             </div>
             
             <!-- Post Content -->
             <!-- Post Content -->
-            <div class="px-6 pt-5 pb-3">
+            <div class="px-4 sm:px-6 pt-4 pb-3">
                 <!-- Title -->
-                <h3 class="font-bold text-lg text-mlab-navy mb-2">${post.title}</h3>
-                
+                <h3 class="font-bold text-base sm:text-lg text-mlab-navy mb-2">${post.title}</h3>
                 
                 <!-- Description -->
                 <p class="text-slate-600 text-sm leading-relaxed">${post.description}</p>
                 
                 <!-- Footer Content: Files & Reply Button -->
-                <div class="flex flex-wrap items-end justify-between gap-y-2 mt-4">
+                <div class="flex flex-wrap items-end justify-between gap-2 mt-4">
                     <!-- Attached Files -->
                     <div class="flex flex-wrap gap-2">
                         ${post.files && post.files.length > 0 ? post.files.map(file => `
                             <a href="${file.url}" target="_blank" download="${file.name}"
-                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 hover:bg-mlab-purple/5 border border-slate-200 hover:border-mlab-purple/30 text-slate-700 hover:text-mlab-purple text-xs font-medium rounded-lg transition-all">
+                                class="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-50 hover:bg-mlab-purple/5 border border-slate-200 hover:border-mlab-purple/30 text-slate-700 hover:text-mlab-purple text-xs font-medium rounded-lg transition-all">
                                 <i data-lucide="${getFileIconType(file.type)}" class="w-3.5 h-3.5 text-slate-400"></i>
-                                ${file.name}
+                                <span class="truncate max-w-[120px] sm:max-w-none">${file.name}</span>
                                 <i data-lucide="download" class="w-3 h-3 opacity-50 ml-1"></i>
                             </a>
                         `).join('') : ''}
@@ -1186,7 +1185,7 @@
 
                     <!-- Reply Button -->
                     <button onclick="toggleReplyBox('${post.id}')"
-                        class="px-5 py-2.5 bg-mlab-purple/10 text-mlab-purple text-sm font-semibold rounded-xl hover:bg-mlab-purple hover:text-white transition-all flex items-center gap-2 ml-auto">
+                        class="px-4 py-2 bg-mlab-purple/10 text-mlab-purple text-sm font-semibold rounded-xl hover:bg-mlab-purple hover:text-white transition-all flex items-center gap-2 ml-auto flex-shrink-0">
                         <i data-lucide="message-circle" class="w-4 h-4"></i>
                         Yanıtla
                     </button>
@@ -1196,20 +1195,22 @@
 
 
             <!-- Reply Input (hidden by default) -->
-            <div id="reply-box-${post.id}" class="hidden px-6 py-4">
+            <div id="reply-box-${post.id}" class="hidden px-4 sm:px-6 py-4">
                 <div class="space-y-2">
-                    <div class="flex gap-2">
+                    <div class="flex flex-wrap sm:flex-nowrap gap-2">
                         <input type="text" id="comment-input-${post.id}" placeholder="Yanıtınızı yazın..."
-                            class="flex-grow bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-purple/10 focus:border-mlab-purple/30"
+                            class="w-full sm:flex-grow bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-purple/10 focus:border-mlab-purple/30"
                             onkeypress="if(event.key==='Enter' && !event.shiftKey){submitInlineComment('${post.id}');event.preventDefault();}">
-                        <label for="comment-file-${post.id}" class="px-3 py-2 bg-white border border-slate-200 text-slate-500 text-sm rounded-lg hover:bg-slate-50 hover:text-mlab-purple cursor-pointer flex items-center gap-1 transition-colors" title="Dosya ekle">
-                            <i data-lucide="paperclip" class="w-4 h-4"></i>
-                        </label>
-                        <input type="file" id="comment-file-${post.id}" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif" onchange="handleCommentFileSelect(event, '${post.id}')">
-                        <button onclick="submitInlineComment('${post.id}')"
-                            class="px-3 py-2 bg-mlab-navy text-white text-sm font-medium rounded-lg hover:bg-mlab-purple transition-colors shadow-sm">
-                            Gönder
-                        </button>
+                        <div class="flex gap-2 w-full sm:w-auto">
+                            <label for="comment-file-${post.id}" class="px-3 py-2 bg-white border border-slate-200 text-slate-500 text-sm rounded-lg hover:bg-slate-50 hover:text-mlab-purple cursor-pointer flex items-center gap-1 transition-colors" title="Dosya ekle">
+                                <i data-lucide="paperclip" class="w-4 h-4"></i>
+                            </label>
+                            <input type="file" id="comment-file-${post.id}" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif" onchange="handleCommentFileSelect(event, '${post.id}')">
+                            <button onclick="submitInlineComment('${post.id}')"
+                                class="flex-1 sm:flex-none px-4 py-2 bg-mlab-navy text-white text-sm font-medium rounded-lg hover:bg-mlab-purple transition-colors shadow-sm">
+                                Gönder
+                            </button>
+                        </div>
                     </div>
                     <div id="comment-file-display-${post.id}" class="hidden text-xs bg-slate-50 border border-slate-200 rounded px-2 py-1.5 flex items-center justify-between w-fit max-w-full">
                         <span id="comment-file-name-${post.id}" class="truncate text-slate-600 mr-2"></span>
@@ -1219,7 +1220,7 @@
             </div>
 
             <!-- Comments (compact style) -->
-            <div id="comments-${post.id}" class="px-6 space-y-0">
+            <div id="comments-${post.id}" class="px-4 sm:px-6 space-y-0">
                 <!-- Comments will be loaded here -->
             </div>
         </div>
