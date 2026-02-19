@@ -1260,6 +1260,10 @@ const translations = {
         tr: 'Sayfa Bulunamadı',
         en: 'Page Not Found'
     },
+    'error.404.desc': {
+        tr: 'Üzgünüz, aradığınız sayfayı bulamıyoruz. Adresi yanlış yazmış olabilir misiniz?',
+        en: "Sorry, we can't find the page you're looking for. Could you have typed the address incorrectly?"
+    },
     'common.backHome': {
         tr: 'Ana Sayfaya Dön',
         en: 'Back to Home'
