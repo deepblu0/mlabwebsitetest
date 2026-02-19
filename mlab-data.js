@@ -407,7 +407,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "Malta Enerji ve Su Ajansı, İzmir Büyükşehir Belediyesi, Su Araştırmaları ve Teknolojileri Merkezi, Cagliari Üniversitesi, Mısır Su Kaynakları ve Sulama Bakanlığı",
             bigChallengeId: 10,
-            image: "https://picsum.photos/seed/reswater/800/400"
+            image: "proje-img/reswater.png"
         },
         {
             id: 7,
@@ -421,7 +421,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "Palermo Üniversitesi, İzmir Büyükşehir Belediyesi, Dortmund Teknik Üniversitesi, Madrid Teknik Üniversitesi, Milano Büyükşehir Belediyesi, METREX",
             bigChallengeId: 3,
-            image: "https://picsum.photos/seed/cli-met/800/400"
+            image: "proje-img/cli-met.png"
         },
         {
             id: 8,
@@ -449,7 +449,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "İzmir Büyükşehir Belediyesi, Ege Üniversitesi, İZENERJİ A.Ş., GDZ Elektrik Dağıtım A.Ş, ENSİA, Ege Orman Vakfı",
             bigChallengeId: 8,
-            image: "https://picsum.photos/seed/gcc-synergy/800/400"
+            image: "proje-img/gcc-synergy.jpg"
         },
         {
             id: 10,
@@ -505,7 +505,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "AVITEM, Vitrolles Şehri Belediyesi, Korsika Yerel Yönetimi, Nice Şehri Belediyesi, Nice Condé Sanat Okulu, İzmir Büyükşehir Belediyesi",
             bigChallengeId: 9,
-            image: "https://picsum.photos/seed/cultivated/800/400"
+            image: "proje-img/territoires-cultives.jpeg"
         },
         {
             id: 13,
@@ -519,7 +519,7 @@ const mlabData = {
             status: { tr: "Devam Ediyor", en: "In Progress" },
             partners: "Singularlogic Anonymi Etaireia Pliroforiakon Sysel, İzmir Büyükşehir Belediyesi",
             bigChallengeId: 9,
-            image: "https://picsum.photos/seed/inherit/800/400"
+            image: "proje-img/inherit.png"
         },
         {
             id: 14,
