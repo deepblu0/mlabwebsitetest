@@ -658,7 +658,7 @@
         async function markExpertAsSeen(expertId) {
             try {
                 const { db, doc, updateDoc } = window.firebaseDb;
-                await updateDoc(doc(db, 'expert_applications', expertId), {
+                await updateDoc(doc(db, 'mentor_applications', expertId), {
                     status: 'seen'
                 });
                 // Update local state

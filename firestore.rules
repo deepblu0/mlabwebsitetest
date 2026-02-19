@@ -36,56 +36,52 @@ service cloud.firestore {
       allow read: if isAdmin() || isOwner(userId);
       
       // Yazma: Adminler herkesi düzenleyebilir, kullanıcılar sadece kendilerini
-      allow create: if isSignedIn(); // İlk kayıt (id ile auth.uid eşleşmeli)
+      allow create: if isSignedIn();
       allow update, delete: if isAdmin() || isOwner(userId);
     }
     
-    // EXPERT APPLICATIONS (Uzman Başvuruları)
-    match /expert_applications/{applicationId} {
-      // Okuma: Sadece Adminler
+    // MENTOR/EXPERT APPLICATIONS (Uzman Başvuruları)
+    // Koleksiyon adı: mentor_applications (portal-dashboard.html'den yazılır)
+    match /mentor_applications/{applicationId} {
       allow read: if isAdmin();
-      
-      // Oluşturma: Herkes (Giriş yapmasına gerek yok, form açık)
-      // Ancak spam engellemek için basic kontrol eklenebilir, şimdilik açık.
       allow create: if true;
-      
-      // Güncelleme/Silme: Sadece Adminler
+      allow update, delete: if isAdmin();
+    }
+
+    // Eski isim ile de erişime izin ver (geriye uyumluluk)
+    match /expert_applications/{applicationId} {
+      allow read: if isAdmin();
+      allow create: if true;
       allow update, delete: if isAdmin();
     }
     
     // PROJECT SUGGESTIONS (Proje Başvuruları)
+    // Koleksiyon adı: project_suggestions (projeler.html'den yazılır)
     match /project_suggestions/{projectId} {
-       // Okuma: Sadece Adminler
-       allow read: if isAdmin();
-       
-       // Oluşturma: Herkes
-       allow create: if true;
-       
-       // Güncelleme/Silme: Sadece Adminler
-       allow update, delete: if isAdmin();
+      allow read: if isAdmin();
+      allow create: if true;
+      allow update, delete: if isAdmin();
+    }
+
+    // Eski isim ile de erişime izin ver (geriye uyumluluk)
+    match /project_applications/{projectId} {
+      allow read: if isAdmin();
+      allow create: if true;
+      allow update, delete: if isAdmin();
     }
 
     // CONTACT MESSAGES (İletişim Mesajları)
+    // Koleksiyon adı: contact_messages (iletisim.html'den yazılır)
     match /contact_messages/{messageId} {
-       // Okuma: Sadece Adminler
-       allow read: if isAdmin();
-       
-       // Oluşturma: Herkes
-       allow create: if true;
-       
-       // Güncelleme/Silme: Sadece Adminler
-       allow update, delete: if isAdmin();
+      allow read: if isAdmin();
+      allow create: if true;
+      allow update, delete: if isAdmin();
     }
 
     // POSTS (Dashboard Akışı & Yorumlar)
     match /posts/{postId} {
-      // Okuma: Giriş yapmış herkes (Dashboard üyeleri)
       allow read: if isSignedIn();
-      
-      // Oluşturma: Giriş yapmış herkes
       allow create: if isSignedIn();
-      
-      // Güncelleme/Silme: Sadece sahibi veya admin
       allow update, delete: if isAdmin() || (isSignedIn() && request.auth.uid == resource.data.author_id);
       
       match /comments/{commentId} {
