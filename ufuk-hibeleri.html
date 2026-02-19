@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ufuk - Horizon Europe Hibeleri | M-LAB</title>
   <link rel="canonical" href="https://m-lab.izmir.bel.tr/ufuk-hibeleri">
-    <meta name="description" content="Ufuk Avrupa (Horizon Europe) programı kapsamında açılan güncel hibe çağrılarını, fon fırsatlarını ve başvuru detaylarını takip edin.">
+  <meta name="description"
+    content="Ufuk Avrupa (Horizon Europe) programı kapsamında açılan güncel hibe çağrılarını, fon fırsatlarını ve başvuru detaylarını takip edin.">
   <link rel="icon" type="image/jpeg" href="mlab-favicon.jpg">
 
   <!-- Google Fonts -->
@@ -101,32 +102,20 @@
       transform: rotateY(360deg);
     }
 
-    /* Mobile table responsiveness */
-    @media (max-width: 768px) {
-      .table-grid-header {
-        display: none !important;
-      }
-      .table-row-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        padding: 12px 16px !important;
-        gap: 4px !important;
-      }
-      .table-row-grid > div {
-        width: 100% !important;
-      }
-      .table-row-grid .cell-label {
-        display: inline !important;
-        font-weight: 600;
-        color: #64748b;
-        font-size: 11px;
-        text-transform: uppercase;
-        margin-right: 6px;
-      }
+    /* Mobile: horizontal scroll for table */
+    .table-scroll-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
-    @media (min-width: 769px) {
-      .cell-label {
-        display: none !important;
+
+    .table-inner {
+      min-width: 900px;
+    }
+
+    /* Mobile scroll hint */
+    @media (max-width: 768px) {
+      .scroll-hint {
+        display: flex !important;
       }
     }
   </style>
@@ -146,15 +135,17 @@
     }
   </style>
 
-    <meta property="og:title" content="Ufuk Hibeleri - M-LAB İzmir">
-    <meta property="og:description" content="Ufuk Avrupa (Horizon Europe) programı kapsamındaki güncel hibe çağrıları ve fon fırsatları.">
-    <meta property="og:image" content="https://m-lab.izmir.bel.tr/mlab-logo.png">
-    <meta property="og:url" content="https://m-lab.izmir.bel.tr/ufuk-hibeleri">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ufuk Hibeleri - M-LAB İzmir">
-    <meta name="twitter:description" content="Ufuk Avrupa (Horizon Europe) programı kapsamındaki güncel hibe çağrıları ve fon fırsatları.">
-    <meta name="twitter:image" content="https://m-lab.izmir.bel.tr/mlab-logo.png">
+  <meta property="og:title" content="Ufuk Hibeleri - M-LAB İzmir">
+  <meta property="og:description"
+    content="Ufuk Avrupa (Horizon Europe) programı kapsamındaki güncel hibe çağrıları ve fon fırsatları.">
+  <meta property="og:image" content="https://m-lab.izmir.bel.tr/mlab-logo.png">
+  <meta property="og:url" content="https://m-lab.izmir.bel.tr/ufuk-hibeleri">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ufuk Hibeleri - M-LAB İzmir">
+  <meta name="twitter:description"
+    content="Ufuk Avrupa (Horizon Europe) programı kapsamındaki güncel hibe çağrıları ve fon fırsatları.">
+  <meta name="twitter:image" content="https://m-lab.izmir.bel.tr/mlab-logo.png">
 </head>
 
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col" data-i18n-title="page.grants">
@@ -339,34 +330,43 @@
 
   <!-- Table Section -->
   <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden overflow-x-auto">
-      <div
-        class="table-grid-header grid grid-cols-12 gap-4 px-6 py-4 bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-500 uppercase tracking-wider">
-        <div class="col-span-4 table-header flex items-center gap-2" onclick="sortTable('name')">
-          <span data-i18n="grants.table.name">Çağrı Adı</span>
-          <i data-lucide="arrow-up-down" class="w-3 h-3 sort-icon"></i>
-        </div>
-        <div class="col-span-2 table-header flex items-center gap-2" onclick="sortTable('code')">
-          <span data-i18n="grants.table.code">Çağrı Kodu</span>
-          <i data-lucide="arrow-up-down" class="w-3 h-3 sort-icon"></i>
-        </div>
-        <div class="col-span-2 table-header flex items-center gap-2" onclick="sortTable('openDate')">
-          <span data-i18n="grants.table.open">Açılış</span>
-          <i data-lucide="arrow-up-down" class="w-3 h-3 sort-icon"></i>
-        </div>
-        <div class="col-span-2 table-header flex items-center gap-2" onclick="sortTable('closeDate')">
-          <span data-i18n="grants.table.close">Kapanış</span>
-          <i data-lucide="arrow-up-down" class="w-3 h-3 sort-icon"></i>
-        </div>
-        <div class="col-span-2 table-header flex items-center gap-2" onclick="sortTable('budget')">
-          <span data-i18n="grants.table.budget">Bütçe</span>
-          <i data-lucide="arrow-up-down" class="w-3 h-3 sort-icon"></i>
-        </div>
-      </div>
+    <!-- Mobile Scroll Hint -->
+    <div class="scroll-hint hidden items-center gap-2 text-xs text-slate-500 mb-2 px-1">
+      <i data-lucide="move-horizontal" class="w-4 h-4"></i>
+      <span>Tabloyu sağa-sola kaydırarak tüm verileri görebilirsiniz</span>
+    </div>
+    <div class="bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden">
+      <div class="table-scroll-wrapper">
+        <div class="table-inner">
+          <div
+            class="grid grid-cols-12 gap-4 px-6 py-4 bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-500 uppercase tracking-wider">
+            <div class="col-span-4 table-header flex items-center gap-2" onclick="sortTable('name')">
+              <span data-i18n="grants.table.name">Çağrı Adı</span>
+              <i data-lucide="arrow-up-down" class="w-3 h-3 sort-icon"></i>
+            </div>
+            <div class="col-span-2 table-header flex items-center gap-2" onclick="sortTable('code')">
+              <span data-i18n="grants.table.code">Çağrı Kodu</span>
+              <i data-lucide="arrow-up-down" class="w-3 h-3 sort-icon"></i>
+            </div>
+            <div class="col-span-2 table-header flex items-center gap-2" onclick="sortTable('openDate')">
+              <span data-i18n="grants.table.open">Açılış</span>
+              <i data-lucide="arrow-up-down" class="w-3 h-3 sort-icon"></i>
+            </div>
+            <div class="col-span-2 table-header flex items-center gap-2" onclick="sortTable('closeDate')">
+              <span data-i18n="grants.table.close">Kapanış</span>
+              <i data-lucide="arrow-up-down" class="w-3 h-3 sort-icon"></i>
+            </div>
+            <div class="col-span-2 table-header flex items-center gap-2" onclick="sortTable('budget')">
+              <span data-i18n="grants.table.budget">Bütçe</span>
+              <i data-lucide="arrow-up-down" class="w-3 h-3 sort-icon"></i>
+            </div>
+          </div>
 
-      <!-- Table Body -->
-      <div id="table-body" class="divide-y divide-slate-100">
-        <!-- Rows injected by JS -->
+          <!-- Table Body -->
+          <div id="table-body" class="divide-y divide-slate-100">
+            <!-- Rows injected by JS -->
+          </div>
+        </div>
       </div>
     </div>
 
@@ -407,8 +407,8 @@
 
     // Mobile Menu Toggle
     document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
     });
 
 
