@@ -533,12 +533,9 @@
                 const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
                 const user = userCredential.user;
 
-                // Send email verification
-                try {
-                    await sendEmailVerification(user);
-                } catch (emailError) {
-                    console.warn('E-posta doğrulama gönderilemedi:', emailError);
-                }
+                // Note: sendEmailVerification removed - it sends a generic Firebase
+                // "Verify your email for project-XXX" email which is not user-friendly.
+                // Welcome email from Cloud Functions is sufficient.
 
                 // Get selected challenges
                 const selectedChallenges = Array.from(document.querySelectorAll('input[name="challenges"]:checked'))
