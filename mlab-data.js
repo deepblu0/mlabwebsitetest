@@ -453,8 +453,9 @@ const mlabData = {
             id: 9,
             title: { tr: "İzmir Küresel İklim Topluluğu (KİT) Yoluyla Elektrikte Dekarbonizasyon için Dijital Çözümler Projesi (GCC-Synergy)", en: "GCC-Synergy - Digital Solutions Project" },
             description: {
-                tr: `<p class="mb-4">Proje, Karbon emisyonlarının önemli bir kısmını oluşturan binalar, tesisler ve altyapıdaki kritik elektrik tüketimi sorununu ele almaktadır.</p>
-<p class="mb-4">KİT-SİNERJİ (GCC-SYNERGY) dijital platformunun geliştirilmesiyle, seçilen pilot projeler için gerçek zamanlı izleme, analiz ve eyleme dönüştürülebilir bilgiler sağlayarak elektrik tüketiminin yönetiminde devrim yaratmak hedeflenmektedir.</p>`,
+                tr: `<p class="mb-4">İzmir Büyükşehir Belediyesi öncülüğünde, 2030 yılı sıfır karbon hedefine ulaşmak amacıyla geliştirilen bu proje, Avrupa Birliği destekli NetZeroCities Platformu tarafından 12 ülkedeki 25 pilot projeden biri olarak seçilmiş ve desteklenmeye hak kazanmıştır.</p>
+<p class="mb-4">Küresel İklim Topluluğu (KİT) İzmir tarafından hazırlanan proje; kentteki elektrik enerjisi tüketiminin dijital platformlar aracılığıyla izlenmesi, analiz edilmesi ve yenilenebilir enerji kaynaklarının teşvik edilerek karbondan arındırılmasını hedeflemektedir. İzmir Büyükşehir Belediyesi koordinatörlüğünde; ENSİA, Ege Üniversitesi, GDZ Elektrik AŞ, Ege Orman Vakfı ve İZENERJİ ortaklığında yürütülen çalışmalar, sera gazı salımının en önemli nedenlerinden biri olan enerji tüketimi üzerine odaklanarak pilot farkındalık uygulamaları geliştirmektedir.</p>
+<p class="mb-4">Temmuz 2024’te kurulan Akıllı Şehir Şube Müdürlüğü tarafından koordine edilen proje, "AB Şehirler Misyonu Etiketi"ne sahip olan ve AB üyesi olmayan ülkeler arasında bu unvanı taşıyan ilk kent konumundaki İzmir'in, uluslararası hibe ve fonlara erişimini kolaylaştırmakta ve Avrupa’nın akıllı şehirler ağı içindeki konumunu güçlendirmektedir.</p>`,
                 en: "The project addresses the critical issue of electricity consumption in buildings, facilities, and infrastructure, which constitute a significant portion of carbon emissions. By developing the KIT-SYNERGY (GCC-SYNERGY) digital platform, it aims to revolutionize the management of electricity consumption by providing real-time monitoring, analysis, and actionable insights."
             },
             duration: { tr: "24 Ay", en: "24 Months" },
@@ -484,7 +485,10 @@ const mlabData = {
             id: 20,
             title: { tr: "Dikili TDİOSB - Tarıma Dayalı İhtisas Sera OSB", en: "Dikili TDIOSB - Agriculture Based Specialized Greenhouse OIZ" },
             description: {
-                tr: "Avrupa'nın en büyük jeotermal ısıtmalı sera bölgesi olma özelliğini taşıyan proje, modern bir üretim merkezidir.",
+                tr: `<p class="mb-4">Avrupa ve Türkiye’nin en büyük topraksız, tam otomasyonlu ve yenilenebilir enerji kaynaklarını kullanan modern sera ve tarımsal sanayi kümelenmesi olmayı hedefleyen proje, "Tarım 4.0" ilkeleriyle uyumlu, yüksek teknolojili bir üretim üssü olarak tasarlanmıştır.</p>
+<p class="mb-4">Bölgenin sahip olduğu jeotermal enerji potansiyelinin yanı sıra güneş ve rüzgar enerjisinin hibrit sistemlerle entegre edilmesiyle, seraların ısıtma ve soğutma ihtiyaçları karşılanacak ve "kendi kendine yeten" çevre dostu bir OSB modeli oluşturulacaktır.</p>
+<p class="mb-4">Yıllık 80.000 ton kaliteli yaş sebze ve meyve üretimi ile 3.500 kişiye istihdam sağlanması hedeflenen projede; katı atık yönetimi, biyogaz ve biyokütle tesisleri, arıtma üniteleri ve jeotermal reenjeksiyon sistemleri ile sürdürülebilir bir üretim ekosistemi kurulmaktadır.</p>
+<p class="mb-4">Yatırımcılara yol, su, merkezi ısıtma-soğutma ve enerji altyapısının hazır sunulduğu bölgede; Ar-Ge merkezleri, laboratuvar hizmetleri ve üniversite-sanayi iş birlikleriyle verimliliği yüksek, izlenebilir ve güvenli gıda arzı sağlayan rekabetçi bir tarımsal sanayi ortamı yaratılmaktadır.</p>`,
                 en: "The project, featuring Europe's largest geothermal heated greenhouse zone, is a modern production center."
             },
             duration: null,
