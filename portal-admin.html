@@ -233,8 +233,9 @@
 
                 // 1. Fetch Users -> Firestore 'users'
                 try {
-                    const usersSnapshot = await getDocs(query(collection(db, 'users'), orderBy('createdAt', 'desc')));
+                    const usersSnapshot = await getDocs(collection(db, 'users'));
                     allUsers = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    console.log('Users loaded:', allUsers.length);
                 } catch (e) {
                     console.error('Users fetch failed:', e);
                     allUsers = [];
@@ -242,8 +243,9 @@
 
                 // 2. Fetch Expert Applications -> Firestore 'mentor_applications'
                 try {
-                    const expertsSnapshot = await getDocs(query(collection(db, 'mentor_applications'), orderBy('createdAt', 'desc')));
+                    const expertsSnapshot = await getDocs(collection(db, 'mentor_applications'));
                     expertApplications = expertsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    console.log('Experts loaded:', expertApplications.length);
                 } catch (e) {
                     console.error('Experts fetch failed:', e);
                     expertApplications = [];
@@ -251,8 +253,9 @@
 
                 // 3. Fetch Project Suggestions -> Firestore 'project_suggestions'
                 try {
-                    const projectsSnapshot = await getDocs(query(collection(db, 'project_suggestions'), orderBy('submittedAt', 'desc')));
+                    const projectsSnapshot = await getDocs(collection(db, 'project_suggestions'));
                     projectApplications = projectsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    console.log('Projects loaded:', projectApplications.length);
                 } catch (e) {
                     console.error('Projects fetch failed:', e);
                     projectApplications = [];
@@ -260,8 +263,9 @@
 
                 // 4. Fetch Contact Messages -> Firestore 'contact_messages'
                 try {
-                    const contactsSnapshot = await getDocs(query(collection(db, 'contact_messages'), orderBy('submittedAt', 'desc')));
+                    const contactsSnapshot = await getDocs(collection(db, 'contact_messages'));
                     contactMessages = contactsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    console.log('Contacts loaded:', contactMessages.length);
                 } catch (e) {
                     console.error('Contacts fetch failed:', e);
                     contactMessages = [];
