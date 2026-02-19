@@ -520,16 +520,7 @@
                 const firebaseReady = await window.firebaseHelpers.initializeFirebase();
 
                 if (!firebaseReady) {
-                    // Fallback to localStorage if Firebase not configured
-                    console.warn('Firebase yapılandırılmamış, localStorage kullanılıyor...');
-                    const pendingUsers = JSON.parse(localStorage.getItem('portal_pending_users') || '[]');
-                    data.id = Date.now();
-                    data.status = 'pending';
-                    data.created_at = new Date().toISOString();
-                    delete data.password_confirm;
-                    pendingUsers.push(data);
-                    localStorage.setItem('portal_pending_users', JSON.stringify(pendingUsers));
-                    document.getElementById('success-modal').classList.remove('hidden');
+                    showError('Firebase bağlantı hatası. Lütfen daha sonra tekrar deneyin.');
                     setLoading(false);
                     return;
                 }

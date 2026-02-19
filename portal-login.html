@@ -191,20 +191,7 @@
             lucide.createIcons();
         }
 
-        // Initialize demo user for localStorage fallback
-        if (!localStorage.getItem('portal_users')) {
-            localStorage.setItem('portal_users', JSON.stringify([
-                {
-                    id: 1,
-                    email: 'demo@mlab.gov.tr',
-                    password: 'demo1234',
-                    org_name: 'M-LAB Demo Hesabı',
-                    category: 'belediye',
-                    contact_name: 'Demo Kullanıcı',
-                    status: 'approved'
-                }
-            ]));
-        }
+
 
         // Check for saved email (Remember Me)
         const savedEmail = localStorage.getItem('portal_remember_email');
@@ -228,28 +215,7 @@
                 const firebaseReady = await window.firebaseHelpers.initializeFirebase();
 
                 if (!firebaseReady) {
-                    // Fallback to localStorage
-                    console.warn('Firebase yapılandırılmamış, localStorage kullanılıyor...');
-
-                    const users = JSON.parse(localStorage.getItem('portal_users') || '[]');
-                    const user = users.find(u => u.email === email && u.password === password);
-
-                    if (user) {
-                        localStorage.setItem('portal_current_user', JSON.stringify(user));
-                        window.location.href = 'portal-dashboard.html';
-                        return;
-                    }
-
-                    const pendingUsers = JSON.parse(localStorage.getItem('portal_pending_users') || '[]');
-                    const pendingUser = pendingUsers.find(u => u.email === email && u.password === password);
-
-                    if (pendingUser) {
-                        showPending();
-                        setLoading(false);
-                        return;
-                    }
-
-                    showError('Hatalı e-posta veya şifre.');
+                    showError('Firebase bağlantı hatası. Lütfen daha sonra tekrar deneyin.');
                     setLoading(false);
                     return;
                 }
@@ -304,8 +270,7 @@
                 const sessionData = {
                     uid: user.uid,
                     email: user.email,
-                    ...userData,
-                    isAdmin: window.firebaseHelpers.isAdmin(user.email)
+                    ...userData
                 };
                 // Manage Remember Me (Local Storage)
                 if (rememberMe) {

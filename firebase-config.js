@@ -11,10 +11,8 @@ const firebaseConfig = {
     measurementId: "G-8H1YB9R85D"
 };
 
-// Admin e-posta adresleri (bu adreslere sahip kullanıcılar admin paneline erişebilir)
-const ADMIN_EMAILS = [
-    'berkay.yilmaz.edu@gmail.com'
-];
+// Admin yetkisi artık Firestore kuralları ve "Try-Read" yöntemi ile kontrol ediliyor.
+// E-posta listesi sunucu tarafında (firestore.rules) saklanmaktadır.
 
 // Firebase başlatma ve dışa aktarma
 let app, auth, db;
@@ -73,7 +71,7 @@ async function initializeFirebase() {
             deleteObject
         };
 
-        window.ADMIN_EMAILS = ADMIN_EMAILS;
+
 
         console.log('Firebase başarıyla başlatıldı');
         return true;
@@ -83,10 +81,7 @@ async function initializeFirebase() {
     }
 }
 
-// Kullanıcının admin olup olmadığını kontrol et
-function isAdmin(email) {
-    return ADMIN_EMAILS.includes(email?.toLowerCase());
-}
+// Admin kontrolü artık portal-admin.html içinde checkAdminAccess fonksiyonunda yapılıyor.
 
 // Kullanıcı durumunu kontrol et
 async function checkUserStatus(userId) {
@@ -121,8 +116,6 @@ async function getUserProfile(userId) {
 // Dışa aktarımlar
 window.firebaseHelpers = {
     initializeFirebase,
-    isAdmin,
     checkUserStatus,
-    getUserProfile,
-    ADMIN_EMAILS
+    getUserProfile
 };

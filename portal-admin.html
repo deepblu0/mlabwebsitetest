@@ -181,7 +181,7 @@
                 .replace(/'/g, "&#039;");
         }
 
-        // Check admin access (SECURE VERSION)
+        // Check admin access (SECURE VERSION - TRY-READ PATTERN)
         async function checkAdminAccess() {
             // Firebase initialized değilse bekle
             if (!window.firebaseAuth) {
@@ -194,29 +194,36 @@
             }
 
             // Auth durumunu dinle
-            window.firebaseAuth.onAuthStateChanged(window.firebaseAuth.auth, (user) => {
+            window.firebaseAuth.onAuthStateChanged(window.firebaseAuth.auth, async (user) => {
                 if (user) {
-                    // Kullanıcı var, admin mi kontrol et
-                    const email = user.email ? user.email.toLowerCase() : '';
-                    const isAdmin = window.ADMIN_EMAILS.includes(email);
+                    document.getElementById('auth-loading-overlay').classList.remove('hidden');
 
-                    if (isAdmin) {
-                        // Admin onayı başarılı -> Paneli aç
+                    try {
+                        // Admin olup olmadığını anlamak için "contact_messages" koleksiyonundan 1 belge okumayı dene.
+                        // Firestore kurallarına göre sadece adminler okuyabilir.
+                        const { db, collection, getDocs, query, limit } = window.firebaseDb;
+
+                        // Bu sorgu sadece yetki kontrolü içindir, veri için değil.
+                        // Eğer yetki yoksa burası HATA fırlatır.
+                        await getDocs(query(collection(db, 'contact_messages'), limit(1)));
+
+                        // Hata almadıysak admindir.
+                        const email = user.email;
                         document.getElementById('admin-email').textContent = email;
                         document.getElementById('auth-loading-overlay').classList.add('hidden');
 
-                        // Kullanıcı bilgisini güncelle (opsiyonel, diğer fonksiyonlar için)
                         currentUser = { email: email, isAdmin: true, uid: user.uid };
 
-                        // Verileri yükle
-                        loadUsers();
-                        loadExpertApplications();
-                        loadProjectApplications();
-                    } else {
-                        // Giriş yapmış ama admin değil
-                        alert("Bu panele erişim yetkiniz yok!");
+                        // Şimdi tüm gerçek verileri yükle
+                        loadData();
+
+                    } catch (error) {
+                        console.error("Admin yetki kontrolü başarısız:", error);
+                        // Permission denied hatası buraya düşer
+                        alert("Bu panele erişim yetkiniz yok! (Yetersiz İzin)");
                         window.location.href = 'portal-dashboard.html';
                     }
+
                 } else {
                     // Hiç giriş yapmamış
                     window.location.href = 'portal-login.html';
@@ -228,45 +235,56 @@
 
         async function loadData() {
             try {
-                // Initialize Firebase if not ready
+                // Initialize Firebase if not ready (checkAdminAccess zaten yapmış olmalı ama garanti olsun)
                 if (!window.firebaseDb) {
                     await window.initializeFirebase();
                 }
 
                 const { db, collection, getDocs, query, orderBy } = window.firebaseDb;
+                const loadingOverlay = document.getElementById('auth-loading-overlay');
+                // Veriler yüklenirken overlay göstermek isteyebiliriz ama şimdilik sadece count güncellemesi yeterli.
 
-                // 1. Fetch Users (Still keeping local for demo/hybrid flow if needed, but ideally from Firestore)
-                // For this specific request, we focus on Forms. Users are complex due to Auth.
-                // We'll keep existing local storage logic for users for now to avoid breaking auth,
-                // or fetch from Firestore if you want full migration.
-                // Let's assume we stick to the plan: PROJECT and CONTACT forms are priority.
-                users = JSON.parse(localStorage.getItem('portal_users') || '[]');
-                pendingUsers = JSON.parse(localStorage.getItem('portal_pending_users') || '[]');
-                rejectedUsers = JSON.parse(localStorage.getItem('portal_rejected_users') || '[]');
+                // 1. Fetch Users -> Firestore 'users'
+                try {
+                    const usersSnapshot = await getDocs(query(collection(db, 'users'), orderBy('createdAt', 'desc')));
+                    allUsers = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                } catch (e) {
+                    console.error('Users fetch failed:', e);
+                    allUsers = [];
+                }
 
                 // 2. Fetch Expert Applications -> Firestore 'mentor_applications'
-                // (Assuming this was migrated in Phase 8, if not we fall back to empty or local)
                 try {
-                    const expertsSnapshot = await getDocs(collection(db, 'mentor_applications'));
+                    const expertsSnapshot = await getDocs(query(collection(db, 'mentor_applications'), orderBy('createdAt', 'desc')));
                     expertApplications = expertsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 } catch (e) {
-                    console.warn('Experts fetch failed, using local/empty', e);
+                    console.error('Experts fetch failed:', e);
                     expertApplications = [];
                 }
 
                 // 3. Fetch Project Suggestions -> Firestore 'project_suggestions'
-                const projectsSnapshot = await getDocs(query(collection(db, 'project_suggestions'), orderBy('submittedAt', 'desc')));
-                projectApplications = projectsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                try {
+                    const projectsSnapshot = await getDocs(query(collection(db, 'project_suggestions'), orderBy('submittedAt', 'desc')));
+                    projectApplications = projectsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                } catch (e) {
+                    console.error('Projects fetch failed:', e);
+                    projectApplications = [];
+                }
 
                 // 4. Fetch Contact Messages -> Firestore 'contact_messages'
-                const contactsSnapshot = await getDocs(query(collection(db, 'contact_messages'), orderBy('submittedAt', 'desc')));
-                contactMessages = contactsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                try {
+                    const contactsSnapshot = await getDocs(query(collection(db, 'contact_messages'), orderBy('submittedAt', 'desc')));
+                    contactMessages = contactsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                } catch (e) {
+                    console.error('Contacts fetch failed:', e);
+                    contactMessages = [];
+                }
 
                 updateCounts();
                 renderCurrentTab();
 
             } catch (error) {
-                console.error('Error loading data:', error);
+                console.error('Genel veri yükleme hatası:', error);
                 alert('Veriler yüklenirken bir hata oluştu: ' + error.message);
             }
         }
@@ -377,16 +395,18 @@
 
 
 
-        // Load project applications
-        async function loadProjectApplications() {
-            try {
-                // Currently only from localStorage
-                projectApplications = JSON.parse(localStorage.getItem('portal_pending_projects') || '[]');
-                document.getElementById('projects-count').textContent = projectApplications.length;
-            } catch (error) {
-                console.error('Proje başvuruları yüklenirken hata:', error);
-            }
+        // Update counts
+        function updateCounts() {
+            document.getElementById('pending-count').textContent = allUsers.filter(u => u.status === 'pending').length;
+            document.getElementById('approved-count').textContent = allUsers.filter(u => u.status === 'approved').length;
+            document.getElementById('rejected-count').textContent = allUsers.filter(u => u.status === 'rejected').length;
+            document.getElementById('experts-count').textContent = expertApplications.length;
+            document.getElementById('projects-count').textContent = projectApplications.length;
+            document.getElementById('contact-count').textContent = contactMessages.length;
         }
+
+        // Render functions are kept, but data loading logic inside them (if any) is removed.
+
 
         // Render project applications
         function renderProjectApplications() {
@@ -527,23 +547,7 @@
         }
 
         // Load expert applications
-        async function loadExpertApplications() {
-            try {
-                const { db, collection, getDocs, query, orderBy } = window.firebaseDb;
-                const expertsRef = collection(db, 'expert_applications');
-                const q = query(expertsRef, orderBy('createdAt', 'desc'));
-                const snapshot = await getDocs(q);
 
-                expertApplications = [];
-                snapshot.forEach(doc => {
-                    expertApplications.push({ id: doc.id, ...doc.data() });
-                });
-
-                document.getElementById('experts-count').textContent = expertApplications.length;
-            } catch (error) {
-                console.error('Uzman başvuruları yüklenirken hata:', error);
-            }
-        }
 
         // Render expert applications
         function renderExpertApplications() {
@@ -785,24 +789,8 @@
         // Approve user
         async function approveUser(userId) {
             try {
-                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
-
-                if (!firebaseReady) {
-                    // localStorage fallback (Email gönderimi sadece Firebase modunda çalışır veya buraya da eklenebilir ama şu an atlıyoruz)
-                    const pendingUsers = JSON.parse(localStorage.getItem('portal_pending_users') || '[]');
-                    const approvedUsers = JSON.parse(localStorage.getItem('portal_users') || '[]');
-
-                    const userIndex = pendingUsers.findIndex(u => u.id === parseInt(userId) || u.id === userId);
-                    if (userIndex !== -1) {
-                        const user = pendingUsers.splice(userIndex, 1)[0];
-                        user.status = 'approved';
-                        approvedUsers.push(user);
-                        localStorage.setItem('portal_pending_users', JSON.stringify(pendingUsers));
-                        localStorage.setItem('portal_users', JSON.stringify(approvedUsers));
-                    }
-                    await loadUsers();
-                    return;
-                }
+                // Firebase initialized check (should be ready but good to check)
+                if (!window.firebaseDb) await window.initializeFirebase();
 
                 const { db, doc, updateDoc, getDoc, serverTimestamp } = window.firebaseDb;
 
@@ -849,7 +837,7 @@
                         });
                 }
 
-                await loadUsers();
+                await loadData();
             } catch (error) {
                 console.error('Onaylama hatası:', error);
                 alert('Onaylama sırasında bir hata oluştu: ' + error.message);
@@ -858,35 +846,29 @@
 
         // Reject user
         async function rejectUser(userId) {
-            if (!confirm('Bu üyelik başvurusunu reddetmek istediğinize emin misiniz?')) return;
+            if (!confirm('Bu kullanıcıyı reddetmek istediğinize emin misiniz?')) return;
 
             try {
-                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
-
-                if (!firebaseReady) {
-                    // localStorage fallback
-                    const pendingUsers = JSON.parse(localStorage.getItem('portal_pending_users') || '[]');
-                    const userIndex = pendingUsers.findIndex(u => u.id === parseInt(userId) || u.id === userId);
-                    if (userIndex !== -1) {
-                        pendingUsers[userIndex].status = 'rejected';
-                    }
-                    localStorage.setItem('portal_pending_users', JSON.stringify(pendingUsers));
-                    await loadUsers();
-                    return;
-                }
+                // Firebase initialized check
+                if (!window.firebaseDb) await window.initializeFirebase();
 
                 const { db, doc, updateDoc, serverTimestamp } = window.firebaseDb;
 
-                await updateDoc(doc(db, 'users', userId), {
+                const userDocRef = doc(db, 'users', userId);
+
+                await updateDoc(userDocRef, {
                     status: 'rejected',
                     rejected_at: serverTimestamp(),
                     rejected_by: currentUser.email
                 });
 
-                await loadUsers();
+                alert('Kullanıcı reddedildi.');
+                closeModal();
+                loadData(); // Reload all data
+
             } catch (error) {
                 console.error('Reddetme hatası:', error);
-                alert('Reddetme sırasında bir hata oluştu.');
+                alert('İşlem başarısız: ' + error.message);
             }
         }
 
@@ -905,12 +887,7 @@
 
         // Initialize
         async function init() {
-            const hasAccess = await checkAdminAccess();
-            if (hasAccess) {
-                await loadUsers();
-                await loadExpertApplications();
-                await loadProjectApplications();
-            }
+            await checkAdminAccess();
         }
 
         init();
