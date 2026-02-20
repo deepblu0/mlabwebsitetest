@@ -411,6 +411,12 @@
             const container = document.getElementById('users-container');
             const emptyState = document.getElementById('empty-state');
 
+            projectApplications.sort((a, b) => {
+                const dateA = a.submittedAt && a.submittedAt.toDate ? a.submittedAt.toDate().getTime() : new Date(a.submittedAt || 0).getTime();
+                const dateB = b.submittedAt && b.submittedAt.toDate ? b.submittedAt.toDate().getTime() : new Date(b.submittedAt || 0).getTime();
+                return dateB - dateA;
+            });
+
             if (projectApplications.length === 0) {
                 container.innerHTML = '';
                 emptyState.classList.remove('hidden');
@@ -455,6 +461,12 @@
         function renderContactMessages() {
             const container = document.getElementById('users-container');
             const emptyState = document.getElementById('empty-state');
+
+            contactMessages.sort((a, b) => {
+                const dateA = a.submittedAt && a.submittedAt.toDate ? a.submittedAt.toDate().getTime() : new Date(a.submittedAt || 0).getTime();
+                const dateB = b.submittedAt && b.submittedAt.toDate ? b.submittedAt.toDate().getTime() : new Date(b.submittedAt || 0).getTime();
+                return dateB - dateA;
+            });
 
             if (contactMessages.length === 0) {
                 container.innerHTML = '';
@@ -551,6 +563,12 @@
         function renderExpertApplications() {
             const container = document.getElementById('users-container');
             const emptyState = document.getElementById('empty-state');
+
+            expertApplications.sort((a, b) => {
+                const dateA = a.createdAt && a.createdAt.toDate ? a.createdAt.toDate().getTime() : new Date(a.createdAt || 0).getTime();
+                const dateB = b.createdAt && b.createdAt.toDate ? b.createdAt.toDate().getTime() : new Date(b.createdAt || 0).getTime();
+                return dateB - dateA;
+            });
 
             if (expertApplications.length === 0) {
                 container.innerHTML = '';
