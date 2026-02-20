@@ -333,10 +333,10 @@
                                    class="w-6 h-6 ${user.org_type === 'belediye' ? 'text-mlab-navy' : 'text-mlab-orange'}"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-mlab-navy">${escapeHtml(user.org_name) || (t ? t('portal.admin.unknown') : 'Bilinmiyor')}</h3>
-                                <p class="text-sm text-slate-500">${escapeHtml(user.email)}</p>
+                                <h3 class="font-bold text-mlab-navy">${escapeHtml(user.contact_name) || (t ? t('portal.admin.unknown') : 'İsimsiz')}</h3>
+                                <p class="text-sm text-slate-500">${escapeHtml(user.org_name) || (t ? t('portal.admin.unknown') : 'Bilinmiyor')}</p>
                                 <p class="text-sm text-slate-400 mt-1">
-                                    ${escapeHtml(user.contact_name) || ''} ${user.contact_title ? '• ' + escapeHtml(user.contact_title) : ''}
+                                    ${escapeHtml(user.contact_title) || ''} ${user.email ? '• ' + escapeHtml(user.email) : ''}
                                 </p>
                             </div>
                         </div>
