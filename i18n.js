@@ -1287,6 +1287,29 @@ const translations = {
     'portal.partner.call_search_placeholder': { tr: 'Çağrı kodu veya adı yazın...', en: 'Type call code or name...' },
     'portal.partner.area_label': { tr: 'Hangi çalışma alanlarında partner arıyorsunuz?', en: 'In which areas are you looking for a partner?' },
     'portal.partner.area_placeholder': { tr: 'Aradığınız partnerin özellikleri, çalışma alanı ve beklentileriniz...', en: 'Characteristics of the partner, working area and expectations...' },
+
+    // Additional Admin Panel & Contact translations
+    'portal.contact.sent_at': { tr: 'Gönderilme Tarihi', en: 'Sent At' },
+    'portal.admin.no_subject': { tr: 'Konusuz', en: 'No Subject' },
+    'portal.admin.unknown': { tr: 'Bilinmiyor / İsimsiz', en: 'Unknown' },
+    'portal.admin.expert_app_label': { tr: 'Uzman Başvurusu', en: 'Expert Application' },
+    'portal.admin.contact_info': { tr: 'İletişim Bilgileri', en: 'Contact Information' },
+    'portal.admin.email': { tr: 'E-posta', en: 'Email' },
+    'portal.admin.phone': { tr: 'Telefon', en: 'Phone' },
+    'portal.expert_form.labels.profession': { tr: 'Meslek', en: 'Profession' },
+    'portal.expert_form.labels.title': { tr: 'Ünvan', en: 'Title' },
+    'portal.expert_form.labels.organization': { tr: 'Kurum', en: 'Organization' },
+    'portal.expert_form.labels.details': { tr: 'Uzmanlık Detayları', en: 'Expertise Details' },
+    'portal.expert_form.labels.education': { tr: 'Eğitim', en: 'Education' },
+    'portal.admin.municipality': { tr: 'Belediye', en: 'Municipality' },
+    'portal.admin.private': { tr: 'Özel Sektör', en: 'Private Sector' },
+    'portal.admin.sector': { tr: 'Sektör', en: 'Sector' },
+    'portal.admin.website': { tr: 'Web Sitesi', en: 'Website' },
+    'portal.admin.desc': { tr: 'Kurum Açıklaması', en: 'Organization Description' },
+    'portal.admin.name': { tr: 'Ad Soyad', en: 'Full Name' },
+    'portal.admin.title': { tr: 'Unvan', en: 'Title' },
+    'portal.admin.approve_btn': { tr: 'Onayla', en: 'Approve' },
+    'portal.admin.reject_btn': { tr: 'Reddet', en: 'Reject' },
 };
 
 // Get current language from localStorage
