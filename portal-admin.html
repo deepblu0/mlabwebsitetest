@@ -592,26 +592,33 @@
 
             emptyState.classList.add('hidden');
 
-            container.innerHTML = expertApplications.map(expert => `
+            container.innerHTML = expertApplications.map(expert => {
+                const orgType = expert.category || 'ozel_sektor';
+                return `
             <div class="p-6 hover:bg-slate-50 transition-colors cursor-pointer" onclick="showExpertDetail('${expert.id}')">
                 <div class="flex items-start justify-between">
                     <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-mlab-purple/10 flex items-center justify-center">
-                            <i data-lucide="user-check" class="w-6 h-6 text-mlab-purple"></i>
+                        <div class="w-12 h-12 rounded-xl ${orgType === 'belediye' ? 'bg-mlab-navy/10' : 'bg-mlab-orange/10'} flex items-center justify-center">
+                            <i data-lucide="${orgType === 'belediye' ? 'landmark' : 'building-2'}" 
+                               class="w-6 h-6 ${orgType === 'belediye' ? 'text-mlab-navy' : 'text-mlab-orange'}"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-mlab-navy">${escapeHtml(expert.fullName) || (t ? t('portal.admin.unknown') : 'İsimsiz')}</h3>
-                            <p class="text-sm text-slate-500">${escapeHtml(expert.organization) || '-'}</p>
-                            <p class="text-sm text-slate-400 mt-1">${escapeHtml(expert.title) || escapeHtml(expert.profession) || ''} ${expert.email ? '• ' + escapeHtml(expert.email) : ''}</p>
+                            <p class="text-sm text-slate-500">${escapeHtml(expert.organization) || (t ? t('portal.admin.unknown') : 'Bilinmiyor')}</p>
+                            <p class="text-sm text-slate-400 mt-1">
+                                ${escapeHtml(expert.title) || ''} ${expert.email ? '• ' + escapeHtml(expert.email) : ''}
+                            </p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
-                        <span class="text-xs text-slate-400">${formatDate(expert.createdAt)}</span>
-
+                        <span class="text-xs text-slate-400">
+                            ${formatDate(expert.createdAt)}
+                        </span>
                     </div>
                 </div>
-                </div >
-            `).join('');
+            </div>
+            `;
+            }).join('');
 
             lucide.createIcons();
         }
@@ -621,57 +628,94 @@
             const expert = expertApplications.find(e => e.id === expertId);
             if (!expert) return;
 
+            const userProfile = allUsers.find(u => u.id === expert.userId || u.email === expert.email) || {};
+
+            const sectorNames = {
+                'enerji': 'Enerji',
+                'bilisim': 'Bilişim',
+                'uretim': 'Üretim',
+                'ulasim': 'Ulaşım',
+                'tarim': 'Tarım',
+                'diger': 'Diğer'
+            };
+
+            const challengeMap = {
+                'barinma': 'challenge.1',
+                'hareketlilik': 'challenge.2',
+                'afet': 'challenge.3',
+                'gida': 'challenge.4',
+                'saglik': 'challenge.5',
+                'egitim': 'challenge.6',
+                'is': 'challenge.7',
+                'inovasyon': 'challenge.8',
+                'kultur': 'challenge.9',
+                'dongusal': 'challenge.10'
+            };
+
+            const theChallenges = userProfile.challenges || [];
+            const theDescription = userProfile.description || '';
+            const theSector = userProfile.sector || '';
+            const theWebsite = userProfile.website || '';
+            const orgType = expert.category || userProfile.org_type || 'ozel_sektor';
+
             const content = `
             <div class="space-y-6">
                     <div class="flex items-center gap-4">
-                        <div class="w-16 h-16 rounded-2xl bg-mlab-purple/10 flex items-center justify-center">
-                            <i data-lucide="user-check" class="w-8 h-8 text-mlab-purple"></i>
+                        <div class="w-16 h-16 rounded-2xl ${orgType === 'belediye' ? 'bg-mlab-navy/10' : 'bg-mlab-orange/10'} flex items-center justify-center">
+                            <i data-lucide="${orgType === 'belediye' ? 'landmark' : 'building-2'}" 
+                               class="w-8 h-8 ${orgType === 'belediye' ? 'text-mlab-navy' : 'text-mlab-orange'}"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-mlab-navy">${escapeHtml(expert.organization) || escapeHtml(expert.fullName) || (t ? t('portal.admin.unknown') : 'İsimsiz')}</h3>
-                            <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-mlab-purple/10 text-mlab-purple">
-                                ${t ? t('portal.admin.expert_app_label') : 'Uzman Başvurusu'}
-                            </span>
+                            <h3 class="text-xl font-bold text-mlab-navy">${escapeHtml(expert.organization) || (t ? t('portal.admin.unknown') : 'Bilinmiyor')}</h3>
+                            <div class="flex gap-2 mt-2">
+                                <span class="inline-block px-3 py-1 rounded-full text-xs font-medium ${orgType === 'belediye' ? 'bg-mlab-navy/10 text-mlab-navy' : 'bg-mlab-orange/10 text-mlab-orange'}">
+                                    ${orgType === 'belediye' ? (t ? t('portal.admin.municipality') : 'Belediye') : (t ? t('portal.admin.private') : 'Özel Sektör')}
+                                </span>
+                                <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-mlab-purple/10 text-mlab-purple">
+                                    ${t ? t('portal.admin.expert_app_label') : 'Uzman Başvurusu'}
+                                </span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.profession') : 'Meslek'}</div>
-                            <div class="font-medium text-slate-700">${escapeHtml(expert.profession) || '-'}</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.sector') : 'Sektör'}</div>
+                            <div class="font-medium text-slate-700">${sectorNames[theSector] || escapeHtml(theSector) || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">Uzmanlık Alanı</div>
-                            <div class="font-medium text-slate-700">${escapeHtml(expert.expertiseArea) || '-'}</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.website') : 'Web Sitesi'}</div>
+                            <div class="font-medium text-slate-700">${theWebsite ? `<a href="${escapeHtml(theWebsite)}" target="_blank" class="text-mlab-purple hover:underline">${escapeHtml(theWebsite)}</a>` : '-'}</div>
                         </div>
                     </div>
 
                     <div class="bg-slate-50 rounded-xl p-4">
-                        <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.details') : 'Uzmanlık Detayları'}</div>
-                        <div class="text-slate-700">${escapeHtml(expert.expertiseDetails) || '-'}</div>
+                        <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.desc') : 'Kurum Açıklaması'}</div>
+                        <div class="text-slate-700">${escapeHtml(theDescription) || '-'}</div>
                     </div>
 
                     <div class="bg-slate-50 rounded-xl p-4">
-                        <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.education') : 'Eğitim'}</div>
-                        <div class="text-slate-700">${escapeHtml(expert.education) || '-'}</div>
+                        <div class="text-xs text-slate-500 mb-2">${t ? t('portal.filters.challenge') : 'Büyük Zorluklar'}</div>
+                        ${theChallenges && theChallenges.length > 0 ? `
+                        <div class="flex flex-wrap gap-2">
+                            ${theChallenges.map(c => `<span class="inline-block px-3 py-1 bg-mlab-cyan/10 text-mlab-cyan rounded-lg text-xs font-semibold tracking-wide">${t ? t(challengeMap[c] || c) : c}</span>`).join('')}
+                        </div>
+                        ` : `<div class="text-slate-700">-</div>`}
                     </div>
 
                     <hr class="border-slate-100">
 
                     <h4 class="font-semibold text-mlab-navy">${t ? t('portal.admin.contact_info') : 'İletişim Bilgileri'}</h4>
 
-                    <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="grid grid-cols-2 gap-4">
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.name') : 'Ad Soyad'}</div>
                             <div class="font-medium text-slate-700">${escapeHtml(expert.fullName) || '-'}</div>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-4">
-                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.expert_form.labels.title') : 'Ünvan'}</div>
+                            <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.title') : 'Unvan'}</div>
                             <div class="font-medium text-slate-700">${escapeHtml(expert.title) || '-'}</div>
                         </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
                         <div class="bg-slate-50 rounded-xl p-4">
                             <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.email') : 'E-posta'}</div>
                             <div class="font-medium text-slate-700">${escapeHtml(expert.email) || '-'}</div>
