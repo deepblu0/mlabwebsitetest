@@ -490,26 +490,41 @@
 
             emptyState.classList.add('hidden');
 
+            const subjectMap = {
+                'genel': 'Genel Bilgi',
+                'isbirligi': 'İşbirliği Teklifi',
+                'proje': 'Proje Başvurusu',
+                'diger': 'Diğer'
+            };
+
             container.innerHTML = contactMessages.map(msg => `
-                <div class="p-6 hover:bg-slate-50 transition-colors cursor-pointer" onclick="showContactDetail('${msg.id}')">
-                    <div class="flex items-start justify-between">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-mlab-purple/10 flex items-center justify-center">
-                                <i data-lucide="message-square" class="w-6 h-6 text-mlab-purple"></i>
+                <div class="p-6 bg-white rounded-2xl border border-slate-100 mb-4 shadow-sm relative transition-all hover:shadow-md">
+                    ${!msg.read ? '<div class="absolute top-6 -left-1 w-2 h-8 bg-red-500 rounded-r-md"></div>' : ''}
+                    <div class="flex items-start justify-between mb-4 pl-2">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-mlab-purple/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="mail" class="w-6 h-6 text-mlab-purple"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-mlab-navy flex items-center gap-2">
-                                    ${escapeHtml(msg.subject) || (t ? t('portal.admin.no_subject') : 'Konusuz')}
-                                    ${!msg.read ? '<span class="w-2 h-2 rounded-full bg-red-500"></span>' : ''}
+                                <h3 class="font-bold text-mlab-navy text-lg flex items-center gap-2">
+                                    ${escapeHtml(msg.name)}
+                                    ${!msg.read ? '<span class="px-2 py-0.5 text-[10px] uppercase font-bold bg-red-100 text-red-600 rounded-full">Yeni</span>' : ''}
                                 </h3>
-                                <p class="text-sm text-slate-500">${escapeHtml(msg.name)} (${escapeHtml(msg.email)})</p>
+                                <p class="text-sm text-slate-500">${escapeHtml(msg.email)}</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs text-slate-400">
-                                ${formatDate(msg.submittedAt)}
+                        <div class="flex flex-col items-end gap-2">
+                            <span class="inline-block px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                                ${escapeHtml(subjectMap[msg.subject] || msg.subject) || 'Konusuz'}
                             </span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-slate-400">${formatDate(msg.submittedAt)}</span>
+                                ${!msg.read ? '<button onclick="markAsRead(\'' + msg.id + '\')" class="text-xs font-medium text-mlab-purple hover:text-mlab-navy transition-colors bg-mlab-purple/5 px-2 py-1 rounded-md">Okundu İşaretle</button>' : ''}
+                            </div>
                         </div>
+                    </div>
+                    <div class="bg-slate-50 rounded-xl p-5 text-slate-700 text-sm whitespace-pre-wrap leading-relaxed border border-slate-100 ml-2">
+                        ${escapeHtml(msg.message)}
                     </div>
                 </div>
             `).join('');
@@ -517,56 +532,19 @@
             lucide.createIcons();
         }
 
-        // Show contact detail
-        async function showContactDetail(msgId) {
+        // Mark contact message as read
+        async function markAsRead(msgId) {
             const msg = contactMessages.find(m => m.id === msgId);
-            if (!msg) return;
+            if (!msg || msg.read) return;
 
-            // Mark as read in Firestore
-            if (!msg.read) {
-                try {
-                    const { db, doc, updateDoc } = window.firebaseDb;
-                    await updateDoc(doc(db, 'contact_messages', msgId), { read: true });
-                    msg.read = true;
-                    renderUsers(); // Re-render to remove red dot
-                } catch (e) {
-                    console.error('Error marking as read:', e);
-                }
+            try {
+                const { db, doc, updateDoc } = window.firebaseDb;
+                await updateDoc(doc(db, 'contact_messages', msgId), { read: true });
+                msg.read = true;
+                renderContactMessages(); // Sadece bu listeyi yeniden oluştur (ya da kırmızı noktayı kaldırabiliriz ama re-render en kolayı)
+            } catch (e) {
+                console.error('Error marking as read:', e);
             }
-
-            const content = `
-                <div class="space-y-6">
-                    <div class="flex items-center gap-4">
-                        <div class="w-16 h-16 rounded-2xl bg-mlab-purple/10 flex items-center justify-center">
-                            <i data-lucide="mail" class="w-8 h-8 text-mlab-purple"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-mlab-navy">${escapeHtml(msg.subject)}</h3>
-                            <div class="text-sm text-slate-500">${escapeHtml(msg.name)} (${escapeHtml(msg.email)})</div>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-50 rounded-xl p-6">
-                        <div class="text-slate-700 whitespace-pre-wrap leading-relaxed">${escapeHtml(msg.message)}</div>
-                    </div>
-                    
-                    <div class="text-xs text-slate-400 text-right">
-                        ${t ? t('portal.contact.sent_at') : 'Gönderilme Tarihi'}: ${formatDate(msg.submittedAt)}
-                    </div>
-                    
-                    <div class="flex justify-end gap-3 mt-6">
-                       <a href="mailto:${escapeHtml(msg.email)}" class="px-5 py-2.5 bg-mlab-navy text-white rounded-xl hover:bg-mlab-purple transition-all flex items-center gap-2">
-                           <i data-lucide="reply" class="w-4 h-4"></i>
-                           <span>Yanıtla</span>
-                       </a>
-                    </div>
-                </div>
-            `;
-
-            // Open Modal
-            document.getElementById('modal-content').innerHTML = content;
-            document.getElementById('user-modal').classList.remove('hidden');
-            lucide.createIcons();
         }
 
         // Load expert applications
