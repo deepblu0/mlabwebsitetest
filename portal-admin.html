@@ -285,6 +285,19 @@
             const container = document.getElementById('users-container');
             const emptyState = document.getElementById('empty-state');
 
+            const challengeMap = {
+                'barinma': 'challenge.1',
+                'hareketlilik': 'challenge.2',
+                'afet': 'challenge.3',
+                'gida': 'challenge.4',
+                'saglik': 'challenge.5',
+                'egitim': 'challenge.6',
+                'is': 'challenge.7',
+                'inovasyon': 'challenge.8',
+                'kultur': 'challenge.9',
+                'dongusal': 'challenge.10'
+            };
+
             // Filter by status
             const filteredUsers = allUsers.filter(u => u.status === currentTab);
 
@@ -325,6 +338,11 @@
                                 <p class="text-sm text-slate-400 mt-1">
                                     ${escapeHtml(user.contact_name) || ''} ${user.contact_title ? '• ' + escapeHtml(user.contact_title) : ''}
                                 </p>
+                                ${user.challenges && user.challenges.length > 0 ? `
+                                <div class="mt-3 flex flex-wrap gap-1">
+                                    ${user.challenges.map(c => `<span class="inline-block px-2 py-1 bg-mlab-cyan/10 text-mlab-cyan rounded-md text-[10px] font-semibold tracking-wide">${t ? t(challengeMap[c] || c) : c}</span>`).join('')}
+                                </div>
+                                ` : ''}
                             </div>
                         </div>
                         <div class="flex items-center gap-3">
@@ -715,6 +733,19 @@
                 'diger': 'Diğer'
             };
 
+            const challengeMap = {
+                'barinma': 'challenge.1',
+                'hareketlilik': 'challenge.2',
+                'afet': 'challenge.3',
+                'gida': 'challenge.4',
+                'saglik': 'challenge.5',
+                'egitim': 'challenge.6',
+                'is': 'challenge.7',
+                'inovasyon': 'challenge.8',
+                'kultur': 'challenge.9',
+                'dongusal': 'challenge.10'
+            };
+
             const content = `
             <div class="space-y-6">
                     <div class="flex items-center gap-4">
@@ -744,6 +775,15 @@
                     <div class="bg-slate-50 rounded-xl p-4">
                         <div class="text-xs text-slate-500 mb-1">${t ? t('portal.admin.desc') : 'Kurum Açıklaması'}</div>
                         <div class="text-slate-700">${escapeHtml(user.description) || '-'}</div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-4">
+                        <div class="text-xs text-slate-500 mb-2">${t ? t('portal.filters.challenge') : 'Büyük Zorluklar'}</div>
+                        ${user.challenges && user.challenges.length > 0 ? `
+                        <div class="flex flex-wrap gap-2">
+                            ${user.challenges.map(c => `<span class="inline-block px-3 py-1 bg-mlab-cyan/10 text-mlab-cyan rounded-lg text-xs font-semibold tracking-wide">${t ? t(challengeMap[c] || c) : c}</span>`).join('')}
+                        </div>
+                        ` : `<div class="text-slate-700">-</div>`}
                     </div>
 
                     <hr class="border-slate-100">
