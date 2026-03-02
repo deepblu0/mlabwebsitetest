@@ -434,7 +434,7 @@
 
       // Update Last Updated text
       const lastUpdatedText = t('grants.lastUpdated');
-      const dateText = formatDate(horizonData.lastUpdated);
+      const dateText = horizonData.lastUpdated;
       const lastUpdatedEl = document.getElementById('last-updated');
       if (lastUpdatedEl) {
         lastUpdatedEl.textContent = `${lastUpdatedText}: ${dateText}`;
