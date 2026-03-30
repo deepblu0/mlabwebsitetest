@@ -1,21 +1,37 @@
 const horizonData = {
-  "lastUpdated": "23.03.2026",
+  "lastUpdated": "30.03.2026",
   "newCalls": [
     {
-      "name": "PERIFORMANCE OPEN CALL FOR BOTTOM-UP STAKEHOLDER ENGAGEMENT INITIATIVES IN CANCER RESEARCH & CARE",
-      "code": "HORIZON-MISS-2024-CROSS-02-01",
-      "openDate": "2026-03-22",
-      "closeDate": "2026-05-31 00:00:00",
-      "budget": "150000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2024-cross-02-01"
+      "name": "Startup Europe",
+      "code": "HORIZON-EIE-2027-01-CONNECT-01",
+      "openDate": "2027-06-01",
+      "closeDate": "2027-09-15 00:00:00",
+      "budget": "2000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eie-2027-01-connect-01"
     },
     {
-      "name": "INTEGRATION OF EXISTING APPLICATIONS, MODELS AND DATA INTO EDITO",
-      "code": "HORIZON-MISS-2024-OCEAN-IBA",
-      "openDate": "2026-03-10",
-      "closeDate": "2026-05-06 00:00:00",
-      "budget": "600000",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2024-ocean-iba"
+      "name": "Reinforcing synergies between experimentation spaces and innovation procurement",
+      "code": "HORIZON-EIE-2027-01-CONNECT-02",
+      "openDate": "2027-06-01",
+      "closeDate": "2027-09-15 00:00:00",
+      "budget": "10000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eie-2027-01-connect-02"
+    },
+    {
+      "name": "Enhancing the involvement of philanthropic organisations in innovation ecosystems",
+      "code": "HORIZON-EIE-2027-01-CONNECT-03",
+      "openDate": "2027-06-01",
+      "closeDate": "2027-09-15 00:00:00",
+      "budget": "1000000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eie-2027-01-connect-03"
+    },
+    {
+      "name": "Ignite NEB Open call for hosts",
+      "code": "HORIZON-EIT-2025-KIC-IBA-INBC",
+      "openDate": "2026-03-23",
+      "closeDate": "2026-05-07 00:00:00",
+      "budget": "208000",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eit-2025-kic-iba-inbc"
     }
   ],
   "missionCalls": [
@@ -708,6 +724,30 @@ const horizonData = {
       "closeDate": "2027-09-22 00:00:00",
       "budget": "7000000.0",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2027-03-tool-02"
+    },
+    {
+      "name": "Startup Europe",
+      "code": "HORIZON-EIE-2027-01-CONNECT-01",
+      "openDate": "2027-06-01",
+      "closeDate": "2027-09-15 00:00:00",
+      "budget": "2000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eie-2027-01-connect-01"
+    },
+    {
+      "name": "Reinforcing synergies between experimentation spaces and innovation procurement",
+      "code": "HORIZON-EIE-2027-01-CONNECT-02",
+      "openDate": "2027-06-01",
+      "closeDate": "2027-09-15 00:00:00",
+      "budget": "10000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eie-2027-01-connect-02"
+    },
+    {
+      "name": "Enhancing the involvement of philanthropic organisations in innovation ecosystems",
+      "code": "HORIZON-EIE-2027-01-CONNECT-03",
+      "openDate": "2027-06-01",
+      "closeDate": "2027-09-15 00:00:00",
+      "budget": "1000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eie-2027-01-connect-03"
     },
     {
       "name": "MSCA Doctoral Networks 2027",
@@ -3518,76 +3558,12 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-widera-2026-05-widening-01"
     },
     {
-      "name": "Operational stakeholders’ group to support the deployment of Clean Aviation aircraft concepts and technologies",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-CSA-01",
-      "openDate": "2026-03-31",
-      "closeDate": "2026-05-19 00:00:00",
-      "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-csa-01"
-    },
-    {
-      "name": "Demonstration of an integrated hydrogen fuel system for a fully electric hydrogen fuel cell powered aircraft",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-HPA-02",
-      "openDate": "2026-03-31",
-      "closeDate": "2026-05-19 00:00:00",
-      "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-hpa-02"
-    },
-    {
       "name": "Superconducting motor windings for a fully electric hydrogen fuel cell powered aircraft",
       "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-FTA-06",
       "openDate": "2026-03-31",
       "closeDate": "2026-05-19 00:00:00",
       "budget": "",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-fta-06"
-    },
-    {
-      "name": "Demonstration of advanced airframe for ultra-efficient regional aircraft",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-REG-01",
-      "openDate": "2026-03-31",
-      "closeDate": "2026-05-19 00:00:00",
-      "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-reg-01"
-    },
-    {
-      "name": "Key Technologies for Loads Control Lidar for Ultra-efficient SMR aircraft",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-FTA-04",
-      "openDate": "2026-03-31",
-      "closeDate": "2026-05-19 00:00:00",
-      "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-fta-04"
-    },
-    {
-      "name": "Hydrogen powered aircraft concepts and key technologies integration and impact assessment",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-ACI-01",
-      "openDate": "2026-03-31",
-      "closeDate": "2026-05-19 00:00:00",
-      "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-aci-01"
-    },
-    {
-      "name": "Demonstration and Validation of icing Certification Methodologies compatible with EIS2035 for the SMR and REG Aircraft",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-TRA-01",
-      "openDate": "2026-03-31",
-      "closeDate": "2026-05-19 00:00:00",
-      "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-tra-01"
-    },
-    {
-      "name": "Demonstration of an Ultra-Efficient Rear Fuselage and Empennage and Its Integrated Industrial System enabling EIS2035 for the SMR Aircraft",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-SMR-02",
-      "openDate": "2026-03-31",
-      "closeDate": "2026-05-19 00:00:00",
-      "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-smr-02"
-    },
-    {
-      "name": "Ground Demonstration of Hybrid-Electric Propulsion Architectures for the Ultra-efficient SMR aircraft",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-SMR-03",
-      "openDate": "2026-03-31",
-      "closeDate": "2026-05-19 00:00:00",
-      "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-smr-03"
     },
     {
       "name": "Demonstration of advanced FC propulsion techno-bricks for a fully electric hydrogen fuel cell powered aircraft",
@@ -3598,52 +3574,28 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-hpa-01"
     },
     {
-      "name": "Demonstration of a hydrogen distribution system for a direct hydrogen combustion propulsion aircraft",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-HPA-04",
+      "name": "Demonstration and Validation of icing Certification Methodologies compatible with EIS2035 for the SMR and REG Aircraft",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-TRA-01",
       "openDate": "2026-03-31",
       "closeDate": "2026-05-19 00:00:00",
       "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-hpa-04"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-tra-01"
     },
     {
-      "name": "Demonstration of low power Ice Protection System technology",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-FTA-01",
+      "name": "Demonstration of advanced airframe for ultra-efficient regional aircraft",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-REG-01",
       "openDate": "2026-03-31",
       "closeDate": "2026-05-19 00:00:00",
       "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-fta-01"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-reg-01"
     },
     {
-      "name": "Innovative light weight and reliable liquid hydrogen tank",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-FTA-07",
+      "name": "Demonstration of an integrated hydrogen fuel system for a fully electric hydrogen fuel cell powered aircraft",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-HPA-02",
       "openDate": "2026-03-31",
       "closeDate": "2026-05-19 00:00:00",
       "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-fta-07"
-    },
-    {
-      "name": "Demonstration of an Optimized System Platform for Ultra-efficient SMR Aircraft",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-SMR-01",
-      "openDate": "2026-03-31",
-      "closeDate": "2026-05-19 00:00:00",
-      "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-smr-01"
-    },
-    {
-      "name": "Demonstration of Advanced Low NOx H2C Propulsion System for a direct hydrogen combustion aircraft",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-HPA-03",
-      "openDate": "2026-03-31",
-      "closeDate": "2026-05-19 00:00:00",
-      "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-hpa-03"
-    },
-    {
-      "name": "Advanced noise-reducing technologies for propulsion systems of next generation Ultra-efficient SMR aircraft",
-      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-FTA-03",
-      "openDate": "2026-03-31",
-      "closeDate": "2026-05-19 00:00:00",
-      "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-fta-03"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-hpa-02"
     },
     {
       "name": "Cryo-cooled power electronics for a fully electric hydrogen fuel cell powered aircraft",
@@ -3654,12 +3606,116 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-fta-05"
     },
     {
+      "name": "Innovative light weight and reliable liquid hydrogen tank",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-FTA-07",
+      "openDate": "2026-03-31",
+      "closeDate": "2026-05-19 00:00:00",
+      "budget": "",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-fta-07"
+    },
+    {
+      "name": "Operational stakeholders’ group to support the deployment of Clean Aviation aircraft concepts and technologies",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-CSA-01",
+      "openDate": "2026-03-31",
+      "closeDate": "2026-05-19 00:00:00",
+      "budget": "",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-csa-01"
+    },
+    {
+      "name": "Demonstration of low power Ice Protection System technology",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-FTA-01",
+      "openDate": "2026-03-31",
+      "closeDate": "2026-05-19 00:00:00",
+      "budget": "",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-fta-01"
+    },
+    {
+      "name": "Key Technologies for Loads Control Lidar for Ultra-efficient SMR aircraft",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-FTA-04",
+      "openDate": "2026-03-31",
+      "closeDate": "2026-05-19 00:00:00",
+      "budget": "",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-fta-04"
+    },
+    {
+      "name": "Demonstration of Advanced Low NOx H2C Propulsion System for a direct hydrogen combustion aircraft",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-HPA-03",
+      "openDate": "2026-03-31",
+      "closeDate": "2026-05-19 00:00:00",
+      "budget": "",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-hpa-03"
+    },
+    {
+      "name": "Demonstration of an Ultra-Efficient Rear Fuselage and Empennage and Its Integrated Industrial System enabling EIS2035 for the SMR Aircraft",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-SMR-02",
+      "openDate": "2026-03-31",
+      "closeDate": "2026-05-19 00:00:00",
+      "budget": "",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-smr-02"
+    },
+    {
+      "name": "Advanced noise-reducing technologies for propulsion systems of next generation Ultra-efficient SMR aircraft",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-FTA-03",
+      "openDate": "2026-03-31",
+      "closeDate": "2026-05-19 00:00:00",
+      "budget": "",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-fta-03"
+    },
+    {
+      "name": "Demonstration of a hydrogen distribution system for a direct hydrogen combustion propulsion aircraft",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-HPA-04",
+      "openDate": "2026-03-31",
+      "closeDate": "2026-05-19 00:00:00",
+      "budget": "",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-hpa-04"
+    },
+    {
+      "name": "Ground Demonstration of Hybrid-Electric Propulsion Architectures for the Ultra-efficient SMR aircraft",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-SMR-03",
+      "openDate": "2026-03-31",
+      "closeDate": "2026-05-19 00:00:00",
+      "budget": "",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-smr-03"
+    },
+    {
+      "name": "Hydrogen powered aircraft concepts and key technologies integration and impact assessment",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-ACI-01",
+      "openDate": "2026-03-31",
+      "closeDate": "2026-05-19 00:00:00",
+      "budget": "",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-aci-01"
+    },
+    {
+      "name": "Demonstration of an Optimized System Platform for Ultra-efficient SMR Aircraft",
+      "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-SMR-01",
+      "openDate": "2026-03-31",
+      "closeDate": "2026-05-19 00:00:00",
+      "budget": "",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-smr-01"
+    },
+    {
       "name": "Demonstration of cabin acoustic optimization technology",
       "code": "HORIZON-JU-CLEAN-AVIATION-2026-04-FTA-02",
       "openDate": "2026-03-31",
       "closeDate": "2026-05-19 00:00:00",
       "budget": "",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-clean-aviation-2026-04-fta-02"
+    },
+    {
+      "name": "Scaleups Promotion Open Call",
+      "code": "HORIZON-EIT-2025-KIC-IBA-UM",
+      "openDate": "2026-03-27",
+      "closeDate": "2026-05-27 00:00:00",
+      "budget": "415000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eit-2025-kic-iba-um"
+    },
+    {
+      "name": "Ignite NEB Open call for hosts",
+      "code": "HORIZON-EIT-2025-KIC-IBA-INBC",
+      "openDate": "2026-03-23",
+      "closeDate": "2026-05-07 00:00:00",
+      "budget": "208000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eit-2025-kic-iba-inbc"
     },
     {
       "name": "PERIFORMANCE OPEN CALL FOR BOTTOM-UP STAKEHOLDER ENGAGEMENT INITIATIVES IN CANCER RESEARCH & CARE",
@@ -4030,30 +4086,6 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2026-02-farm2fork-02-two-stage"
     },
     {
-      "name": "Flexible and standardised hydrogen storage system",
-      "code": "HORIZON-JU-CLEANH2-2026-03-03",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "5000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-03-03"
-    },
-    {
-      "name": "Next generation of reversible proton conducting ceramic cells and stacks for efficient energy applications at ≥1 kW scale",
-      "code": "HORIZON-JU-CLEANH2-2026-04-01",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "3000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-04-01"
-    },
-    {
-      "name": "Cost-efficient small scale hydrogen liquefaction",
-      "code": "HORIZON-JU-CLEANH2-2026-02-04",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "6000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-02-04"
-    },
-    {
       "name": "Innovative interventions to prevent the harmful effects of using digital technologies on the mental health of children and young adults",
       "code": "HORIZON-HLTH-2026-01-DISEASE-02",
       "openDate": "2026-02-10",
@@ -4190,14 +4222,6 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-stayhlth-03"
     },
     {
-      "name": "Pre-Normative Research on hydrogen odorisation: enhancing safety and detection along the hydrogen value chain",
-      "code": "HORIZON-JU-CLEANH2-2026-05-02",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "3000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-05-02"
-    },
-    {
       "name": "Behavioural interventions as primary prevention for Non-Communicable Diseases (NCDs) among young people",
       "code": "HORIZON-HLTH-2026-01-STAYHLTH-02",
       "openDate": "2026-02-10",
@@ -4214,124 +4238,12 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-hlth-2026-01-tool-03"
     },
     {
-      "name": "Large-scale Hydrogen Valley",
-      "code": "HORIZON-JU-CLEANH2-2026-06-01",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "17000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-06-01"
-    },
-    {
-      "name": "Affordable, Safe and Sustainable aboveground medium to large GH2 storage",
-      "code": "HORIZON-JU-CLEANH2-2026-02-01",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "4000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-02-01"
-    },
-    {
-      "name": "Demonstrating in-line inspection (ILI) to monitor cracks assuring compatibility for operation with hydrogen in new and re-purposed offshore natural gas pipelines",
-      "code": "HORIZON-JU-CLEANH2-2026-02-02",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "3500000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-02-02"
-    },
-    {
-      "name": "Components Development and Experimental Testing for an Onboard Liquid Hydrogen Supply and Conditioning System in High-Power Fuel Cell Aviation Applications",
-      "code": "HORIZON-JU-CLEANH2-2026-03-02",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "8000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-03-02"
-    },
-    {
-      "name": "Scalable and high efficiency materials and reactors for direct solar hydrogen production",
-      "code": "HORIZON-JU-CLEANH2-2026-01-06",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "3000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-01-06"
-    },
-    {
-      "name": "Development and validation of innovative approaches, catalysts, electrolytes and components for electrolysis technologies based on low-quality water",
-      "code": "HORIZON-JU-CLEANH2-2026-01-01",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "3000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-01-01"
-    },
-    {
-      "name": "Sustainable hydrogen production from renewable gases and biogenic waste sources through innovative modular reactor design, process intensification and integration",
-      "code": "HORIZON-JU-CLEANH2-2026-01-05",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "3000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-01-05"
-    },
-    {
-      "name": "Public datasets of technologies along the hydrogen value chain for life cycle (sustainability) assessment",
-      "code": "HORIZON-JU-CLEANH2-2026-05-01",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "2500000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-05-01"
-    },
-    {
-      "name": "Fuel-flexible gas turbine combustion technology for clean and efficient ammonia firing",
-      "code": "HORIZON-JU-CLEANH2-2026-04-03",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "5000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-04-03"
-    },
-    {
-      "name": "Multi-fuel SOFC powertrain for maritime transport",
-      "code": "HORIZON-JU-CLEANH2-2026-03-04",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "8000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-03-04"
-    },
-    {
-      "name": "Demonstration of rSOC operation for local grid-connected hydrogen production and utilisation",
-      "code": "HORIZON-JU-CLEANH2-2026-04-02",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "8000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-04-02"
-    },
-    {
-      "name": "New thermal insulation concepts for bulk liquid hydrogen shipping",
-      "code": "HORIZON-JU-CLEANH2-2026-02-03",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "4000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-02-03"
-    },
-    {
-      "name": "Innovative business models advancing renewable electrolysis integration in industry",
-      "code": "HORIZON-JU-CLEANH2-2026-01-04",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "1500000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-01-04"
-    },
-    {
       "name": "Earlier and more precise palliative care",
       "code": "HORIZON-MISS-2026-02-CANCER-04",
       "openDate": "2026-02-10",
       "closeDate": "2026-09-15 00:00:00",
       "budget": "5000000.0",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-04"
-    },
-    {
-      "name": "Small-scale Hydrogen Valley",
-      "code": "HORIZON-JU-CLEANH2-2026-06-02",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "8000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-06-02"
     },
     {
       "name": "Virtual Human Twin (VHT) Models for Cancer Research",
@@ -4366,30 +4278,6 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-02"
     },
     {
-      "name": "Cost-efficient and reliable designs towards gigawatt-scale electrolytic hydrogen production plants",
-      "code": "HORIZON-JU-CLEANH2-2026-01-02",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "2500000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-01-02"
-    },
-    {
-      "name": "Integration of control & monitoring tools and strategies for improved Fuel Cell System durability & reliability",
-      "code": "HORIZON-JU-CLEANH2-2026-03-01",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "4000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-03-01"
-    },
-    {
-      "name": "Improved components and tools to increase the safety of electrolysers",
-      "code": "HORIZON-JU-CLEANH2-2026-01-03",
-      "openDate": "2026-02-10",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "3000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-01-03"
-    },
-    {
       "name": "Pilot actions for follow-on funding: Leveraging EU-funded collaborative research in regenerative medicine",
       "code": "HORIZON-HLTH-2026-01-TOOL-05",
       "openDate": "2026-02-10",
@@ -4412,6 +4300,174 @@ const horizonData = {
       "closeDate": "2026-09-15 00:00:00",
       "budget": "5000000.0",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-02-cancer-06"
+    },
+    {
+      "name": "Components Development and Experimental Testing for an Onboard Liquid Hydrogen Supply and Conditioning System in High-Power Fuel Cell Aviation Applications",
+      "code": "HORIZON-JU-CLEANH2-2026-03-02",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "8000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-03-02"
+    },
+    {
+      "name": "Improved components and tools to increase the safety of electrolysers",
+      "code": "HORIZON-JU-CLEANH2-2026-01-03",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "3000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-01-03"
+    },
+    {
+      "name": "Demonstration of rSOC operation for local grid-connected hydrogen production and utilisation",
+      "code": "HORIZON-JU-CLEANH2-2026-04-02",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "8000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-04-02"
+    },
+    {
+      "name": "Multi-fuel SOFC powertrain for maritime transport",
+      "code": "HORIZON-JU-CLEANH2-2026-03-04",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "8000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-03-04"
+    },
+    {
+      "name": "Cost-efficient and reliable designs towards gigawatt-scale electrolytic hydrogen production plants",
+      "code": "HORIZON-JU-CLEANH2-2026-01-02",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "2500000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-01-02"
+    },
+    {
+      "name": "Demonstrating in-line inspection (ILI) to monitor cracks assuring compatibility for operation with hydrogen in new and re-purposed offshore natural gas pipelines",
+      "code": "HORIZON-JU-CLEANH2-2026-02-02",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "3500000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-02-02"
+    },
+    {
+      "name": "Integration of control & monitoring tools and strategies for improved Fuel Cell System durability & reliability",
+      "code": "HORIZON-JU-CLEANH2-2026-03-01",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "4000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-03-01"
+    },
+    {
+      "name": "Flexible and standardised hydrogen storage system",
+      "code": "HORIZON-JU-CLEANH2-2026-03-03",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "5000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-03-03"
+    },
+    {
+      "name": "Pre-Normative Research on hydrogen odorisation: enhancing safety and detection along the hydrogen value chain",
+      "code": "HORIZON-JU-CLEANH2-2026-05-02",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "3000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-05-02"
+    },
+    {
+      "name": "Next generation of reversible proton conducting ceramic cells and stacks for efficient energy applications at ≥1 kW scale",
+      "code": "HORIZON-JU-CLEANH2-2026-04-01",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "3000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-04-01"
+    },
+    {
+      "name": "Innovative business models advancing renewable electrolysis integration in industry",
+      "code": "HORIZON-JU-CLEANH2-2026-01-04",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "1500000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-01-04"
+    },
+    {
+      "name": "Affordable, Safe and Sustainable aboveground medium to large GH2 storage",
+      "code": "HORIZON-JU-CLEANH2-2026-02-01",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "4000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-02-01"
+    },
+    {
+      "name": "New thermal insulation concepts for bulk liquid hydrogen shipping",
+      "code": "HORIZON-JU-CLEANH2-2026-02-03",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "4000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-02-03"
+    },
+    {
+      "name": "Fuel-flexible gas turbine combustion technology for clean and efficient ammonia firing",
+      "code": "HORIZON-JU-CLEANH2-2026-04-03",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "5000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-04-03"
+    },
+    {
+      "name": "Scalable and high efficiency materials and reactors for direct solar hydrogen production",
+      "code": "HORIZON-JU-CLEANH2-2026-01-06",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "3000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-01-06"
+    },
+    {
+      "name": "Small-scale Hydrogen Valley",
+      "code": "HORIZON-JU-CLEANH2-2026-06-02",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "8000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-06-02"
+    },
+    {
+      "name": "Public datasets of technologies along the hydrogen value chain for life cycle (sustainability) assessment",
+      "code": "HORIZON-JU-CLEANH2-2026-05-01",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "2500000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-05-01"
+    },
+    {
+      "name": "Development and validation of innovative approaches, catalysts, electrolytes and components for electrolysis technologies based on low-quality water",
+      "code": "HORIZON-JU-CLEANH2-2026-01-01",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "3000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-01-01"
+    },
+    {
+      "name": "Cost-efficient small scale hydrogen liquefaction",
+      "code": "HORIZON-JU-CLEANH2-2026-02-04",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "6000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-02-04"
+    },
+    {
+      "name": "Large-scale Hydrogen Valley",
+      "code": "HORIZON-JU-CLEANH2-2026-06-01",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "17000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-06-01"
+    },
+    {
+      "name": "Sustainable hydrogen production from renewable gases and biogenic waste sources through innovative modular reactor design, process intensification and integration",
+      "code": "HORIZON-JU-CLEANH2-2026-01-05",
+      "openDate": "2026-02-10",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "3000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-cleanh2-2026-01-05"
     },
     {
       "name": "EIC 2026 Pathfinder Open",
@@ -4550,22 +4606,6 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-04-cit-02"
     },
     {
-      "name": "Innovation for regional rail services and new guided transport systems",
-      "code": "HORIZON-JU-ER-2026-FA6FA7-01",
-      "openDate": "2026-02-04",
-      "closeDate": "2026-05-07 00:00:00",
-      "budget": "3100000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-er-2026-fa6fa7-01"
-    },
-    {
-      "name": "Safety and certification guidelines and demonstration of safety components for hyperloop",
-      "code": "HORIZON-JU-ER-2026-FA7-01",
-      "openDate": "2026-02-04",
-      "closeDate": "2026-05-07 00:00:00",
-      "budget": "3000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-er-2026-fa7-01"
-    },
-    {
       "name": "Regional  (sea-basins) components of the EU Digital Twin Ocean",
       "code": "HORIZON-MISS-2026-03-OCEAN-05",
       "openDate": "2026-02-04",
@@ -4604,6 +4644,22 @@ const horizonData = {
       "closeDate": "2026-09-23 00:00:00",
       "budget": "7000000.0",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-miss-2026-03-ocean-02"
+    },
+    {
+      "name": "Innovation for regional rail services and new guided transport systems",
+      "code": "HORIZON-JU-ER-2026-FA6FA7-01",
+      "openDate": "2026-02-04",
+      "closeDate": "2026-05-07 00:00:00",
+      "budget": "3100000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-er-2026-fa6fa7-01"
+    },
+    {
+      "name": "Safety and certification guidelines and demonstration of safety components for hyperloop",
+      "code": "HORIZON-JU-ER-2026-FA7-01",
+      "openDate": "2026-02-04",
+      "closeDate": "2026-05-07 00:00:00",
+      "budget": "3000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-ju-er-2026-fa7-01"
     },
     {
       "name": "Knowledge to Practice: Develop applications and AI solutions utilizing the ForestWard Observatory",
@@ -4702,14 +4758,6 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl6-2023-farm2fork-01-2"
     },
     {
-      "name": "Startup Ecosystem Agents Open Call 2026-2028",
-      "code": "HORIZON-EIT-2025-KIC-IBA-UM",
-      "openDate": "2026-01-21",
-      "closeDate": "2026-03-23 00:00:00",
-      "budget": "2115000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eit-2025-kic-iba-um"
-    },
-    {
       "name": "Renewable energy technology (RET) solutions in energy communities",
       "code": "HORIZON-CL5-2026-2-PRIZE",
       "openDate": "2026-01-20",
@@ -4806,14 +4854,6 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-04-digital-emerging-11"
     },
     {
-      "name": "New or enhanced Innovative Advanced Materials (IAM) enabled sensing functionality (RIA)",
-      "code": "HORIZON-CL4-2026-05-MAT-PROD-25",
-      "openDate": "2026-01-15",
-      "closeDate": "2026-04-15 00:00:00",
-      "budget": "7500000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-05-mat-prod-25"
-    },
-    {
       "name": "Boosting innovation through better integration of fragmented health R&I efforts",
       "code": "HORIZON-JU-IHI-2026-12-SINGLE-STAGE-02",
       "openDate": "2026-01-15",
@@ -4894,12 +4934,20 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-04-data-03"
     },
     {
-      "name": "Next-Generation AI Agents for Real-World Applications in the Apply AI sectors (RIA) (Partnership in AI, Data and Robotics)",
-      "code": "HORIZON-CL4-2026-05-DIGITAL-EMERGING-02",
+      "name": "Standards for Quantum Technologies – Coordination and Support Action (CSA)",
+      "code": "HORIZON-CL4-2026-04-DIGITAL-EMERGING-12",
       "openDate": "2026-01-15",
       "closeDate": "2026-04-15 00:00:00",
-      "budget": "19000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-05-digital-emerging-02"
+      "budget": "1000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-04-digital-emerging-12"
+    },
+    {
+      "name": "New or enhanced Innovative Advanced Materials (IAM) enabled sensing functionality (RIA)",
+      "code": "HORIZON-CL4-2026-05-MAT-PROD-25",
+      "openDate": "2026-01-15",
+      "closeDate": "2026-04-15 00:00:00",
+      "budget": "7500000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-05-mat-prod-25"
     },
     {
       "name": "Apply AI: Next-Generation Agile and Intelligent Robotics Platforms for Industrial and Service Applications (Partnership in AI, Data and Robotics) (RIA)",
@@ -4910,12 +4958,12 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-05-digital-emerging-03"
     },
     {
-      "name": "Standards for Quantum Technologies – Coordination and Support Action (CSA)",
-      "code": "HORIZON-CL4-2026-04-DIGITAL-EMERGING-12",
+      "name": "Next-Generation AI Agents for Real-World Applications in the Apply AI sectors (RIA) (Partnership in AI, Data and Robotics)",
+      "code": "HORIZON-CL4-2026-05-DIGITAL-EMERGING-02",
       "openDate": "2026-01-15",
       "closeDate": "2026-04-15 00:00:00",
-      "budget": "1000000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-04-digital-emerging-12"
+      "budget": "19000000.0",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl4-2026-05-digital-emerging-02"
     },
     {
       "name": "Enhancing integrated research and healthcare in sub-Saharan Africa through digital innovation and Artificial Intelligence",
@@ -5188,14 +5236,6 @@ const horizonData = {
       "closeDate": "2026-04-09 00:00:00",
       "budget": "800000.0",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-widera-2026-02-widening-01"
-    },
-    {
-      "name": "HORIZON-EIC-2026-BAS-01-ECOSYSTEM",
-      "code": "HORIZON-EIC-2026-BAS-01-ECOSYSTEM",
-      "openDate": "2026-01-08",
-      "closeDate": "2026-03-26 00:00:00",
-      "budget": "4500000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eic-2026-bas-01-ecosystem"
     },
     {
       "name": "Optimise the usage of resources in a circular economy (RIA) (Processes4Planet and Clean Steel partnerships)",
@@ -5558,20 +5598,20 @@ const horizonData = {
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl5-2026-05-d5-12"
     },
     {
-      "name": "MSCA COFUND 2026",
-      "code": "HORIZON-MSCA-2026-COFUND-01-01",
-      "openDate": "2025-12-16",
-      "closeDate": "2026-04-08 00:00:00",
-      "budget": "",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-msca-2026-cofund-01-01"
-    },
-    {
       "name": "MSCA Staff Exchanges 2026",
       "code": "HORIZON-MSCA-2026-SE-01-01",
       "openDate": "2025-12-16",
       "closeDate": "2026-04-16 00:00:00",
       "budget": "",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-msca-2026-se-01-01"
+    },
+    {
+      "name": "MSCA COFUND 2026",
+      "code": "HORIZON-MSCA-2026-COFUND-01-01",
+      "openDate": "2025-12-16",
+      "closeDate": "2026-04-08 00:00:00",
+      "budget": "",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-msca-2026-cofund-01-01"
     },
     {
       "name": "ERDERA Joint Transnational Call 2026: \"Resolving unsolved cases in rare genetic and non-genetic diseases”",
@@ -5585,7 +5625,7 @@ const horizonData = {
       "name": "A European Benchmarking Framework for hybrid quantum-classical computing",
       "code": "HORIZON-EUROHPC-JU-2024-BENCHMARK-05-03",
       "openDate": "2025-12-11",
-      "closeDate": "2026-03-24 00:00:00",
+      "closeDate": "2026-04-14 00:00:00",
       "budget": "500000.0",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eurohpc-ju-2024-benchmark-05-03"
     },
@@ -5593,7 +5633,7 @@ const horizonData = {
       "name": "A European HPC-centric Benchmark Framework",
       "code": "HORIZON-EUROHPC-JU-2024-BENCHMARK-05",
       "openDate": "2025-12-11",
-      "closeDate": "2026-03-24 00:00:00",
+      "closeDate": "2026-04-14 00:00:00",
       "budget": "500000.0",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eurohpc-ju-2024-benchmark-05"
     },
