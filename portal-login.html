@@ -102,8 +102,9 @@
                             <span class="text-sm text-slate-600" data-i18n="portal.login.remember_me">Beni
                                 hatırla</span>
                         </label>
-                        <a href="#" class="text-sm text-mlab-purple hover:underline font-medium"
-                            data-i18n="portal.login.forgot_password">Şifremi unuttum</a>
+                        <button type="button" onclick="openForgotPassword()"
+                            class="text-sm text-mlab-purple hover:underline font-medium"
+                            data-i18n="portal.login.forgot_password">Şifremi unuttum</button>
                     </div>
 
                     <!-- Error Message -->
@@ -154,12 +155,118 @@
         <p class="text-white/50 text-xs" data-i18n="footer.copyright">&copy; 2025 M-LAB İzmir</p>
     </footer>
 
+    <!-- Forgot Password Modal -->
+    <div id="forgot-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm">
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-gradient-to-br from-mlab-cyan to-mlab-purple rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="key-round" class="w-7 h-7 text-white"></i>
+                </div>
+                <h2 class="text-xl font-bold text-mlab-navy mb-1">Şifre Sıfırlama</h2>
+                <p class="text-slate-500 text-sm">E-posta adresinize sıfırlama bağlantısı göndereceğiz.</p>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">E-posta Adresi</label>
+                    <div class="relative">
+                        <i data-lucide="mail" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"></i>
+                        <input type="email" id="reset-email" placeholder="ornek@kurum.gov.tr"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-12 pr-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                    </div>
+                </div>
+
+                <!-- Feedback messages -->
+                <div id="reset-success" class="hidden bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl text-sm">
+                    <i data-lucide="check-circle" class="w-4 h-4 inline mr-2"></i>
+                    <span>Sıfırlama bağlantısı gönderildi. E-postanızı kontrol edin.</span>
+                </div>
+                <div id="reset-error" class="hidden bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm">
+                    <i data-lucide="alert-circle" class="w-4 h-4 inline mr-2"></i>
+                    <span id="reset-error-text"></span>
+                </div>
+
+                <button onclick="sendResetEmail()"
+                    id="reset-btn"
+                    class="w-full bg-gradient-to-r from-mlab-navy to-mlab-purple text-white font-bold py-3 rounded-xl hover:shadow-xl hover:shadow-mlab-purple/20 transition-all duration-300 flex items-center justify-center gap-2">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                    Gönder
+                </button>
+
+                <button type="button" onclick="closeForgotPassword()"
+                    class="w-full text-slate-500 hover:text-slate-700 text-sm font-medium py-2 transition-colors">
+                    İptal
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="firebase-config.js"></script>
     <script>
         lucide.createIcons();
 
         // Loading state
         let isSubmitting = false;
+
+        // Forgot Password
+        function openForgotPassword() {
+            const emailInput = document.querySelector('input[name="email"]').value;
+            document.getElementById('reset-email').value = emailInput;
+            document.getElementById('reset-success').classList.add('hidden');
+            document.getElementById('reset-error').classList.add('hidden');
+            document.getElementById('forgot-modal').classList.remove('hidden');
+            lucide.createIcons();
+            setTimeout(() => document.getElementById('reset-email').focus(), 50);
+        }
+
+        function closeForgotPassword() {
+            document.getElementById('forgot-modal').classList.add('hidden');
+        }
+
+        document.getElementById('forgot-modal').addEventListener('click', function (e) {
+            if (e.target === this) closeForgotPassword();
+        });
+
+        async function sendResetEmail() {
+            const email = document.getElementById('reset-email').value.trim();
+            if (!email) {
+                document.getElementById('reset-error-text').textContent = 'Lütfen e-posta adresinizi girin.';
+                document.getElementById('reset-error').classList.remove('hidden');
+                lucide.createIcons();
+                return;
+            }
+
+            const btn = document.getElementById('reset-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Gönderiliyor...';
+            document.getElementById('reset-success').classList.add('hidden');
+            document.getElementById('reset-error').classList.add('hidden');
+            lucide.createIcons();
+
+            try {
+                const firebaseReady = await window.firebaseHelpers.initializeFirebase();
+                if (!firebaseReady) throw new Error('firebase-init');
+
+                const { auth, sendPasswordResetEmail } = window.firebaseAuth;
+                await sendPasswordResetEmail(auth, email);
+
+                document.getElementById('reset-success').classList.remove('hidden');
+                btn.innerHTML = '<i data-lucide="check" class="w-4 h-4"></i> Gönderildi';
+                lucide.createIcons();
+            } catch (error) {
+                let msg = 'Bir hata oluştu. Lütfen tekrar deneyin.';
+                if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-email') {
+                    msg = 'Bu e-posta adresiyle kayıtlı bir hesap bulunamadı.';
+                } else if (error.code === 'auth/too-many-requests') {
+                    msg = 'Çok fazla deneme yapıldı. Lütfen daha sonra tekrar deneyin.';
+                }
+                document.getElementById('reset-error-text').textContent = msg;
+                document.getElementById('reset-error').classList.remove('hidden');
+                btn.disabled = false;
+                btn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i> Tekrar Dene';
+                lucide.createIcons();
+            }
+        }
 
         function showError(message) {
             document.getElementById('error-text').textContent = message;
