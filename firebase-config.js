@@ -24,7 +24,7 @@ async function initializeFirebase() {
     try {
         // Firebase SDK'larını dinamik olarak yükle
         const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js');
-        const { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendEmailVerification, sendPasswordResetEmail, setPersistence, browserLocalPersistence, browserSessionPersistence } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js');
+        const { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendEmailVerification, sendPasswordResetEmail, verifyPasswordResetCode, confirmPasswordReset, setPersistence, browserLocalPersistence, browserSessionPersistence } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js');
         const { getFirestore, collection, doc, getDoc, getDocs, addDoc, setDoc, updateDoc, deleteDoc, query, where, orderBy, limit, onSnapshot, serverTimestamp, Timestamp, increment } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
         const { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js');
 
@@ -43,6 +43,8 @@ async function initializeFirebase() {
             signOut,
             sendEmailVerification,
             sendPasswordResetEmail,
+            verifyPasswordResetCode,
+            confirmPasswordReset,
             setPersistence,
             browserLocalPersistence,
             browserSessionPersistence
