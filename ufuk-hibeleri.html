@@ -542,6 +542,9 @@
           };
           valA = getTime(valA);
           valB = getTime(valB);
+        } else if (sortColumn === 'budget') {
+          valA = parseFloat(valA) || 0;
+          valB = parseFloat(valB) || 0;
         } else {
           valA = valA.toString().toLowerCase();
           valB = valB.toString().toLowerCase();
