@@ -734,7 +734,7 @@ const mlabData = {
     partners: [
         'basifed.png', 'ebso.png', 'egiad.png', 'eib.png', 'ensia.png',
         'esiad.png', 'itb.png', 'izbb.png', 'izikad.png', 'izka.png',
-        'izpa.png', 'izq.png', 'izto.png', 'tmmob.png', 'valilik.png'
+        'izpa.png', 'izq.jpeg', 'izto.png', 'tmmob.png', 'valilik.png'
     ],
 
     // --- DOCUMENTS ---
