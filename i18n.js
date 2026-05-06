@@ -386,7 +386,7 @@ const translations = {
 
     // Horizon Grants Page
     'grants.hero.title': {
-        tr: 'Avrupa Ufuk Hibeleri',
+        tr: 'Ufuk Avrupa Hibeleri',
         en: 'Horizon Europe Grants'
     },
     'grants.hero.subtitle': {
