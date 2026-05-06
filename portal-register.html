@@ -135,7 +135,15 @@
                 </div>
 
                 <!-- Form Card -->
-                <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-10">
+                <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-10 relative">
+
+                    <!-- QR Butonu -->
+                    <button type="button" onclick="openQR()"
+                        class="absolute top-5 right-5 w-9 h-9 flex items-center justify-center rounded-xl bg-slate-100 hover:bg-mlab-navy hover:text-white text-slate-500 transition-all duration-200"
+                        title="Kayıt QR Kodu">
+                        <i data-lucide="qr-code" class="w-5 h-5"></i>
+                    </button>
+
                     <form id="register-form" class="space-y-6">
 
                         <!-- Category Selection -->
@@ -653,6 +661,36 @@
                     setLoading(false);
                 }
             }
+        });
+    </script>
+
+    <!-- QR Modal -->
+    <div id="qr-modal" class="hidden fixed inset-0 z-[999] bg-black/90 flex items-center justify-center p-6"
+        onclick="closeQR()">
+        <div class="relative max-w-2xl w-full" onclick="event.stopPropagation()">
+            <button onclick="closeQR()"
+                class="absolute -top-4 -right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-700 hover:bg-slate-100 shadow-lg transition-all z-10">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="bg-white rounded-3xl p-8 shadow-2xl text-center">
+                <p class="text-mlab-navy font-bold text-lg mb-6">M-LAB Portala Kayıt Ol</p>
+                <img src="QR.jpg" alt="Kayıt QR Kodu"
+                    class="w-full max-w-md mx-auto rounded-2xl">
+                <p class="text-slate-500 text-sm mt-6">QR kodu telefonunuzla okutarak kayıt sayfasına ulaşabilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openQR() {
+            document.getElementById('qr-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+        function closeQR() {
+            document.getElementById('qr-modal').classList.add('hidden');
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeQR();
         });
     </script>
 </body>
