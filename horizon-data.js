@@ -23,7 +23,7 @@ const horizonData = {
       "openDate": "2026-04-29",
       "closeDate": "2026-05-06 00:00:00",
       "budget": "2100000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eit-2025-kic-iba-h"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/13984"
     },
     {
       "name": "Innovation Validation Call 2026",
@@ -31,7 +31,7 @@ const horizonData = {
       "openDate": "2026-04-29",
       "closeDate": "2026-05-06 00:00:00",
       "budget": "5100000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eit-2025-kic-iba-h"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/13986"
     },
     {
       "name": "Cooperation of Artificial Intelligence Factories and Factories Antennas",
@@ -3355,7 +3355,7 @@ const horizonData = {
       "openDate": "2026-04-29",
       "closeDate": "2026-05-06 00:00:00",
       "budget": "2100000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eit-2025-kic-iba-h"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/13984"
     },
     {
       "name": "Innovation Validation Call 2026",
@@ -3363,7 +3363,7 @@ const horizonData = {
       "openDate": "2026-04-29",
       "closeDate": "2026-05-06 00:00:00",
       "budget": "5100000.0",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-eit-2025-kic-iba-h"
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/13986"
     },
     {
       "name": "Cooperation of Artificial Intelligence Factories and Factories Antennas",
