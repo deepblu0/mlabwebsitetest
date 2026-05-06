@@ -510,7 +510,7 @@ const mlabData = {
             },
             duration: { tr: "15 Ay", en: "15 Months" },
             startDate: null,
-            status: { tr: "Devam Ediyor", en: "In Progress" },
+            status: { tr: "Tamamlandı", en: "Completed" },
             partners: "Yuva Derneği, UNDP, HUDOTO vakfı, İzmir Büyükşehir Belediyesi",
             bigChallengeId: 9,
             image: "images/projects/climate-assembly.png"
