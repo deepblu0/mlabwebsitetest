@@ -1356,6 +1356,10 @@ function applyTranslations() {
     if (titleKey) {
         document.title = t(titleKey);
     }
+
+    // Switch logos based on language
+    document.querySelectorAll('.lang-logo-tr').forEach(el => el.classList.toggle('hidden', currentLang !== 'tr'));
+    document.querySelectorAll('.lang-logo-en').forEach(el => el.classList.toggle('hidden', currentLang !== 'en'));
 }
 
 // Update language toggle button active state
