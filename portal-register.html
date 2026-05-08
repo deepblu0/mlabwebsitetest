@@ -378,10 +378,8 @@
                             <input type="checkbox" id="kvkk-consent" name="kvkk" required
                                 class="w-5 h-5 mt-0.5 rounded border-slate-300 text-mlab-purple focus:ring-mlab-purple/50 cursor-pointer">
                             <label for="kvkk-consent" class="text-sm text-slate-600 leading-relaxed">
-                                <a href="yasal.html?page=kvkk" target="_blank"
-                                    class="text-mlab-purple font-semibold hover:underline" data-i18n="footer.kvkk">KVKK
-                                    Aydınlatma Metni</a><span data-i18n="portal.register.kvkk_text">'ni
-                                    okudum ve kişisel verilerimin işlenmesini kabul ediyorum.</span> *
+                                <button type="button" onclick="openKVKK()"
+                                    class="text-mlab-purple font-semibold hover:underline" data-i18n="footer.kvkk">KVKK Aydınlatma Metni</button><span data-i18n="portal.register.kvkk_text">'ni okudum ve kişisel verilerimin işlenmesini kabul ediyorum.</span> *
                             </label>
                         </div>
 
@@ -664,6 +662,22 @@
         });
     </script>
 
+    <!-- KVKK Modal -->
+    <div id="kvkk-modal" class="hidden fixed inset-0 z-[998] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+                <h2 class="font-bold text-mlab-navy text-lg">KVKK Aydınlatma Metni</h2>
+                <button onclick="closeKVKK()"
+                    class="w-9 h-9 flex items-center justify-center rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-all">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="flex-1 overflow-hidden rounded-b-3xl">
+                <iframe src="yasal?page=kvkk" class="w-full h-full min-h-[60vh] rounded-b-3xl border-0"></iframe>
+            </div>
+        </div>
+    </div>
+
     <!-- QR Modal -->
     <div id="qr-modal" class="hidden fixed inset-0 z-[999] bg-black/90 flex items-center justify-center p-6"
         onclick="closeQR()">
@@ -682,6 +696,17 @@
     </div>
 
     <script>
+        function openKVKK() {
+            document.getElementById('kvkk-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+        function closeKVKK() {
+            document.getElementById('kvkk-modal').classList.add('hidden');
+        }
+        document.getElementById('kvkk-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeKVKK();
+        });
+
         function openQR() {
             document.getElementById('qr-modal').classList.remove('hidden');
             lucide.createIcons();
@@ -690,7 +715,7 @@
             document.getElementById('qr-modal').classList.add('hidden');
         }
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeQR();
+            if (e.key === 'Escape') { closeQR(); closeKVKK(); }
         });
     </script>
 </body>
