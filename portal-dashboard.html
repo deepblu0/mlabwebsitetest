@@ -69,6 +69,22 @@
             }
         }
 
+        /* Section tab active state */
+        .section-tab {
+            position: relative;
+            letter-spacing: 0.01em;
+        }
+        .section-tab.active {
+            background: white;
+            color: #0a192f;
+            font-weight: 700;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+        }
+        .section-tab:not(.active):hover {
+            background: rgba(255,255,255,0.08);
+            color: white;
+        }
+
         /* Mobile action buttons scroll */
         .action-scroll {
             -webkit-overflow-scrolling: touch;
@@ -79,6 +95,7 @@
             display: none;
         }
     </style>
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
 <body class="bg-slate-100 text-slate-800 antialiased min-h-screen" data-i18n-title="portal.dashboard.title">
@@ -91,6 +108,22 @@
                     <a href="/" class="flex items-center gap-3">
                         <img src="mlab-logo.png" alt="M-LAB" class="h-10 w-auto brightness-0 invert">
                     </a>
+                </div>
+
+                <!-- Center: Main Section Tabs -->
+                <div class="flex items-center gap-2">
+                    <button onclick="switchSection('cagrilar')" id="tab-cagrilar"
+                        class="section-tab px-7 py-2.5 rounded-lg text-sm transition-all duration-200 text-white">
+                        Çağrılar
+                    </button>
+                    <button onclick="switchSection('calisma-gruplari')" id="tab-calisma-gruplari"
+                        class="section-tab px-7 py-2.5 rounded-lg text-sm transition-all duration-200 text-white">
+                        Çalışma Grupları
+                    </button>
+                    <button onclick="switchSection('projeler')" id="tab-projeler"
+                        class="section-tab px-7 py-2.5 rounded-lg text-sm transition-all duration-200 text-white">
+                        Projeler
+                    </button>
                 </div>
 
                 <!-- Right Side: User Profile -->
@@ -160,15 +193,14 @@
     <!-- MAIN CONTENT -->
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-8">
 
+        <!-- ===== ÇAĞRILAR SECTION ===== -->
+        <div id="section-cagrilar">
 
         <!-- Filters & Content -->
         <div class="flex flex-col lg:flex-row gap-4 lg:gap-8">
 
             <!-- Sidebar Filters -->
             <aside class="lg:w-64 flex-shrink-0 order-2 lg:order-1">
-                <!-- Alignment Spacer (Desktop Only) -->
-                <div class="mb-6 h-[56px] hidden lg:block" aria-hidden="true"></div>
-
                 <!-- Mobile Filter Toggle -->
                 <button id="mobile-filter-toggle" onclick="toggleMobileFilters()"
                     class="lg:hidden w-full flex items-center justify-between px-4 py-3 bg-white rounded-xl shadow-sm border border-slate-200 text-sm font-medium text-mlab-navy mb-3">
@@ -180,93 +212,101 @@
                         class="w-4 h-4 transition-transform duration-300"></i>
                 </button>
 
-                <div
-                    class="mobile-filter-panel bg-white rounded-2xl shadow-sm border border-slate-200 p-5 lg:sticky lg:top-24">
-                    <h3 class="font-semibold text-mlab-navy mb-4 flex items-center gap-2"
-                        data-i18n="portal.filters.title">
-                        <i data-lucide="filter" class="w-4 h-4"></i>
-                        Filtreler
-                    </h3>
+                <div class="mobile-filter-panel bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden lg:sticky lg:top-24">
 
-                    <!-- Post Type Filter -->
-                    <div class="mb-5">
-                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block"
-                            data-i18n="portal.filters.type">Post
-                            Türü</label>
-                        <div class="space-y-2">
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="post_type" value="all" checked
-                                    class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700" data-i18n="portal.filters.all">Tümü</span>
-                            </label>
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="post_type" value="destek_talebi"
-                                    class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700" data-i18n="portal.filters.support">Destek
-                                    Talepleri</span>
-                            </label>
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="post_type" value="uzmanlik_sunumu"
-                                    class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700" data-i18n="portal.filters.type_expert">Uzmanlık
-                                    Bildirileri</span>
-                            </label>
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="post_type" value="partner_call"
-                                    class="w-4 h-4 text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700" data-i18n="portal.filters.type_partner">Ufuk Avrupa
-                                    Partner Çağrıları</span>
-                            </label>
+                    <!-- Header -->
+                    <div class="px-5 py-4 border-b border-slate-100">
+                        <p class="text-sm font-bold text-mlab-navy">Filtreler</p>
+                    </div>
+
+                    <div class="py-3">
+
+                        <!-- Çağrı Türü -->
+                        <div class="px-4 pb-4 border-b border-slate-100">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 mt-1">Çağrı Türü</p>
+                            <div class="flex flex-col">
+                                <button onclick="setPostTypeFilter(this,'all')" data-post-filter="all"
+                                    class="post-filter-pill w-full text-left px-2 py-1.5 rounded-lg text-sm font-semibold text-mlab-navy transition-all duration-150 bg-slate-100">
+                                    Tümü
+                                </button>
+                                <button onclick="setPostTypeFilter(this,'destek_talebi')" data-post-filter="destek_talebi"
+                                    class="post-filter-pill w-full text-left px-2 py-1.5 rounded-lg text-sm text-slate-500 transition-all duration-150 hover:text-mlab-navy">
+                                    Destek Talepleri
+                                </button>
+                                <button onclick="setPostTypeFilter(this,'uzmanlik_sunumu')" data-post-filter="uzmanlik_sunumu"
+                                    class="post-filter-pill w-full text-left px-2 py-1.5 rounded-lg text-sm text-slate-500 transition-all duration-150 hover:text-mlab-navy">
+                                    Uzmanlık Bildirileri
+                                </button>
+                                <button onclick="setPostTypeFilter(this,'partner_call')" data-post-filter="partner_call"
+                                    class="post-filter-pill w-full text-left px-2 py-1.5 rounded-lg text-sm text-slate-500 transition-all duration-150 hover:text-mlab-navy">
+                                    Partner Çağrıları
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Category Filter -->
-                    <div class="mb-5">
-                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block"
-                            data-i18n="portal.filters.org_type">Kurum
-                            Türü</label>
-                        <div class="space-y-2">
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="checkbox" name="category" value="belediye" checked
-                                    class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700"
-                                    data-i18n="portal.filters.municipality">Belediye</span>
-                            </label>
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="checkbox" name="category" value="ozel_sektor" checked
-                                    class="w-4 h-4 rounded text-mlab-purple focus:ring-mlab-purple/50">
-                                <span class="text-sm text-slate-700" data-i18n="portal.filters.private">Özel
-                                    Sektör</span>
-                            </label>
+                        <!-- Büyük Zorluk -->
+                        <div class="px-4 pt-4">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Büyük Zorluk</p>
+                            <div class="flex flex-col" id="challenge-filter-list">
+                                <button onclick="setChallengeFilter(this,'all')" data-challenge-filter="all"
+                                    class="challenge-filter-pill w-full text-left flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-sm font-semibold text-mlab-navy transition-all duration-150 bg-slate-100">
+                                    <span class="w-2 h-2 rounded-full bg-slate-400 flex-shrink-0"></span>
+                                    Tümü
+                                </button>
+                                <button onclick="setChallengeFilter(this,'barinma')" data-challenge-filter="barinma"
+                                    class="challenge-filter-pill w-full text-left flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-sm text-slate-500 transition-all duration-150 hover:text-mlab-navy">
+                                    <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#3b82f6"></span>
+                                    Uygun Fiyatlı Barınma
+                                </button>
+                                <button onclick="setChallengeFilter(this,'hareketlilik')" data-challenge-filter="hareketlilik"
+                                    class="challenge-filter-pill w-full text-left flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-sm text-slate-500 transition-all duration-150 hover:text-mlab-navy">
+                                    <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#a855f7"></span>
+                                    Sürdürülebilir Hareketlilik
+                                </button>
+                                <button onclick="setChallengeFilter(this,'afet')" data-challenge-filter="afet"
+                                    class="challenge-filter-pill w-full text-left flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-sm text-slate-500 transition-all duration-150 hover:text-mlab-navy">
+                                    <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#ef4444"></span>
+                                    Afetlere Dirençlilik
+                                </button>
+                                <button onclick="setChallengeFilter(this,'gida')" data-challenge-filter="gida"
+                                    class="challenge-filter-pill w-full text-left flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-sm text-slate-500 transition-all duration-150 hover:text-mlab-navy">
+                                    <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#22c55e"></span>
+                                    Sağlıklı Gıda ve Tarım
+                                </button>
+                                <button onclick="setChallengeFilter(this,'saglik')" data-challenge-filter="saglik"
+                                    class="challenge-filter-pill w-full text-left flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-sm text-slate-500 transition-all duration-150 hover:text-mlab-navy">
+                                    <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#06b6d4"></span>
+                                    Sağlık ve Esenlik
+                                </button>
+                                <button onclick="setChallengeFilter(this,'egitim')" data-challenge-filter="egitim"
+                                    class="challenge-filter-pill w-full text-left flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-sm text-slate-500 transition-all duration-150 hover:text-mlab-navy">
+                                    <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#6366f1"></span>
+                                    Eğitimli Nesiller
+                                </button>
+                                <button onclick="setChallengeFilter(this,'is')" data-challenge-filter="is"
+                                    class="challenge-filter-pill w-full text-left flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-sm text-slate-500 transition-all duration-150 hover:text-mlab-navy">
+                                    <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#f59e0b"></span>
+                                    İnsana Yakışır İş
+                                </button>
+                                <button onclick="setChallengeFilter(this,'inovasyon')" data-challenge-filter="inovasyon"
+                                    class="challenge-filter-pill w-full text-left flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-sm text-slate-500 transition-all duration-150 hover:text-mlab-navy">
+                                    <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#0ea5e9"></span>
+                                    Yenilik ve Teknoloji
+                                </button>
+                                <button onclick="setChallengeFilter(this,'kultur')" data-challenge-filter="kultur"
+                                    class="challenge-filter-pill w-full text-left flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-sm text-slate-500 transition-all duration-150 hover:text-mlab-navy">
+                                    <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#ec4899"></span>
+                                    Kültür ve Kapsayıcılık
+                                </button>
+                                <button onclick="setChallengeFilter(this,'dongusal')" data-challenge-filter="dongusal"
+                                    class="challenge-filter-pill w-full text-left flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-sm text-slate-500 transition-all duration-150 hover:text-mlab-navy">
+                                    <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#10b981"></span>
+                                    Döngüsel Metabolizma
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Büyük Zorluk Filter -->
-                    <div>
-                        <label class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2 block"
-                            data-i18n="portal.filters.challenge">Büyük
-                            Zorluk</label>
-                        <select id="sector-filter"
-                            class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50">
-                            <option value="all" data-i18n="portal.filters.all">Tümü</option>
-                            <option value="barinma" data-i18n="challenge.1">Uygun Fiyatlı Barınma</option>
-                            <option value="hareketlilik" data-i18n="challenge.2">Sürdürülebilir Hareketlilik</option>
-                            <option value="afet" data-i18n="challenge.3">Afetlere Dirençlilik</option>
-                            <option value="gida" data-i18n="challenge.4">Sağlıklı Gıda</option>
-                            <option value="saglik" data-i18n="challenge.5">Sağlık ve Esenlik</option>
-                            <option value="egitim" data-i18n="challenge.6">Eğitimli Nesiller</option>
-                            <option value="is" data-i18n="challenge.7">İnsana Yakışır İş</option>
-                            <option value="inovasyon" data-i18n="challenge.8">İnovasyon Üretimi</option>
-                            <option value="kultur" data-i18n="challenge.9">Kültür ve Kapsayıcılık</option>
-                            <option value="dongusal" data-i18n="challenge.10">Döngüsel Metabolizma</option>
-                        </select>
                     </div>
-
-                    <button onclick="applyFilters()"
-                        class="w-full mt-5 px-4 py-2 bg-mlab-navy text-white font-medium rounded-lg hover:bg-mlab-purple transition-colors text-sm"
-                        data-i18n="portal.filters.apply">
-                        Filtrele
-                    </button>
                 </div>
 
 
@@ -328,6 +368,884 @@
                 </div>
             </div>
         </div>
+
+        </div> <!-- /#section-cagrilar -->
+
+        <!-- ===== ÇALIŞMA GRUPLARI SECTION ===== -->
+        <div id="section-calisma-gruplari" class="hidden">
+            <div class="flex gap-6" style="min-height: calc(100vh - 9rem);">
+
+                <!-- LEFT SIDEBAR: 10 Büyük Zorluk -->
+                <aside class="w-64 flex-shrink-0 self-start sticky top-24">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="px-4 py-3 border-b border-slate-100 bg-slate-50">
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Büyük Zorluklar</p>
+                        </div>
+                        <nav id="cg-challenge-list" class="py-2">
+                            <!-- Rendered by JS -->
+                        </nav>
+                    </div>
+                </aside>
+
+                <!-- RIGHT PANEL -->
+                <div class="flex-1 min-w-0">
+
+                    <!-- Empty state: no challenge selected -->
+                    <div id="cg-empty" class="flex flex-col items-center justify-center h-full py-32 text-center">
+                        <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                            <i data-lucide="mouse-pointer-click" class="w-9 h-9 text-slate-400"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-slate-600 mb-2">Bir zorluk seçin</h3>
+                        <p class="text-slate-400 text-sm">Sol taraftan bir büyük zorluk seçerek o alana ait çalışma gruplarını görüntüleyin.</p>
+                    </div>
+
+                    <!-- THREAD LIST VIEW -->
+                    <div id="cg-thread-list" class="hidden">
+                        <!-- Header -->
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="flex items-center gap-3">
+                                <div id="cg-challenge-dot" class="w-3 h-3 rounded-full"></div>
+                                <h2 id="cg-challenge-title" class="text-xl font-bold text-mlab-navy"></h2>
+                                <span id="cg-topic-count" class="text-sm text-slate-400"></span>
+                            </div>
+                            <button onclick="openNewTopicModal()" class="flex items-center gap-2 px-5 py-2.5 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-purple transition-colors shadow-sm">
+                                <i data-lucide="plus" class="w-4 h-4"></i>
+                                Konu Başlığı Yarat
+                            </button>
+                        </div>
+
+                        <!-- Thread Rows -->
+                        <div id="cg-topics-container" class="space-y-3"></div>
+                    </div>
+
+                    <!-- CHAT VIEW -->
+                    <div id="cg-chat-view" class="hidden flex flex-col" style="height: calc(100vh - 9rem);">
+                        <!-- Chat Header -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 px-5 py-4 mb-4 flex items-center gap-4">
+                            <button onclick="closeChatView()" class="flex items-center gap-2 text-slate-500 hover:text-mlab-navy transition-colors text-sm font-medium">
+                                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                                Geri
+                            </button>
+                            <div class="w-px h-5 bg-slate-200"></div>
+                            <div id="cg-chat-title" class="font-bold text-mlab-navy text-base"></div>
+                        </div>
+
+                        <!-- Messages -->
+                        <div id="cg-messages" class="flex-1 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-y-auto p-5 space-y-5 mb-4" style="max-height: calc(100vh - 18rem);"></div>
+
+                        <!-- Reply Input -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
+                            <div class="flex gap-3 items-end">
+                                <div class="w-9 h-9 rounded-full bg-mlab-navy flex items-center justify-center text-white text-xs font-bold flex-shrink-0">BY</div>
+                                <div class="flex-1">
+                                    <textarea id="cg-reply-input" rows="2" placeholder="Yanıtınızı yazın..."
+                                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none"
+                                        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendReply();}"></textarea>
+                                </div>
+                                <button onclick="sendReply()" class="flex items-center gap-2 px-4 py-3 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-purple transition-colors flex-shrink-0">
+                                    <i data-lucide="send" class="w-4 h-4"></i>
+                                    Gönder
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- NEW TOPIC MODAL -->
+            <div id="new-topic-modal" class="fixed inset-0 z-50 hidden">
+                <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeNewTopicModal()"></div>
+                <div class="absolute inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden">
+                    <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
+                        <h2 class="text-lg font-bold text-mlab-navy">Yeni Konu Başlığı</h2>
+                        <button onclick="closeNewTopicModal()" class="p-2 hover:bg-slate-200 rounded-full transition-colors">
+                            <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
+                        </button>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Konu Başlığı *</label>
+                            <input type="text" id="new-topic-title" placeholder="Konuyu kısaca özetleyin..."
+                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Açılış Mesajı *</label>
+                            <textarea id="new-topic-body" rows="4" placeholder="Konuyu detaylıca açıklayın..."
+                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none"></textarea>
+                        </div>
+                    </div>
+                    <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
+                        <button onclick="closeNewTopicModal()" class="px-5 py-2.5 text-slate-600 font-medium rounded-xl hover:bg-slate-200 transition-colors text-sm">İptal</button>
+                        <button onclick="submitNewTopic()" class="px-5 py-2.5 bg-mlab-navy text-white font-semibold rounded-xl hover:bg-mlab-purple transition-colors text-sm">Konu Oluştur</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+        // ===== ÇALIŞMA GRUPLARI DATA & LOGIC =====
+        const CG_CHALLENGES = [
+            { id: 1, title: 'Uygun Fiyatlı Barınma',       color: '#3b82f6', bg: '#eff6ff', text: '#1d4ed8' },
+            { id: 2, title: 'Sürdürülebilir Hareketlilik', color: '#a855f7', bg: '#faf5ff', text: '#7e22ce' },
+            { id: 3, title: 'Afetlere Dirençlilik',         color: '#ef4444', bg: '#fef2f2', text: '#b91c1c' },
+            { id: 4, title: 'Sağlıklı Gıda ve Tarım',      color: '#22c55e', bg: '#f0fdf4', text: '#15803d' },
+            { id: 5, title: 'Sağlık ve Esenlik',            color: '#06b6d4', bg: '#ecfeff', text: '#0e7490' },
+            { id: 6, title: 'Eğitimli Nesiller',            color: '#6366f1', bg: '#eef2ff', text: '#4338ca' },
+            { id: 7, title: 'İnsana Yakışır İş',            color: '#f59e0b', bg: '#fffbeb', text: '#b45309' },
+            { id: 8, title: 'Yenilik ve Teknoloji',         color: '#0ea5e9', bg: '#f0f9ff', text: '#0369a1' },
+            { id: 9, title: 'Kültür ve Kapsayıcılık',      color: '#ec4899', bg: '#fdf2f8', text: '#be185d' },
+            { id: 10, title: 'Döngüsel Metabolizma',        color: '#10b981', bg: '#ecfdf5', text: '#047857' },
+        ];
+
+        const CG_MOCK_TOPICS = {
+            1: [
+                { id: 101, title: 'Kiracı hakları kapsamında yeni düzenlemeler nasıl ele alınmalı?', author: 'Berkay Yılmaz', org: 'İZPA', orgType: 'belediye', replies: 7, lastActivity: '2 saat önce', tags: ['Mevzuat', 'Kiracı'] },
+                { id: 102, title: 'Düşük gelirli haneler için konut üretim modelleri: karşılaştırmalı analiz', author: 'Ayşe Kaya', org: 'Ege Üniversitesi', orgType: 'universite', replies: 3, lastActivity: '1 gün önce', tags: ['Araştırma'] },
+                { id: 103, title: 'Sosyal konut projelerinde özel sektör ortaklığı mümkün mü?', author: 'Mehmet Demir', org: 'EGIAD', orgType: 'ozel', replies: 12, lastActivity: '3 gün önce', tags: ['Finansman', 'Ortaklık'] },
+            ],
+            2: [
+                { id: 201, title: 'Bisiklet altyapısı için pilot bölge seçimi kriterleri', author: 'Selin Çelik', org: 'İZBB', orgType: 'belediye', replies: 5, lastActivity: '5 saat önce', tags: ['Altyapı', 'Pilot'] },
+                { id: 202, title: 'Toplu taşıma entegrasyonu için veri paylaşım protokolü önerisi', author: 'Can Arslan', org: 'DEU', orgType: 'universite', replies: 9, lastActivity: '2 gün önce', tags: ['Veri', 'Entegrasyon'] },
+            ],
+            3: [
+                { id: 301, title: 'Kentsel dönüşümde afet riskinin haritalanması — metodoloji tartışması', author: 'Deniz Kılıç', org: 'IZKA', orgType: 'belediye', replies: 4, lastActivity: '1 gün önce', tags: ['Haritalama', 'Risk'] },
+            ],
+        };
+
+        let cgSelectedChallenge = null;
+        let cgSelectedTopic = null;
+        let cgMessages = {};
+
+        const ORG_COLORS = { kamu: '#0a192f', ozel_sektor: '#ff7e67', stk: '#7c3aed', default: '#64748b' };
+
+        function initCG() {
+            const list = document.getElementById('cg-challenge-list');
+            list.innerHTML = CG_CHALLENGES.map(c => `
+                <button onclick="selectChallenge(${c.id})" id="cg-item-${c.id}"
+                    class="cg-challenge-item w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-50 transition-colors text-sm font-medium text-slate-700 border-l-4 border-transparent">
+                    <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background:${c.color}"></span>
+                    <span class="leading-snug">${c.title}</span>
+                </button>
+            `).join('');
+        }
+
+        function selectChallenge(id) {
+            cgSelectedChallenge = id;
+            cgSelectedTopic = null;
+
+            // Sidebar active state
+            document.querySelectorAll('.cg-challenge-item').forEach(el => {
+                el.classList.remove('border-l-4', 'bg-slate-50', 'font-semibold', 'text-mlab-navy');
+                el.style.borderLeftColor = 'transparent';
+            });
+            const c = CG_CHALLENGES.find(x => x.id === id);
+            const btn = document.getElementById('cg-item-' + id);
+            btn.classList.add('bg-slate-50', 'font-semibold', 'text-mlab-navy');
+            btn.style.borderLeftColor = c.color;
+
+            // Show thread list
+            document.getElementById('cg-empty').classList.add('hidden');
+            document.getElementById('cg-chat-view').classList.add('hidden');
+            document.getElementById('cg-thread-list').classList.remove('hidden');
+
+            // Update header
+            document.getElementById('cg-challenge-dot').style.background = c.color;
+            document.getElementById('cg-challenge-title').textContent = c.title;
+
+            renderTopics(id);
+            lucide.createIcons();
+        }
+
+        function renderTopics(challengeId) {
+            const topics = CG_MOCK_TOPICS[challengeId] || [];
+            const container = document.getElementById('cg-topics-container');
+            const countEl = document.getElementById('cg-topic-count');
+            countEl.textContent = topics.length ? `${topics.length} konu` : '';
+
+            if (!topics.length) {
+                container.innerHTML = `
+                    <div class="text-center py-20">
+                        <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="message-square" class="w-8 h-8 text-slate-400"></i>
+                        </div>
+                        <p class="text-slate-500 font-medium mb-1">Henüz konu açılmamış</p>
+                        <p class="text-slate-400 text-sm">İlk konuyu siz açın!</p>
+                    </div>`;
+                lucide.createIcons();
+                return;
+            }
+
+            container.innerHTML = topics.map(t => {
+                return `
+                <div onclick="openTopic(${t.id})" class="bg-white rounded-2xl border border-slate-200 px-6 py-4 hover:border-slate-300 hover:shadow-md transition-all cursor-pointer group flex items-center gap-4">
+                    <h4 class="flex-1 font-semibold text-mlab-navy group-hover:text-mlab-purple transition-colors leading-snug">${t.title}</h4>
+                    <div class="flex items-center gap-1.5 text-slate-400 text-sm flex-shrink-0">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>${t.replies}</span>
+                    </div>
+                </div>`;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function openTopic(topicId) {
+            const allTopics = Object.values(CG_MOCK_TOPICS).flat();
+            const topic = allTopics.find(t => t.id === topicId);
+            if (!topic) return;
+            cgSelectedTopic = topicId;
+
+            // Init messages if not exist
+            if (!cgMessages[topicId]) {
+                cgMessages[topicId] = [
+                    { author: topic.author, org: topic.org, orgType: topic.orgType, text: 'Bu konuyu açıyorum çünkü bu alan üzerinde kapsamlı bir tartışma yürütmemiz gerekiyor. Görüşlerinizi paylaşmanızı bekliyorum.', time: topic.lastActivity },
+                ];
+            }
+
+            document.getElementById('cg-thread-list').classList.add('hidden');
+            const chatView = document.getElementById('cg-chat-view');
+            chatView.classList.remove('hidden');
+            chatView.classList.add('flex', 'flex-col');
+            document.getElementById('cg-chat-title').textContent = topic.title;
+
+            renderMessages(topicId);
+            lucide.createIcons();
+        }
+
+        function renderMessages(topicId) {
+            const msgs = cgMessages[topicId] || [];
+            const container = document.getElementById('cg-messages');
+            container.innerHTML = msgs.map((m, i) => {
+                const orgColor = ORG_COLORS[m.orgType] || ORG_COLORS.default;
+                const initials = m.org.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
+                return `
+                <div class="flex gap-3 items-start">
+                    <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0" style="background:${orgColor}">${initials}</div>
+                    <div class="flex-1">
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="text-sm font-semibold text-mlab-navy">${m.author}</span>
+                            <span class="text-xs text-slate-400">${m.org}</span>
+                            <span class="text-xs text-slate-300">·</span>
+                            <span class="text-xs text-slate-400">${m.time}</span>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl rounded-tl-none px-4 py-3 text-sm text-slate-700 leading-relaxed">${m.text}</div>
+                    </div>
+                </div>`;
+            }).join('');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function closeChatView() {
+            document.getElementById('cg-chat-view').classList.add('hidden');
+            document.getElementById('cg-thread-list').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function sendReply() {
+            const input = document.getElementById('cg-reply-input');
+            const text = input.value.trim();
+            if (!text || !cgSelectedTopic) return;
+            if (!cgMessages[cgSelectedTopic]) cgMessages[cgSelectedTopic] = [];
+            cgMessages[cgSelectedTopic].push({ author: 'Berkay Yılmaz', org: 'İZPA', orgType: 'belediye', text, time: 'Şimdi' });
+            input.value = '';
+            renderMessages(cgSelectedTopic);
+        }
+
+        function openNewTopicModal() {
+            document.getElementById('new-topic-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+        function closeNewTopicModal() {
+            document.getElementById('new-topic-modal').classList.add('hidden');
+        }
+        function submitNewTopic() {
+            const title = document.getElementById('new-topic-title').value.trim();
+            const body = document.getElementById('new-topic-body').value.trim();
+            if (!title || !body || !cgSelectedChallenge) return;
+            const newId = Date.now();
+            if (!CG_MOCK_TOPICS[cgSelectedChallenge]) CG_MOCK_TOPICS[cgSelectedChallenge] = [];
+            CG_MOCK_TOPICS[cgSelectedChallenge].unshift({ id: newId, title, author: 'Berkay Yılmaz', org: 'İZPA', orgType: 'belediye', replies: 0, lastActivity: 'Şimdi', tags: [] });
+            cgMessages[newId] = [{ author: 'Berkay Yılmaz', org: 'İZPA', orgType: 'belediye', text: body, time: 'Şimdi' }];
+            closeNewTopicModal();
+            document.getElementById('new-topic-title').value = '';
+            document.getElementById('new-topic-body').value = '';
+            renderTopics(cgSelectedChallenge);
+            lucide.createIcons();
+        }
+
+        // Init on first load
+        document.addEventListener('DOMContentLoaded', function() {
+            initCG();
+        });
+        </script>
+
+        <!-- ===== PROJELER SECTION ===== -->
+        <div id="section-projeler" class="hidden">
+            <div class="flex gap-6" style="min-height: calc(100vh - 9rem);">
+
+                <!-- LEFT SIDEBAR: 10 Büyük Zorluk -->
+                <aside class="w-64 flex-shrink-0 self-start sticky top-24">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="px-4 py-3 border-b border-slate-100 bg-slate-50">
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Büyük Zorluklar</p>
+                        </div>
+                        <nav id="pr-challenge-list" class="py-2"><!-- Rendered by JS --></nav>
+                    </div>
+                </aside>
+
+                <!-- RIGHT PANEL -->
+                <div class="flex-1 min-w-0">
+
+                    <!-- Empty state -->
+                    <div id="pr-empty" class="flex flex-col items-center justify-center h-full py-32 text-center">
+                        <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                            <i data-lucide="mouse-pointer-click" class="w-9 h-9 text-slate-400"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-slate-600 mb-2">Bir zorluk seçin</h3>
+                        <p class="text-slate-400 text-sm">Sol taraftan bir büyük zorluk seçerek projeleri görüntüleyin.</p>
+                    </div>
+
+                    <!-- PROJECT LIST VIEW -->
+                    <div id="pr-project-list" class="hidden">
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="flex items-center gap-3">
+                                <div id="pr-challenge-dot" class="w-3 h-3 rounded-full"></div>
+                                <h2 id="pr-challenge-title" class="text-xl font-bold text-mlab-navy"></h2>
+                                <span id="pr-project-count" class="text-sm text-slate-400"></span>
+                            </div>
+                            <button onclick="openNewProjectModal()" class="flex items-center gap-2 px-5 py-2.5 bg-mlab-navy text-white text-sm font-semibold rounded-xl hover:bg-mlab-purple transition-colors shadow-sm">
+                                <i data-lucide="plus" class="w-4 h-4"></i>
+                                Proje Ekle
+                            </button>
+                        </div>
+                        <div id="pr-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+                    </div>
+
+                    <!-- PROJECT DETAIL VIEW -->
+                    <div id="pr-detail-view" class="hidden">
+                        <button onclick="closePrDetail()" class="flex items-center gap-2 text-slate-500 hover:text-mlab-navy transition-colors text-sm font-medium mb-5">
+                            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                            Geri
+                        </button>
+
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                            <!-- Project Image -->
+                            <div id="pr-detail-img-wrap" class="relative h-56 bg-slate-100 overflow-hidden">
+                                <img id="pr-detail-img" src="" alt="" class="w-full h-full object-cover">
+                                <div id="pr-detail-badge" class="absolute top-4 left-4 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm text-xs font-bold text-slate-700">
+                                    <div id="pr-detail-badge-dot" class="w-2 h-2 rounded-full"></div>
+                                    <span id="pr-detail-badge-label"></span>
+                                </div>
+                            </div>
+
+                            <div class="p-6">
+                                <!-- Status + Title -->
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span id="pr-detail-status" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-700"></span>
+                                </div>
+                                <h2 id="pr-detail-title" class="text-2xl font-black text-mlab-navy mb-3 leading-tight"></h2>
+                                <p id="pr-detail-desc" class="text-slate-500 text-sm leading-relaxed mb-6"></p>
+
+                                <!-- Info Grid -->
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div class="bg-slate-50 rounded-xl p-4">
+                                        <p class="text-xs text-slate-400 font-medium mb-1 flex items-center gap-1.5">
+                                            <i data-lucide="clock" class="w-3.5 h-3.5"></i> Süre
+                                        </p>
+                                        <p id="pr-detail-duration" class="text-sm font-semibold text-mlab-navy"></p>
+                                    </div>
+                                    <div class="bg-slate-50 rounded-xl p-4">
+                                        <p class="text-xs text-slate-400 font-medium mb-1 flex items-center gap-1.5">
+                                            <i data-lucide="activity" class="w-3.5 h-3.5"></i> Durum
+                                        </p>
+                                        <p id="pr-detail-status-info" class="text-sm font-semibold text-mlab-navy"></p>
+                                    </div>
+                                </div>
+
+                                <!-- Partners -->
+                                <div class="mb-6">
+                                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                        <i data-lucide="building-2" class="w-3.5 h-3.5"></i> Paydaşlar
+                                    </p>
+                                    <p id="pr-detail-partners" class="text-sm text-slate-600 leading-relaxed"></p>
+                                </div>
+
+                                <!-- Team / Roles Section -->
+                                <div class="border-t border-slate-100 pt-6">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <p class="text-sm font-bold text-mlab-navy flex items-center gap-2">
+                                            <i data-lucide="users" class="w-4 h-4"></i>
+                                            Proje Ekibi
+                                        </p>
+                                        <button onclick="openAddMemberModal()" class="flex items-center gap-1.5 px-3 py-1.5 border border-mlab-navy text-mlab-navy text-xs font-semibold rounded-lg hover:bg-mlab-navy hover:text-white transition-colors">
+                                            <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+                                            Üye Ekle
+                                        </button>
+                                    </div>
+                                    <div id="pr-team-list" class="space-y-2"><!-- Rendered by JS --></div>
+                                    <div id="pr-team-empty" class="hidden text-center py-6 text-slate-400 text-sm">
+                                        Henüz ekip üyesi eklenmemiş.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- NEW PROJECT MODAL -->
+            <div id="new-project-modal" class="fixed inset-0 z-50 hidden">
+                <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeNewProjectModal()"></div>
+                <div class="absolute inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+                    <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50 flex-shrink-0">
+                        <h2 class="text-lg font-bold text-mlab-navy">Yeni Proje Ekle</h2>
+                        <button onclick="closeNewProjectModal()" class="p-2 hover:bg-slate-200 rounded-full transition-colors">
+                            <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
+                        </button>
+                    </div>
+                    <div class="p-6 space-y-4 overflow-y-auto flex-1">
+                        <!-- Image Upload -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Proje Görseli</label>
+                            <div id="pr-img-drop" class="border-2 border-dashed border-slate-300 rounded-xl p-5 text-center hover:border-mlab-purple transition-colors cursor-pointer bg-slate-50" onclick="document.getElementById('pr-img-input').click()">
+                                <input type="file" id="pr-img-input" accept="image/*" class="hidden" onchange="handlePrImageSelect(event)">
+                                <div id="pr-img-placeholder">
+                                    <i data-lucide="image" class="w-8 h-8 mx-auto text-slate-400 mb-2"></i>
+                                    <p class="text-sm text-slate-500">Görsel seçin veya sürükleyin</p>
+                                    <p class="text-xs text-slate-400 mt-1">JPG, PNG, WebP (max 5MB)</p>
+                                </div>
+                                <img id="pr-img-preview" src="" class="hidden w-full h-32 object-cover rounded-lg">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Proje Adı *</label>
+                            <input type="text" id="pr-new-title" placeholder=""
+                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Açıklama *</label>
+                            <textarea id="pr-new-desc" rows="3" placeholder=""
+                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all resize-none"></textarea>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Süre</label>
+                                <input type="text" id="pr-new-duration" placeholder=""
+                                    class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Durum</label>
+                                <select id="pr-new-status" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                                    <option value="Planlama">Planlama</option>
+                                    <option value="Devam Ediyor">Devam Ediyor</option>
+                                    <option value="Tamamlandı">Tamamlandı</option>
+                                    <option value="Askıya Alındı">Askıya Alındı</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Paydaşlar</label>
+                            <input type="text" id="pr-new-partners" placeholder=""
+                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                        </div>
+                    </div>
+                    <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3 flex-shrink-0">
+                        <button onclick="closeNewProjectModal()" class="px-5 py-2.5 text-slate-600 font-medium rounded-xl hover:bg-slate-200 transition-colors text-sm">İptal</button>
+                        <button onclick="submitNewProject()" class="px-5 py-2.5 bg-mlab-navy text-white font-semibold rounded-xl hover:bg-mlab-purple transition-colors text-sm">Projeyi Ekle</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ADD MEMBER MODAL -->
+            <div id="add-member-modal" class="fixed inset-0 z-50 hidden">
+                <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeAddMemberModal()"></div>
+                <div class="absolute inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden">
+                    <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
+                        <h2 class="text-lg font-bold text-mlab-navy">Ekip Üyesi Ekle</h2>
+                        <button onclick="closeAddMemberModal()" class="p-2 hover:bg-slate-200 rounded-full transition-colors">
+                            <i data-lucide="x" class="w-5 h-5 text-slate-500"></i>
+                        </button>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <!-- Member Search -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Üye Ara *</label>
+                            <div class="relative">
+                                <input type="text" id="member-search-input" placeholder="En az 3 harf yazın..."
+                                    autocomplete="off"
+                                    oninput="onMemberSearch(this.value)"
+                                    class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                                <!-- Dropdown -->
+                                <div id="member-search-dropdown" class="hidden absolute left-0 right-0 top-full mt-1 bg-white rounded-xl border border-slate-200 shadow-lg z-50 overflow-hidden max-h-48 overflow-y-auto">
+                                    <!-- Options rendered by JS -->
+                                </div>
+                            </div>
+                            <!-- Selected member display -->
+                            <div id="member-selected-display" class="hidden mt-2 flex items-center gap-3 px-4 py-2.5 bg-mlab-navy/5 border border-mlab-navy/20 rounded-xl">
+                                <div id="member-selected-avatar" class="w-8 h-8 rounded-full bg-mlab-navy flex items-center justify-center text-white text-xs font-bold flex-shrink-0"></div>
+                                <div class="flex-1 min-w-0">
+                                    <p id="member-selected-name" class="text-sm font-semibold text-mlab-navy"></p>
+                                    <p id="member-selected-org" class="text-xs text-slate-400"></p>
+                                </div>
+                                <button type="button" onclick="clearMemberSelection()" class="text-slate-400 hover:text-red-400 transition-colors">
+                                    <i data-lucide="x" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Role -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Rol *</label>
+                            <select id="member-role-input" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-mlab-cyan/50 focus:border-mlab-cyan transition-all">
+                                <option value="">Rol seçin...</option>
+                                <option value="Proje Koordinatörü">Proje Koordinatörü</option>
+                                <option value="Örnek Rol 1">Örnek Rol 1</option>
+                                <option value="Örnek Rol 2">Örnek Rol 2</option>
+                                <option value="Örnek Rol 3">Örnek Rol 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
+                        <button onclick="closeAddMemberModal()" class="px-5 py-2.5 text-slate-600 font-medium rounded-xl hover:bg-slate-200 transition-colors text-sm">İptal</button>
+                        <button onclick="submitAddMember()" class="px-5 py-2.5 bg-mlab-navy text-white font-semibold rounded-xl hover:bg-mlab-purple transition-colors text-sm">Ekle</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+        // ===== PROJELER DATA & LOGIC =====
+        const PR_CHALLENGES = [
+            { id: 1,  title: 'Uygun Fiyatlı Barınma',       color: '#3b82f6' },
+            { id: 2,  title: 'Sürdürülebilir Hareketlilik', color: '#a855f7' },
+            { id: 3,  title: 'Afetlere Dirençlilik',         color: '#ef4444' },
+            { id: 4,  title: 'Sağlıklı Gıda ve Tarım',      color: '#22c55e' },
+            { id: 5,  title: 'Sağlık ve Esenlik',            color: '#06b6d4' },
+            { id: 6,  title: 'Eğitimli Nesiller',            color: '#6366f1' },
+            { id: 7,  title: 'İnsana Yakışır İş',            color: '#f59e0b' },
+            { id: 8,  title: 'Yenilik ve Teknoloji',         color: '#0ea5e9' },
+            { id: 9,  title: 'Kültür ve Kapsayıcılık',      color: '#ec4899' },
+            { id: 10, title: 'Döngüsel Metabolizma',         color: '#10b981' },
+        ];
+
+        const PR_MOCK_PROJECTS = {
+            3: [
+                { id: 301, title: "İzmir'de Su Tutma Peyzajlarının Geliştirilmesi", desc: "İzmir'deki kentsel çevrenin sürdürülebilirliğini ve dirençliliğini artırmak amacıyla su yönetimi kapasitesini güçlendiren peyzaj çalışmaları.", duration: "24 Ay", status: "Devam Ediyor", partners: "İzmir Büyükşehir Belediyesi, Karşıyaka Belediyesi", image: "proje-img/su-tutma.png", team: [] },
+                { id: 302, title: "CRIZ-ERS İklim Dirençliliği", desc: "Akdeniz şehirlerinde iklim değişikliğine karşı dirençlilik kapasitesi geliştirme projesi.", duration: "36 Ay", status: "Devam Ediyor", partners: "Palermo Üniversitesi, İzmir Büyükşehir Belediyesi, Dortmund Teknik Üniversitesi", image: "proje-img/criz-ers.png", team: [{ name: "Berkay Yılmaz", org: "İZPA", role: "Proje Koordinatörü" }] },
+            ],
+            5: [
+                { id: 501, title: "CITIES@HEART Kardiyovasküler Sağlık", desc: "Kentsel ortamda kardiyovasküler sağlık risklerini azaltmaya yönelik inovatif kentsel tasarım çalışmaları.", duration: "60 Ay", status: "Devam Ediyor", partners: "Utrecht Üniversitesi Tıp Merkezi, Ege Üniversitesi, İzmir Büyükşehir Belediyesi", image: "proje-img/cities-heart.png", team: [] },
+            ],
+            10: [
+                { id: 1001, title: "Start Transformation at Home", desc: "Evden başlayan dönüşüm hareketi; kentsel döngüsel ekonomi modellerinin hayata geçirilmesi.", duration: "18 Ay", status: "Devam Ediyor", partners: "İzmir Büyükşehir Belediyesi, Harkov Belediyesi", image: "proje-img/start-transformation.png", team: [] },
+            ],
+            2: [
+                { id: 201, title: "Shift2Sustain Sürdürülebilir Hareketlilik", desc: "Toplu taşıma ve aktif ulaşım altyapısının entegrasyonuyla sürdürülebilir kentsel hareketlilik.", duration: "36 Ay", status: "Devam Ediyor", partners: "TIS PT-Ulaşım, İzmir Büyükşehir Belediyesi", image: "proje-img/shift2sustain.png", team: [] },
+            ],
+        };
+
+        let prSelectedChallenge = null;
+        let prSelectedProject = null;
+
+        function initPR() {
+            const list = document.getElementById('pr-challenge-list');
+            list.innerHTML = PR_CHALLENGES.map(c => `
+                <button onclick="prSelectChallenge(${c.id})" id="pr-item-${c.id}"
+                    class="pr-challenge-item w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-50 transition-colors text-sm font-medium text-slate-700 border-l-4 border-transparent">
+                    <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background:${c.color}"></span>
+                    <span class="leading-snug">${c.title}</span>
+                </button>
+            `).join('');
+        }
+
+        function prSelectChallenge(id) {
+            prSelectedChallenge = id;
+            prSelectedProject = null;
+
+            document.querySelectorAll('.pr-challenge-item').forEach(el => {
+                el.classList.remove('bg-slate-50', 'font-semibold', 'text-mlab-navy');
+                el.style.borderLeftColor = 'transparent';
+            });
+            const c = PR_CHALLENGES.find(x => x.id === id);
+            const btn = document.getElementById('pr-item-' + id);
+            btn.classList.add('bg-slate-50', 'font-semibold', 'text-mlab-navy');
+            btn.style.borderLeftColor = c.color;
+
+            document.getElementById('pr-empty').classList.add('hidden');
+            document.getElementById('pr-detail-view').classList.add('hidden');
+            document.getElementById('pr-project-list').classList.remove('hidden');
+
+            document.getElementById('pr-challenge-dot').style.background = c.color;
+            document.getElementById('pr-challenge-title').textContent = c.title;
+
+            renderPrCards(id);
+            lucide.createIcons();
+        }
+
+        function renderPrCards(challengeId) {
+            const projects = PR_MOCK_PROJECTS[challengeId] || [];
+            const container = document.getElementById('pr-cards-container');
+            const countEl = document.getElementById('pr-project-count');
+            countEl.textContent = projects.length ? `${projects.length} proje` : '';
+            const c = PR_CHALLENGES.find(x => x.id === challengeId);
+
+            if (!projects.length) {
+                container.innerHTML = `
+                    <div class="col-span-2 text-center py-20">
+                        <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="folder-open" class="w-8 h-8 text-slate-400"></i>
+                        </div>
+                        <p class="text-slate-500 font-medium mb-1">Henüz proje eklenmemiş</p>
+                        <p class="text-slate-400 text-sm">İlk projeyi siz ekleyin!</p>
+                    </div>`;
+                lucide.createIcons();
+                return;
+            }
+
+            const statusColors = { 'Devam Ediyor': 'bg-blue-100 text-blue-700', 'Tamamlandı': 'bg-green-100 text-green-700', 'Planlama': 'bg-amber-100 text-amber-700', 'Askıya Alındı': 'bg-slate-100 text-slate-500' };
+
+            container.innerHTML = projects.map(p => {
+                const sc = statusColors[p.status] || 'bg-slate-100 text-slate-500';
+                const imgSrc = p.image || '';
+                const imgEl = imgSrc
+                    ? `<img src="${imgSrc}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.classList.add('bg-gradient-to-br','from-slate-200','to-slate-300');this.remove()">`
+                    : '';
+                return `
+                <div onclick="openPrDetail(${p.id})" class="group bg-white rounded-2xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 overflow-hidden cursor-pointer flex flex-col">
+                    <div class="relative h-44 bg-slate-100 overflow-hidden flex-shrink-0">
+                        ${imgEl}
+                        <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-bold text-slate-700">
+                            <div class="w-2 h-2 rounded-full" style="background:${c.color}"></div>
+                            ${c.title}
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <div class="mb-2"><span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${sc}">${p.status}</span></div>
+                        <h3 class="font-bold text-mlab-navy text-base leading-snug mb-2 group-hover:text-mlab-purple transition-colors line-clamp-2">${p.title}</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed line-clamp-2 mb-4 flex-grow">${p.desc}</p>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> ${p.duration}</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><i data-lucide="users" class="w-3 h-3"></i> ${p.team.length} üye</span>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function openPrDetail(projectId) {
+            const allProjects = Object.values(PR_MOCK_PROJECTS).flat();
+            const p = allProjects.find(x => x.id === projectId);
+            if (!p) return;
+            prSelectedProject = projectId;
+            const c = PR_CHALLENGES.find(x => x.id === prSelectedChallenge);
+
+            document.getElementById('pr-project-list').classList.add('hidden');
+            document.getElementById('pr-detail-view').classList.remove('hidden');
+
+            // Populate fields
+            const img = document.getElementById('pr-detail-img');
+            if (p.image) { img.src = p.image; img.onerror = () => { document.getElementById('pr-detail-img-wrap').classList.add('bg-gradient-to-br','from-slate-200','to-slate-300'); img.remove(); }; }
+            else { document.getElementById('pr-detail-img-wrap').style.display = 'none'; }
+
+            document.getElementById('pr-detail-badge-dot').style.background = c.color;
+            document.getElementById('pr-detail-badge-label').textContent = c.title;
+            document.getElementById('pr-detail-title').textContent = p.title;
+            document.getElementById('pr-detail-desc').textContent = p.desc;
+            document.getElementById('pr-detail-duration').textContent = p.duration;
+            document.getElementById('pr-detail-status').textContent = p.status;
+            document.getElementById('pr-detail-status-info').textContent = p.status;
+            document.getElementById('pr-detail-partners').textContent = p.partners;
+
+            renderTeam(p.team);
+            lucide.createIcons();
+        }
+
+        function renderTeam(team) {
+            const list = document.getElementById('pr-team-list');
+            const empty = document.getElementById('pr-team-empty');
+            if (!team || !team.length) {
+                list.innerHTML = '';
+                empty.classList.remove('hidden');
+                return;
+            }
+            empty.classList.add('hidden');
+            const roleColors = { 'Proje Koordinatörü': 'bg-mlab-navy/10 text-mlab-navy', 'Örnek Rol 1': 'bg-purple-100 text-purple-700', 'Örnek Rol 2': 'bg-cyan-100 text-cyan-700', 'Örnek Rol 3': 'bg-amber-100 text-amber-700' };
+            list.innerHTML = team.map((m, i) => {
+                const rc = roleColors[m.role] || 'bg-slate-100 text-slate-600';
+                const initials = (m.name || '?').split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
+                return `
+                <div class="flex items-center gap-3 px-4 py-3 bg-slate-50 rounded-xl">
+                    <div class="w-9 h-9 rounded-full bg-mlab-navy flex items-center justify-center text-white text-xs font-bold flex-shrink-0">${initials}</div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-semibold text-mlab-navy leading-tight">${m.name}</p>
+                        <p class="text-xs text-slate-400">${m.org || ''}</p>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${rc}">${m.role}</span>
+                    <button onclick="removeTeamMember(${i})" class="p-1 text-slate-300 hover:text-red-400 transition-colors ml-1">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>`;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function removeTeamMember(index) {
+            const allProjects = Object.values(PR_MOCK_PROJECTS).flat();
+            const p = allProjects.find(x => x.id === prSelectedProject);
+            if (!p) return;
+            p.team.splice(index, 1);
+            renderTeam(p.team);
+            renderPrCards(prSelectedChallenge);
+        }
+
+        function closePrDetail() {
+            document.getElementById('pr-detail-view').classList.add('hidden');
+            const imgWrap = document.getElementById('pr-detail-img-wrap');
+            imgWrap.style.display = '';
+            document.getElementById('pr-project-list').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function openNewProjectModal() {
+            document.getElementById('new-project-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+        function closeNewProjectModal() {
+            document.getElementById('new-project-modal').classList.add('hidden');
+            document.getElementById('pr-img-preview').classList.add('hidden');
+            document.getElementById('pr-img-placeholder').classList.remove('hidden');
+        }
+        function handlePrImageSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById('pr-img-preview').src = e.target.result;
+                document.getElementById('pr-img-preview').classList.remove('hidden');
+                document.getElementById('pr-img-placeholder').classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+        function submitNewProject() {
+            const title = document.getElementById('pr-new-title').value.trim();
+            const desc = document.getElementById('pr-new-desc').value.trim();
+            if (!title || !desc || !prSelectedChallenge) return;
+            const imgPreview = document.getElementById('pr-img-preview');
+            const newProject = {
+                id: Date.now(),
+                title,
+                desc,
+                duration: document.getElementById('pr-new-duration').value.trim() || '—',
+                status: document.getElementById('pr-new-status').value,
+                partners: document.getElementById('pr-new-partners').value.trim() || '—',
+                image: imgPreview.classList.contains('hidden') ? '' : imgPreview.src,
+                team: []
+            };
+            if (!PR_MOCK_PROJECTS[prSelectedChallenge]) PR_MOCK_PROJECTS[prSelectedChallenge] = [];
+            PR_MOCK_PROJECTS[prSelectedChallenge].unshift(newProject);
+            closeNewProjectModal();
+            ['pr-new-title','pr-new-desc','pr-new-duration','pr-new-partners'].forEach(id => document.getElementById(id).value = '');
+            renderPrCards(prSelectedChallenge);
+        }
+
+        // Mock portal users — canlıda Firestore'dan çekilecek
+        const PR_PORTAL_USERS = [
+            { uid: 'u1', name: 'Berkay Yılmaz',   org: 'İZPA' },
+            { uid: 'u2', name: 'Ayşe Kaya',        org: 'Ege Üniversitesi' },
+            { uid: 'u3', name: 'Mehmet Demir',     org: 'EGIAD' },
+            { uid: 'u4', name: 'Selin Çelik',      org: 'İZBB' },
+            { uid: 'u5', name: 'Can Arslan',        org: 'Dokuz Eylül Üniversitesi' },
+            { uid: 'u6', name: 'Deniz Kılıç',      org: 'IZKA' },
+            { uid: 'u7', name: 'Elif Şahin',       org: 'İzmir Ticaret Odası' },
+            { uid: 'u8', name: 'Ahmet Yıldız',     org: 'EBSO' },
+            { uid: 'u9', name: 'Zeynep Avcı',      org: 'Yaşar Üniversitesi' },
+        ];
+
+        let prSelectedMemberUid = null;
+
+        function onMemberSearch(val) {
+            const dropdown = document.getElementById('member-search-dropdown');
+            if (val.length < 3) { dropdown.classList.add('hidden'); return; }
+
+            const q = val.toLowerCase();
+            const matches = PR_PORTAL_USERS.filter(u =>
+                u.name.toLowerCase().includes(q) || u.org.toLowerCase().includes(q)
+            );
+
+            if (!matches.length) {
+                dropdown.innerHTML = `<div class="px-4 py-3 text-sm text-slate-400 text-center">Kullanıcı bulunamadı</div>`;
+            } else {
+                dropdown.innerHTML = matches.map(u => {
+                    const initials = u.name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
+                    return `<button type="button" onclick="selectMember('${u.uid}')"
+                        class="w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-50 transition-colors text-left">
+                        <div class="w-8 h-8 rounded-full bg-mlab-navy flex items-center justify-center text-white text-xs font-bold flex-shrink-0">${initials}</div>
+                        <div>
+                            <p class="text-sm font-semibold text-slate-800">${u.name}</p>
+                            <p class="text-xs text-slate-400">${u.org}</p>
+                        </div>
+                    </button>`;
+                }).join('');
+            }
+            dropdown.classList.remove('hidden');
+        }
+
+        function selectMember(uid) {
+            const u = PR_PORTAL_USERS.find(x => x.uid === uid);
+            if (!u) return;
+            prSelectedMemberUid = uid;
+
+            // Hide dropdown + input, show selected card
+            document.getElementById('member-search-dropdown').classList.add('hidden');
+            document.getElementById('member-search-input').value = '';
+            document.getElementById('member-search-input').classList.add('hidden');
+
+            const initials = u.name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
+            document.getElementById('member-selected-avatar').textContent = initials;
+            document.getElementById('member-selected-name').textContent = u.name;
+            document.getElementById('member-selected-org').textContent = u.org;
+            document.getElementById('member-selected-display').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function clearMemberSelection() {
+            prSelectedMemberUid = null;
+            document.getElementById('member-selected-display').classList.add('hidden');
+            document.getElementById('member-search-input').classList.remove('hidden');
+            document.getElementById('member-search-input').value = '';
+        }
+
+        function openAddMemberModal() {
+            document.getElementById('add-member-modal').classList.remove('hidden');
+            clearMemberSelection();
+            document.getElementById('member-role-input').value = '';
+            lucide.createIcons();
+        }
+        function closeAddMemberModal() {
+            document.getElementById('add-member-modal').classList.add('hidden');
+            clearMemberSelection();
+            document.getElementById('member-role-input').value = '';
+        }
+        function submitAddMember() {
+            const role = document.getElementById('member-role-input').value;
+            if (!prSelectedMemberUid || !role || !prSelectedProject) return;
+            const u = PR_PORTAL_USERS.find(x => x.uid === prSelectedMemberUid);
+            const allProjects = Object.values(PR_MOCK_PROJECTS).flat();
+            const p = allProjects.find(x => x.id === prSelectedProject);
+            if (!p || !u) return;
+            p.team.push({ name: u.name, org: u.org, role });
+            closeAddMemberModal();
+            renderTeam(p.team);
+            renderPrCards(prSelectedChallenge);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initPR();
+        });
+        </script>
 
     </main>
 
@@ -861,9 +1779,9 @@
         // Check authentication
         async function checkAuth() {
             currentUser = JSON.parse(localStorage.getItem('portal_current_user'));
+            // PREVIEW MODE: inject mock user if not logged in
             if (!currentUser) {
-                window.location.href = 'portal-login.html';
-                return false;
+                currentUser = { org_name: 'İZPA', contact_name: 'Berkay Yılmaz', email: 'berkay.yilmaz.edu@gmail.com', org_type: 'kamu', isAdmin: true, uid: 'preview-user' };
             }
             document.getElementById('user-name').textContent = currentUser.contact_name || currentUser.org_name;
 
@@ -881,12 +1799,12 @@
             const roleEl = document.getElementById('user-role');
             if (roleEl) {
                 if (isAdmin) roleEl.textContent = t('portal.role.admin');
-                else if (currentUser.org_type) roleEl.textContent = currentUser.org_type === 'belediye' ? t('portal.role.municipality') : t('portal.role.private');
+                else if (currentUser.org_type) roleEl.textContent = currentUser.org_type === 'kamu' ? 'Kamu' : currentUser.org_type === 'stk' ? 'STK' : 'Özel Sektör';
                 else roleEl.textContent = t('portal.role.member');
 
                 // Add data-i18n attribute for dynamic language switching
                 if (isAdmin) roleEl.setAttribute('data-i18n', 'portal.role.admin');
-                else if (currentUser.org_type) roleEl.setAttribute('data-i18n', currentUser.org_type === 'belediye' ? 'portal.role.municipality' : 'portal.role.private');
+                else if (currentUser.org_type) roleEl.textContent = currentUser.org_type === 'kamu' ? 'Kamu' : currentUser.org_type === 'stk' ? 'STK' : 'Özel Sektör';
                 else roleEl.setAttribute('data-i18n', 'portal.role.member');
             }
             lucide.createIcons();
@@ -932,9 +1850,9 @@
                 return;
             }
 
-            const categoryIcon = authorData.category === 'belediye' ? 'landmark' : 'building-2';
-            const categoryColor = authorData.category === 'belediye' ? 'mlab-navy' : 'mlab-orange';
-            const categoryLabel = authorData.category === 'belediye' ? 'Belediye' : 'Özel Sektör';
+            const categoryIcon = authorData.category === 'kamu' ? 'landmark' : authorData.category === 'stk' ? 'heart-handshake' : 'building-2';
+            const categoryColor = authorData.category === 'kamu' ? 'mlab-navy' : authorData.category === 'stk' ? 'mlab-purple' : 'mlab-orange';
+            const categoryLabel = authorData.category === 'kamu' ? 'Kamu' : authorData.category === 'stk' ? 'STK' : 'Özel Sektör';
 
             content.innerHTML = `
                 <div class="space-y-4">
@@ -1043,7 +1961,7 @@
                                 description: 'Belediyemiz hizmet binalarına güneş enerjisi santrali kurulumu planlanmaktadır. Bu konuda deneyimli firmalardan teknik danışmanlık ve fizibilite çalışması desteği aranmaktadır.',
                                 sector: 'enerji',
                                 tags: ['güneş enerjisi', 'yenilenebilir', 'GES'],
-                                author: { name: 'Konak Belediyesi', category: 'belediye' },
+                                author: { name: 'Konak Belediyesi', category: 'kamu' },
                                 created_at: '2026-01-07T10:00:00Z'
                             },
                             {
@@ -1101,8 +2019,8 @@
             if (statRequests && statOffers && statBelediye && statOzel) {
                 statRequests.textContent = allPosts.filter(p => p.post_type === 'destek_talebi').length;
                 statOffers.textContent = allPosts.filter(p => p.post_type === 'uzmanlik_bildirisi').length;
-                statBelediye.textContent = allPosts.filter(p => p.author?.category === 'belediye').length;
-                statOzel.textContent = allPosts.filter(p => p.author?.category === 'ozel_sektor').length;
+                statBelediye.textContent = allPosts.filter(p => p.author?.category === 'kamu').length;
+                statOzel.textContent = allPosts.filter(p => p.author?.category === 'ozel_sektor' || p.author?.category === 'stk').length;
             }
 
             if (allPosts.length === 0) {
@@ -1128,7 +2046,7 @@
                     gradientClass = 'from-blue-500 to-indigo-600';
                 }
 
-                const categoryIcon = post.author?.category === 'belediye' ? 'landmark' : 'building-2';
+                const categoryIcon = post.author?.category === 'kamu' ? 'landmark' : post.author?.category === 'stk' ? 'heart-handshake' : 'building-2';
                 const date = formatDate(post.created_at);
                 const authorDisplay = post.author?.contact_name
                     ? `${post.author.name} - ${post.author.contact_name}`
@@ -1418,7 +2336,7 @@
             currentPostId = post.id;
             const isRequest = post.post_type === 'destek_talebi';
             const typeLabel = isRequest ? 'Destek Talebi' : 'Uzmanlık Bildirisi';
-            const categoryLabel = post.author?.category === 'belediye' ? 'Belediye' : 'Özel Sektör';
+            const categoryLabel = post.author?.category === 'kamu' ? 'Kamu' : post.author?.category === 'stk' ? 'STK' : 'Özel Sektör';
 
             let dateStr = '';
             if (post.created_at) {
@@ -1451,7 +2369,7 @@
             <div class="flex items-center justify-between bg-slate-50 rounded-xl p-4">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-mlab-purple/10 flex items-center justify-center">
-                        <i data-lucide="${post.author?.category === 'belediye' ? 'landmark' : 'building-2'}"
+                        <i data-lucide="${post.author?.category === 'kamu' ? 'landmark' : post.author?.category === 'stk' ? 'heart-handshake' : 'building-2'}"
                             class="w-5 h-5 text-mlab-purple"></i>
                     </div>
                     <div>
@@ -1552,7 +2470,7 @@
             }
 
             commentsList.innerHTML = comments.map(comment => {
-                const categoryIcon = comment.author?.category === 'belediye' ? 'landmark' : 'building-2';
+                const categoryIcon = comment.author?.category === 'kamu' ? 'landmark' : comment.author?.category === 'stk' ? 'heart-handshake' : 'building-2';
                 let dateStr = '';
                 if (comment.created_at) {
                     const date = comment.created_at.toDate ? comment.created_at.toDate() : new Date(comment.created_at);
@@ -1568,9 +2486,9 @@
         <div class="bg-white border border-slate-100 rounded-xl p-4">
             <div class="flex items-start gap-3">
                 <div
-                    class="w-8 h-8 rounded-full ${comment.author?.category === 'belediye' ? 'bg-mlab-navy/10' : 'bg-mlab-orange/10'} flex items-center justify-center flex-shrink-0">
+                    class="w-8 h-8 rounded-full ${comment.author?.category === 'kamu' ? 'bg-mlab-navy/10' : comment.author?.category === 'stk' ? 'bg-mlab-purple/10' : 'bg-mlab-orange/10'} flex items-center justify-center flex-shrink-0">
                     <i data-lucide="${categoryIcon}"
-                        class="w-4 h-4 ${comment.author?.category === 'belediye' ? 'text-mlab-navy' : 'text-mlab-orange'}"></i>
+                        class="w-4 h-4 ${comment.author?.category === 'kamu' ? 'text-mlab-navy' : comment.author?.category === 'stk' ? 'text-mlab-purple' : 'text-mlab-orange'}"></i>
                 </div>
                 <div class="flex-grow min-w-0">
                     <div class="flex items-center gap-2 mb-1">
@@ -1836,40 +2754,62 @@
             }
         });
 
+        // ---- NEW FILTER STATE ----
+        let activePostType = 'all';
+        let activeChallengeFilter = 'all';
+        let activeCatFilters = new Set(['kamu', 'ozel_sektor', 'stk']);
+
+        function setPostTypeFilter(btn, value) {
+            activePostType = value;
+            document.querySelectorAll('.post-filter-pill').forEach(b => {
+                b.classList.remove('bg-slate-100', 'font-semibold', 'text-mlab-navy');
+                b.classList.add('text-slate-500');
+            });
+            btn.classList.add('bg-slate-100', 'font-semibold', 'text-mlab-navy');
+            btn.classList.remove('text-slate-500');
+            applyFilters();
+        }
+
+        function toggleCategoryFilter(btn, value) {
+            const isActive = btn.dataset.active === 'true';
+            if (isActive) {
+                activeCatFilters.delete(value);
+                btn.dataset.active = 'false';
+                btn.classList.remove('bg-mlab-navy/8', 'text-mlab-navy', 'border-mlab-navy/25');
+                btn.classList.add('text-slate-400', 'border-slate-200', 'bg-transparent');
+            } else {
+                activeCatFilters.add(value);
+                btn.dataset.active = 'true';
+                btn.classList.add('bg-mlab-navy/8', 'text-mlab-navy', 'border-mlab-navy/25');
+                btn.classList.remove('text-slate-400', 'border-slate-200', 'bg-transparent');
+            }
+            applyFilters();
+        }
+
+        function setChallengeFilter(btn, value) {
+            activeChallengeFilter = value;
+            document.querySelectorAll('.challenge-filter-pill').forEach(b => {
+                b.classList.remove('bg-slate-100', 'font-semibold', 'text-mlab-navy');
+                b.classList.add('text-slate-500');
+            });
+            btn.classList.add('bg-slate-100', 'font-semibold', 'text-mlab-navy');
+            btn.classList.remove('text-slate-500');
+            applyFilters();
+        }
+
         function applyFilters() {
-            // Check if current user is expert (if we want to hide/show things, but here just robust check)
             if (!allPosts) return;
-
-            // Get filter values
-            const postType = document.querySelector('input[name="post_type"]:checked')?.value || 'all';
-            const belediyeChecked = document.querySelector('input[name="category"][value="belediye"]')?.checked;
-            const ozelSektorChecked = document.querySelector('input[name="category"][value="ozel_sektor"]')?.checked;
-            const sectorFilter = document.getElementById('sector-filter')?.value || 'all';
-
-            // Filter posts
             let filtered = [...allPosts];
 
-            // Filter by post type
-            if (postType !== 'all') {
-                filtered = filtered.filter(post => post.post_type === postType);
-            }
+            if (activePostType !== 'all')
+                filtered = filtered.filter(p => p.post_type === activePostType);
 
-            // Filter by category (author type)
-            const selectedCategories = [];
-            if (belediyeChecked) selectedCategories.push('belediye');
-            if (ozelSektorChecked) selectedCategories.push('ozel_sektor');
+            if (activeCatFilters.size > 0 && activeCatFilters.size < 2)
+                filtered = filtered.filter(p => activeCatFilters.has(p.author?.category));
 
-            if (selectedCategories.length > 0 && selectedCategories.length < 2) {
-                filtered = filtered.filter(post =>
-                    selectedCategories.includes(post.author?.category));
-            }
+            if (activeChallengeFilter !== 'all')
+                filtered = filtered.filter(p => p.sector === activeChallengeFilter);
 
-            // Filter by sector (Büyük Zorluk)
-            if (sectorFilter !== 'all') {
-                filtered = filtered.filter(post => post.sector === sectorFilter);
-            }
-
-            // Re-render with filtered posts
             renderFilteredPosts(filtered);
         }
 
@@ -1915,7 +2855,7 @@
                     typeLabel = t('post.type.expert');
                 }
 
-                const categoryIcon = post.author?.category === 'belediye' ? 'landmark' : 'building-2';
+                const categoryIcon = post.author?.category === 'kamu' ? 'landmark' : post.author?.category === 'stk' ? 'heart-handshake' : 'building-2';
                 const date = formatDate(post.created_at);
                 const authorDisplay = post.author?.contact_name
                     ? `${post.author.name} - ${post.author.contact_name}`
@@ -2152,6 +3092,26 @@
         }
 
         init();
+
+        // ===== SECTION TAB SWITCHING =====
+        function switchSection(section) {
+            // Hide all sections
+            document.getElementById('section-cagrilar').classList.add('hidden');
+            document.getElementById('section-calisma-gruplari').classList.add('hidden');
+            document.getElementById('section-projeler').classList.add('hidden');
+
+            // Remove active from all tabs
+            document.querySelectorAll('.section-tab').forEach(btn => btn.classList.remove('active'));
+
+            // Show selected section + activate tab
+            document.getElementById('section-' + section).classList.remove('hidden');
+            document.getElementById('tab-' + section).classList.add('active');
+
+            lucide.createIcons();
+        }
+
+        // Set initial active tab
+        document.getElementById('tab-cagrilar').classList.add('active');
     </script>
 </body>
 

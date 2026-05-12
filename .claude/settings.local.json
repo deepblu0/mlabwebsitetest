@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__2c2eac20-6a0c-4929-90aa-b82986486d26__list_teams",
+      "mcp__2c2eac20-6a0c-4929-90aa-b82986486d26__list_projects",
+      "mcp__2c2eac20-6a0c-4929-90aa-b82986486d26__list_deployments",
+      "mcp__2c2eac20-6a0c-4929-90aa-b82986486d26__get_project",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git mv *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

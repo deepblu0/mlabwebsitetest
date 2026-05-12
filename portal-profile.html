@@ -77,8 +77,10 @@
                 document.getElementById('phone').value = data.phone || '';
 
                 // Set category
-                if (data.category === 'belediye') {
-                    document.getElementById('cat-belediye').checked = true;
+                if (data.category === 'kamu') {
+                    document.getElementById('cat-kamu').checked = true;
+                } else if (data.category === 'stk') {
+                    document.getElementById('cat-stk').checked = true;
                 } else {
                     document.getElementById('cat-ozel').checked = true;
                 }
@@ -137,6 +139,7 @@
             window.location.href = 'portal.html';
         };
     </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
 <body class="bg-slate-100 text-slate-800 antialiased min-h-screen" data-i18n-title="portal.nav.profile">
@@ -211,34 +214,37 @@
                     <div class="mb-5">
                         <label class="block text-sm font-medium text-slate-700 mb-3"
                             data-i18n="portal.register.category">Kurum Kategorisi</label>
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-3 gap-3">
                             <label class="relative cursor-pointer">
-                                <input type="radio" id="cat-belediye" name="category" value="belediye"
-                                    class="peer sr-only">
-                                <div
-                                    class="p-4 rounded-xl border-2 border-slate-200 peer-checked:border-mlab-navy peer-checked:bg-mlab-navy/5 transition-all hover:border-slate-300">
-                                    <div class="flex items-center gap-3">
-                                        <div
-                                            class="w-10 h-10 rounded-lg bg-mlab-navy/10 flex items-center justify-center">
+                                <input type="radio" id="cat-kamu" name="category" value="kamu" class="peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-200 peer-checked:border-mlab-navy peer-checked:bg-mlab-navy/5 transition-all hover:border-slate-300">
+                                    <div class="flex flex-col items-center gap-2 text-center">
+                                        <div class="w-10 h-10 rounded-lg bg-mlab-navy/10 flex items-center justify-center">
                                             <i data-lucide="landmark" class="w-5 h-5 text-mlab-navy"></i>
                                         </div>
-                                        <div class="font-semibold text-mlab-navy"
-                                            data-i18n="portal.filters.municipality">Belediye</div>
+                                        <div class="font-semibold text-mlab-navy text-sm">Kamu</div>
                                     </div>
                                 </div>
                             </label>
                             <label class="relative cursor-pointer">
-                                <input type="radio" id="cat-ozel" name="category" value="ozel_sektor"
-                                    class="peer sr-only">
-                                <div
-                                    class="p-4 rounded-xl border-2 border-slate-200 peer-checked:border-mlab-orange peer-checked:bg-mlab-orange/5 transition-all hover:border-slate-300">
-                                    <div class="flex items-center gap-3">
-                                        <div
-                                            class="w-10 h-10 rounded-lg bg-mlab-orange/10 flex items-center justify-center">
+                                <input type="radio" id="cat-ozel" name="category" value="ozel_sektor" class="peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-200 peer-checked:border-mlab-orange peer-checked:bg-mlab-orange/5 transition-all hover:border-slate-300">
+                                    <div class="flex flex-col items-center gap-2 text-center">
+                                        <div class="w-10 h-10 rounded-lg bg-mlab-orange/10 flex items-center justify-center">
                                             <i data-lucide="building-2" class="w-5 h-5 text-mlab-orange"></i>
                                         </div>
-                                        <div class="font-semibold text-mlab-navy" data-i18n="portal.filters.private">
-                                            Özel Sektör</div>
+                                        <div class="font-semibold text-mlab-navy text-sm">Özel Sektör</div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="radio" id="cat-stk" name="category" value="stk" class="peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-200 peer-checked:border-mlab-purple peer-checked:bg-mlab-purple/5 transition-all hover:border-slate-300">
+                                    <div class="flex flex-col items-center gap-2 text-center">
+                                        <div class="w-10 h-10 rounded-lg bg-mlab-purple/10 flex items-center justify-center">
+                                            <i data-lucide="heart-handshake" class="w-5 h-5 text-mlab-purple"></i>
+                                        </div>
+                                        <div class="font-semibold text-mlab-navy text-sm">STK</div>
                                     </div>
                                 </div>
                             </label>
